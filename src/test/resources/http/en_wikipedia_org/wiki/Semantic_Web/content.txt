@@ -1,0 +1,1108 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" dir="ltr" class="client-nojs" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Semantic Web - Wikipedia, the free encyclopedia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="MediaWiki 1.18wmf1" />
+<link rel="alternate" type="application/x-wiki" title="Edit this page" href="/w/index.php?title=Semantic_Web&amp;action=edit" />
+<link rel="edit" title="Edit this page" href="/w/index.php?title=Semantic_Web&amp;action=edit" />
+<link rel="apple-touch-icon" href="//en.wikipedia.org/apple-touch-icon.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipedia (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="//en.wikipedia.org/w/api.php?action=rsd" />
+<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=ext.wikihiero%7Cmediawiki.legacy.commonPrint%2Cshared%7Cskins.vector&amp;only=styles&amp;skin=vector&amp;*" type="text/css" media="all" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" type="text/css" media="all" />
+<style type="text/css" media="all">a.new,#quickbar a.new{color:#ba0000}
+
+/* cache key: enwiki:resourceloader:filter:minify-css:4:f2a9127573a22335c2a9102b208c73e7 */</style>
+<script src="//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*" type="text/javascript"></script>
+<script type="text/javascript">if ( window.mediaWiki ) {
+    mw.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Semantic_Web", "wgTitle": "Semantic Web", "wgCurRevisionId": 456464623, "wgArticleId": 29123, "wgIsArticle": true, "wgAction": "view", "wgUserName": null, "wgUserGroups": ["*"], "wgCategories": ["Articles needing cleanup from November 2009", "All articles needing cleanup", "Wikipedia articles needing style editing from November 2009", "All articles needing style editing", "All pages needing cleanup", "Vague or ambiguous time from August 2011", "All articles with unsourced statements", "Articles with unsourced statements from August 2011", "Articles with unsourced statements from July 2011", "Articles with unsourced statements from April 2011", "Articles with too many examples", "Buzzwords", "Semantic Web", "Web services"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": [], "wgSearchNamespaces": [0], "wgFlaggedRevsParams": {"tags": {"status": {"levels": 1, "quality": 2, "pristine": 3}}}, "wgStableRevisionId": null, "wgVectorEnabledModules": {"collapsiblenav": true, "collapsibletabs": true, "editwarning": true, "expandablesearch": false, "footercleanup": false, "sectioneditlinks": false, "simplesearch": true, "experiments": true}, "wgWikiEditorEnabledModules": {"toolbar": true, "dialogs": true, "hidesig": true, "templateEditor": false, "templates": false, "preview": false, "previewDialog": false, "publish": false, "toc": false}, "wgTrackingToken": "870e0d22d6ccaba12681519a890a9bd0", "wikilove-recipient": "", "wikilove-edittoken": "+\\", "wikilove-anon": 0, "mbEditToken": "+\\", "Geo": {"city": "", "country": ""}, "wgNoticeProject": "wikipedia"});
+}
+</script><script type="text/javascript">if ( window.mediaWiki ) {
+    mw.loader.load(["mediawiki.page.startup"]);
+}
+</script>
+<style type="text/css">/*<![CDATA[*/
+.source-html4strict {line-height: normal;}
+.source-html4strict li, .source-html4strict pre {
+    line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for html4strict
+ * CSS class: source-html4strict, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.html4strict.source-html4strict .de1, .html4strict.source-html4strict .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.html4strict.source-html4strict  {font-family:monospace;}
+.html4strict.source-html4strict .imp {font-weight: bold; color: red;}
+.html4strict.source-html4strict li, .html4strict.source-html4strict .li1 {font-weight: normal; vertical-align:top;}
+.html4strict.source-html4strict .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.html4strict.source-html4strict .li2 {font-weight: bold; vertical-align:top;}
+.html4strict.source-html4strict .kw2 {color: #000000; font-weight: bold;}
+.html4strict.source-html4strict .kw3 {color: #000066;}
+.html4strict.source-html4strict .es0 {color: #000099; font-weight: bold;}
+.html4strict.source-html4strict .br0 {color: #66cc66;}
+.html4strict.source-html4strict .sy0 {color: #66cc66;}
+.html4strict.source-html4strict .st0 {color: #ff0000;}
+.html4strict.source-html4strict .nu0 {color: #cc66cc;}
+.html4strict.source-html4strict .sc-2 {color: #404040;}
+.html4strict.source-html4strict .sc-1 {color: #808080; font-style: italic;}
+.html4strict.source-html4strict .sc0 {color: #00bbdd;}
+.html4strict.source-html4strict .sc1 {color: #ddbb00;}
+.html4strict.source-html4strict .sc2 {color: #009900;}
+.html4strict.source-html4strict .ln-xtra, .html4strict.source-html4strict li.ln-xtra, .html4strict.source-html4strict div.ln-xtra {background-color: #ffc;}
+.html4strict.source-html4strict span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><style type="text/css">/*<![CDATA[*/
+.source-xml {line-height: normal;}
+.source-xml li, .source-xml pre {
+    line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for xml
+ * CSS class: source-xml, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.xml.source-xml .de1, .xml.source-xml .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;}
+.xml.source-xml  {font-family:monospace;}
+.xml.source-xml .imp {font-weight: bold; color: red;}
+.xml.source-xml li, .xml.source-xml .li1 {font-weight: normal; vertical-align:top;}
+.xml.source-xml .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.xml.source-xml .li2 {font-weight: bold; vertical-align:top;}
+.xml.source-xml .es0 {color: #000099; font-weight: bold;}
+.xml.source-xml .br0 {color: #66cc66;}
+.xml.source-xml .sy0 {color: #66cc66;}
+.xml.source-xml .st0 {color: #ff0000;}
+.xml.source-xml .nu0 {color: #cc66cc;}
+.xml.source-xml .sc-1 {color: #808080; font-style: italic;}
+.xml.source-xml .sc0 {color: #00bbdd;}
+.xml.source-xml .sc1 {color: #ddbb00;}
+.xml.source-xml .sc2 {color: #339933;}
+.xml.source-xml .sc3 {color: #009900;}
+.xml.source-xml .re0 {color: #000066;}
+.xml.source-xml .re1 {color: #000000; font-weight: bold;}
+.xml.source-xml .re2 {color: #000000; font-weight: bold;}
+.xml.source-xml .ln-xtra, .xml.source-xml li.ln-xtra, .xml.source-xml div.ln-xtra {background-color: #ffc;}
+.xml.source-xml span.xtra { display:block; }
+
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=2678400";
+/*]]>*/
+</style><!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/skins-1.18/vector/csshover.min.htc")}</style><![endif]--></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Semantic_Web action-view skin-vector">
+        <div id="mw-page-base" class="noprint"></div>
+        <div id="mw-head-base" class="noprint"></div>
+        <!-- content -->
+        <div id="content">
+            <a id="top"></a>
+            <div id="mw-js-message" style="display:none;"></div>
+                        <!-- sitenotice -->
+            <div id="siteNotice"><!-- centralNotice loads here --></div>
+            <!-- /sitenotice -->
+                        <!-- firstHeading -->
+            <h1 id="firstHeading" class="firstHeading">Semantic Web</h1>
+            <!-- /firstHeading -->
+            <!-- bodyContent -->
+            <div id="bodyContent">
+                                <!-- tagline -->
+                <div id="siteSub">From Wikipedia, the free encyclopedia</div>
+                <!-- /tagline -->
+                                <!-- subtitle -->
+                <div id="contentSub"></div>
+                <!-- /subtitle -->
+                                                                <!-- jumpto -->
+                <div id="jump-to-nav">
+                    Jump to: <a href="#mw-head">navigation</a>,
+                    <a href="#p-search">search</a>
+                </div>
+                <!-- /jumpto -->
+                                <!-- bodycontent -->
+                <div lang="en" dir="ltr" class="mw-content-ltr"><table class="metadata plainlinks ambox ambox-content ambox-multiple_issues" style="">
+<tr>
+<td class="mbox-image">
+<div style="width: 52px;"><img alt="" src="//upload.wikimedia.org/wikipedia/en/f/f4/Ambox_content.png" width="40" height="40" /></div>
+</td>
+<td class="mbox-text" style="">
+<div>
+<div style="text-align:left;"><b>This article has multiple issues</b>. Please help <b><a rel="nofollow" class="external text" href="//en.wikipedia.org/w/index.php?title=Semantic_Web&amp;action=edit">improve it</a></b> or discuss these issues on the <b><a href="/wiki/Talk:Semantic_Web" title="Talk:Semantic Web">talk page</a></b>.</div>
+<ul>
+<li id="ambox-multiple_issues-cleanup">It <b>may require <a href="/wiki/Wikipedia:Cleanup" title="Wikipedia:Cleanup">cleanup</a> to meet Wikipedia's <a href="/wiki/Wikipedia:Manual_of_Style" title="Wikipedia:Manual of Style">quality standards</a></b>. <small>Tagged since November 2009.</small></li>
+<li id="ambox-multiple_issues-tone">Its <b><a href="/wiki/Wikipedia:TONE" title="Wikipedia:TONE" class="mw-redirect">tone</a> or style may not reflect the formal tone used on Wikipedia</b>. <small>Tagged since November 2009.</small></li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/wiki/File:Sw-horz-w3c.png" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/a/a4/Sw-horz-w3c.png/220px-Sw-horz-w3c.png" width="220" height="44" class="thumbimage" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Sw-horz-w3c.png" class="internal" title="Enlarge"><img src="//bits.wikimedia.org/skins-1.18/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+W3C's Semantic Web logo</div>
+</div>
+</div>
+<p>The <b>Semantic Web</b> is a "man-made woven web of data" that facilitates <a href="/wiki/Machine#Computing_machines" title="Machine">machines</a> to understand the <a href="/wiki/Semantics" title="Semantics">semantics</a>, or meaning, of information on the <a href="/wiki/World_Wide_Web" title="World Wide Web">World Wide Web</a><sup id="cite_ref-w3c_faq_0-0" class="reference"><a href="#cite_note-w3c_faq-0"><span>[</span>1<span>]</span></a></sup><sup id="cite_ref-1" class="reference"><a href="#cite_note-1"><span>[</span>2<span>]</span></a></sup>. The concept of Semantic Web applies methods beyond linear presentation of information (<a href="/wiki/Web_1.0" title="Web 1.0">Web 1.0</a>) and multi-linear presentation of information (<a href="/wiki/Web_2.0" title="Web 2.0">Web 2.0</a>) to make use of <i>hyper-structures</i> leading to entities of hypertext.</p>
+<p>The concept of the <i>Semantic Network Model</i> was coined in the early sixties by the cognitive scientist <a href="/wiki/Allan_M._Collins" title="Allan M. Collins">Allan M. Collins</a>, linguist <a href="/w/index.php?title=M._Ross_Quillian&amp;action=edit&amp;redlink=1" class="new" title="M. Ross Quillian (page does not exist)">M. Ross Quillian</a> and psychologist <a href="/wiki/Elizabeth_F._Loftus" title="Elizabeth F. Loftus" class="mw-redirect">Elizabeth F. Loftus</a> in various publications<sup id="cite_ref-Collins1969_2-0" class="reference"><a href="#cite_note-Collins1969-2"><span>[</span>3<span>]</span></a></sup><sup id="cite_ref-Collins1970_3-0" class="reference"><a href="#cite_note-Collins1970-3"><span>[</span>4<span>]</span></a></sup><sup id="cite_ref-Collins1975_4-0" class="reference"><a href="#cite_note-Collins1975-4"><span>[</span>5<span>]</span></a></sup><sup id="cite_ref-M._Ross_Quillian_5-0" class="reference"><a href="#cite_note-M._Ross_Quillian-5"><span>[</span>6<span>]</span></a></sup><sup id="cite_ref-M._Ross_Quillian_5-1" class="reference"><a href="#cite_note-M._Ross_Quillian-5"><span>[</span>6<span>]</span></a></sup> as a form to represent semantically structured knowledge. It extends the network of <a href="/wiki/Hyperlink" title="Hyperlink">hyperlinked</a> human-readable <a href="/wiki/Web_pages" title="Web pages" class="mw-redirect">web pages</a> by inserting machine-readable <a href="/wiki/Metadata" title="Metadata">metadata</a> about pages and how they are related to each other, enabling automated agents to access the Web more intelligently and perform tasks on behalf of users. The term was coined by <a href="/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Tim Berners-Lee</a>,<sup id="cite_ref-6" class="reference"><a href="#cite_note-6"><span>[</span>7<span>]</span></a></sup> the inventor of the World Wide Web and director of the <a href="/wiki/World_Wide_Web_Consortium" title="World Wide Web Consortium">World Wide Web Consortium</a> ("<a href="/wiki/W3C" title="W3C" class="mw-redirect">W3C</a>"), which oversees the development of proposed Semantic Web standards. He defines the Semantic Web as "a web of data that can be processed directly and indirectly by machines."</p>
+<p>Many of the technologies proposed by the W3C already existed before positioned under the W3C umbrella. These are used in various contexts, particularly those dealing with information that encompasses a limited and defined domain, and where sharing data is a common necessity, such as scientific research or data exchange among businesses. In addition, other technologies with similar goals have emerged, such as <a href="/wiki/Microformat" title="Microformat">microformats</a>.</p>
+<table id="toc" class="toc">
+<tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Purpose_and_preparedness"><span class="tocnumber">1</span> <span class="toctext">Purpose and preparedness</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Semantic_publishing"><span class="tocnumber">1.1</span> <span class="toctext">Semantic publishing</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Semantic_blogging"><span class="tocnumber">1.2</span> <span class="toctext">Semantic blogging</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Web_3.0"><span class="tocnumber">1.3</span> <span class="toctext">Web 3.0</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Need"><span class="tocnumber">1.4</span> <span class="toctext">Need</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Challenges"><span class="tocnumber">1.5</span> <span class="toctext">Challenges</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Relationship_to_the_hypertext_web"><span class="tocnumber">2</span> <span class="toctext">Relationship to the hypertext web</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Current_state_of_standardization"><span class="tocnumber">2.1</span> <span class="toctext">Current state of standardization</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Components"><span class="tocnumber">2.2</span> <span class="toctext">Components</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Limitations_of_HTML"><span class="tocnumber">2.3</span> <span class="toctext">Limitations of HTML</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Semantic_Web_solutions"><span class="tocnumber">2.4</span> <span class="toctext">Semantic Web solutions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Skeptical_reactions"><span class="tocnumber">3</span> <span class="toctext">Skeptical reactions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Practical_feasibility"><span class="tocnumber">3.1</span> <span class="toctext">Practical feasibility</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Potential_of_an_idea_in_fast_progress"><span class="tocnumber">3.2</span> <span class="toctext">Potential of an idea in fast progress</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Censorship_and_privacy"><span class="tocnumber">3.3</span> <span class="toctext">Censorship and privacy</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Doubling_output_formats"><span class="tocnumber">3.4</span> <span class="toctext">Doubling output formats</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Projects"><span class="tocnumber">4</span> <span class="toctext">Projects</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#DBpedia"><span class="tocnumber">4.1</span> <span class="toctext">DBpedia</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#FOAF"><span class="tocnumber">4.2</span> <span class="toctext">FOAF</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#GoodRelations_for_e-commerce"><span class="tocnumber">4.3</span> <span class="toctext">GoodRelations for e-commerce</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#SIOC"><span class="tocnumber">4.4</span> <span class="toctext">SIOC</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#SIMILE"><span class="tocnumber">4.5</span> <span class="toctext">SIMILE</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#NextBio"><span class="tocnumber">4.6</span> <span class="toctext">NextBio</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Linking_Open_Data"><span class="tocnumber">4.7</span> <span class="toctext">Linking Open Data</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#OpenPSI"><span class="tocnumber">4.8</span> <span class="toctext">OpenPSI</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="#GoPubMed"><span class="tocnumber">4.9</span> <span class="toctext">GoPubMed</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-27"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-28"><a href="#References"><span class="tocnumber">6</span> <span class="toctext">References</span></a></li>
+<li class="toclevel-1 tocsection-29"><a href="#Further_reading"><span class="tocnumber">7</span> <span class="toctext">Further reading</span></a></li>
+<li class="toclevel-1 tocsection-30"><a href="#External_links"><span class="tocnumber">8</span> <span class="toctext">External links</span></a></li>
+</ul>
+</td>
+</tr>
+</table>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=1" title="Edit section: Purpose and preparedness">edit</a>]</span> <span class="mw-headline" id="Purpose_and_preparedness">Purpose and preparedness</span></h2>
+<p>Its critics have questioned its feasibility, however, more and more applications in research for and within industry, biology and human sciences research prove the validity of the original concept<sup id="cite_ref-7" class="reference"><a href="#cite_note-7"><span>[</span>8<span>]</span></a></sup>.</p>
+<p>The Semantic Web as originally envisioned is a system that enables machines to understand and respond to complex human requests based on their meaning. It has remained in a permanent state of improvement of its framework of standards. It is understood today that <i>understanding</i> by machines within the available repositories of information requires prior systematic <i>structuring</i> of the contents and strategic proliferation of tools for performing such structuring in a layered approach. There is no escaping the fact, the availability of understandable and intelligible information, even in automated processing, needs time for preparation.</p>
+<p>The reluctance of the most highly knowledgeable class to structure their personal understanding of the world where they live and work appears partially driven by shortages of time, preparedness and willingness to contribute. The supplicants for deep knowledge appear to stay hampered by lack of technological knowledge and lack of financing for the development of the data bases and the related work<sup id="cite_ref-8" class="reference"><a href="#cite_note-8"><span>[</span>9<span>]</span></a></sup>. The growing interest in structuring and access to this knowledge, however raises the questions of where to start and what to do first<sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span>[</span>10<span>]</span></a></sup>.</p>
+<p>The main purpose of the <b>Semantic Web</b> is driving the evolution of the current Web by enabling users to find, share, and combine information more easily. Humans are capable of using the Web to carry out tasks such as finding the <a href="/wiki/Irish_language" title="Irish language">Irish</a> word for "folder", reserving a library book, and searching for the lowest price for a DVD. However, <a href="/wiki/Machine#Computing_machines" title="Machine">machines</a> cannot accomplish all of these tasks without human direction, because web pages are designed to be read by people, not machines. The semantic web is a vision of information that can be readily interpreted by machines, so machines can perform more of the tedious work involved in finding, combining, and acting upon information on the web.</p>
+<p>Tim Berners-Lee originally expressed the vision of the Semantic Web as follows:<sup id="cite_ref-10" class="reference"><a href="#cite_note-10"><span>[</span>11<span>]</span></a></sup></p>
+<blockquote class="toccolours" style="float:none; padding: 10px 15px 10px 15px; display:table;">
+<p>I have a dream for the Web [in which computers] become capable of analyzing all the data on the Web&#160;– the content, links, and transactions between people and computers. A ‘Semantic Web’, which should make this possible, has yet to emerge, but when it does, the day-to-day mechanisms of trade, bureaucracy and our daily lives will be handled by machines talking to machines. The ‘<a href="/wiki/Intelligent_agent" title="Intelligent agent">intelligent agents</a>’ people have touted for ages will finally materialize.</p>
+<p style="text-align: right;">— <cite><a href="/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Tim Berners-Lee</a>, 1999</cite></p>
+</blockquote>
+<p>The Semantic Web is regarded as an integrator across different content, information applications and systems. It also provides mechanisms for the realization of <a href="/wiki/Enterprise_Information_System" title="Enterprise Information System">Enterprise Information Systems</a>. Rapid growth in the volume of data on the web provides the impetus for researchers to focus on the creation and dissemination of innovative Semantic Web technologies to facilitate automated processing. Often the terms ’<a href="/wiki/Semantics" title="Semantics">Semantics</a>’, ’<a href="/wiki/Metadata" title="Metadata">metadata</a>’, ’<a href="/wiki/Ontologies" title="Ontologies" class="mw-redirect">ontologies</a>’ and ’Semantic Web’ are used inconsistently. In particular, these terms are used as everyday terminology by researchers and practitioners, spanning a vast landscape of different fields, technologies, concepts and application areas. Furthermore, there is confusion with regard to the current status of the enabling technologies envisioned to realize the Semantic Web. In a paper presented by Gerber, Barnard and Van der Merwe<sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span>[</span>12<span>]</span></a></sup> the Semantic Web landscape is charted and a brief summary of related terms and enabling technologies is presented. The architectural model proposed by Tim Berners-Lee is used as basis to present a status model that reflects current and emerging technologies.<sup id="cite_ref-12" class="reference"><a href="#cite_note-12"><span>[</span>13<span>]</span></a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=2" title="Edit section: Semantic publishing">edit</a>]</span> <span class="mw-headline" id="Semantic_publishing">Semantic publishing</span></h3>
+<p><a href="/wiki/Semantic_publishing" title="Semantic publishing">Semantic publishing</a> will greatly benefit from the Semantic Web. In particular, the Semantic Web is expected to revolutionize <a href="/wiki/Academic_publishing" title="Academic publishing">scientific publishing</a>, such as real-time publishing and sharing of experimental data on the Internet. This simple but radical idea is now<sup class="noprint Inline-Template" style="white-space:nowrap;">[<i><a href="/wiki/Wikipedia:Manual_of_Style_(dates_and_numbers)#Chronological_items" title="Wikipedia:Manual of Style (dates and numbers)" class="mw-redirect"><span title="The time period in the vicinity of this tag is ambiguous from August 2011">when?</span></a></i>]</sup> being explored by <a href="/wiki/W3C" title="W3C" class="mw-redirect">W3C</a> HCLS group's <a rel="nofollow" class="external text" href="http://esw.w3.org/topic/HCLS/ScientificPublishingTaskForce">Scientific Publishing Task Force</a>.<sup class="Template-Fact" style="white-space:nowrap;">[<i><a href="/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"><span title="This claim needs references to reliable sources from August 2011">citation needed</span></a></i>]</sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=3" title="Edit section: Semantic blogging">edit</a>]</span> <span class="mw-headline" id="Semantic_blogging">Semantic blogging</span></h3>
+<p>Semantic blogging, like semantic publishing, may change the way blogs are read. Currently "the process of blogging inherently emphasizes metadata creation more than traditional Web publishing methodologies".<sup id="cite_ref-13" class="reference"><a href="#cite_note-13"><span>[</span>14<span>]</span></a></sup> Some blog users already tag their entries with topics, allowing for easier migration into a semantic web environment. It is intentionally saved in not only a human-readable format, but also in a machine-readable format as the tags can be linked easily to other blogs containing similar information. When a release of a game or movie occurs, bloggers tend to rate them using their own system. If there were to be a unified system, these blogs could automatically become assimilated using similar semantics and give a user a score when searching using a semantic search. RSS feeds are another way that blogs already have machine-readable data that is easily accessible by the semantic web.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=4" title="Edit section: Web 3.0">edit</a>]</span> <span class="mw-headline" id="Web_3.0">Web 3.0</span></h3>
+<div class="rellink relarticle mainarticle">Main article: <a href="/wiki/Web_2.0#Web_3.0" title="Web 2.0">Web 3.0</a></div>
+<p><a href="/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Tim Berners-Lee</a> has described the semantic web as a component of 'Web 3.0'.<sup id="cite_ref-14" class="reference"><a href="#cite_note-14"><span>[</span>15<span>]</span></a></sup></p>
+<p>"Semantic Web" is sometimes used as a synonym for "Web 3.0", though each term's definition may vary depending on whom you ask. Many believe that Web 3.0 is the "next big thing"<sup class="Template-Fact" style="white-space:nowrap;">[<i><a href="/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"><span title="This claim needs references to reliable sources from July 2011">citation needed</span></a></i>]</sup> but there only lies speculation as to just what that might be. It will be an improvement in the respect that it will still contain <a href="/wiki/Web_2.0" title="Web 2.0">Web 2.0</a> properties while continuing to add to its ever expanding lexicon and library of applications. There are some who claim that Web 3.0 will be more application based and center its efforts towards more graphically capable environments, "non-browser applications and non-computer based devices...geographic or location-based information retrieval" and even more applicable use and growth of Artificial Intelligence.<sup id="cite_ref-15" class="reference"><a href="#cite_note-15"><span>[</span>16<span>]</span></a></sup> For example, <a href="/wiki/Conrad_Wolfram" title="Conrad Wolfram">Conrad Wolfram</a> has argued that Web 3.0 is where "the computer is generating new information", rather than humans.<sup id="cite_ref-16" class="reference"><a href="#cite_note-16"><span>[</span>17<span>]</span></a></sup></p>
+<p>Others simply state their belief that Web 3.0 will primarily focus on dramatically improving the functionality and usability of search engines.<sup id="cite_ref-17" class="reference"><a href="#cite_note-17"><span>[</span>18<span>]</span></a></sup></p>
+<blockquote class="toccolours" style="float:none; padding: 10px 15px 10px 15px; display:table;">
+<p>People keep asking what Web 3.0 is. I think maybe when you've got an overlay of <a href="/wiki/Scalable_vector_graphics" title="Scalable vector graphics" class="mw-redirect">scalable vector graphics</a> – everything rippling and folding and looking misty&#160;— on <a href="/wiki/Web_2.0" title="Web 2.0">Web 2.0</a> and access to a semantic Web integrated across a huge space of data, you'll have access to an unbelievable data resource..."</p>
+<p style="text-align: right;">— <cite><a href="/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Tim Berners-Lee</a>, 2006</cite></p>
+</blockquote>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=5" title="Edit section: Need">edit</a>]</span> <span class="mw-headline" id="Need">Need</span></h3>
+<p>The idea of a <i>semantic web</i>, able to describe and associate meaning with data necessarily involves more than simple XHTML mark-up code. It is based on an assumption that in order for it to be possible for machines to accurately interpret web content, far more than the mere (natural language) ordered relationships involving letters and words is necessary - as underlying infrastructure attendant to semantic issues. Otherwise, most of the supportive functionality would have been available in Web 2.0 (and before) and it would have been possible to derive a semantically capable Web with minor, incremental additions.<sup class="Template-Fact" style="white-space:nowrap;">[<i><a href="/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"><span title="This claim needs references to reliable sources from April 2011">citation needed</span></a></i>]</sup></p>
+<p>Additions to the infrastructure to support semantic functionality include latent dynamic network models that can, under certain conditions, be 'trained' to appropriately 'learn' meaning based on order data, in the process 'learning' relationships with order (a kind of rudimentary working grammar). See for example <a href="/wiki/Latent_semantic_analysis" title="Latent semantic analysis">latent semantic analysis</a>.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=6" title="Edit section: Challenges">edit</a>]</span> <span class="mw-headline" id="Challenges">Challenges</span></h3>
+<p>Some of the challenges for the Semantic Web include vastness, vagueness, uncertainty, inconsistency, and deceit. Automated reasoning systems will have to deal with all of these issues in order to deliver on the promise of the Semantic Web.</p>
+<ul>
+<li>Vastness: The World Wide Web contains at least <a rel="nofollow" class="external text" href="http://www.worldwidewebsize.com/">24 billion pages</a> as of this writing (June 13, 2010). The <a href="/wiki/SNOMED_CT" title="SNOMED CT">SNOMED CT</a> medical terminology ontology contains 370,000 class names, and existing technology has not yet been able to eliminate all semantically duplicated terms. Any automated reasoning system will have to deal with truly huge inputs.</li>
+<li>Vagueness: These are imprecise concepts like "young" or "tall". This arises from the vagueness of user queries, of concepts represented by content providers, of matching query terms to provider terms and of trying to combine different knowledge bases with overlapping but subtly different concepts. <a href="/wiki/Fuzzy_logic" title="Fuzzy logic">Fuzzy logic</a> is the most common technique for dealing with vagueness.</li>
+<li>Uncertainty: These are precise concepts with uncertain values. For example, a patient might present a set of symptoms which correspond to a number of different distinct diagnoses each with a different probability. <a href="/wiki/Probabilistic_logic" title="Probabilistic logic">Probabilistic</a> reasoning techniques are generally employed to address uncertainty.</li>
+<li>Inconsistency: These are logical contradictions which will inevitably arise during the development of large ontologies, and when ontologies from separate sources are combined. <a href="/wiki/Deductive_reasoning" title="Deductive reasoning">Deductive reasoning</a> fails catastrophically when faced with inconsistency, because <a href="/wiki/Principle_of_explosion" title="Principle of explosion">"anything follows from a contradiction"</a>. <a href="/wiki/Defeasible_reasoning" title="Defeasible reasoning">Defeasible reasoning</a> and <a href="/wiki/Paraconsistent_logic" title="Paraconsistent logic">paraconsistent reasoning</a> are two techniques which can be employed to deal with inconsistency.</li>
+<li>Deceit: This is when the producer of the information is intentionally misleading the consumer of the information. <a href="/wiki/Cryptography" title="Cryptography">Cryptography</a> techniques are currently utilized to alleviate this threat.</li>
+</ul>
+<p>This list of challenges is illustrative rather than exhaustive, and it focuses on the challenges to the "unifying logic" and "proof" layers of the Semantic Web. The <a href="/wiki/World_Wide_Web_Consortium" title="World Wide Web Consortium">World Wide Web Consortium</a> (W3C) Incubator Group for Uncertainty Reasoning for the World Wide Web (URW3-XG) <a rel="nofollow" class="external text" href="http://www.w3.org/2005/Incubator/urw3/XGR-urw3-20080331/">final report</a> lumps these problems together under the single heading of "uncertainty". Many of the techniques mentioned here will require extensions to the <a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">Web Ontology Language</a> (OWL) for example to annotate conditional probabilities. This is an area of active research.<sup id="cite_ref-18" class="reference"><a href="#cite_note-18"><span>[</span>19<span>]</span></a></sup></p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=7" title="Edit section: Relationship to the hypertext web">edit</a>]</span> <span class="mw-headline" id="Relationship_to_the_hypertext_web">Relationship to the hypertext web</span></h2>
+<p>Standardization for "Semantic Web" in the context of Web 3.0 is under the care of W3C - the very same standardization body ruling the basic standards for Web 1.0 and Web 2.0. Existing standards are referred on the respective web pages of W3C<sup id="cite_ref-19" class="reference"><a href="#cite_note-19"><span>[</span>20<span>]</span></a></sup> as for <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF</a>, <a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">OWL</a>, <a href="/wiki/SPARQL" title="SPARQL">SPARQL</a>, <a href="/wiki/RDFa" title="RDFa">RDFa</a>, <a href="/wiki/SKOS" title="SKOS" class="mw-redirect">SKOS</a>, <a href="/wiki/RDFS" title="RDFS" class="mw-redirect">RDFS</a>, <a href="/wiki/GRDDL" title="GRDDL">GRDDL</a>, <a href="/wiki/POWDER" title="POWDER" class="mw-redirect">POWDER</a>, <a href="/wiki/Rule_Interchange_Format" title="Rule Interchange Format">RIF</a>, <a href="/wiki/SAWSDL" title="SAWSDL">SAWSDL</a> and many other W3C standards referred in this context.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=8" title="Edit section: Current state of standardization">edit</a>]</span> <span class="mw-headline" id="Current_state_of_standardization">Current state of standardization</span></h3>
+<p>The term "Semantic Web" is often used more specifically to refer to the formats and technologies that enable it<sup id="cite_ref-W3C.2C_SemWeb_20-0" class="reference"><a href="#cite_note-W3C.2C_SemWeb-20"><span>[</span>21<span>]</span></a></sup>. Especially the collection, structuring and recovery of collected linked data are empowered by technologies such as RDF, SPARQL, OWL, and SKOS. These technologies are specified as respective standards of W3C and include e.g.</p>
+<ul>
+<li>the <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">Resource Description Framework</a> (RDF) as a variety of data interchange formats</li>
+<li>the <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF/XML</a> as a key example</li>
+<li>the <a href="/wiki/Notation_3" title="Notation 3" class="mw-redirect">N3</a>,</li>
+<li>the <a href="/wiki/Turtle_(syntax)" title="Turtle (syntax)">Turtle syntax</a>,</li>
+<li>the <a href="/wiki/N-Triples" title="N-Triples">N-Triples</a>,</li>
+</ul>
+<p>and notations such as</p>
+<ul>
+<li>the <a href="/wiki/RDF_Schema" title="RDF Schema">RDF Schema</a> (RDFS)</li>
+<li>the <a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">Web Ontology Language</a> (OWL),</li>
+</ul>
+<p>all of which are intended to provide a <a href="/wiki/Description_logic" title="Description logic">formal description</a> of <a href="/wiki/Concept" title="Concept">concepts</a>, <a href="/wiki/Terminology" title="Terminology">terms</a>, and <a href="/wiki/Causality" title="Causality">relationships</a> within a given <a href="/wiki/Knowledge_domain" title="Knowledge domain" class="mw-redirect">knowledge domain</a>.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=9" title="Edit section: Components">edit</a>]</span> <span class="mw-headline" id="Components">Components</span></h3>
+<div class="thumb tright">
+<div class="thumbinner" style="width:396px;"><a href="/wiki/File:Semantic-web-stack.png" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/en/3/37/Semantic-web-stack.png" width="394" height="430" class="thumbimage" /></a>
+<div class="thumbcaption">The <a href="/wiki/Semantic_Web_Stack" title="Semantic Web Stack">Semantic Web Stack</a>.</div>
+</div>
+</div>
+<p>The semantic web comprises the standards and tools of <a href="/wiki/XML" title="XML">XML</a>, <a href="/wiki/W3C_XML_Schema" title="W3C XML Schema" class="mw-redirect">XML Schema</a>, <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF</a>, <a href="/wiki/RDF_Schema" title="RDF Schema">RDF Schema</a> and <a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">OWL</a> that are organized in the <a href="/wiki/Semantic_Web_Stack" title="Semantic Web Stack">Semantic Web Stack</a>. The <a rel="nofollow" class="external text" href="http://www.w3.org/TR/owl-features/">OWL Web Ontology Language Overview</a> describes the function and relationship of each of these components of the semantic web:</p>
+<ul>
+<li><a href="/wiki/XML" title="XML">XML</a> provides an elemental syntax for content structure within documents, yet associates no semantics with the meaning of the content contained within. XML is not at present a necessary component of Semantic Web technologies in most cases, as alternative syntaxes exists, such as <a href="/wiki/Turtle_(syntax)" title="Turtle (syntax)">Turtle</a>. Turtle is a de facto standard, but has not been through a formal standardization process.</li>
+<li><a href="/wiki/W3C_XML_Schema" title="W3C XML Schema" class="mw-redirect">XML Schema</a> is a language for providing and restricting the structure and content of elements contained within XML documents.</li>
+<li><a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF</a> is a simple language for expressing <a href="/wiki/Data_model" title="Data model">data models</a>, which refer to objects ("<a href="/wiki/Resource_(Web)" title="Resource (Web)">resources</a>") and their relationships. An RDF-based model can be represented in a variety of syntaxes, e.g., RDF/XML, N3, Turtle, and RDFa.<sup id="cite_ref-21" class="reference"><a href="#cite_note-21"><span>[</span>22<span>]</span></a></sup> RDF is a fundamental standard of the Semantic Web.<sup id="cite_ref-22" class="reference"><a href="#cite_note-22"><span>[</span>23<span>]</span></a></sup><sup id="cite_ref-23" class="reference"><a href="#cite_note-23"><span>[</span>24<span>]</span></a></sup><sup id="cite_ref-24" class="reference"><a href="#cite_note-24"><span>[</span>25<span>]</span></a></sup></li>
+<li><a href="/wiki/RDF_Schema" title="RDF Schema">RDF Schema</a> extends RDF and is a vocabulary for describing properties and classes of RDF-based resources, with semantics for generalized-hierarchies of such properties and classes.</li>
+<li><a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">OWL</a> adds more vocabulary for describing properties and classes: among others, relations between classes (e.g. disjointness), cardinality (e.g. "exactly one"), equality, richer typing of properties, characteristics of properties (e.g. symmetry), and enumerated classes.</li>
+<li><a href="/wiki/SPARQL" title="SPARQL">SPARQL</a> is a protocol and query language for semantic web data sources.</li>
+</ul>
+<p>Current ongoing standardizations include:</p>
+<ul>
+<li><a href="/wiki/Rule_Interchange_Format" title="Rule Interchange Format">Rule Interchange Format</a> (RIF) as the Rule Layer of the <a href="/wiki/Semantic_Web_Stack" title="Semantic Web Stack">Semantic Web Stack</a></li>
+</ul>
+<p>Not yet fully realized layers include:</p>
+<ul>
+<li>Unifying Logic and Proof layers are undergoing active research.</li>
+</ul>
+<p>The intent is to enhance the <a href="/wiki/Usability" title="Usability">usability</a> and usefulness of the Web and its interconnected <a href="/wiki/Resource_(computer_science)" title="Resource (computer science)">resources</a> through:</p>
+<ul>
+<li>Servers which expose existing data systems using the RDF and SPARQL standards. Many <a rel="nofollow" class="external text" href="http://esw.w3.org/topic/ConverterToRdf">converters to RDF</a> exist from different applications. <a href="/wiki/Relational_database" title="Relational database">Relational databases</a> are an important source. The semantic web server attaches to the existing system without affecting its operation.</li>
+<li>Documents "marked up" with semantic information (an <a href="/wiki/Extension_(computing)" title="Extension (computing)" class="mw-redirect">extension</a> of the HTML <tt>&lt;meta&gt;</tt> <a href="/wiki/HTML_element" title="HTML element">tags</a> used in today's Web pages to supply <a href="/wiki/Information" title="Information">information</a> for <a href="/wiki/Web_search_engine" title="Web search engine">Web search engines</a> using <a href="/wiki/Web_crawler" title="Web crawler">web crawlers</a>). This could be <a href="/wiki/Artificial_intelligence" title="Artificial intelligence">machine-understandable</a> information about the human-understandable content of the document (such as the creator, title, description, etc., of the document) or it could be purely <a href="/wiki/Metadata_(computing)" title="Metadata (computing)" class="mw-redirect">metadata</a> representing a set of facts (such as resources and services elsewhere in the site). (Note that <i>anything</i> that can be identified with a <i>Uniform Resource Identifier</i> (<a href="/wiki/Uniform_Resource_Identifier" title="Uniform Resource Identifier">URI</a>) can be described, so the semantic web can reason about animals, people, places, ideas, etc.) Semantic markup is often generated automatically, rather than manually.</li>
+<li>Common metadata vocabularies (<a href="/wiki/Ontology_(information_science)" title="Ontology (information science)">ontologies</a>) and maps between vocabularies that allow document creators to know how to mark up their documents so that agents can use the information in the supplied metadata (so that <i>Author</i> in the sense of 'the Author of the page' won't be confused with <i>Author</i> in the sense of a book that is the subject of a book review).</li>
+<li>Automated agents to perform tasks for users of the semantic web using this data</li>
+<li>Web-based services (often with agents of their own) to supply information specifically to agents (for example, a <a href="/w/index.php?title=Trust_service&amp;action=edit&amp;redlink=1" class="new" title="Trust service (page does not exist)">Trust service</a> that an agent could ask if some online store has a history of poor service or <a href="/wiki/Spamming" title="Spamming" class="mw-redirect">spamming</a>)</li>
+</ul>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=10" title="Edit section: Limitations of HTML">edit</a>]</span> <span class="mw-headline" id="Limitations_of_HTML">Limitations of HTML</span></h3>
+<p>Many files on a typical computer can be loosely divided into human readable <a href="/wiki/Document" title="Document">documents</a> and machine readable <a href="/wiki/Data" title="Data">data</a>. Documents like mail messages, reports, and brochures are read by humans. Data, like calendars, addressbooks, playlists, and spreadsheets are presented using an application program which lets them be viewed, searched and combined in different ways.</p>
+<p>Currently, the World Wide Web is based mainly on documents written in <a href="/wiki/Hypertext_Markup_Language" title="Hypertext Markup Language" class="mw-redirect">Hypertext Markup Language</a> (<a href="/wiki/HTML" title="HTML">HTML</a>), a markup convention that is used for coding a body of text interspersed with multimedia objects such as images and interactive forms. Metadata tags, for example</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="html4strict source-html4strict">
+<pre class="de1">
+<span class="sc2">&lt;<span class="kw2">meta</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">"keywords"</span> <span class="kw3">content</span><span class="sy0">=</span><span class="st0">"computing, computer studies, computer"</span>&gt;</span>
+<span class="sc2">&lt;<span class="kw2">meta</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">"description"</span> <span class="kw3">content</span><span class="sy0">=</span><span class="st0">"Cheap widgets for sale"</span>&gt;</span>
+<span class="sc2">&lt;<span class="kw2">meta</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">"author"</span> <span class="kw3">content</span><span class="sy0">=</span><span class="st0">"John Doe"</span>&gt;</span>
+</pre></div>
+</div>
+<p>provide a method by which computers can categorise the content of web pages.</p>
+<p>With HTML and a tool to render it (perhaps <a href="/wiki/Web_browser" title="Web browser">web browser</a> software, perhaps another <a href="/wiki/User_agent" title="User agent">user agent</a>), one can create and present a page that lists items for sale. The HTML of this catalog page can make simple, document-level assertions such as "this document's title is 'Widget Superstore'", but there is no capability within the HTML itself to assert unambiguously that, for example, item number X586172 is an Acme Gizmo with a retail price of €199, or that it is a consumer product. Rather, HTML can only say that the span of text "X586172" is something that should be positioned near "Acme Gizmo" and "€199", etc. There is no way to say "this is a catalog" or even to establish that "Acme Gizmo" is a kind of title or that "€199" is a price. There is also no way to express that these pieces of information are bound together in describing a discrete item, distinct from other items perhaps listed on the page.</p>
+<p><a href="/wiki/Semantic_HTML" title="Semantic HTML">Semantic HTML</a> refers to the traditional HTML practice of markup following intention, rather than specifying layout details directly. For example, the use of <code>&lt;em&gt;</code> denoting "emphasis" rather than <code>&lt;i&gt;</code>, which specifies <a href="/wiki/Italics" title="Italics" class="mw-redirect">italics</a>. Layout details are left up to the browser, in combination with <a href="/wiki/Cascading_Style_Sheets" title="Cascading Style Sheets">Cascading Style Sheets</a>. But this practice falls short of specifying the semantics of objects such as items for sale or prices.</p>
+<p><a href="/wiki/Microformat" title="Microformat">Microformats</a> represent unofficial attempts to extend HTML syntax to create <a href="/wiki/Machine-readable" title="Machine-readable" class="mw-redirect">machine-readable</a> semantic markup about objects such as retail stores and items for sale.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=11" title="Edit section: Semantic Web solutions">edit</a>]</span> <span class="mw-headline" id="Semantic_Web_solutions">Semantic Web solutions</span></h3>
+<p>The Semantic Web takes the solution further. It involves publishing in languages specifically designed for data: <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">Resource Description Framework</a> (RDF), <a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">Web Ontology Language</a> (OWL), and Extensible Markup Language (<a href="/wiki/XML" title="XML">XML</a>). HTML describes documents and the links between them. RDF, OWL, and XML, by contrast, can describe arbitrary things such as people, meetings, or airplane parts.</p>
+<p>These technologies are combined in order to provide descriptions that supplement or replace the content of Web documents. Thus, content may manifest itself as descriptive data stored in Web-accessible <a href="/wiki/Database" title="Database">databases</a>,<sup id="cite_ref-25" class="reference"><a href="#cite_note-25"><span>[</span>26<span>]</span></a></sup> or as markup within documents (particularly, in Extensible HTML (<a href="/wiki/XHTML" title="XHTML">XHTML</a>) interspersed with XML, or, more often, purely in XML, with layout or rendering cues stored separately). The machine-readable descriptions enable content managers to add meaning to the content, i.e., to describe the structure of the knowledge we have about that content. In this way, a machine can process knowledge itself, instead of text, using processes similar to human <a href="/wiki/Deductive_reasoning" title="Deductive reasoning">deductive reasoning</a> and <a href="/wiki/Inference" title="Inference">inference</a>, thereby obtaining more meaningful results and helping computers to perform automated information gathering and <a href="/wiki/Research" title="Research">research</a>.</p>
+<p>An example of a tag that would be used in a non-semantic web page:</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="xml source-xml">
+<pre class="de1">
+<span class="sc3"><span class="re1">&lt;item<span class="re2">&gt;</span></span></span>cat<span class="sc3"><span class="re1">&lt;/item<span class="re2">&gt;</span></span></span>
+</pre></div>
+</div>
+<p>Encoding similar information in a semantic web page might look like this:</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;">
+<div class="xml source-xml">
+<pre class="de1">
+<span class="sc3"><span class="re1">&lt;item</span> <span class="re0">rdf:about</span>=<span class="st0">"http://dbpedia.org/resource/Cat"</span><span class="re2">&gt;</span></span>Cat<span class="sc3"><span class="re1">&lt;/item<span class="re2">&gt;</span></span></span>
+</pre></div>
+</div>
+<p><a href="/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Tim Berners-Lee</a> calls the resulting network of <a href="/wiki/Linked_Data" title="Linked Data">Linked Data</a> the <a href="/wiki/Giant_Global_Graph" title="Giant Global Graph">Giant Global Graph</a>, in contrast to the HTML-based <a href="/wiki/World_Wide_Web" title="World Wide Web">World Wide Web</a>. Berners-Lee posits that if past was document sharing, the future is data sharing. His answer to the question of "how" provides three points of instruction. One, a URL should point to the data. Two, anyone accessing the URL should get data back. Three, relationships in the data should point to additional URLs with data.</p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=12" title="Edit section: Skeptical reactions">edit</a>]</span> <span class="mw-headline" id="Skeptical_reactions">Skeptical reactions</span></h2>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=13" title="Edit section: Practical feasibility">edit</a>]</span> <span class="mw-headline" id="Practical_feasibility">Practical feasibility</span></h3>
+<p>Critics (e.g. <a rel="nofollow" class="external text" href="http://portal.acm.org/citation.cfm?id=900051.900063&amp;coll=ACM&amp;dl=ACM&amp;CFID=29933182&amp;CFTOKEN=24611642">Which Semantic Web?</a>) question the basic feasibility of a complete or even partial fulfillment of the semantic web. <a href="/wiki/Cory_Doctorow" title="Cory Doctorow">Cory Doctorow</a>'s critique ("<a href="/wiki/Metacrap" title="Metacrap">metacrap</a>") is from the perspective of human behavior and personal preferences. For example, people lie: they may include spurious metadata into Web pages in an attempt to mislead Semantic Web engines that naively assume the metadata's veracity. This phenomenon was well-known with metatags that fooled the AltaVista ranking algorithm into elevating the ranking of certain Web pages: the Google indexing engine specifically looks for such attempts at manipulation. <a href="/wiki/Peter_G%C3%A4rdenfors" title="Peter Gärdenfors">Peter Gärdenfors</a> and <a href="/wiki/Timo_Honkela" title="Timo Honkela">Timo Honkela</a> point out that logic-based semantic web technologies cover only a fraction of the relevant phenomena related to semantics.<sup id="cite_ref-Gardenfors04_26-0" class="reference"><a href="#cite_note-Gardenfors04-26"><span>[</span>27<span>]</span></a></sup><sup id="cite_ref-Honkela08_27-0" class="reference"><a href="#cite_note-Honkela08-27"><span>[</span>28<span>]</span></a></sup></p>
+<p>Where semantic web technologies have found a greater degree of practical adoption, it has tended to be among core specialized communities and organizations for intra-company projects.<sup id="cite_ref-Herman000_28-0" class="reference"><a href="#cite_note-Herman000-28"><span>[</span>29<span>]</span></a></sup> The practical constraints toward adoption have appeared less challenging where domain and scope is more limited than that of the general public and the World-Wide Web.<sup id="cite_ref-Herman000_28-1" class="reference"><a href="#cite_note-Herman000-28"><span>[</span>29<span>]</span></a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=14" title="Edit section: Potential of an idea in fast progress">edit</a>]</span> <span class="mw-headline" id="Potential_of_an_idea_in_fast_progress">Potential of an idea in fast progress</span></h3>
+<p>The original 2001 <a href="/wiki/Scientific_American" title="Scientific American">Scientific American</a> article by Berners-Lee described an expected evolution of the existing Web to a Semantic Web.<sup id="cite_ref-29" class="reference"><a href="#cite_note-29"><span>[</span>30<span>]</span></a></sup> A complete evolution as described by Berners-Lee has yet to occur. In 2006, Berners-Lee and colleagues stated that: "This simple idea, however, remains largely unrealized."<sup id="cite_ref-30" class="reference"><a href="#cite_note-30"><span>[</span>31<span>]</span></a></sup> While the idea is still in the making, it seems to evolve quickly and inspire many.<sup class="Template-Fact" style="white-space:nowrap;">[<i><a href="/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"><span title="This claim needs references to reliable sources from July 2011">citation needed</span></a></i>]</sup> Between 2007–2010 several scholars have explored first applications and the social potential of the semantic web in the business and health sectors, and for social networking<sup id="cite_ref-31" class="reference"><a href="#cite_note-31"><span>[</span>32<span>]</span></a></sup> and for the broader evolution of democracy, specifically, how a society forms its common will in a democratic manner through a semantic web<sup id="cite_ref-32" class="reference"><a href="#cite_note-32"><span>[</span>33<span>]</span></a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=15" title="Edit section: Censorship and privacy">edit</a>]</span> <span class="mw-headline" id="Censorship_and_privacy">Censorship and privacy</span></h3>
+<p>Enthusiasm about the semantic web could be tempered by concerns regarding <a href="/wiki/Internet_censorship" title="Internet censorship">censorship</a> and <a href="/wiki/Privacy" title="Privacy">privacy</a>. For instance, <a href="/wiki/Intelligent_text_analysis" title="Intelligent text analysis" class="mw-redirect">text-analyzing</a> techniques can now be easily bypassed by using other words, metaphors for instance, or by using images in place of words. An advanced implementation of the semantic web would make it much easier for governments to control the viewing and creation of online information, as this information would be much easier for an automated content-blocking machine to understand. In addition, the issue has also been raised that, with the use of <a href="/wiki/FOAF_(software)" title="FOAF (software)">FOAF</a> files and geo location <a href="/wiki/Meta-data" title="Meta-data" class="mw-redirect">meta-data</a>, there would be very little anonymity associated with the authorship of articles on things such as a personal <a href="/wiki/Blog" title="Blog">blog</a>. Some of these concerns were addressed in the "Policy Aware Web" project<sup id="cite_ref-33" class="reference"><a href="#cite_note-33"><span>[</span>34<span>]</span></a></sup> and is an active research and development topic.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=16" title="Edit section: Doubling output formats">edit</a>]</span> <span class="mw-headline" id="Doubling_output_formats">Doubling output formats</span></h3>
+<p>Another criticism of the semantic web is that it would be much more time-consuming to create and publish content because there would need to be two formats for one piece of data: one for human viewing and one for machines. However, many <a href="/wiki/Web_application" title="Web application">web applications</a> in development are addressing this issue by creating a machine-readable format upon the publishing of data or the request of a machine for such data. The development of <a href="/wiki/Microformat" title="Microformat">microformats</a> has been one reaction to this kind of criticism. Another argument in defense of the feasibility of semantic web is the likely falling price of human intelligence tasks in digital labor markets, such as the <a href="/wiki/Amazon_Mechanical_Turk" title="Amazon Mechanical Turk">Amazon Mechanical Turk</a>.</p>
+<p>Specifications such as <a href="/wiki/ERDF_(data_format)" title="ERDF (data format)" class="mw-redirect">eRDF</a> and <a href="/wiki/RDFa" title="RDFa">RDFa</a> allow arbitrary <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF</a> data to be embedded in HTML pages. The <a href="/wiki/GRDDL" title="GRDDL">GRDDL</a> (Gleaning Resource Descriptions from Dialects of Language) mechanism allows existing material (including microformats) to be automatically interpreted as <a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF</a>, so publishers only need to use a single format, such as HTML.</p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=17" title="Edit section: Projects">edit</a>]</span> <span class="mw-headline" id="Projects">Projects</span></h2>
+<table class="metadata plainlinks ambox ambox-content" style="">
+<tr>
+<td class="mbox-image">
+<div style="width: 52px;"><img alt="" src="//upload.wikimedia.org/wikipedia/en/f/f4/Ambox_content.png" width="40" height="40" /></div>
+</td>
+<td class="mbox-text" style="">This article <b>may contain excessive, poor or irrelevant examples</b>. You can <a href="/wiki/Wikipedia:How_to_edit_a_page" title="Wikipedia:How to edit a page" class="mw-redirect">improve the article</a> by adding more descriptive text. See Wikipedia's <a href="/wiki/Wikipedia:Guide_to_writing_better_articles" title="Wikipedia:Guide to writing better articles" class="mw-redirect">guide to writing better articles</a> for further suggestions. <small><i>(March 2010)</i></small></td>
+</tr>
+</table>
+<p>This section lists some of the many projects and tools that exist to create Semantic Web solutions.<sup id="cite_ref-34" class="reference"><a href="#cite_note-34"><span>[</span>35<span>]</span></a></sup></p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=18" title="Edit section: DBpedia">edit</a>]</span> <span class="mw-headline" id="DBpedia">DBpedia</span></h3>
+<p><a href="/wiki/DBpedia" title="DBpedia">DBpedia</a> is an effort to publish structured data extracted from Wikipedia: the data is published in RDF and made available on the Web for use under the <a href="/wiki/GNU_Free_Documentation_License" title="GNU Free Documentation License">GNU Free Documentation License</a>, thus allowing Semantic Web agents to provide inferencing and advanced querying over the Wikipedia-derived dataset and facilitating interlinking, re-use and extension in other data-sources.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=19" title="Edit section: FOAF">edit</a>]</span> <span class="mw-headline" id="FOAF">FOAF</span></h3>
+<p>A popular application of the semantic web is <a href="/wiki/FOAF_(software)" title="FOAF (software)">Friend of a Friend</a> (or FoaF), which uses RDF to describe the relationships people have to other people and the "things" around them. FOAF permits intelligent agents to make sense of the thousands of connections people have with each other, their jobs and the items important to their lives; connections that may or may not be enumerated in searches using traditional web search engines. Because the connections are so vast in number, human interpretation of the information may not be the best way of analyzing them.</p>
+<p>FOAF is an example of how the Semantic Web attempts to make use of the relationships within a social context.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=20" title="Edit section: GoodRelations for e-commerce">edit</a>]</span> <span class="mw-headline" id="GoodRelations_for_e-commerce">GoodRelations for e-commerce</span></h3>
+<p>A huge potential for Semantic Web technologies lies in adding data structure and typed links to the vast amount of offer data, product model features, and tendering / request for quotation data.</p>
+<p>The GoodRelations ontology<sup id="cite_ref-35" class="reference"><a href="#cite_note-35"><span>[</span>36<span>]</span></a></sup><sup id="cite_ref-36" class="reference"><a href="#cite_note-36"><span>[</span>37<span>]</span></a></sup><sup id="cite_ref-37" class="reference"><a href="#cite_note-37"><span>[</span>38<span>]</span></a></sup> is a popular vocabulary for expressing product information, prices, payment options, etc. It also allows expressing demand in a straightforward fashion.</p>
+<p>GoodRelations has been adopted by Google, BestBuy, Overstock, Yahoo, OpenLink Software, O'Reilly Media, the Book Mashup, and many others.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=21" title="Edit section: SIOC">edit</a>]</span> <span class="mw-headline" id="SIOC">SIOC</span></h3>
+<p>The <a href="/wiki/Semantically-Interlinked_Online_Communities" title="Semantically-Interlinked Online Communities">Semantically-Interlinked Online Communities</a> project (SIOC, pronounced "shock") provides a vocabulary of terms and relationships that model web data spaces. Examples of such data spaces include, among others: discussion forums, <a href="/wiki/Blog" title="Blog">blogs</a>, <a href="/wiki/Blogroll" title="Blogroll" class="mw-redirect">blogrolls</a> / feed subscriptions, <a href="/wiki/Mailing_list" title="Mailing list">mailing lists</a>, shared bookmarks and image galleries.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=22" title="Edit section: SIMILE">edit</a>]</span> <span class="mw-headline" id="SIMILE">SIMILE</span></h3>
+<p><b>S</b>emantic <b>I</b>nteroperability of <b>M</b>etadata and <b>I</b>nformation in un<b>L</b>ike <b>E</b>nvironments</p>
+<p><a rel="nofollow" class="external text" href="http://simile.mit.edu/">SIMILE</a> was a joint project, conducted by the <a rel="nofollow" class="external text" href="http://libraries.mit.edu/">MIT Libraries</a> and <a rel="nofollow" class="external text" href="http://csail.mit.edu/">MIT CSAIL</a> and funded by the <a rel="nofollow" class="external text" href="https://secure.wikimedia.org/wikipedia/en/wiki/Andrew_W._Mellon_Foundation">Mellon Foundation</a>, which sought to enhance interoperability among digital assets, schemata/vocabularies/ontologies, meta data, and services. With completion of the project, many of its tools were open sourced and spun out to <a rel="nofollow" class="external text" href="http://simile-widgets.org">simile-widgets</a>, a community-managed site.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=23" title="Edit section: NextBio">edit</a>]</span> <span class="mw-headline" id="NextBio">NextBio</span></h3>
+<p>A database consolidating high-throughput life sciences experimental data tagged and connected via biomedical ontologies. <a href="/wiki/Nextbio" title="Nextbio">Nextbio</a> is accessible via a search engine interface. Researchers can contribute their findings for incorporation to the database. The database currently supports gene or protein expression data and sequence centric data and is steadily expanding to support other biological data types.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=24" title="Edit section: Linking Open Data">edit</a>]</span> <span class="mw-headline" id="Linking_Open_Data">Linking Open Data</span></h3>
+<p><a rel="nofollow" class="external text" href="http://www.mkbergman.com/wp-content/themes/ai3/images/2008Posts/080922_lod-datasets.png">Datasets in the Linking Open Data project, as of Sept 2008</a></p>
+<div class="thumb tright">
+<div class="thumbinner" style="width:222px;"><a href="/wiki/File:Linking-Open-Data-class-diagram_2008-10-05.png" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/2/26/Linking-Open-Data-class-diagram_2008-10-05.png/220px-Linking-Open-Data-class-diagram_2008-10-05.png" width="220" height="202" class="thumbimage" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Linking-Open-Data-class-diagram_2008-10-05.png" class="internal" title="Enlarge"><img src="//bits.wikimedia.org/skins-1.18/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>
+Class linkages within the Linking Open Data datasets</div>
+</div>
+</div>
+<p>The <a rel="nofollow" class="external text" href="http://esw.w3.org/topic/SweoIG/TaskForces/CommunityProjects/LinkingOpenData">Linking Open Data project</a> is a W3C-led effort to create openly accessible, and interlinked, RDF Data on the Web. The data in question takes the form of <a rel="nofollow" class="external text" href="http://esw.w3.org/topic/TaskForces/CommunityProjects/LinkingOpenData/DataSets">RDF Data Sets</a> drawn from a broad collection of data sources. There is a focus on the <a href="/wiki/Linked_Data" title="Linked Data">Linked Data</a> style of publishing RDF on the Web.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=25" title="Edit section: OpenPSI">edit</a>]</span> <span class="mw-headline" id="OpenPSI">OpenPSI</span></h3>
+<p>OpenPSI the (<a rel="nofollow" class="external text" href="http://www.openpsi.org">OpenPSI project</a>) is a community effort to create a UK government linked data service that supports research. It is a collaboration between the <a href="/wiki/University_of_Southampton" title="University of Southampton">University of Southampton</a> and the UK government, led by <a href="/wiki/Office_of_Public_Sector_Information" title="Office of Public Sector Information">OPSI</a> at <a href="/wiki/The_National_Archives" title="The National Archives" class="mw-redirect">The National Archives</a> and is supported by <a href="/wiki/JISC" title="JISC" class="mw-redirect">JISC</a> funding.</p>
+<h3><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=26" title="Edit section: GoPubMed">edit</a>]</span> <span class="mw-headline" id="GoPubMed">GoPubMed</span></h3>
+<p>Is the first semantic search engine for the life sciences. It uses the GeneOntology (GO) and the Medical Subject Headings (MeSH) to semantically filter millions of biomedical abstracts from MEDLINE. The public website <a rel="nofollow" class="external text" href="http://www.GoPubMed.com">GoPubMed.com</a> allows users to verify papers including their background information.</p>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=27" title="Edit section: See also">edit</a>]</span> <span class="mw-headline" id="See_also">See also</span></h2>
+<table class="metadata mbox-small" style="border:1px solid #aaa; background-color:#f9f9f9;">
+<tr>
+<td class="mbox-image"><img alt="Book icon" src="//upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Office-book.svg/30px-Office-book.svg.png" width="30" height="30" /></td>
+<td class="mbox-text" style=""><i><b><a href="/wiki/Book:Semantic_Web" title="Book:Semantic Web">Book: Semantic Web</a></b></i></td>
+</tr>
+<tr>
+<td colspan="2" class="mbox-text" style=""><small><a href="/wiki/Wikipedia:Books" title="Wikipedia:Books">Wikipedia books</a> are collections of articles that can be downloaded or ordered in print.</small></td>
+</tr>
+</table>
+<ul>
+<li><a href="/wiki/Agris:_International_Information_System_for_the_Agricultural_Sciences_and_Technology" title="Agris: International Information System for the Agricultural Sciences and Technology" class="mw-redirect">Agris: International Information System for the Agricultural Sciences and Technology</a></li>
+<li><a href="/wiki/Business_semantics_management" title="Business semantics management">Business semantics management</a></li>
+<li><a href="/wiki/Computational_semantics" title="Computational semantics">Computational semantics</a></li>
+<li><a href="/wiki/Corporate_Semantic_Web" title="Corporate Semantic Web">Corporate Semantic Web</a></li>
+<li><a href="/wiki/Entity-attribute-value_model" title="Entity-attribute-value model">Entity-attribute-value model</a></li>
+<li><a href="/wiki/Linked_Data" title="Linked Data">Linked Data</a></li>
+<li><a href="/wiki/List_of_emerging_technologies" title="List of emerging technologies">List of emerging technologies</a></li>
+<li><a href="/wiki/Ontology_learning" title="Ontology learning">Ontology learning</a></li>
+<li><a href="/wiki/Semantic_advertising" title="Semantic advertising">Semantic advertising</a></li>
+<li><a href="/wiki/Semantic_computing" title="Semantic computing">Semantic computing</a></li>
+<li><a href="/wiki/Semantic_Sensor_Web" title="Semantic Sensor Web">Semantic Sensor Web</a></li>
+<li><a href="/wiki/Semantic_Web_Services" title="Semantic Web Services">Semantic Web Services</a></li>
+<li><a href="/wiki/Social_Semantic_Web" title="Social Semantic Web">Social Semantic Web</a></li>
+<li><a href="/wiki/Website_Parse_Template" title="Website Parse Template">Website Parse Template</a></li>
+<li><a href="/wiki/Smart-M3" title="Smart-M3">Smart-M3</a></li>
+<li><a href="/wiki/Web_2.0#Web_3.0" title="Web 2.0">Web 3.0</a></li>
+</ul>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=28" title="Edit section: References">edit</a>]</span> <span class="mw-headline" id="References">References</span></h2>
+<div class="reflist references-column-width" style="-moz-column-width: 30em; -webkit-column-width: 30em; column-width: 30em; list-style-type: decimal;">
+<ol class="references">
+<li id="cite_note-w3c_faq-0"><b><a href="#cite_ref-w3c_faq_0-0">^</a></b> <span class="citation web"><a rel="nofollow" class="external text" href="http://www.w3.org/2001/sw/SW-FAQ">"W3C Semantic Web Frequently Asked Questions"</a>. <a href="/wiki/W3C" title="W3C" class="mw-redirect">W3C</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.w3.org/2001/sw/SW-FAQ">http://www.w3.org/2001/sw/SW-FAQ</a></span><span class="reference-accessdate">. Retrieved March 13, 2008</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=W3C+Semantic+Web+Frequently+Asked+Questions&amp;rft.atitle=&amp;rft.pub=%5B%5BW3C%5D%5D&amp;rft_id=http%3A%2F%2Fwww.w3.org%2F2001%2Fsw%2FSW-FAQ&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-1"><b><a href="#cite_ref-1">^</a></b> <a rel="nofollow" class="external text" href="http://www.w3.org/2004/Talks/0120-semweb-umich/">The Semantic Web by Eric Miller, www.w3c.org</a></li>
+<li id="cite_note-Collins1969-2"><b><a href="#cite_ref-Collins1969_2-0">^</a></b> <span class="citation Journal">Allan M. Collins, A; M.R. Quillian (1969). "Retrieval time from semantic memory". <i>Journal of verbal learning and verbal behavior</i> <b>8</b> (2): 240–247. <a href="/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1016%2FS0022-5371%2869%2980069-1">10.1016/S0022-5371(69)80069-1</a>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Retrieval+time+from+semantic+memory&amp;rft.jtitle=Journal+of+verbal+learning+and+verbal+behavior&amp;rft.aulast=Allan+M.+Collins&amp;rft.aufirst=A&amp;rft.au=Allan+M.+Collins%2C%26%2332%3BA&amp;rft.date=1969&amp;rft.volume=8&amp;rft.issue=2&amp;rft.pages=240%E2%80%93247&amp;rft_id=info:doi/10.1016%2FS0022-5371%2869%2980069-1&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-Collins1970-3"><b><a href="#cite_ref-Collins1970_3-0">^</a></b> <span class="citation Journal">Allan M. Collins, A; M. Ross Quillian (1970). "Does category size affect categorization time?". <i>Journal of verbal learning and verbal behavior</i> <b>9</b> (4): 432–438. <a href="/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1016%2FS0022-5371%2870%2980084-6">10.1016/S0022-5371(70)80084-6</a>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Does+category+size+affect+categorization+time%3F&amp;rft.jtitle=Journal+of+verbal+learning+and+verbal+behavior&amp;rft.aulast=Allan+M.+Collins&amp;rft.aufirst=A&amp;rft.au=Allan+M.+Collins%2C%26%2332%3BA&amp;rft.date=1970&amp;rft.volume=9&amp;rft.issue=4&amp;rft.pages=432%E2%80%93438&amp;rft_id=info:doi/10.1016%2FS0022-5371%2870%2980084-6&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-Collins1975-4"><b><a href="#cite_ref-Collins1975_4-0">^</a></b> <span class="citation Journal">Allan M. Collins, Allan M.; Elizabeth F. Loftus (1975). "A spreading-activation theory of semantic processing". <i>Psychological Review</i> <b>82</b> (6): 407–428. <a href="/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1037%2F0033-295X.82.6.407">10.1037/0033-295X.82.6.407</a>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=A+spreading-activation+theory+of+semantic+processing&amp;rft.jtitle=Psychological+Review&amp;rft.aulast=Allan+M.+Collins&amp;rft.aufirst=Allan+M.&amp;rft.au=Allan+M.+Collins%2C%26%2332%3BAllan+M.&amp;rft.date=1975&amp;rft.volume=82&amp;rft.issue=6&amp;rft.pages=407%E2%80%93428&amp;rft_id=info:doi/10.1037%2F0033-295X.82.6.407&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-M._Ross_Quillian-5">^ <a href="#cite_ref-M._Ross_Quillian_5-0"><sup><i><b>a</b></i></sup></a> <a href="#cite_ref-M._Ross_Quillian_5-1"><sup><i><b>b</b></i></sup></a> <span class="citation Journal">Quillian, MR (1967). "Word concepts. A theory and simulation of some basic semantic capabilities". <i>Behavioral Science</i> <b>12</b> (5): 410–430. <a href="/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1002%2Fbs.3830120511">10.1002/bs.3830120511</a>. <a href="/wiki/PubMed_Identifier" title="PubMed Identifier" class="mw-redirect">PMID</a>&#160;<a rel="nofollow" class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/6059773">6059773</a>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Word+concepts.+A+theory+and+simulation+of+some+basic+semantic+capabilities&amp;rft.jtitle=Behavioral+Science&amp;rft.aulast=Quillian&amp;rft.aufirst=MR&amp;rft.au=Quillian%2C%26%2332%3BMR&amp;rft.date=1967&amp;rft.volume=12&amp;rft.issue=5&amp;rft.pages=410%E2%80%93430&amp;rft_id=info:doi/10.1002%2Fbs.3830120511&amp;rft_id=info:pmid/6059773&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-6"><b><a href="#cite_ref-6">^</a></b> <span class="citation Journal">Berners-Lee, Tim; James Hendler and Ora Lassila (May 17, 2001). <a rel="nofollow" class="external text" href="http://www.sciam.com/article.cfm?id=the-semantic-web&amp;print=true">"The Semantic Web"</a>. <i>Scientific American Magazine</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.sciam.com/article.cfm?id=the-semantic-web&amp;print=true">http://www.sciam.com/article.cfm?id=the-semantic-web&amp;print=true</a></span><span class="reference-accessdate">. Retrieved March 26, 2008</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=The+Semantic+Web&amp;rft.jtitle=Scientific+American+Magazine&amp;rft.aulast=Berners-Lee&amp;rft.aufirst=Tim&amp;rft.au=Berners-Lee%2C%26%2332%3BTim&amp;rft.date=May+17%2C+2001&amp;rft_id=http%3A%2F%2Fwww.sciam.com%2Farticle.cfm%3Fid%3Dthe-semantic-web%26print%3Dtrue&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-7"><b><a href="#cite_ref-7">^</a></b> [www.ninebynine.net/Papers/SemanticWebApplications.pdf Evolving use of methodology]</li>
+<li id="cite_note-8"><b><a href="#cite_ref-8">^</a></b> [swui.semanticweb.org/swui06/papers/Heath/Heath.pdf User Interaction and Uptake Challenges to Successfully Deploying Semantic Web Technologies]</li>
+<li id="cite_note-9"><b><a href="#cite_ref-9">^</a></b> <a rel="nofollow" class="external text" href="http://www.scribd.com/doc/16320614/UmfrageAuswertung-Semantic-Web-Day">Semantic-Web-Day: Polls for reasons of interest (2009)</a></li>
+<li id="cite_note-10"><b><a href="#cite_ref-10">^</a></b> <span class="citation book"><a href="/wiki/Tim_Berners-Lee" title="Tim Berners-Lee">Berners-Lee, Tim</a>; Fischetti, Mark (1999). <i><a href="/wiki/Tim_Berners_Lee#Weaving_the_Web" title="Tim Berners Lee" class="mw-redirect">Weaving the Web</a></i>. <a href="/wiki/HarperSanFrancisco" title="HarperSanFrancisco" class="mw-redirect">HarperSanFrancisco</a>. chapter 12. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/978-0-06-251587-2" title="Special:BookSources/978-0-06-251587-2">978-0-06-251587-2</a>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=%5B%5BTim+Berners+Lee%23Weaving+the+Web%7CWeaving+the+Web%5D%5D&amp;rft.aulast=Berners-Lee&amp;rft.aufirst=Tim&amp;rft.au=Berners-Lee%2C%26%2332%3BTim&amp;rft.date=1999&amp;rft.pages=chapter+12&amp;rft.pub=%5B%5BHarperSanFrancisco%5D%5D&amp;rft.isbn=978-0-06-251587-2&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-11"><b><a href="#cite_ref-11">^</a></b> Gerber, AJ, Barnard, A &amp; Van der Merwe, Alta (2006), A Semantic Web Status Model, Integrated Design &amp; Process Technology, Special Issue: IDPT 2006</li>
+<li id="cite_note-12"><b><a href="#cite_ref-12">^</a></b> Gerber, Aurona; Van der Merwe, Alta; Barnard, Andries; (2008), A Functional Semantic Web architecture, European Semantic Web Conference 2008, ESWC’08, Tenerife, June 2008.</li>
+<li id="cite_note-13"><b><a href="#cite_ref-13">^</a></b> <span class="citation web">Karger, David. <a rel="nofollow" class="external text" href="http://www.ifis.uni-luebeck.de/~ifis/fileadmin/user_files/lehre/ws0910/hs/groppej_-_What_Would_It_Mean_to_Blog_on_the_Semantic_Web.pdf">"What Would It Mean to Blog on the Semantic Web"</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.ifis.uni-luebeck.de/~ifis/fileadmin/user_files/lehre/ws0910/hs/groppej_-_What_Would_It_Mean_to_Blog_on_the_Semantic_Web.pdf">http://www.ifis.uni-luebeck.de/~ifis/fileadmin/user_files/lehre/ws0910/hs/groppej_-_What_Would_It_Mean_to_Blog_on_the_Semantic_Web.pdf</a></span><span class="reference-accessdate">. Retrieved November 15, 2010</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=What+Would+It+Mean+to+Blog+on+the+Semantic+Web&amp;rft.atitle=&amp;rft.aulast=Karger%2C+David&amp;rft.au=Karger%2C+David&amp;rft_id=http%3A%2F%2Fwww.ifis.uni-luebeck.de%2F%7Eifis%2Ffileadmin%2Fuser_files%2Flehre%2Fws0910%2Fhs%2Fgroppej_-_What_Would_It_Mean_to_Blog_on_the_Semantic_Web.pdf&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-14"><b><a href="#cite_ref-14">^</a></b> <span class="citation web">Victoria Shannon (June 26, 2006). <a rel="nofollow" class="external text" href="http://www.iht.com/articles/2006/05/23/business/web.php">"A 'more revolutionary' Web"</a>. <i>International Herald Tribune</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.iht.com/articles/2006/05/23/business/web.php">http://www.iht.com/articles/2006/05/23/business/web.php</a></span><span class="reference-accessdate">. Retrieved May 24, 2006</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=A+%27more+revolutionary%27+Web&amp;rft.atitle=International+Herald+Tribune&amp;rft.aulast=Victoria+Shannon&amp;rft.au=Victoria+Shannon&amp;rft.date=June+26%2C+2006&amp;rft_id=http%3A%2F%2Fwww.iht.com%2Farticles%2F2006%2F05%2F23%2Fbusiness%2Fweb.php&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-15"><b><a href="#cite_ref-15">^</a></b> <span class="citation web">unknown (November 19, 2007). <a rel="nofollow" class="external text" href="http://www.semantic-web.at/index.php?id=1&amp;subid=57&amp;action=resource&amp;item=1537">"The advent of Web 3.0"</a>. <i>Semantic Web Company</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.semantic-web.at/index.php?id=1&amp;subid=57&amp;action=resource&amp;item=1537">http://www.semantic-web.at/index.php?id=1&amp;subid=57&amp;action=resource&amp;item=1537</a></span><span class="reference-accessdate">. Retrieved November 14, 2010</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=The+advent+of+Web+3.0&amp;rft.atitle=Semantic+Web+Company&amp;rft.aulast=unknown&amp;rft.au=unknown&amp;rft.date=November+19%2C+2007&amp;rft_id=http%3A%2F%2Fwww.semantic-web.at%2Findex.php%3Fid%3D1%26subid%3D57%26action%3Dresource%26item%3D1537&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-16"><b><a href="#cite_ref-16">^</a></b> <a rel="nofollow" class="external text" href="http://www.itpro.co.uk/621535/q-a-conrad-wolfram-on-communicating-with-apps-in-web-3-0">Conrad Wolfram on Communicating with apps in web 3.0</a> IT PRO, 17 Mar 2010</li>
+<li id="cite_note-17"><b><a href="#cite_ref-17">^</a></b> <span class="citation web">Shah Newaz Alam. <a rel="nofollow" class="external text" href="http://www.buzzle.com/articles/web-30-vs-web-20.html">"Web 3.0 vs Web 2.0"</a>. <i>Buzzle.com</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.buzzle.com/articles/web-30-vs-web-20.html">http://www.buzzle.com/articles/web-30-vs-web-20.html</a></span><span class="reference-accessdate">. Retrieved November 14, 2010</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Web+3.0+vs+Web+2.0&amp;rft.atitle=Buzzle.com&amp;rft.aulast=Shah+Newaz+Alam&amp;rft.au=Shah+Newaz+Alam&amp;rft_id=http%3A%2F%2Fwww.buzzle.com%2Farticles%2Fweb-30-vs-web-20.html&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-18"><b><a href="#cite_ref-18">^</a></b> <span class="citation web">Lukasiewicz, Thomas; Umberto Straccia. <a rel="nofollow" class="external text" href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B758F-4SPSPKW-1&amp;_user=147018&amp;_coverDate=11%2F30%2F2008&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000012179&amp;_version=1&amp;_urlVersion=0&amp;_userid=147018&amp;md5=8123c273189b1148cadb12f95b87a5ef">"Managing uncertainty and vagueness in description logics for the Semantic Web"</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B758F-4SPSPKW-1&amp;_user=147018&amp;_coverDate=11%2F30%2F2008&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000012179&amp;_version=1&amp;_urlVersion=0&amp;_userid=147018&amp;md5=8123c273189b1148cadb12f95b87a5ef">http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B758F-4SPSPKW-1&amp;_user=147018&amp;_coverDate=11%2F30%2F2008&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;_docanchor=&amp;view=c&amp;_acct=C000012179&amp;_version=1&amp;_urlVersion=0&amp;_userid=147018&amp;md5=8123c273189b1148cadb12f95b87a5ef</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Managing+uncertainty+and+vagueness+in+description+logics+for+the+Semantic+Web&amp;rft.atitle=&amp;rft.aulast=Lukasiewicz&amp;rft.aufirst=Thomas&amp;rft.au=Lukasiewicz%2C%26%2332%3BThomas&amp;rft_id=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%3F_ob%3DArticleURL%26_udi%3DB758F-4SPSPKW-1%26_user%3D147018%26_coverDate%3D11%252F30%252F2008%26_rdoc%3D1%26_fmt%3D%26_orig%3Dsearch%26_sort%3Dd%26_docanchor%3D%26view%3Dc%26_acct%3DC000012179%26_version%3D1%26_urlVersion%3D0%26_userid%3D147018%26md5%3D8123c273189b1148cadb12f95b87a5ef&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-19"><b><a href="#cite_ref-19">^</a></b> <a rel="nofollow" class="external text" href="http://www.w3.org/2001/sw/wiki/Main_Page">Semantic Web Standards published by the W3C</a></li>
+<li id="cite_note-W3C.2C_SemWeb-20"><b><a href="#cite_ref-W3C.2C_SemWeb_20-0">^</a></b> <span class="citation web">Herman, Ivan (March 12, 2008). <a rel="nofollow" class="external text" href="http://www.w3.org/2001/sw/">"W3C Semantic Web Activity"</a>. <a href="/wiki/W3C" title="W3C" class="mw-redirect">W3C</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.w3.org/2001/sw/">http://www.w3.org/2001/sw/</a></span><span class="reference-accessdate">. Retrieved March 13, 2008</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=W3C+Semantic+Web+Activity&amp;rft.atitle=&amp;rft.aulast=Herman%2C+Ivan&amp;rft.au=Herman%2C+Ivan&amp;rft.date=March+12%2C+2008&amp;rft.pub=%5B%5BW3C%5D%5D&amp;rft_id=http%3A%2F%2Fwww.w3.org%2F2001%2Fsw%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-21"><b><a href="#cite_ref-21">^</a></b> <span class="citation web"><a rel="nofollow" class="external text" href="http://www.lesliesikos.com/tutorials/rdf/">"RDF tutorial"</a>. Dr. Leslie Sikos<span class="printonly">. <a rel="nofollow" class="external free" href="http://www.lesliesikos.com/tutorials/rdf/">http://www.lesliesikos.com/tutorials/rdf/</a></span><span class="reference-accessdate">. Retrieved 2011-07-05</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=RDF+tutorial&amp;rft.atitle=&amp;rft.pub=Dr.+Leslie+Sikos&amp;rft_id=http%3A%2F%2Fwww.lesliesikos.com%2Ftutorials%2Frdf%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-22"><b><a href="#cite_ref-22">^</a></b> <span class="citation web"><a rel="nofollow" class="external text" href="http://www.w3.org/RDF/">"Resource Description Framework (RDF)"</a>. <a href="/wiki/World_Wide_Web_Consortium" title="World Wide Web Consortium">World Wide Web Consortium</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.w3.org/RDF/">http://www.w3.org/RDF/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Resource+Description+Framework+%28RDF%29&amp;rft.atitle=&amp;rft.pub=%5B%5BWorld+Wide+Web+Consortium%5D%5D&amp;rft_id=http%3A%2F%2Fwww.w3.org%2FRDF%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-23"><b><a href="#cite_ref-23">^</a></b> <span class="citation web"><a rel="nofollow" class="external text" href="http://www.lesliesikos.com/">"Standard websites"</a>. Dr. Leslie Sikos<span class="printonly">. <a rel="nofollow" class="external free" href="http://www.lesliesikos.com/">http://www.lesliesikos.com/</a></span><span class="reference-accessdate">. Retrieved 2011-07-05</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Standard+websites&amp;rft.atitle=&amp;rft.pub=Dr.+Leslie+Sikos&amp;rft_id=http%3A%2F%2Fwww.lesliesikos.com%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-24"><b><a href="#cite_ref-24">^</a></b> <span class="citation web">Allemang, D., Hendler, J. (2011). "RDF—The basis of the Semantic Web. In: Semantic Web for the Working Ontologist (2nd Ed.)". Morgan Kaufmann. <a href="/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1016%2FB978-0-12-385965-5.10003-2">10.1016/B978-0-12-385965-5.10003-2</a>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=RDF%E2%80%94The+basis+of+the+Semantic+Web.+In%3A+Semantic+Web+for+the+Working+Ontologist+%282nd+Ed.%29&amp;rft.atitle=&amp;rft.aulast=Allemang%2C+D.%2C+Hendler%2C+J.&amp;rft.au=Allemang%2C+D.%2C+Hendler%2C+J.&amp;rft.date=2011&amp;rft.pub=Morgan+Kaufmann&amp;rft_id=info:doi/10.1016%2FB978-0-12-385965-5.10003-2&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-25"><b><a href="#cite_ref-25">^</a></b> Artem Chebotko and Shiyong Lu, "Querying the Semantic Web: An Efficient Approach Using Relational Databases", <a href="/wiki/LAP_Lambert_Academic_Publishing" title="LAP Lambert Academic Publishing" class="mw-redirect">LAP Lambert Academic Publishing</a>, <a href="/wiki/Special:BookSources/9783838302645" class="internal mw-magiclink-isbn">ISBN 978-3-8383-0264-5</a>, 2009.</li>
+<li id="cite_note-Gardenfors04-26"><b><a href="#cite_ref-Gardenfors04_26-0">^</a></b> <span class="citation book">Gärdenfors, Peter (2004). <i>How to make the Semantic Web more semantic</i>. IOS Press. pp.&#160;17–34.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=How+to+make+the+Semantic+Web+more+semantic&amp;rft.aulast=G%C3%A4rdenfors&amp;rft.aufirst=Peter&amp;rft.au=G%C3%A4rdenfors%2C%26%2332%3BPeter&amp;rft.date=2004&amp;rft.pages=pp.%26nbsp%3B17%E2%80%9334&amp;rft.pub=IOS+Press&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-Honkela08-27"><b><a href="#cite_ref-Honkela08_27-0">^</a></b> <span class="citation web">Timo Honkela, Ville Könönen, Tiina Lindh-Knuutila and Mari-Sanna Paukkeri (2008). <a rel="nofollow" class="external text" href="http://www.informaworld.com/smpp/content~content=a903999101">"Simulating processes of concept formation and communication"</a>. <i>Journal of Economic Methodology</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.informaworld.com/smpp/content~content=a903999101">http://www.informaworld.com/smpp/content~content=a903999101</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Simulating+processes+of+concept+formation+and+communication&amp;rft.atitle=Journal+of+Economic+Methodology&amp;rft.aulast=Timo+Honkela%2C+Ville+K%C3%B6n%C3%B6nen%2C+Tiina+Lindh-Knuutila+and+Mari-Sanna+Paukkeri&amp;rft.au=Timo+Honkela%2C+Ville+K%C3%B6n%C3%B6nen%2C+Tiina+Lindh-Knuutila+and+Mari-Sanna+Paukkeri&amp;rft.date=2008&amp;rft_id=http%3A%2F%2Fwww.informaworld.com%2Fsmpp%2Fcontent%7Econtent%3Da903999101&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-Herman000-28">^ <a href="#cite_ref-Herman000_28-0"><sup><i><b>a</b></i></sup></a> <a href="#cite_ref-Herman000_28-1"><sup><i><b>b</b></i></sup></a> <span class="citation web">Ivan Herman (2007). <a rel="nofollow" class="external text" href="http://www.w3.org/2007/Talks/0424-Stavanger-IH/Slides.pdf">"State of the Semantic Web"</a>. <i>Semantic Days 2007</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.w3.org/2007/Talks/0424-Stavanger-IH/Slides.pdf">http://www.w3.org/2007/Talks/0424-Stavanger-IH/Slides.pdf</a></span><span class="reference-accessdate">. Retrieved July 26, 2007</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=State+of+the+Semantic+Web&amp;rft.atitle=Semantic+Days+2007&amp;rft.aulast=Ivan+Herman&amp;rft.au=Ivan+Herman&amp;rft.date=2007&amp;rft_id=http%3A%2F%2Fwww.w3.org%2F2007%2FTalks%2F0424-Stavanger-IH%2FSlides.pdf&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-29"><b><a href="#cite_ref-29">^</a></b> <span class="citation web">Berners-Lee, Tim (May 1, 2001). <a rel="nofollow" class="external text" href="http://www.sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21">"The Semantic Web"</a>. <a href="/wiki/Scientific_American" title="Scientific American">Scientific American</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21">http://www.sciam.com/article.cfm?articleID=00048144-10D2-1C70-84A9809EC588EF21</a></span><span class="reference-accessdate">. Retrieved March 13, 2008</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=The+Semantic+Web&amp;rft.atitle=&amp;rft.aulast=Berners-Lee%2C+Tim&amp;rft.au=Berners-Lee%2C+Tim&amp;rft.date=May+1%2C+2001&amp;rft.pub=%5B%5BScientific+American%5D%5D&amp;rft_id=http%3A%2F%2Fwww.sciam.com%2Farticle.cfm%3FarticleID%3D00048144-10D2-1C70-84A9809EC588EF21&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-30"><b><a href="#cite_ref-30">^</a></b> <span class="citation web">Nigel Shadbolt, Wendy Hall, Tim Berners-Lee (2006). <a rel="nofollow" class="external text" href="http://eprints.ecs.soton.ac.uk/12614/1/Semantic_Web_Revisted.pdf">"The Semantic Web Revisited"</a>. <i><a href="/wiki/IEEE" title="IEEE" class="mw-redirect">IEEE</a> Intelligent Systems</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://eprints.ecs.soton.ac.uk/12614/1/Semantic_Web_Revisted.pdf">http://eprints.ecs.soton.ac.uk/12614/1/Semantic_Web_Revisted.pdf</a></span><span class="reference-accessdate">. Retrieved April 13, 2007</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=The+Semantic+Web+Revisited&amp;rft.atitle=%5B%5BIEEE%5D%5D+Intelligent+Systems&amp;rft.aulast=Nigel+Shadbolt%2C+Wendy+Hall%2C+Tim+Berners-Lee&amp;rft.au=Nigel+Shadbolt%2C+Wendy+Hall%2C+Tim+Berners-Lee&amp;rft.date=2006&amp;rft_id=http%3A%2F%2Feprints.ecs.soton.ac.uk%2F12614%2F1%2FSemantic_Web_Revisted.pdf&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-31"><b><a href="#cite_ref-31">^</a></b> <span class="citation web">Lee Feigenbaum (May 1, 2007). <a rel="nofollow" class="external text" href="http://www.thefigtrees.net/lee/sw/sciam/semantic-web-in-action">"The Semantic Web in Action"</a>. <a href="/wiki/Scientific_American" title="Scientific American">Scientific American</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.thefigtrees.net/lee/sw/sciam/semantic-web-in-action">http://www.thefigtrees.net/lee/sw/sciam/semantic-web-in-action</a></span><span class="reference-accessdate">. Retrieved February 24, 2010</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=The+Semantic+Web+in+Action&amp;rft.atitle=&amp;rft.aulast=Lee+Feigenbaum&amp;rft.au=Lee+Feigenbaum&amp;rft.date=May+1%2C+2007&amp;rft.pub=%5B%5BScientific+American%5D%5D&amp;rft_id=http%3A%2F%2Fwww.thefigtrees.net%2Flee%2Fsw%2Fsciam%2Fsemantic-web-in-action&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-32"><b><a href="#cite_ref-32">^</a></b> <span class="citation web">Martin Hilbert (April, 2009). <a rel="nofollow" class="external text" href="http://www.informaworld.com/smpp/content~db=all~content=a911066517">"The Maturing Concept of E-Democracy: From E-Voting and Online Consultations to Democratic Value Out of Jumbled Online Chatter"</a>. <a href="/wiki/Journal_of_Information_Technology_and_Politics" title="Journal of Information Technology and Politics" class="mw-redirect">Journal of Information Technology and Politics</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.informaworld.com/smpp/content~db=all~content=a911066517">http://www.informaworld.com/smpp/content~db=all~content=a911066517</a></span><span class="reference-accessdate">. Retrieved February 24, 2010</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=The+Maturing+Concept+of+E-Democracy%3A+From+E-Voting+and+Online+Consultations+to+Democratic+Value+Out+of+Jumbled+Online+Chatter&amp;rft.atitle=&amp;rft.aulast=Martin+Hilbert&amp;rft.au=Martin+Hilbert&amp;rft.date=April%2C+2009&amp;rft.pub=%5B%5BJournal+of+Information+Technology+and+Politics%5D%5D&amp;rft_id=http%3A%2F%2Fwww.informaworld.com%2Fsmpp%2Fcontent%7Edb%3Dall%7Econtent%3Da911066517&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-33"><b><a href="#cite_ref-33">^</a></b> <a rel="nofollow" class="external free" href="http://policyawareweb.org/">http://policyawareweb.org/</a></li>
+<li id="cite_note-34"><b><a href="#cite_ref-34">^</a></b> See, for instance: <span class="citation web">Bergman, Michael K.. <a rel="nofollow" class="external text" href="http://www.mkbergman.com/?page_id=325">"Sweet Tools"</a>. <i>AI3; Adaptive Information, Adaptive Innovation, Adaptive Infrastructure</i><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.mkbergman.com/?page_id=325">http://www.mkbergman.com/?page_id=325</a></span><span class="reference-accessdate">. Retrieved January 5, 2009</span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=Sweet+Tools&amp;rft.atitle=AI3%3B+Adaptive+Information%2C+Adaptive+Innovation%2C+Adaptive+Infrastructure&amp;rft.aulast=Bergman&amp;rft.aufirst=Michael+K.&amp;rft.au=Bergman%2C%26%2332%3BMichael+K.&amp;rft_id=http%3A%2F%2Fwww.mkbergman.com%2F%3Fpage_id%3D325&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-35"><b><a href="#cite_ref-35">^</a></b> <span class="citation web"><a rel="nofollow" class="external text" href="http://www.ebusiness-unibw.org/wiki/GoodRelations">"GoodRelations: The Web Ontology for E-Commerce"</a>. E-Business + Web Science Research Group<span class="printonly">. <a rel="nofollow" class="external free" href="http://www.ebusiness-unibw.org/wiki/GoodRelations">http://www.ebusiness-unibw.org/wiki/GoodRelations</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=GoodRelations%3A+The+Web+Ontology+for+E-Commerce&amp;rft.atitle=&amp;rft.pub=E-Business+%2B+Web+Science+Research+Group&amp;rft_id=http%3A%2F%2Fwww.ebusiness-unibw.org%2Fwiki%2FGoodRelations&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-36"><b><a href="#cite_ref-36">^</a></b> <span class="citation web"><a rel="nofollow" class="external text" href="http://purl.org/goodrelations/">"GoodRelations Project Main Page"</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://purl.org/goodrelations/">http://purl.org/goodrelations/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=bookitem&amp;rft.btitle=GoodRelations+Project+Main+Page&amp;rft.atitle=&amp;rft_id=http%3A%2F%2Fpurl.org%2Fgoodrelations%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li id="cite_note-37"><b><a href="#cite_ref-37">^</a></b> <span class="citation Journal">Hepp, Martin (September 29 – October 3, 2008). <a rel="nofollow" class="external text" href="http://www.heppnetz.de/files/GoodRelationsEKAW2008-crc-final.pdf">"GoodRelations: An Ontology for Describing Products and Services Offers on the Web"</a>. <i>Proceedings of the 16th International Conference on Knowledge Engineering and Knowledge Management (EKAW2008)</i> (Acitrezza, Italy) (<a href="/w/index.php?title=Springer_LNCS&amp;action=edit&amp;redlink=1" class="new" title="Springer LNCS (page does not exist)">Springer LNCS</a> (Lecture Notes in Computer Science)) <b>5268</b>: 332–347<span class="printonly">. <a rel="nofollow" class="external free" href="http://www.heppnetz.de/files/GoodRelationsEKAW2008-crc-final.pdf">http://www.heppnetz.de/files/GoodRelationsEKAW2008-crc-final.pdf</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=GoodRelations%3A+An+Ontology+for+Describing+Products+and+Services+Offers+on+the+Web&amp;rft.jtitle=Proceedings+of+the+16th+International+Conference+on+Knowledge+Engineering+and+Knowledge+Management+%28EKAW2008%29+%27%27%28Acitrezza%2C+Italy%29%27%27&amp;rft.aulast=Hepp%2C+Martin&amp;rft.au=Hepp%2C+Martin&amp;rft.date=September+29+%E2%80%93+October+3%2C+2008&amp;rft.volume=5268&amp;rft.pages=332%E2%80%93347&amp;rft.pub=%5B%5BSpringer+LNCS%5D%5D+%28Lecture+Notes+in+Computer+Science%29&amp;rft_id=http%3A%2F%2Fwww.heppnetz.de%2Ffiles%2FGoodRelationsEKAW2008-crc-final.pdf&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+</ol>
+</div>
+<ul>
+<li>Roger Chaffin: <i>The concept of a semantic Relation.</i> In: Adrienne Lehrer u.&#160;a. (Hrsg.): <i>Frames, Fields and contrasts. New essays in semantic and lexical organisation</i>, Erlbaum, Hillsdale, N.J. 1992, <a href="/wiki/Special:BookSources/0805810897" class="internal mw-magiclink-isbn">ISBN 0-8058-1089-7</a>, S. 253–288.</li>
+<li>Hermann Helbig: <i>Die semantische Struktur natürlicher Sprache. Wissenspräsentation mit MultiNet</i>, Springer, Heidelberg 2001, <a href="/wiki/Special:BookSources/3540677844" class="internal mw-magiclink-isbn">ISBN 3-540-67784-4</a>.</li>
+<li>M. Ross Quillian: <i>Word concepts. A theory and simulation of some basic semantic capabilities.</i> In: <i>Behavioral Science</i> 12 (1967), S. 410–430.</li>
+<li>M. Ross Quillian: <i>Semantic memory.</i> In: <a href="/wiki/Marvin_Minsky" title="Marvin Minsky">Marvin Minsky</a> (Hrsg.): <i>Semantic information processing</i>, MIT Press, Cambridge, Mass. 1988.</li>
+<li>Klaus Reichenberger: <i>Kompendium semantische Netze: Konzepte, Technologie, Modellierung</i>, Springer, Heidelberg 2010, <a href="/wiki/Special:BookSources/3642043143" class="internal mw-magiclink-isbn">ISBN 3-642-04314-3</a>.</li>
+<li><a href="/wiki/John_F._Sowa" title="John F. Sowa">John F. Sowa</a>: <i>Principles of semantic networks. Explorations in the representation of knowledge</i>, Morgan Kaufmann, San Mateo, Cal. 1991, <a href="/wiki/Special:BookSources/1558600884" class="internal mw-magiclink-isbn">ISBN 1-55860-088-4</a>.</li>
+</ul>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=29" title="Edit section: Further reading">edit</a>]</span> <span class="mw-headline" id="Further_reading">Further reading</span></h2>
+<ul>
+<li><span class="citation book">Grigoris Antoniou, <a href="/wiki/Frank_van_Harmelen" title="Frank van Harmelen">Frank van Harmelen</a> (March 31, 2008). <a rel="nofollow" class="external text" href="http://www.amazon.com/Semantic-Primer-Cooperative-Information-Systems/dp/0262012421/"><i>A Semantic Web Primer, 2nd Edition</i></a>. The <a href="/wiki/MIT_Press" title="MIT Press">MIT Press</a>. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/0-262-01242-1" title="Special:BookSources/0-262-01242-1">0-262-01242-1</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.amazon.com/Semantic-Primer-Cooperative-Information-Systems/dp/0262012421/">http://www.amazon.com/Semantic-Primer-Cooperative-Information-Systems/dp/0262012421/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=A+Semantic+Web+Primer%2C+2nd+Edition&amp;rft.aulast=Grigoris+Antoniou%2C+%5B%5BFrank+van+Harmelen%5D%5D&amp;rft.au=Grigoris+Antoniou%2C+%5B%5BFrank+van+Harmelen%5D%5D&amp;rft.date=March+31%2C+2008&amp;rft.pub=The+%5B%5BMIT+Press%5D%5D&amp;rft.isbn=0-262-01242-1&amp;rft_id=http%3A%2F%2Fwww.amazon.com%2FSemantic-Primer-Cooperative-Information-Systems%2Fdp%2F0262012421%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book"><a href="/wiki/Dean_Allemang" title="Dean Allemang">Dean Allemang</a>, <a href="/wiki/James_Hendler" title="James Hendler">James Hendler</a> (May 9, 2008). <a rel="nofollow" class="external text" href="http://www.amazon.com/Semantic-Web-Working-Ontologist-Effective/dp/0123735564/"><i>Semantic Web for the Working Ontologist: Effective Modeling in RDFS and OWL</i></a>. Morgan Kaufmann. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/978-0-12-373556-0" title="Special:BookSources/978-0-12-373556-0">978-0-12-373556-0</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.amazon.com/Semantic-Web-Working-Ontologist-Effective/dp/0123735564/">http://www.amazon.com/Semantic-Web-Working-Ontologist-Effective/dp/0123735564/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Semantic+Web+for+the+Working+Ontologist%3A+Effective+Modeling+in+RDFS+and+OWL&amp;rft.aulast=%5B%5BDean+Allemang%5D%5D%2C+%5B%5BJames+Hendler%5D%5D&amp;rft.au=%5B%5BDean+Allemang%5D%5D%2C+%5B%5BJames+Hendler%5D%5D&amp;rft.date=May+9%2C+2008&amp;rft.pub=Morgan+Kaufmann&amp;rft.isbn=978-0-12-373556-0&amp;rft_id=http%3A%2F%2Fwww.amazon.com%2FSemantic-Web-Working-Ontologist-Effective%2Fdp%2F0123735564%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book">John Davies (July 11, 2006). <a rel="nofollow" class="external text" href="http://www.amazon.com/Semantic-Web-Technologies-Research-Ontology-based/dp/0470025964/"><i>Semantic Web Technologies: Trends and Research in Ontology-based Systems</i></a>. Wiley. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/0-470-02596-4" title="Special:BookSources/0-470-02596-4">0-470-02596-4</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.amazon.com/Semantic-Web-Technologies-Research-Ontology-based/dp/0470025964/">http://www.amazon.com/Semantic-Web-Technologies-Research-Ontology-based/dp/0470025964/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Semantic+Web+Technologies%3A+Trends+and+Research+in+Ontology-based+Systems&amp;rft.aulast=John+Davies&amp;rft.au=John+Davies&amp;rft.date=July+11%2C+2006&amp;rft.pub=Wiley&amp;rft.isbn=0-470-02596-4&amp;rft_id=http%3A%2F%2Fwww.amazon.com%2FSemantic-Web-Technologies-Research-Ontology-based%2Fdp%2F0470025964%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book">Pascal Hitzler, Markus Krötzsch, Sebastian Rudolph (August 25, 2009). <a rel="nofollow" class="external text" href="http://www.semantic-web-book.org"><i>Foundations of Semantic Web Technologies</i></a>. CRCPress. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/1-4200-9050-X" title="Special:BookSources/1-4200-9050-X">1-4200-9050-X</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.semantic-web-book.org">http://www.semantic-web-book.org</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Foundations+of+Semantic+Web+Technologies&amp;rft.aulast=Pascal+Hitzler%2C+Markus+Kr%C3%B6tzsch%2C+Sebastian+Rudolph&amp;rft.au=Pascal+Hitzler%2C+Markus+Kr%C3%B6tzsch%2C+Sebastian+Rudolph&amp;rft.date=August+25%2C+2009&amp;rft.pub=CRCPress&amp;rft.isbn=1-4200-9050-X&amp;rft_id=http%3A%2F%2Fwww.semantic-web-book.org&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book">Thomas B. Passin (March 1, 2004). <a rel="nofollow" class="external text" href="http://www.amazon.com/Explorers-Guide-Semantic-Thomas-Passin/dp/1932394206/"><i>Explorer's Guide to the Semantic Web</i></a>. Manning Publications. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/1-932394-20-6" title="Special:BookSources/1-932394-20-6">1-932394-20-6</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.amazon.com/Explorers-Guide-Semantic-Thomas-Passin/dp/1932394206/">http://www.amazon.com/Explorers-Guide-Semantic-Thomas-Passin/dp/1932394206/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Explorer%27s+Guide+to+the+Semantic+Web&amp;rft.aulast=Thomas+B.+Passin&amp;rft.au=Thomas+B.+Passin&amp;rft.date=March+1%2C+2004&amp;rft.pub=Manning+Publications&amp;rft.isbn=1-932394-20-6&amp;rft_id=http%3A%2F%2Fwww.amazon.com%2FExplorers-Guide-Semantic-Thomas-Passin%2Fdp%2F1932394206%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book">Liyang Yu (June 14, 2007). <a rel="nofollow" class="external text" href="http://www.amazon.com/Introduction-Semantic-Web-Services/dp/1584889330/"><i>Introduction to Semantic Web and Semantic Web Services</i></a>. CRC Press. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/1-58488-933-0" title="Special:BookSources/1-58488-933-0">1-58488-933-0</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.amazon.com/Introduction-Semantic-Web-Services/dp/1584889330/">http://www.amazon.com/Introduction-Semantic-Web-Services/dp/1584889330/</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Introduction+to+Semantic+Web+and+Semantic+Web+Services&amp;rft.aulast=Liyang+Yu&amp;rft.au=Liyang+Yu&amp;rft.date=June+14%2C+2007&amp;rft.pub=CRC+Press&amp;rft.isbn=1-58488-933-0&amp;rft_id=http%3A%2F%2Fwww.amazon.com%2FIntroduction-Semantic-Web-Services%2Fdp%2F1584889330%2F&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book">Jeffrey T. Pollock (March 23, 2009). <a rel="nofollow" class="external text" href="http://www.amazon.com/gp/product/0470396792"><i>Semantic Web For Dummies</i></a>. For Dummies. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/0-470-39679-2" title="Special:BookSources/0-470-39679-2">0-470-39679-2</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.amazon.com/gp/product/0470396792">http://www.amazon.com/gp/product/0470396792</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=Semantic+Web+For+Dummies&amp;rft.aulast=Jeffrey+T.+Pollock&amp;rft.au=Jeffrey+T.+Pollock&amp;rft.date=March+23%2C+2009&amp;rft.pub=For+Dummies&amp;rft.isbn=0-470-39679-2&amp;rft_id=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fproduct%2F0470396792&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><span class="citation book">Martin Hilbert (April, 2009). <a rel="nofollow" class="external text" href="http://www.informaworld.com/smpp/content~db=all~content=a911066517"><i>The Maturing Concept of E-Democracy: From E-Voting and Online Consultations to Democratic Value Out of Jumbled Online Chatter</i></a>. Journal of Information Technology &amp; Politics. <a href="/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&#160;<a href="/wiki/Special:BookSources/1-68080-271-5242" title="Special:BookSources/1-68080-271-5242">1-68080-271-5242</a><span class="printonly">. <a rel="nofollow" class="external free" href="http://www.informaworld.com/smpp/content~db=all~content=a911066517">http://www.informaworld.com/smpp/content~db=all~content=a911066517</a></span>.</span><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook&amp;rft.genre=book&amp;rft.btitle=The+Maturing+Concept+of+E-Democracy%3A+From+E-Voting+and+Online+Consultations+to+Democratic+Value+Out+of+Jumbled+Online+Chatter&amp;rft.aulast=Martin+Hilbert&amp;rft.au=Martin+Hilbert&amp;rft.date=April%2C+2009&amp;rft.pub=Journal+of+Information+Technology+%26+Politics&amp;rft.isbn=1-68080-271-5242&amp;rft_id=http%3A%2F%2Fwww.informaworld.com%2Fsmpp%2Fcontent%7Edb%3Dall%7Econtent%3Da911066517&amp;rfr_id=info:sid/en.wikipedia.org:Semantic_Web"><span style="display: none;">&#160;</span></span></li>
+<li><a rel="nofollow" class="external text" href="http://computemagazine.com/man-who-invented-world-wide-web-gives-new-definition/">Tim Berners-Lee Gives the Web a New Definition</a></li>
+</ul>
+<h2><span class="editsection">[<a href="/w/index.php?title=Semantic_Web&amp;action=edit&amp;section=30" title="Edit section: External links">edit</a>]</span> <span class="mw-headline" id="External_links">External links</span></h2>
+<table class="metadata mbox-small plainlinks" style="border:1px solid #aaa; background-color:#f9f9f9;">
+<tr>
+<td class="mbox-image"><img alt="" src="//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/30px-Commons-logo.svg.png" width="30" height="40" /></td>
+<td class="mbox-text" style="">Wikimedia Commons has media related to: <i><b><a rel="nofollow" class="external text" href="//commons.wikimedia.org/wiki/Category:Semantic_Web">Semantic Web</a></b></i></td>
+</tr>
+</table>
+<ul>
+<li><span class="official website"><a rel="nofollow" class="external text" href="http://semanticweb.org">Official website</a></span></li>
+<li><a rel="nofollow" class="external text" href="http://www.w3.org/2001/sw/">W3C Semantic Web Activity</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.semanticoverflow.com/questions/1/where-can-i-learn-about-the-semantic-web">links collection</a> on <a rel="nofollow" class="external text" href="http://semanticoverflow.com">Semantic Overflow</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.semanticarts.com">Semantic Technology and the Enterprise</a></li>
+<li><a rel="nofollow" class="external text" href="http://sswap.info">SSWAP: Simple Semantic Web Architecture and Protocol</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.howstuffworks.com/semantic-web.htm">How Stuff Works: The Semantic Web</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.semantic-web-journal.net:">The Semantic Web Journal</a></li>
+</ul>
+<table class="navbox" cellspacing="0" style=";">
+<tr>
+<td style="padding:2px;">
+<table cellspacing="0" class="nowraplinks collapsible collapsed" style="width:100%;background:transparent;color:inherit;;">
+<tr>
+<th style=";" colspan="2" class="navbox-title"><span style="float:left;width:6em;text-align:left;"><span class="noprint plainlinks navbar" style=""><span style="white-space:nowrap;word-spacing:-.12em;"><a href="/wiki/Template:Semantic_Web" title="Template:Semantic Web"><span style=";;background:none transparent;border:none;font-size:100%;" title="View this template">v</span></a> <span style=";;background:none transparent;border:none;font-size:100%;"><b>·</b></span> <a href="/wiki/Template_talk:Semantic_Web" title="Template talk:Semantic Web"><span style=";;background:none transparent;border:none;font-size:100%;" title="Discuss this template">d</span></a> <span style=";;background:none transparent;border:none;font-size:100%;"><b>·</b></span> <a rel="nofollow" class="external text" href="//en.wikipedia.org/w/index.php?title=Template:Semantic_Web&amp;action=edit"><span style=";;background:none transparent;border:none;font-size:100%;" title="Edit this template">e</span></a></span></span></span><span class="" style="font-size:110%;"><strong class="selflink">Semantic Web</strong></span></th>
+</tr>
+<tr style="height:2px;">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";;">Background</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/World_Wide_Web" title="World Wide Web">World Wide Web</a></li>
+<li><a href="/wiki/Internet" title="Internet">Internet</a></li>
+<li><a href="/wiki/Hypertext" title="Hypertext">Hypertext</a></li>
+<li><a href="/wiki/Database" title="Database">Databases</a></li>
+<li><a href="/wiki/Semantic_network" title="Semantic network">Semantic networks</a></li>
+<li><a href="/wiki/Ontology_(information_science)" title="Ontology (information science)">Ontologies</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";;">Sub-topics</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/Linked_Data" title="Linked Data">Linked Data</a></li>
+<li><a href="/wiki/Data_Web" title="Data Web">Data Web</a></li>
+<li><a href="/wiki/Hyperdata" title="Hyperdata">Hyperdata</a></li>
+<li><a href="/wiki/Dereferenceable_Uniform_Resource_Identifier" title="Dereferenceable Uniform Resource Identifier">Dereferenceable URIs</a></li>
+<li><a href="/wiki/Rule_base" title="Rule base" class="mw-redirect">Rule bases</a></li>
+<li><a href="/wiki/Dataspace" title="Dataspace" class="mw-redirect">Data Spaces</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";;">Applications</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/Semantic_wiki" title="Semantic wiki">Semantic wiki</a></li>
+<li><a href="/wiki/Semantic_publishing" title="Semantic publishing">Semantic publishing</a></li>
+<li><a href="/wiki/Semantic_search" title="Semantic search">Semantic search</a></li>
+<li><a href="/wiki/Semantic_computing" title="Semantic computing">Semantic computing</a></li>
+<li><a href="/wiki/Semantic_advertising" title="Semantic advertising">Semantic advertising</a></li>
+<li><a href="/wiki/Semantic_reasoner" title="Semantic reasoner">Semantic reasoner</a></li>
+<li><a href="/wiki/Semantic_matching" title="Semantic matching">Semantic matching</a></li>
+<li><a href="/wiki/Semantic_mapper" title="Semantic mapper">Semantic mapper</a></li>
+<li><a href="/wiki/Semantic_broker" title="Semantic broker">Semantic broker</a></li>
+<li><a href="/wiki/Semantic_analytics" title="Semantic analytics">Semantic analytics</a></li>
+<li><a href="/wiki/Semantic_service_oriented_architecture" title="Semantic service oriented architecture" class="mw-redirect">Semantic service oriented architecture</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";;">Related topics</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/Folksonomy" title="Folksonomy">Folksonomy</a></li>
+<li><a href="/wiki/Library_2.0" title="Library 2.0">Library 2.0</a></li>
+<li><a href="/wiki/Web_2.0" title="Web 2.0">Web 2.0</a></li>
+<li><a href="/wiki/Open_Database_Connectivity" title="Open Database Connectivity" class="mw-redirect">Open Database Connectivity</a></li>
+<li><a href="/wiki/Reference_(computer_science)" title="Reference (computer science)">References</a></li>
+<li><a href="/wiki/Information_architecture" title="Information architecture">Information architecture</a></li>
+<li><a href="/wiki/Knowledge_management" title="Knowledge management">Knowledge management</a></li>
+<li><a href="/wiki/Knowledge_extraction" title="Knowledge extraction">Knowledge extraction</a></li>
+<li><a href="/wiki/Collective_intelligence" title="Collective intelligence">Collective intelligence</a></li>
+<li><a href="/wiki/Topic_Maps" title="Topic Maps">Topic Maps</a></li>
+<li><a href="/wiki/Mind_map" title="Mind map">Mindmapping</a></li>
+<li><a href="/wiki/Metadata" title="Metadata">Metadata</a></li>
+<li><a href="/wiki/Geotagging" title="Geotagging">Geotagging</a></li>
+<li><a href="/wiki/Description_logic" title="Description logic">Description logic</a></li>
+<li><a href="/wiki/Web_Science_Trust" title="Web Science Trust">Web Science</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";;">Standards</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="width:100%;;;;">
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;;">
+<div style="padding:0em 0.75em;">Syntax &amp; Supporting Technologies</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/Resource_Description_Framework" title="Resource Description Framework">RDF</a> <small>(<span style="white-space:nowrap;"><a href="/wiki/RDF/XML" title="RDF/XML">RDF/XML</a>&#160;•</span>  <span style="white-space:nowrap"><a href="/wiki/Notation_3" title="Notation 3" class="mw-redirect">Notation 3</a>&#160;•</span>  <span style="white-space:nowrap"><a href="/wiki/Turtle_(syntax)" title="Turtle (syntax)">Turtle</a>&#160;•</span>  <span style="white-space:nowrap"><a href="/wiki/N-Triples" title="N-Triples">N-Triples</a></span>)</small></li>
+<li><a href="/wiki/SPARQL" title="SPARQL">SPARQL</a></li>
+<li><a href="/wiki/Uniform_Resource_Identifier" title="Uniform Resource Identifier">URI</a></li>
+<li><a href="/wiki/Hypertext_Transfer_Protocol" title="Hypertext Transfer Protocol">HTTP</a></li>
+<li><a href="/wiki/XML" title="XML">XML</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;;">
+<div style="padding:0em 0.75em;">Schemas, Ontologies &amp; Rules</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/RDF_Schema" title="RDF Schema">RDFS</a></li>
+<li><a href="/wiki/Web_Ontology_Language" title="Web Ontology Language">OWL</a></li>
+<li><a href="/wiki/Rule_Interchange_Format" title="Rule Interchange Format">Rule Interchange Format</a></li>
+<li><a href="/wiki/Semantic_Web_Rule_Language" title="Semantic Web Rule Language">Semantic Web Rule Language</a></li>
+<li><a href="/wiki/Common_Logic" title="Common Logic" class="mw-redirect">Common Logic</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;;">
+<div style="padding:0em 0.75em;">Semantic Annotation</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/RDFa" title="RDFa">RDFa</a></li>
+<li><a href="/wiki/Embedded_RDF" title="Embedded RDF">eRDF</a></li>
+<li><a href="/wiki/GRDDL" title="GRDDL">GRDDL</a></li>
+<li><a href="/wiki/Microformat" title="Microformat">Microformats</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;;">
+<div style="padding:0em 0.75em;">Common Vocabularies</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em">
+<div class="hlist" style="margin-left:0em;">
+<ul>
+<li><a href="/wiki/FOAF_(software)" title="FOAF (software)">FOAF</a></li>
+<li><a href="/wiki/SIOC" title="SIOC" class="mw-redirect">SIOC</a></li>
+<li><a href="/wiki/Dublin_Core" title="Dublin Core">Dublin Core</a></li>
+<li><a href="/wiki/SKOS" title="SKOS" class="mw-redirect">SKOS</a></li>
+<li><a href="/wiki/UMBEL" title="UMBEL">UMBEL</a></li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table class="navbox" cellspacing="0" style=";">
+<tr>
+<td style="padding:2px;">
+<table cellspacing="0" class="nowraplinks collapsible collapsed" style="width:100%;background:transparent;color:inherit;;">
+<tr>
+<th style=";" colspan="2" class="navbox-title"><span style="float:left;width:6em;text-align:left;"><span class="noprint plainlinks navbar" style=""><span style="white-space:nowrap;word-spacing:-.12em;"><a href="/wiki/Template:Emerging_technologies" title="Template:Emerging technologies"><span style=";;background:none transparent;border:none;font-size:100%;" title="View this template">v</span></a> <span style=";;background:none transparent;border:none;font-size:100%;"><b>·</b></span> <a href="/wiki/Template_talk:Emerging_technologies" title="Template talk:Emerging technologies"><span style=";;background:none transparent;border:none;font-size:100%;" title="Discuss this template">d</span></a> <span style=";;background:none transparent;border:none;font-size:100%;"><b>·</b></span> <a rel="nofollow" class="external text" href="//en.wikipedia.org/w/index.php?title=Template:Emerging_technologies&amp;action=edit"><span style=";;background:none transparent;border:none;font-size:100%;" title="Edit this template">e</span></a></span></span></span><span class="" style="font-size:110%;"><a href="/wiki/Emerging_technologies" title="Emerging technologies">Emerging technologies</a></span></th>
+</tr>
+<tr style="height:2px;">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-abovebelow" style=";" colspan="2"><a href="/wiki/List_of_emerging_technologies" title="List of emerging technologies">List of emerging technologies</a>&#160;<b>·</b> <span style="white-space:nowrap;"><a href="/wiki/Technology" title="Technology">Technology</a></span></td>
+</tr>
+<tr style="height:2px;">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";text-align: left;">Fields</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="width:100%;;;;">
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;"><a href="/wiki/Agriculture" title="Agriculture">Agriculture</a></div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Agricultural_robot" title="Agricultural robot">Agricultural robot</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/In_vitro_meat" title="In vitro meat">In vitro meat</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Genetically_modified_food" title="Genetically modified food">Genetically modified food</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Precision_agriculture" title="Precision agriculture">Precision agriculture</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Vertical_farming" title="Vertical farming">Vertical farming</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;"><a href="/wiki/Biotechnology" title="Biotechnology">Biotechnology</a><br />
+and <a href="/wiki/Health_care" title="Health care">healthcare</a></div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Ampakine" title="Ampakine">Ampakine</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Cryonics" title="Cryonics">Cryonics</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Full_genome_sequencing" title="Full genome sequencing">Full genome sequencing</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Genetic_engineering" title="Genetic engineering">Genetic engineering</a>&#160;<small>(<a href="/wiki/Gene_therapy" title="Gene therapy">Gene therapy</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Personalized_medicine" title="Personalized medicine">Personalized medicine</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Regenerative_medicine" title="Regenerative medicine">Regenerative medicine</a>&#160;<small>(<a href="/wiki/Stem_cell_treatments" title="Stem cell treatments">Stem cell treatments</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Tissue_engineering" title="Tissue engineering">Tissue engineering</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Robotic_surgery" title="Robotic surgery">Robotic surgery</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Strategies_for_Engineered_Negligible_Senescence" title="Strategies for Engineered Negligible Senescence">Strategies for Engineered Negligible Senescence</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Suspended_animation" title="Suspended animation">Suspended animation</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Synthetic_biology" title="Synthetic biology">Synthetic biology</a>&#160;<small>(<a href="/wiki/Synthetic_genomics" title="Synthetic genomics">Synthetic genomics</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Whole-body_transplant" title="Whole-body transplant">Whole-body transplant</a>&#160;<small>(<a href="/wiki/Head_transplant" title="Head transplant">Head transplant</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Isolated_brain" title="Isolated brain">Isolated brain</a>)</span></small></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;"><a href="/wiki/Brain%E2%80%93computer_interface" title="Brain–computer interface">Brain–computer<br />
+interface</a> and<br />
+<a href="/wiki/Neurotechnology" title="Neurotechnology">neurotechnology</a></div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Electroencephalography" title="Electroencephalography">Electroencephalography</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Mind_uploading" title="Mind uploading">Mind uploading</a>&#160;<small>(<a href="/wiki/Brain-reading" title="Brain-reading">Brain-reading</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Neuroinformatics" title="Neuroinformatics">Neuroinformatics</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Neuroprosthetics" title="Neuroprosthetics">Neuroprosthetics</a>&#160;<small>(<a href="/wiki/Visual_prosthesis" title="Visual prosthesis">Bionic eye</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Brain_implant" title="Brain implant">Brain implant</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Exocortex" title="Exocortex">Exocortex</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Retinal_implant" title="Retinal implant">Retinal implant</a>)</span></small></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;">Imaging</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Autostereoscopy" title="Autostereoscopy">Autostereoscopy</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Holographic_display" title="Holographic display">Holographic display</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Multi-primary_color_display" title="Multi-primary color display">Multi-primary color display</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Next_generation_of_display_technology" title="Next generation of display technology">Next generation of display technology</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Screenless" title="Screenless">Screenless display</a>&#160;<small>(<a href="/wiki/Bionic_contact_lens" title="Bionic contact lens">Bionic contact lens</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Head-mounted_display" title="Head-mounted display">Head-mounted display</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Head-up_display" title="Head-up display">Head-up display</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Virtual_retinal_display" title="Virtual retinal display">Virtual retinal display</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Ultra_High_Definition_Television" title="Ultra High Definition Television">Ultra High Definition Television</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;">Energy</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Energy_storage" title="Energy storage">Energy storage</a>&#160;<small>(<a href="/wiki/Beltway_battery" title="Beltway battery">Beltway battery</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Compressed_air_energy_storage" title="Compressed air energy storage">Compressed air energy storage</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Flywheel_energy_storage" title="Flywheel energy storage">Flywheel energy storage</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Grid_energy_storage" title="Grid energy storage">Grid energy storage</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Lithium_air_battery" title="Lithium air battery">Lithium air battery</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Molten_salt_battery" title="Molten salt battery">Molten salt battery</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Nanowire_battery" title="Nanowire battery">Nanowire battery</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Silicon_air_battery" title="Silicon air battery" class="mw-redirect">Silicon air battery</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Thermal_energy_storage" title="Thermal energy storage">Thermal energy storage</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Electric_double-layer_capacitor" title="Electric double-layer capacitor">Ultracapacitor</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Fusion_power" title="Fusion power">Fusion power</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Molten_salt_reactor" title="Molten salt reactor">Molten salt reactor</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Renewable_energy" title="Renewable energy">Renewable energy</a>&#160;<small>(<a href="/wiki/Airborne_wind_turbine" title="Airborne wind turbine">Airborne wind turbine</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Artificial_photosynthesis" title="Artificial photosynthesis">Artificial photosynthesis</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Biofuel" title="Biofuel">Biofuels</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Concentrated_solar_power" title="Concentrated solar power">Concentrated solar power</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Home_fuel_cell" title="Home fuel cell">Home fuel cell</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Hydrogen_economy" title="Hydrogen economy">Hydrogen economy</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Nantenna" title="Nantenna">Nantenna</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Solar_roadway" title="Solar roadway">Solar roadway</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Smart_grid" title="Smart grid">Smart grid</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Wireless_energy_transfer" title="Wireless energy transfer">Wireless energy transfer</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;">Information technology<br />
+and communications</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Artificial_brain" title="Artificial brain">Artificial brain</a>&#160;<small>(<a href="/wiki/Blue_Brain_Project" title="Blue Brain Project">Blue Brain Project</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Artificial_intelligence" title="Artificial intelligence">Artificial intelligence</a>&#160;<small>(<a href="/wiki/Applications_of_artificial_intelligence" title="Applications of artificial intelligence">Applications of artificial intelligence</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Progress_in_artificial_intelligence" title="Progress in artificial intelligence">Progress in artificial intelligence</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Machine_translation" title="Machine translation">Machine translation</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Machine_vision" title="Machine vision">Machine vision</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><strong class="selflink">Semantic Web</strong>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Speech_recognition" title="Speech recognition">Speech recognition</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Cybermethodology" title="Cybermethodology">Cybermethodology</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Optical_disc#Fourth-generation" title="Optical disc">Fourth-generation optical discs</a>&#160;<small>(<a href="/wiki/3D_optical_data_storage" title="3D optical data storage">3D optical data storage</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Holographic_data_storage" title="Holographic data storage">Holographic data storage</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/GPGPU" title="GPGPU">GPGPU</a>&#160;<b>·</b></span> <span style="white-space:nowrap;">Memory&#160;<small>(<a href="/wiki/CBRAM" title="CBRAM" class="mw-redirect">CBRAM</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Ferroelectric_RAM" title="Ferroelectric RAM">FRAM</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Millipede_memory" title="Millipede memory">Millipede</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/MRAM" title="MRAM" class="mw-redirect">MRAM</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Nano-RAM" title="Nano-RAM">NRAM</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Phase-change_memory" title="Phase-change memory">PRAM</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Racetrack_memory" title="Racetrack memory">Racetrack memory</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/RRAM" title="RRAM" class="mw-redirect">RRAM</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/SONOS" title="SONOS">SONOS</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Optical_computing" title="Optical computing">Optical computing</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Quantum_computer" title="Quantum computer">Quantum computing</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Quantum_cryptography" title="Quantum cryptography">Quantum cryptography</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Radio-frequency_identification" title="Radio-frequency identification">RFID</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Spintronics" title="Spintronics">Spintronics</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Three-dimensional_integrated_circuit" title="Three-dimensional integrated circuit">Three-dimensional integrated circuit</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;"><a href="/wiki/Materials_science" title="Materials science">Materials science</a></div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Graphene" title="Graphene">Graphene</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/High-temperature_superconductivity" title="High-temperature superconductivity">High-temperature superconductivity</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Superfluid" title="Superfluid">High-temperature superfluidity</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Metamaterial" title="Metamaterial">Metamaterials</a>&#160;<small>(<a href="/wiki/Metamaterial_cloaking" title="Metamaterial cloaking">Metamaterial cloaking</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Multi-function_structure" title="Multi-function structure">Multi-function structures</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Nanotechnology" title="Nanotechnology">Nanotechnology</a>&#160;<small>(<a href="/wiki/Carbon_nanotube" title="Carbon nanotube">Carbon nanotubes</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Nanomaterials" title="Nanomaterials">Nanomaterials</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Programmable_matter" title="Programmable matter">Programmable matter</a>&#160;<small>(<a href="/wiki/Claytronics" title="Claytronics">Claytronics</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Utility_fog" title="Utility fog">Utility fog</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Quantum_dot" title="Quantum dot">Quantum dots</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;"><a href="/wiki/Robotics" title="Robotics">Robotics</a> and applied<br />
+mechanics</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Nanotechnology" title="Nanotechnology">Nanotechnology</a>&#160;<small>(<a href="/wiki/Molecular_nanotechnology" title="Molecular nanotechnology">Molecular nanotechnology</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Nanorobotics" title="Nanorobotics">Nanorobotics</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Powered_exoskeleton" title="Powered exoskeleton">Powered exoskeleton</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Self-reconfiguring_modular_robot" title="Self-reconfiguring modular robot">Self-reconfiguring modular robot</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Swarm_robotics" title="Swarm robotics">Swarm robotics</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;">Transportation</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/Adaptive_Compliant_Wing" title="Adaptive Compliant Wing">Adaptive Compliant Wing</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Alternative_fuel_vehicle" title="Alternative fuel vehicle">Alternative fuel vehicle</a>&#160;<small>(<a href="/wiki/Hydrogen_vehicle" title="Hydrogen vehicle">Hydrogen vehicle</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Backpack_helicopter" title="Backpack helicopter">Backpack helicopter</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Driverless_car" title="Driverless car" class="mw-redirect">Driverless car</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Flying_car_(aircraft)" title="Flying car (aircraft)">Flying car</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Ground_effect_train" title="Ground effect train">Ground effect train</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Jet_pack" title="Jet pack">Jet pack</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Interstellar_travel" title="Interstellar travel">Interstellar travel</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Laser_propulsion" title="Laser propulsion">Laser propulsion</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Maglev_(transport)" title="Maglev (transport)" class="mw-redirect">Maglev train</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Non-rocket_spacelaunch" title="Non-rocket spacelaunch">Non-rocket spacelaunch</a>&#160;<small>(<a href="/wiki/Mass_driver" title="Mass driver">Mass driver</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Orbital_ring" title="Orbital ring">Orbital ring</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Skyhook_(structure)" title="Skyhook (structure)">Skyhook</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Space_elevator" title="Space elevator">Space elevator</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Space_fountain" title="Space fountain">Space fountain</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Space_tether" title="Space tether">Space tether</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Personal_rapid_transit" title="Personal rapid transit">Personal rapid transit</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Pulse_detonation_engine" title="Pulse detonation engine">Pulse detonation engine</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Nuclear_pulse_propulsion" title="Nuclear pulse propulsion">Nuclear pulse propulsion</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Scramjet" title="Scramjet">Scramjet</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Solar_sail" title="Solar sail">Solar sail</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Spaceplane" title="Spaceplane">Spaceplane</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Supersonic_transport" title="Supersonic transport">Supersonic transport</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Tweel" title="Tweel">Tweel</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Vactrain" title="Vactrain">Vactrain</a></span></div>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";padding-left:0em;padding-right:0em;text-align: left;width:9em;background-color: #eee;;">
+<div style="padding:0em 0.75em;">Other</div>
+</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-even">
+<div style="padding:0em 0.25em"><span style="white-space:nowrap;"><a href="/wiki/3D_printing" title="3D printing">3D printing</a>&#160;<small>(<a href="/wiki/Contour_Crafting" title="Contour Crafting">Contour Crafting</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Anti-gravity" title="Anti-gravity">Anti-gravity</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Antimatter_weapon" title="Antimatter weapon">Antimatter weapon</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Arcology" title="Arcology">Arcology</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Cloak_of_invisibility" title="Cloak of invisibility">Cloak of invisibility</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Digital_scent_technology" title="Digital scent technology">Digital scent technology</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Directed-energy_weapon" title="Directed-energy weapon">Directed-energy weapon</a>&#160;<small>(<a href="/wiki/Laser" title="Laser">Laser</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Maser" title="Maser">Maser</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Particle_beam_weapon" title="Particle beam weapon">Particle beam weapon</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Sonic_weapon" title="Sonic weapon">Sonic weapon</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Domed_city" title="Domed city">Domed city</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Electromagnetic_weapon" title="Electromagnetic weapon">Electromagnetic weapon</a>&#160;<small>(<a href="/wiki/Coilgun" title="Coilgun">Coilgun</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Railgun" title="Railgun">Railgun</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Electronic_nose" title="Electronic nose">Electronic nose</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/E-textiles" title="E-textiles">Electronic textile</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Force_field" title="Force field">Force field</a>&#160;<small>(<a href="/wiki/Plasma_window" title="Plasma window">Plasma window</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Immersion_(virtual_reality)" title="Immersion (virtual reality)">Immersive virtual reality</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Magnetic_refrigeration" title="Magnetic refrigeration">Magnetic refrigeration</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Memristor" title="Memristor">Memristor</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Phased-array_optics" title="Phased-array optics">Phased-array optics</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Plasma_weapon" title="Plasma weapon">Plasma weapon</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Pure_fusion_weapon" title="Pure fusion weapon">Pure fusion weapon</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Quantum_technology" title="Quantum technology">Quantum technology</a>&#160;<small>(<a href="/wiki/Quantum_teleportation" title="Quantum teleportation">Quantum teleportation</a>)</small>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Thermal_copper_pillar_bump" title="Thermal copper pillar bump">Thermal copper pillar bump</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr style="height:2px">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-group" style=";text-align: left;">Related articles</td>
+<td style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;;;" class="navbox-list navbox-odd">
+<div style="padding:0em 0.25em">
+<p><span style="white-space:nowrap;"><a href="/wiki/Exploratory_engineering" title="Exploratory engineering">Exploratory engineering</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Technology_forecasting" title="Technology forecasting">Technology forecasting</a>&#160;<small>(<a href="/wiki/Accelerating_change" title="Accelerating change">Accelerating change</a>&#160;<b>·</b></small></span> <small><span style="white-space:nowrap;"><a href="/wiki/Moore%27s_law" title="Moore's law">Moore's law</a>#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Timeline_of_the_future_in_forecasts" title="Timeline of the future in forecasts">Timeline of the future in forecasts</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Technological_singularity" title="Technological singularity">Technological singularity</a>)</span></small><span style="white-space:nowrap;">&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Transhumanism" title="Transhumanism">Transhumanism</a>&#160;<b>·</b></span> <span style="white-space:nowrap;"><a href="/wiki/Virtusphere" title="Virtusphere" class="mw-redirect">Virtusphere</a></span></p>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td></td>
+</tr>
+<tr>
+<td class="navbox-abovebelow" style=";" colspan="2"><img alt="Category" src="//upload.wikimedia.org/wikipedia/en/thumb/4/48/Folder_Hexagonal_Icon.svg/16px-Folder_Hexagonal_Icon.svg.png" width="16" height="14" /> <b><a href="/wiki/Category:Emerging_technologies" title="Category:Emerging technologies">Category</a></b></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 29978/1000000
+Post-expand include size: 346775/2048000 bytes
+Template argument size: 204446/2048000 bytes
+Expensive parser function count: 6/500
+-->
+
+<!-- Saved in parser cache with key enwiki:pcache:idhash:29123-0!*!0!!en!4!* and timestamp 20111024092421 -->
+</div>              <!-- /bodycontent -->
+                                <!-- printfooter -->
+                <div class="printfooter">
+                Retrieved from "<a href="http://en.wikipedia.org/w/index.php?title=Semantic_Web&amp;oldid=456464623">http://en.wikipedia.org/w/index.php?title=Semantic_Web&amp;oldid=456464623</a>"                </div>
+                <!-- /printfooter -->
+                                                <!-- catlinks -->
+                <div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/wiki/Category:Buzzwords" title="Category:Buzzwords">Buzzwords</a></li><li><a href="/wiki/Category:Semantic_Web" title="Category:Semantic Web">Semantic Web</a></li><li><a href="/wiki/Category:Web_services" title="Category:Web services">Web services</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-cats-hidden">Hidden categories: <ul><li><a href="/wiki/Category:Articles_needing_cleanup_from_November_2009" title="Category:Articles needing cleanup from November 2009">Articles needing cleanup from November 2009</a></li><li><a href="/wiki/Category:All_articles_needing_cleanup" title="Category:All articles needing cleanup">All articles needing cleanup</a></li><li><a href="/wiki/Category:Wikipedia_articles_needing_style_editing_from_November_2009" title="Category:Wikipedia articles needing style editing from November 2009">Wikipedia articles needing style editing from November 2009</a></li><li><a href="/wiki/Category:All_articles_needing_style_editing" title="Category:All articles needing style editing">All articles needing style editing</a></li><li><a href="/wiki/Category:All_pages_needing_cleanup" title="Category:All pages needing cleanup">All pages needing cleanup</a></li><li><a href="/wiki/Category:Vague_or_ambiguous_time_from_August_2011" title="Category:Vague or ambiguous time from August 2011">Vague or ambiguous time from August 2011</a></li><li><a href="/wiki/Category:All_articles_with_unsourced_statements" title="Category:All articles with unsourced statements">All articles with unsourced statements</a></li><li><a href="/wiki/Category:Articles_with_unsourced_statements_from_August_2011" title="Category:Articles with unsourced statements from August 2011">Articles with unsourced statements from August 2011</a></li><li><a href="/wiki/Category:Articles_with_unsourced_statements_from_July_2011" title="Category:Articles with unsourced statements from July 2011">Articles with unsourced statements from July 2011</a></li><li><a href="/wiki/Category:Articles_with_unsourced_statements_from_April_2011" title="Category:Articles with unsourced statements from April 2011">Articles with unsourced statements from April 2011</a></li><li><a href="/wiki/Category:Articles_with_too_many_examples" title="Category:Articles with too many examples">Articles with too many examples</a></li></ul></div></div>              <!-- /catlinks -->
+                                                <div class="visualClear"></div>
+                <!-- debughtml -->
+                                <!-- /debughtml -->
+            </div>
+            <!-- /bodyContent -->
+        </div>
+        <!-- /content -->
+        <!-- header -->
+        <div id="mw-head" class="noprint">
+            
+<!-- 0 -->
+<div id="p-personal" class="">
+    <h5>Personal tools</h5>
+    <ul>
+        <li id="pt-login"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=Semantic_Web" title="You are encouraged to log in; however, it is not mandatory. [o]" accesskey="o">Log in / create account</a></li>
+    </ul>
+</div>
+
+<!-- /0 -->
+            <div id="left-navigation">
+                
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+    <h5>Namespaces</h5>
+    <ul>
+                    <li  id="ca-nstab-main" class="selected"><span><a href="/wiki/Semantic_Web"  title="View the content page [c]" accesskey="c">Article</a></span></li>
+                    <li  id="ca-talk"><span><a href="/wiki/Talk:Semantic_Web"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+            </ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+        <h5><span>Variants</span><a href="#"></a></h5>
+    <div class="menu">
+        <ul>
+                    </ul>
+    </div>
+</div>
+
+<!-- /1 -->
+            </div>
+            <div id="right-navigation">
+                
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+    <h5>Views</h5>
+    <ul>
+                    <li id="ca-view" class="selected"><span><a href="/wiki/Semantic_Web" >Read</a></span></li>
+                    <li id="ca-edit"><span><a href="/w/index.php?title=Semantic_Web&amp;action=edit"  title="You can edit this page. &#10;Please use the preview button before saving. [e]" accesskey="e">Edit</a></span></li>
+                    <li id="ca-history" class="collapsible"><span><a href="/w/index.php?title=Semantic_Web&amp;action=history"  title="Past versions of this page [h]" accesskey="h">View history</a></span></li>
+            </ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+    <h5><span>Actions</span><a href="#"></a></h5>
+    <div class="menu">
+        <ul>
+                    </ul>
+    </div>
+</div>
+
+<!-- /1 -->
+
+<!-- 2 -->
+<div id="p-search">
+    <h5><label for="searchInput">Search</label></h5>
+    <form action="/w/index.php" id="searchform">
+        <input type='hidden' name="title" value="Special:Search"/>
+                <div id="simpleSearch">
+                        <input type="text" name="search" value="" title="Search Wikipedia [f]" accesskey="f" id="searchInput" />                        <button type="submit" name="button" title="Search Wikipedia for this text" id="searchButton"><img src="//bits.wikimedia.org/skins-1.18/vector/images/search-ltr.png?303-4" alt="Search" /></button>                 </div>
+            </form>
+</div>
+
+<!-- /2 -->
+            </div>
+        </div>
+        <!-- /header -->
+        <!-- panel -->
+            <div id="mw-panel" class="noprint">
+                <!-- logo -->
+                    <div id="p-logo"><a style="background-image: url(//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png);" href="/wiki/Main_Page"  title="Visit the main page"></a></div>
+                <!-- /logo -->
+                
+<!-- navigation -->
+<div class="portal" id='p-navigation'>
+    <h5>Navigation</h5>
+    <div class="body">
+        <ul>
+            <li id="n-mainpage-description"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li>
+            <li id="n-contents"><a href="/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li>
+            <li id="n-featuredcontent"><a href="/wiki/Portal:Featured_content" title="Featured content – the best of Wikipedia">Featured content</a></li>
+            <li id="n-currentevents"><a href="/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li>
+            <li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random article [x]" accesskey="x">Random article</a></li>
+            <li id="n-sitesupport"><a href="//wikimediafoundation.org/wiki/Special:Landingcheck?landing_page=WMFJA085&amp;language=en&amp;utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=20101204SB002" rel="nofollow" title="Support us">Donate to Wikipedia</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- /navigation -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- interaction -->
+<div class="portal" id='p-interaction'>
+    <h5>Interaction</h5>
+    <div class="body">
+        <ul>
+            <li id="n-help"><a href="/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li>
+            <li id="n-aboutsite"><a href="/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li>
+            <li id="n-portal"><a href="/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+            <li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+            <li id="n-contact"><a href="/wiki/Wikipedia:Contact_us" title="How to contact Wikipedia">Contact Wikipedia</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- /interaction -->
+
+<!-- TOOLBOX -->
+<div class="portal" id='p-tb'>
+    <h5>Toolbox</h5>
+    <div class="body">
+        <ul>
+            <li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/Semantic_Web" title="List of all English Wikipedia pages containing links to this page [j]" accesskey="j">What links here</a></li>
+            <li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/Semantic_Web" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+            <li id="t-upload"><a href="/wiki/Wikipedia:Upload" title="Upload files [u]" accesskey="u">Upload file</a></li>
+            <li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+            <li id="t-permalink"><a href="/w/index.php?title=Semantic_Web&amp;oldid=456464623" title="Permanent link to this revision of the page">Permanent link</a></li>
+<li id="t-cite"><a href="/w/index.php?title=Special:Cite&amp;page=Semantic_Web&amp;id=456464623" title="Information on how to cite this page">Cite this page</a></li>       </ul>
+    </div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- coll-print_export -->
+<div class="portal" id='p-coll-print_export'>
+    <h5>Print/export</h5>
+    <div class="body">
+        <ul id="collectionPortletList"><li id="coll-create_a_book"><a href="/w/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=Semantic+Web" title="Create a book or page collection" rel="nofollow">Create a book</a></li><li id="coll-download-as-rl"><a href="/w/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=Semantic+Web&amp;oldid=456464623&amp;writer=rl" title="Download a PDF version of this wiki page" rel="nofollow">Download as PDF</a></li><li id="t-print"><a href="/w/index.php?title=Semantic_Web&amp;printable=yes" title="Printable version of this page [p]" accesskey="p">Printable version</a></li></ul>    </div>
+</div>
+
+<!-- /coll-print_export -->
+
+<!-- LANGUAGES -->
+<div class="portal" id='p-lang'>
+    <h5>Languages</h5>
+    <div class="body">
+        <ul>
+            <li class="interwiki-ar"><a href="//ar.wikipedia.org/wiki/%D9%88%D9%8A%D8%A8_%D8%AF%D9%84%D8%A7%D9%84%D9%8A">العربية</a></li>
+            <li class="interwiki-bn"><a href="//bn.wikipedia.org/wiki/%E0%A6%B8%E0%A7%87%E0%A6%AE%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%95_%E0%A6%93%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%AC">বাংলা</a></li>
+            <li class="interwiki-bg"><a href="//bg.wikipedia.org/wiki/Semantic_web">Български</a></li>
+            <li class="interwiki-ca"><a href="//ca.wikipedia.org/wiki/Web_sem%C3%A0ntic">Català</a></li>
+            <li class="interwiki-cs"><a href="//cs.wikipedia.org/wiki/S%C3%A9mantick%C3%BD_web">Česky</a></li>
+            <li class="interwiki-da"><a href="//da.wikipedia.org/wiki/Semantisk_web">Dansk</a></li>
+            <li class="interwiki-de"><a href="//de.wikipedia.org/wiki/Semantisches_Web">Deutsch</a></li>
+            <li class="interwiki-es"><a href="//es.wikipedia.org/wiki/Web_sem%C3%A1ntica">Español</a></li>
+            <li class="interwiki-eo"><a href="//eo.wikipedia.org/wiki/Semantika_Reto">Esperanto</a></li>
+            <li class="interwiki-eu"><a href="//eu.wikipedia.org/wiki/Web_semantiko">Euskara</a></li>
+            <li class="interwiki-fa"><a href="//fa.wikipedia.org/wiki/%D9%88%D8%A8_%D9%85%D8%B9%D9%86%D8%A7%DB%8C%DB%8C">فارسی</a></li>
+            <li class="interwiki-fr"><a href="//fr.wikipedia.org/wiki/Web_s%C3%A9mantique">Français</a></li>
+            <li class="interwiki-gl"><a href="//gl.wikipedia.org/wiki/Web_sem%C3%A1ntica">Galego</a></li>
+            <li class="interwiki-ko"><a href="//ko.wikipedia.org/wiki/%EC%8B%9C%EB%A7%A8%ED%8B%B1_%EC%9B%B9">한국어</a></li>
+            <li class="interwiki-id"><a href="//id.wikipedia.org/wiki/Web_semantik">Bahasa Indonesia</a></li>
+            <li class="interwiki-is"><a href="//is.wikipedia.org/wiki/Merkingarvefur">Íslenska</a></li>
+            <li class="interwiki-it"><a href="//it.wikipedia.org/wiki/Web_semantico">Italiano</a></li>
+            <li class="interwiki-he"><a href="//he.wikipedia.org/wiki/%D7%A8%D7%A9%D7%AA_%D7%A1%D7%9E%D7%A0%D7%98%D7%99%D7%AA">עברית</a></li>
+            <li class="interwiki-lv"><a href="//lv.wikipedia.org/wiki/Semantiskais_t%C4%ABmeklis">Latviešu</a></li>
+            <li class="interwiki-lt"><a href="//lt.wikipedia.org/wiki/Semantinis_tinklas">Lietuvių</a></li>
+            <li class="interwiki-hu"><a href="//hu.wikipedia.org/wiki/Szemantikus_web">Magyar</a></li>
+            <li class="interwiki-mk"><a href="//mk.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D1%87%D0%BA%D0%B8_%D0%B2%D0%B5%D0%B1">Македонски</a></li>
+            <li class="interwiki-ja"><a href="//ja.wikipedia.org/wiki/%E3%82%BB%E3%83%9E%E3%83%B3%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E3%83%BB%E3%82%A6%E3%82%A7%E3%83%96">日本語</a></li>
+            <li class="interwiki-no"><a href="//no.wikipedia.org/wiki/Semantisk_web">‪Norsk (bokmål)‬</a></li>
+            <li class="interwiki-pl"><a href="//pl.wikipedia.org/wiki/Semantic_Web">Polski</a></li>
+            <li class="interwiki-pt"><a href="//pt.wikipedia.org/wiki/Web_sem%C3%A2ntica">Português</a></li>
+            <li class="interwiki-ru"><a href="//ru.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%BF%D0%B0%D1%83%D1%82%D0%B8%D0%BD%D0%B0">Русский</a></li>
+            <li class="interwiki-sr"><a href="//sr.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D1%87%D0%BA%D0%B8_%D0%B2%D0%B5%D0%B1">Српски / Srpski</a></li>
+            <li class="interwiki-fi"><a href="//fi.wikipedia.org/wiki/Semanttinen_Web">Suomi</a></li>
+            <li class="interwiki-sv"><a href="//sv.wikipedia.org/wiki/Semantiska_webben">Svenska</a></li>
+            <li class="interwiki-th"><a href="//th.wikipedia.org/wiki/%E0%B8%8B%E0%B8%B5%E0%B9%81%E0%B8%A1%E0%B8%99%E0%B8%95%E0%B8%B4%E0%B8%81%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A">ไทย</a></li>
+            <li class="interwiki-tr"><a href="//tr.wikipedia.org/wiki/Anlamsal_a%C4%9F">Türkçe</a></li>
+            <li class="interwiki-uk"><a href="//uk.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BC%D0%B0%D0%BD%D1%82%D0%B8%D1%87%D0%BD%D0%B0_%D0%BF%D0%B0%D0%B2%D1%83%D1%82%D0%B8%D0%BD%D0%B0">Українська</a></li>
+            <li class="interwiki-ur"><a href="//ur.wikipedia.org/wiki/%D8%B1%D8%A7%D8%A8%D8%B7_%D9%85%D8%B9%D9%86%D8%A7%D8%A6%DB%8C">اردو</a></li>
+            <li class="interwiki-zh"><a href="//zh.wikipedia.org/wiki/%E8%AF%AD%E4%B9%89%E7%BD%91">中文</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- /LANGUAGES -->
+            </div>
+        <!-- /panel -->
+        <!-- footer -->
+        <div id="footer">
+                            <ul id="footer-info">
+                                            <li id="footer-info-lastmod"> This page was last modified on 20 October 2011 at 04:16.<br /></li>
+                                            <li id="footer-info-copyright">Text is available under the <a rel="license" href="//en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="//creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a>;
+additional terms may apply.
+See <a href="//wikimediafoundation.org/wiki/Terms_of_use">Terms of use</a> for details.<br/>
+Wikipedia&reg; is a registered trademark of the <a href="//www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.<br /></li><li class="noprint"><a class='internal' href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact us</a></li>
+                                    </ul>
+                            <ul id="footer-places">
+                                            <li id="footer-places-privacy"><a href="//wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+                                            <li id="footer-places-about"><a href="/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+                                            <li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+                                            <li id="footer-places-mobileview"><a href='/w/index.php?title=Semantic_Web&amp;useformat=mobile'>Mobile view</a></li>
+                                    </ul>
+                                        <ul id="footer-icons" class="noprint">
+                    <li id="footer-copyrightico">
+                        <a href="//wikimediafoundation.org/"><img src="//bits.wikimedia.org/images/wikimedia-button.png" width="88" height="31" alt="Wikimedia Foundation"/></a>
+                    </li>
+                    <li id="footer-poweredbyico">
+                        <a href="//www.mediawiki.org/"><img src="//bits.wikimedia.org/skins-1.18/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+                    </li>
+                </ul>
+                        <div style="clear:both"></div>
+        </div>
+        <!-- /footer -->
+        <!-- fixalpha -->
+        <script type="text/javascript"> if ( window.isMSIE55 ) fixalpha(); </script>
+        <!-- /fixalpha -->
+        <script src="//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=skins.vector&amp;only=scripts&amp;skin=vector&amp;*" type="text/javascript"></script>
+<script type="text/javascript">if ( window.mediaWiki ) {
+    mw.loader.load(["mediawiki.user", "mediawiki.util", "mediawiki.page.ready", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax", "mediawiki.legacy.mwsuggest", "ext.gadget.wmfFR2011Style", "ext.vector.collapsibleNav", "ext.vector.collapsibleTabs", "ext.vector.editWarning", "ext.vector.simpleSearch", "ext.UserBuckets", "ext.articleFeedback.startup"]);
+}
+</script>
+<script src="/w/index.php?title=Special:BannerController&amp;cache=/cn.js&amp;303-4" type="text/javascript"></script>
+<script src="//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=vector&amp;*" type="text/javascript"></script>
+<script type="text/javascript">if ( window.mediaWiki ) {
+    mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":false,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"vector","stubthreshold":0,"thumbsize":4,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,
+    "watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"flaggedrevssimpleui":1,"flaggedrevsstable":0,"flaggedrevseditdiffs":true,"flaggedrevsviewdiffs":false,"vector-simplesearch":1,"useeditwarning":1,"vector-collapsiblenav":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikilove-enabled":1,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"searchNs108":false,"searchNs109":false,"gadget-wmfFR2011Style":1});;mw.user.tokens.set({"editToken":"+\\","watchToken":false});;mw.loader.state({"user.options":"ready","user.tokens":"ready"});
+    
+    /* cache key: enwiki:resourceloader:filter:minify-js:4:b41a86ec4e0fe8329bc3ce917e792339 */
+}
+</script><script src="//geoiplookup.wikimedia.org/" type="text/javascript"></script><!-- Served by mw42 in 0.080 secs. -->
+    </body>
+</html>
