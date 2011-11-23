@@ -29,12 +29,17 @@ public abstract class ProcessResource
 
         public static class Builder extends RuntimeContext.Builder {
 
+            protected IWrfResource fInitialResource;
+
             public Builder() {
                 super();
             }
 
             public Builder(ActionRequest request) {
                 super(request);
+                if (request != null) {
+                    fInitialResource = request.fInitialResource;
+                }
             }
 
             @Override
@@ -87,21 +92,17 @@ public abstract class ProcessResource
             return new ActionRequest.Builder(request);
         }
 
-        private IWrfResource fInitialResource;
+        protected IWrfResource fInitialResource;
 
         public ActionRequest() {
             super();
         }
 
-        protected ActionRequest(ActionRequest request) {
-            super(request);
-            if (request != null) {
-                fInitialResource = request.fInitialResource;
-            }
-        }
-
-        public ActionRequest(RuntimeContext context) {
+        public ActionRequest(ActionRequest.Builder context) {
             super(context);
+            if (context != null) {
+                fInitialResource = context.fInitialResource;
+            }
         }
 
         public String getActionName() {

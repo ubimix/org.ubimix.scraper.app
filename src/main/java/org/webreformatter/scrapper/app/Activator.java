@@ -40,6 +40,8 @@ import org.webreformatter.scrapper.events.CopyResourceAction;
 import org.webreformatter.scrapper.events.CopyResourceHandler;
 import org.webreformatter.scrapper.events.FormatHtmlAction;
 import org.webreformatter.scrapper.events.FormatHtmlHandler;
+import org.webreformatter.scrapper.events.GetAtomFeed;
+import org.webreformatter.scrapper.events.GetAtomFeedHandler;
 import org.webreformatter.scrapper.events.ZipExportAction;
 import org.webreformatter.scrapper.events.ZipExportHandler;
 import org.webreformatter.scrapper.normalizer.CompositeDocumentNormalizer;
@@ -266,6 +268,8 @@ public class Activator extends ConfigurableMultiserviceActivator {
             eventManager.addListener(
                 FormatHtmlAction.class,
                 new FormatHtmlHandler());
+            eventManager.addListener(GetAtomFeed.class, new GetAtomFeedHandler(
+                fDocumentNormalizers));
             eventManager.addListener(
                 ZipExportAction.class,
                 new ZipExportHandler());

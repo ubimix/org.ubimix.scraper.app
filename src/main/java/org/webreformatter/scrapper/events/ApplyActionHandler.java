@@ -19,8 +19,8 @@ import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
-import org.webreformatter.scrapper.context.CoreAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
+import org.webreformatter.scrapper.context.CoreAdapter;
 import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
@@ -256,7 +256,7 @@ public class ApplyActionHandler extends CallListener<ApplyAction> {
     private ProcessResource newEvent(
         Class<?> eventType,
         ActionRequest actionRequest) throws Exception {
-        ActionRequest request = new ActionRequest(actionRequest);
+        ActionRequest request = ActionRequest.builder(actionRequest).build();
         Constructor<?> constructor = eventType
             .getConstructor(ActionRequest.class);
         ProcessResource instance = (ProcessResource) constructor
