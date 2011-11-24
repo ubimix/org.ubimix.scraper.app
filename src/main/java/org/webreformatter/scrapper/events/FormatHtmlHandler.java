@@ -9,13 +9,12 @@ import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.IUrlTransformer;
-import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.string.StringAdapter;
+import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
 import org.webreformatter.scrapper.context.CoreAdapter;
-import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
@@ -48,7 +47,8 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
 
             //
             Uri url = request.getUrl();
-            ApplicationContext applicationContext = request.getApplicationContext();
+            ApplicationContext applicationContext = request
+                .getApplicationContext();
             AtomProcessing atomProcessingAdapter = applicationContext
                 .getAdapter(AtomProcessing.class);
             AtomFeed feed = atomProcessingAdapter
@@ -63,22 +63,12 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
             }
             // Localize references
 
-            PageSetConfig pageSetConfig = request.getPageSetConfig();
-            final IUrlTransformer transformer = pageSetConfig
-                .getLocalizeUrlTransformer();
-            final Uri docLocalUri = transformer.transform(url);
-            IUrlTransformer t = new IUrlTransformer() {
-                public Uri transform(Uri uri) {
-                    Uri localUri = transformer.transform(uri);
-                    Uri result = docLocalUri.getRelative(localUri);
-                    return result;
-                }
-            };
+            final IUrlTransformer t = request.getLocalizeUrlTransformer();
             XslUtils.transformLinks(feed, t, url, prefix + "a", "href");
             XslUtils.transformLinks(feed, t, url, prefix + "img", "src");
 
             // Get template
-            IUrlMapper mapper = pageSetConfig.getUriMapper();
+            IUrlMapper mapper = request.getUriMapper();
             Uri templateUrl = mapper.getUrl("template", url);
 
             HttpStatusCode status;
@@ -106,8 +96,7 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
                 } else {
                     CoreAdapter adapter = applicationContext
                         .getAdapter(CoreAdapter.class);
-                    AccessManager accessManager = pageSetConfig
-                        .getAccessManager();
+                    AccessManager accessManager = request.getAccessManager();
                     HttpStatusCode templateDownloadStatus = adapter.download(
                         accessManager,
                         templateUrl,

@@ -8,6 +8,7 @@ import org.webreformatter.commons.events.calls.CallEvent;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
+import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfRepository;
@@ -55,6 +56,20 @@ public abstract class ProcessResource
             }
 
             @Override
+            public ActionRequest.Builder setDownloadUrlTransformer(
+                IUrlTransformer downloadUrlTransformer) {
+                super.setDownloadUrlTransformer(downloadUrlTransformer);
+                return this;
+            }
+
+            @Override
+            public ActionRequest.Builder setLocalizeUrlTransformer(
+                IUrlTransformer localizeUrlTransformer) {
+                super.setLocalizeUrlTransformer(localizeUrlTransformer);
+                return this;
+            }
+
+            @Override
             public ActionRequest.Builder setPageSetConfig(
                 PageSetConfig pageSetConfig) {
                 return (ActionRequest.Builder) super
@@ -69,6 +84,13 @@ public abstract class ProcessResource
             @Override
             public ActionRequest.Builder setParams(Map<String, String> params) {
                 return (ActionRequest.Builder) super.setParams(params);
+            }
+
+            @Override
+            public ActionRequest.Builder setRelativePathUrlTransformer(
+                String prefix) {
+                super.setRelativePathUrlTransformer(prefix);
+                return this;
             }
 
             @Override

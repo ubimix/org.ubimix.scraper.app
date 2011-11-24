@@ -14,7 +14,6 @@ import org.webreformatter.commons.events.calls.CallListener;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlTransformer;
-import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
@@ -167,10 +166,9 @@ public class ApplyActionHandler extends CallListener<ApplyAction> {
                 CoreAdapter adapter = fApplicationContext
                     .getAdapter(CoreAdapter.class);
                 Uri url = actionRequest.getUrl();
-                PageSetConfig pageSetConfig = actionRequest.getPageSetConfig();
-                IUrlTransformer uriTransformer = pageSetConfig
+                IUrlTransformer uriTransformer = actionRequest
                     .getDownloadUrlTransformer();
-                AccessManager accessManager = pageSetConfig.getAccessManager();
+                AccessManager accessManager = actionRequest.getAccessManager();
                 url = uriTransformer.transform(url);
                 HttpStatusCode code = adapter.download(
                     accessManager,

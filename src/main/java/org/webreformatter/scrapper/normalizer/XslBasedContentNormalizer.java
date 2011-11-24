@@ -9,8 +9,8 @@ import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
-import org.webreformatter.scrapper.context.CoreAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
+import org.webreformatter.scrapper.context.CoreAdapter;
 import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.context.RuntimeContext;
 import org.webreformatter.server.xml.XmlException;
@@ -62,7 +62,7 @@ public class XslBasedContentNormalizer implements IDocumentNormalizer {
         XmlWrapper xsl = null;
         boolean ok = true;
         if (resource.getAdapter(CachedResourceAdapter.class).isExpired()) {
-            AccessManager accessManager = pageSetConfig.getAccessManager();
+            AccessManager accessManager = context.getAccessManager();
             CoreAdapter downloadAdapter = applicationContext
                 .getAdapter(CoreAdapter.class);
             HttpStatusCode code = downloadAdapter.download(

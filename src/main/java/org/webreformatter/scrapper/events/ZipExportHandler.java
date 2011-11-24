@@ -17,12 +17,11 @@ import org.webreformatter.commons.events.server.CallBarrier;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.pageset.IUrlTransformer;
-import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.scrapper.context.AtomProcessing;
 import org.webreformatter.scrapper.context.ApplicationContext;
+import org.webreformatter.scrapper.context.AtomProcessing;
 import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
@@ -75,7 +74,8 @@ public class ZipExportHandler extends ProcessResourceHandler<ZipExportAction> {
         try {
             ActionRequest request = event.getRequest();
             Uri docUrl = request.getUrl();
-            ApplicationContext applicationContext = request.getApplicationContext();
+            ApplicationContext applicationContext = request
+                .getApplicationContext();
             AtomProcessing atomProcessingAdapter = applicationContext
                 .getAdapter(AtomProcessing.class);
             AtomFeed feed = atomProcessingAdapter
@@ -88,8 +88,7 @@ public class ZipExportHandler extends ProcessResourceHandler<ZipExportAction> {
                     }
                 });
 
-            PageSetConfig pageSetConfig = request.getPageSetConfig();
-            IUrlTransformer uriTransformer = pageSetConfig
+            IUrlTransformer uriTransformer = request
                 .getDownloadUrlTransformer();
             Uri docPath = uriTransformer != null ? uriTransformer
                 .transform(docUrl) : null;

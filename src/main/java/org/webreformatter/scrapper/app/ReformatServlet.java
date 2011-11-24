@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.webreformatter.commons.events.IEventManager;
 import org.webreformatter.commons.events.calls.CallListener;
 import org.webreformatter.commons.events.server.CallBarrier;
+import org.webreformatter.commons.uri.Path.Builder;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.pageset.PageSetConfigRegistry;
@@ -62,28 +64,40 @@ public class ReformatServlet extends HttpServlet {
             resp.setContentType(MIME_TYPE);
 
             // FIXME: get the page set key from parameters
-            String pageSetKey = req.getParameter("pageset");
+            Uri.Builder builder = new Uri.Builder(req.getPathInfo());
+            Builder pathBuilder = builder.getPathBuilder();
+            pathBuilder.makeRelativePath();
+            String pageSetKey = null;
+            List<String> segments = pathBuilder.getPathSegments();
+            if (segments.size() > 0) {
+                String firstSegment = segments.get(0);
+                if (firstSegment.startsWith(".")) {
+                    pageSetKey = firstSegment.substring(1);
+                    pathBuilder.removeFirstPathSegments(1);
+                }
+            }
+            if (pageSetKey == null) {
+                pageSetKey = req.getParameter("pageset");
+            }
             PageSetConfig pageSetConfig = fPageSetConfigRegistry
                 .getPageSetConfig(pageSetKey);
             if (pageSetConfig == null) {
+                pageSetKey = DEFAULT_PAGE_SET_KEY;
                 pageSetConfig = fPageSetConfigRegistry
-                    .getPageSetConfig(DEFAULT_PAGE_SET_KEY);
+                    .getPageSetConfig(pageSetKey);
             }
             if (pageSetConfig == null) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
             }
-
-            String q = req.getParameter("url");
-            Uri url = null;
-            if (q != null) {
-                url = new Uri(q);
-            } else {
-                UrlToPathMapper mapper = pageSetConfig.getUrlToPathMapper();
-                q = req.getPathInfo();
-                Uri.Builder builder = new Uri.Builder(q);
-                builder.getPathBuilder().makeRelativePath();
-                url = mapper.pathToUri(builder.build());
+            Uri path = builder.build();
+            UrlToPathMapper mapper = pageSetConfig.getUrlToPathMapper();
+            Uri url = mapper.pathToUri(path);
+            if (url == null) {
+                String q = req.getParameter("url");
+                if (q != null) {
+                    url = new Uri(q);
+                }
             }
             if (url == null) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -91,11 +105,16 @@ public class ReformatServlet extends HttpServlet {
             }
 
             Map<String, String> params = getRequestParams(req);
+            String prefix = pageSetKey;
+            if (!DEFAULT_PAGE_SET_KEY.equals(prefix)) {
+                prefix = "." + prefix;
+            }
             ActionRequest actionRequest = ActionRequest
                 .builder()
                 .setApplicationContext(fApplicationContext)
                 .setPageSetConfig(pageSetConfig)
                 .setUrl(url)
+                .setRelativePathUrlTransformer(prefix)
                 .setParams(params)
                 .build();
             IEventManager eventManager = fApplicationContext.getEventManager();
@@ -112,6 +131,9 @@ public class ReformatServlet extends HttpServlet {
                 }));
             barrier.await();
             HttpStatusCode status = response[0].getResultStatus();
+            if (status == null) {
+                status = HttpStatusCode.STATUS_500;
+            }
             resp.setStatus(status.getStatusCode());
             if (!status.isError()) {
                 IPropertyAdapter propertiesAdapter = response[0]

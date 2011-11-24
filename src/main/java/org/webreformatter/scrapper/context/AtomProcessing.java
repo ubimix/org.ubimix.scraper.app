@@ -114,9 +114,7 @@ public class AtomProcessing extends ApplicationContextAdapter {
             if (!exists) {
                 CoreAdapter adapter = fApplicationContext
                     .getAdapter(CoreAdapter.class);
-                AccessManager accessManager = context
-                    .getPageSetConfig()
-                    .getAccessManager();
+                AccessManager accessManager = context.getAccessManager();
                 HttpStatusCode code = adapter.download(
                     accessManager,
                     url,
