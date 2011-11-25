@@ -7,7 +7,6 @@ import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.CoreAdapter;
@@ -17,6 +16,9 @@ import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
 import org.webreformatter.server.xml.atom.AtomFeed;
 
+/**
+ * @author kotelnikov
+ */
 public class XslBasedContentNormalizer implements IDocumentNormalizer {
 
     public AtomFeed getNormalizedContent(
@@ -61,7 +63,7 @@ public class XslBasedContentNormalizer implements IDocumentNormalizer {
         IWrfResource resource = coreAdapter.getResource(xslUrl, "xsl", true);
         XmlWrapper xsl = null;
         boolean ok = true;
-        if (resource.getAdapter(CachedResourceAdapter.class).isExpired()) {
+        if (context.isExpired(resource)) {
             AccessManager accessManager = context.getAccessManager();
             CoreAdapter downloadAdapter = applicationContext
                 .getAdapter(CoreAdapter.class);

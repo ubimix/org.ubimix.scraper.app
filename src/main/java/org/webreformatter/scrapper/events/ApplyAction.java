@@ -3,6 +3,7 @@
  */
 package org.webreformatter.scrapper.events;
 
+
 /**
  * @author kotelnikov
  */

@@ -10,7 +10,6 @@ import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.string.StringAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
@@ -88,10 +87,8 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
                     templateUrl,
                     "download",
                     true);
-                CachedResourceAdapter templateResourceCache = templateResource
-                    .getAdapter(CachedResourceAdapter.class);
                 status = HttpStatusCode.STATUS_404;
-                if (!templateResourceCache.isExpired()) {
+                if (!request.isExpired(templateResource)) {
                     status = HttpStatusCode.STATUS_200;
                 } else {
                     CoreAdapter adapter = applicationContext

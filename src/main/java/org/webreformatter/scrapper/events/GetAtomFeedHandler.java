@@ -1,7 +1,5 @@
 package org.webreformatter.scrapper.events;
 
-import java.io.IOException;
-
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
@@ -43,7 +41,7 @@ public class GetAtomFeedHandler extends ProcessResourceHandler<GetAtomFeed> {
             IWrfResource htmlResource = request.getInitialResource();
             IWrfResource xmlResource = setResponseResource(response, request);
             HttpStatusCode status = HttpStatusCode.STATUS_200;
-            if (isExpired(xmlResource)) {
+            if (request.isExpired(xmlResource)) {
                 status = HttpStatusCode.STATUS_500;
                 HTMLAdapter htmlAdapter = htmlResource
                     .getAdapter(HTMLAdapter.class);
@@ -71,13 +69,6 @@ public class GetAtomFeedHandler extends ProcessResourceHandler<GetAtomFeed> {
         } finally {
             event.setResponse(response);
         }
-    }
-
-    protected boolean isExpired(IWrfResource resource) throws IOException {
-        CachedResourceAdapter adapter = resource
-            .getAdapter(CachedResourceAdapter.class);
-        boolean result = adapter.isExpired();
-        return result;
     }
 
 }

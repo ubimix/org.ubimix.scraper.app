@@ -5,15 +5,11 @@ import java.io.InputStream;
 import java.util.Map;
 
 import org.webreformatter.commons.events.calls.CallEvent;
-import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.commons.uri.UriToPath;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IContentAdapter;
-import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.HttpStatusCode;
@@ -137,29 +133,6 @@ public abstract class ProcessResource
                 fInitialResource = getResource(DOWNLOAD_STORE, null);
             }
             return fInitialResource;
-        }
-
-        public Path getPath() {
-            return UriToPath.getPath(getUrl());
-        }
-
-        protected IWrfResource getResource(String storeName, String suffix) {
-            ApplicationContext applicationContext = getApplicationContext();
-            IWrfRepository repository = applicationContext.getRepository();
-            IWrfResourceProvider store = repository.getResourceProvider(
-                storeName,
-                true);
-            Path path = getPath();
-            Path.Builder builder = path.getBuilder();
-            if (suffix != null) {
-                builder.appendPath("$").appendPath(suffix);
-            }
-            Path targetResultPath = builder.build();
-            IWrfResource targetResource = store.getResource(
-                targetResultPath,
-                true);
-            return targetResource;
-
         }
 
         public IWrfResource newTargetResource(String mimeType) {

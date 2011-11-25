@@ -73,7 +73,7 @@ public class AtomProcessing extends ApplicationContextAdapter {
         IWrfResource cleanResource = fNormalizedStore.getResource(path, true);
         XmlAdapter xmlAdapter = cleanResource.getAdapter(XmlAdapter.class);
         boolean ok = false;
-        if (!isExpired(cleanResource)) {
+        if (!context.isExpired(cleanResource)) {
             ok = true;
         } else {
             XmlWrapper doc = getXHTMLResource(context);
@@ -108,9 +108,9 @@ public class AtomProcessing extends ApplicationContextAdapter {
         Path path = UriToPath.getPath(url);
         IWrfResource htmlResource = fHtmlStore.getResource(path, true);
         XmlAdapter xmlAdapter = htmlResource.getAdapter(XmlAdapter.class);
-        if (isExpired(htmlResource)) {
+        if (context.isExpired(htmlResource)) {
             IWrfResource rawResource = fRawDataStore.getResource(path, true);
-            boolean exists = !isExpired(rawResource);
+            boolean exists = !context.isExpired(rawResource);
             if (!exists) {
                 CoreAdapter adapter = fApplicationContext
                     .getAdapter(CoreAdapter.class);
@@ -136,13 +136,6 @@ public class AtomProcessing extends ApplicationContextAdapter {
             }
         }
         XmlWrapper result = xmlAdapter.getWrapperCopy();
-        return result;
-    }
-
-    protected boolean isExpired(IWrfResource resource) throws IOException {
-        CachedResourceAdapter adapter = resource
-            .getAdapter(CachedResourceAdapter.class);
-        boolean result = adapter.isExpired();
         return result;
     }
 

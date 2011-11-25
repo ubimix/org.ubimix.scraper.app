@@ -16,7 +16,6 @@ import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.CoreAdapter;
@@ -160,9 +159,7 @@ public class ApplyActionHandler extends CallListener<ApplyAction> {
         try {
             IEventManager eventManager = fApplicationContext.getEventManager();
             IWrfResource initialResource = actionRequest.getInitialResource();
-            CachedResourceAdapter initialResourceCacheAdapter = initialResource
-                .getAdapter(CachedResourceAdapter.class);
-            if (initialResourceCacheAdapter.isExpired()) {
+            if (actionRequest.isExpired(initialResource)) {
                 CoreAdapter adapter = fApplicationContext
                     .getAdapter(CoreAdapter.class);
                 Uri url = actionRequest.getUrl();
@@ -177,7 +174,7 @@ public class ApplyActionHandler extends CallListener<ApplyAction> {
                 boolean exists = code.isOk()
                     || HttpStatusCode.STATUS_304.equals(code) /* NOT_MODIFIED */;
                 if (exists) {
-                    initialResourceCacheAdapter.touch();
+                    actionRequest.touch(initialResource);
                 }
             }
             try {

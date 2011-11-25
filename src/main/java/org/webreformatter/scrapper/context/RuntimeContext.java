@@ -3,14 +3,21 @@
  */
 package org.webreformatter.scrapper.context;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
+import org.webreformatter.commons.uri.UriToPath;
 import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
+import org.webreformatter.resources.IWrfRepository;
+import org.webreformatter.resources.IWrfResource;
+import org.webreformatter.resources.IWrfResourceProvider;
+import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 
 /**
@@ -191,8 +198,48 @@ public class RuntimeContext {
         return fParams.get(key);
     }
 
+    public boolean getParameter(String key, boolean defaultValue) {
+        String str = getParameter(key);
+        boolean result = defaultValue;
+        if (str != null) {
+            str = str.trim().toLowerCase();
+            result = "1".equals(str) || "yes".equals(str) || "ok".equals(str);
+        }
+        return result;
+    }
+
+    public int getParameter(String key, int defaultValue) {
+        String str = getParameter(key);
+        int result = defaultValue;
+        if (str != null) {
+            str = str.trim();
+            try {
+                result = Integer.parseInt(str);
+            } catch (Throwable t) {
+            }
+        }
+        return result;
+    }
+
     public Map<String, String> getParams() {
         return fParams;
+    }
+
+    protected IWrfResource getResource(String storeName, String suffix) {
+        ApplicationContext applicationContext = getApplicationContext();
+        IWrfRepository repository = applicationContext.getRepository();
+        IWrfResourceProvider store = repository.getResourceProvider(
+            storeName,
+            true);
+        Path path = UriToPath.getPath(getUrl());
+        Path.Builder builder = path.getBuilder();
+        if (suffix != null) {
+            builder.appendPath("$").appendPath(suffix);
+        }
+        Path targetResultPath = builder.build();
+        IWrfResource targetResource = store.getResource(targetResultPath, true);
+        return targetResource;
+
     }
 
     public IUrlMapper getUriMapper() {
@@ -201,6 +248,23 @@ public class RuntimeContext {
 
     public Uri getUrl() {
         return fUrl;
+    }
+
+    public boolean isExpired(IWrfResource resource) throws IOException {
+        boolean result = true;
+        boolean cache = getParameter("cache", true);
+        if (cache) {
+            CachedResourceAdapter cacheAdapter = resource
+                .getAdapter(CachedResourceAdapter.class);
+            result = cacheAdapter.isExpired();
+        }
+        return result;
+    }
+
+    public void touch(IWrfResource resource) throws IOException {
+        CachedResourceAdapter cacheAdapter = resource
+            .getAdapter(CachedResourceAdapter.class);
+        cacheAdapter.touch();
     }
 
 }

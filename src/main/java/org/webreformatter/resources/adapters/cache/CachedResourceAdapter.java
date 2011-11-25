@@ -50,8 +50,9 @@ public class CachedResourceAdapter extends WrfResourceAdapter {
     }
 
     protected long getLastModifiedDelta() {
-        return (long) DateUtil.DAY * 30;
-        // return DateUtil.HOUR; // DateUtil.MIN; // DateUtil.DAY * 30;
+        return (long) DateUtil.DAY * 1;
+        // return (long) DateUtil.DAY * 30;
+        // return (long) DateUtil.HOUR; // DateUtil.MIN; // DateUtil.DAY * 30;
     }
 
     public HttpStatusCode getStatus() throws IOException {
