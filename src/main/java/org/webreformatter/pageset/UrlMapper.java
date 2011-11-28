@@ -28,7 +28,8 @@ public class UrlMapper implements IUrlMapper {
     }
 
     /**
-     * @see org.webreformatter.pageset.IUrlMapper#getUrl(java.lang.String, org.webreformatter.commons.uri.Uri)
+     * @see org.webreformatter.pageset.IUrlMapper#getUrl(java.lang.String,
+     *      org.webreformatter.commons.uri.Uri)
      */
     public Uri getUrl(String type, Uri baseUrl) {
         PathManager<Uri> pathManager = fPathManagers.get(type);
@@ -41,9 +42,11 @@ public class UrlMapper implements IUrlMapper {
     }
 
     /**
-     * @see org.webreformatter.pageset.IUrlMapper#setUrl(java.lang.String, org.webreformatter.commons.uri.Uri, org.webreformatter.commons.uri.Uri)
+     * @param type
+     * @param baseUrl
+     * @param uri
      */
-    public void setUrl(String type, Uri baseUrl, Uri uri) {
+    public UrlMapper setUrl(String type, Uri baseUrl, Uri uri) {
         PathManager<Uri> pathManager = fPathManagers.get(type);
         if (pathManager == null) {
             pathManager = new PathManager<Uri>();
@@ -51,6 +54,7 @@ public class UrlMapper implements IUrlMapper {
         }
         String key = getKey(baseUrl);
         pathManager.add(key, uri);
+        return this;
     }
 
 }

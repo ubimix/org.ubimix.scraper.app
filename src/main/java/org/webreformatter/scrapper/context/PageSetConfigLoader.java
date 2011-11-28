@@ -123,6 +123,13 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         loader.configure(siteConfigUri, siteConfigXml, mapper);
     }
 
+    private void configureUrlTransformers(
+        AccessManager configAccessManager,
+        PageSetConfig.Builder config) {
+        config.setDownloadUrlTransformer(IUrlTransformer.EMPTY);
+        config.setLocalizeUrlTransformer(IUrlTransformer.EMPTY);
+    }
+
     protected AccessManager getAccessManager(
         AccessManager configAccessManager,
         Uri configUri) throws Exception {
@@ -159,6 +166,7 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         configureAccessManager(configAccessManager, accessConfigUri, config);
         configurePageSets(configAccessManager, siteConfigUri, config);
         configureUriMappings(configAccessManager, siteConfigUri, config);
+        configureUrlTransformers(configAccessManager, config);
         PageSetConfig result = config.build();
         return result;
     }
