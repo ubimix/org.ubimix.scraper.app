@@ -148,13 +148,19 @@ public class XmlAcceptor {
      */
     public static class XmlVisitor implements IXmlVisitor {
 
+        protected void doVisit(Node node) {
+        }
+
         public void visit(Attr node) {
+            doVisit(node);
         }
 
         public void visit(CDATASection node) {
+            doVisit(node);
         }
 
         public void visit(Comment node) {
+            doVisit(node);
         }
 
         public void visit(Document node) {
@@ -173,15 +179,19 @@ public class XmlAcceptor {
         }
 
         public void visit(Entity node) {
+            doVisit(node);
         }
 
         public void visit(Node node) {
+            doVisit(node);
         }
 
         public void visit(ProcessingInstruction node) {
+            doVisit(node);
         }
 
         public void visit(Text node) {
+            doVisit(node);
         }
 
     }

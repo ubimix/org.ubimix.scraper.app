@@ -23,11 +23,17 @@ public class AtomFeed extends AtomEntry {
 
     public static final String _NS_ATOM = "http://www.w3.org/2005/Atom";
 
+    public static final String _NS_XHTML = "http://www.w3.org/1999/xhtml";
+
     public static final String _PREFIX_ATOM = "atom";
+
+    public static final String _PREFIX_XHTML = "html";
 
     private static SimpleNamespaceContext ATOM_NAMESPACE_CONTEXT = new SimpleNamespaceContext(
         _PREFIX_ATOM,
-        _NS_ATOM);
+        _NS_ATOM,
+        _PREFIX_XHTML,
+        _NS_XHTML);
 
     private static void checkAtomNamespace(XmlContext context) {
         CompositeNamespaceContext namespaceContext = context

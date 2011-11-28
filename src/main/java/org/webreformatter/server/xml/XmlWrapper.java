@@ -874,6 +874,53 @@ public class XmlWrapper {
     private static XPathFactory XPATH_FACTORY = XPathFactory.newInstance();
 
     /**
+     * Appends the given node to the target element.
+     * 
+     * @param target the target element where the given node should be appended
+     * @param node the node to append
+     */
+    protected static void append(Node target, Node node) {
+        Document targetDoc = getDocument(target);
+        targetDoc.adoptNode(node);
+        target.appendChild(node);
+    }
+
+    /**
+     * Appends all children of the specified node to the given container.
+     * 
+     * @param container the container where all sub-nodes should be added
+     * @param node the node whose children should be added to the container
+     * @param copy if this flag is <code>true</code> then node copies will be
+     *        added to the specified container and the original nodes stay
+     *        intact
+     * @throws XmlException
+     */
+    public static void appendChildren(
+        XmlWrapper container,
+        XmlWrapper node,
+        boolean copy) throws XmlException {
+        XmlWrapper child = node != null ? node.getFirstElement() : null;
+        if (child == null) {
+            return;
+        }
+        List<Node> list = new ArrayList<Node>();
+        Node childNode = child.getRoot();
+        while (childNode != null) {
+            if (copy) {
+                Node n = childNode.cloneNode(true);
+                list.add(n);
+            } else {
+                list.add(childNode);
+            }
+            childNode = childNode.getNextSibling();
+        }
+        Node parent = container.getRoot();
+        for (Node n : list) {
+            append(parent, n);
+        }
+    }
+
+    /**
      * Applies an XSL transformation to an XML document. The original XML the
      * document and document defining the XSL transformation are provided in the
      * form of streams.
@@ -1130,9 +1177,7 @@ public class XmlWrapper {
      */
     public static Node copyNode(Node target, Node node) {
         Node n = node.cloneNode(true);
-        Document targetDoc = getDocument(target);
-        targetDoc.adoptNode(n);
-        target.appendChild(n);
+        append(target, n);
         return node;
     }
 
@@ -1362,78 +1407,15 @@ public class XmlWrapper {
     }
 
     /**
-     * Serializes the given XML document in the specified output stream.
-     * 
-     * @param xml the XML document to serialize
-     * @param out the output stream where the content is written
-     * @throws XmlException
-     */
-    public static void serializeXML(Document xml, OutputStream out)
-        throws XmlException {
-        try {
-            OutputStreamWriter writer = new OutputStreamWriter(out, "UTF-8");
-            serializeXML(xml, writer);
-            writer.flush();
-        } catch (Throwable t) {
-            throw handleError("Can not serialize an XML node", t);
-        }
-    }
-
-    /**
-     * Serializes the given XML document in the specified output stream.
-     * 
-     * @param xml the XML document to serialize
-     * @param out the output stream where the content is written
-     * @throws XmlException
-     */
-    public static void serializeXML(Document doc, Writer writer)
-        throws XmlException {
-        serializeXML(doc.getDocumentElement(), writer);
-    }
-
-    /**
-     * Serializes the given XML node as a string.
-     * 
-     * @param node the XML node to serialize
-     * @param includeNode if this parameter is <code>true</code> then the tag
-     *        markup corresponding to this element is serialized as well;
-     *        otherwise only children of this node are serialized.
-     * @throws XmlException
-     */
-    public static String serializeXML(Node node, boolean includeNode)
-        throws XmlException {
-        if (node == null) {
-            return null;
-        }
-        StringWriter writer = new StringWriter();
-        serializeXML(node, writer, includeNode);
-        return writer.toString();
-    }
-
-    /**
-     * Serializes the given XML node in the specified output stream.
-     * 
-     * @param node the XML node to serialize
-     * @param out the output stream where the content is written
-     * @throws XmlException
-     */
-    public static void serializeXML(Node node, OutputStream out)
-        throws XmlException {
-        Writer writer = new OutputStreamWriter(out);
-        serializeXML(node, writer);
-    }
-
-    /**
      * Serializes the given XML node in the specified output stream.
      * 
      * @param node the XML node to serialize
      * @param writer the output stream where the content is written
      * @throws XmlException
      */
-    public static void serializeXML(Node doc, Writer writer)
+    public static void serializeXML(Node doc, Writer writer, boolean indent)
         throws XmlException {
         boolean omitxmldeclaration = true;
-        boolean indent = false;
         try {
             Transformer transformer = TRANSFORMER_FACTORY.newTransformer();
             if (omitxmldeclaration) {
@@ -1450,7 +1432,7 @@ public class XmlWrapper {
                         "{http://xml.apache.org/xslt}indent-amount",
                         "4");
                 } catch (Exception e) {
-                    // Just do nothing. The serialized does not recognize this
+                    // Just do nothing. The serializer does not recognize this
                     // Apache-specific feature.
                 }
             }
@@ -1477,18 +1459,18 @@ public class XmlWrapper {
     public static boolean serializeXML(
         Node node,
         Writer writer,
-        boolean includeNode) throws XmlException {
+        boolean includeNode,
+        boolean indent) throws XmlException {
         if (node == null) {
             return false;
         }
         try {
-
             short type = node.getNodeType();
             boolean result = true;
             switch (type) {
                 case Node.DOCUMENT_NODE: {
                     Node element = ((Document) node).getDocumentElement();
-                    serializeXML(element, writer, includeNode);
+                    serializeXML(element, writer, includeNode, indent);
                     break;
                 }
                 case Node.ATTRIBUTE_NODE: {
@@ -1504,11 +1486,11 @@ public class XmlWrapper {
                 case Node.ELEMENT_NODE: {
                     Node element = node;
                     if (includeNode) {
-                        serializeXML(element, writer);
+                        serializeXML(element, writer, indent);
                     } else {
                         Node child = element.getFirstChild();
                         while (child != null) {
-                            serializeXML(child, writer, true);
+                            serializeXML(child, writer, true, indent);
                             child = child.getNextSibling();
                         }
                     }
@@ -1593,6 +1575,16 @@ public class XmlWrapper {
     }
 
     /**
+     * Creates this wrapper using parameters from an another wrapper (this is a
+     * "copy constructor").
+     * 
+     * @param wrapper the wrapper to copy
+     */
+    public XmlWrapper(XmlWrapper wrapper) {
+        this(wrapper.getRootNode(), wrapper.getXmlContext());
+    }
+
+    /**
      * This method appends the given XML node to the internal managed node. The
      * appended element is wrapped in the object of the specified type and
      * returned.
@@ -1660,11 +1652,9 @@ public class XmlWrapper {
      */
     public <T extends XmlWrapper> T appendCopy(XmlWrapper xml, Class<T> type)
         throws XmlException {
-        Node root = getRoot();
-        Node toCopy = xml.getRootNode();
-        Node copy = copyNode(root, toCopy);
-        T result = fContext.wrap(copy, type);
-        return result;
+        T copy = xml.createCopy(type);
+        append(getRoot(), copy.getRoot());
+        return copy;
     }
 
     /**
@@ -1842,6 +1832,45 @@ public class XmlWrapper {
     }
 
     /**
+     * This method creates and returns a new copy of this XML.
+     * 
+     * @return a new wrapper instance containing a copy of this node
+     * @throws XmlException
+     */
+    public XmlWrapper createCopy() throws XmlException {
+        return createCopy(XmlWrapper.class);
+    }
+
+    /**
+     * This method creates and returns a new copy of this XML wrapped in the
+     * object of the specified type.
+     * 
+     * @param <T> the type of the wrapper to return
+     * @param type the class defining the type of the wrapper to apply to the
+     *        copy
+     * @return a wrapper instance of the specified type managing newly created
+     *         copy
+     * @throws XmlException
+     */
+    public <T extends XmlWrapper> T createCopy(Class<T> type)
+        throws XmlException {
+        Node copy = createNodeCopy();
+        T result = fContext.wrap(copy, type);
+        return result;
+    }
+
+    /**
+     * Returns a new copy of the underlying XML node.
+     * 
+     * @return a new copy of the underlying XML node.
+     */
+    protected Node createNodeCopy() {
+        Node root = getRoot();
+        Node copy = root.cloneNode(true);
+        return copy;
+    }
+
+    /**
      * Evaluates the given XPath expression and returns an XmlWrapper managing
      * the result.
      * 
@@ -1997,7 +2026,12 @@ public class XmlWrapper {
             XPathExpression expr = fContext.getXpath(xpath);
             Element root = getRootElement();
             Node resultNode = (Node) expr.evaluate(root, XPathConstants.NODE);
-            String result = serializeXML(resultNode, false);
+            String result = null;
+            if (resultNode != null) {
+                StringWriter writer = new StringWriter();
+                serializeXML(resultNode, writer, false, false);
+                result = writer.toString();
+            }
             return result;
         } catch (Throwable t) {
             throw handleError("Can not evaluate to a string. XPath: '"
@@ -2045,19 +2079,11 @@ public class XmlWrapper {
     public <T extends XmlWrapper> T getFirstElement(Class<T> type)
         throws XmlException {
         Element element = getRootElement();
-        Element resultElement = null;
-        for (Node node = element.getFirstChild(); node != null; node = node
-            .getNextSibling()) {
-            if (node instanceof Element) {
-                resultElement = (Element) node;
-                break;
-            }
+        if (element == null) {
+            return null;
         }
-        T result = null;
-        if (resultElement != null) {
-            result = getXmlContext().wrap(resultElement, type);
-        }
-        return result;
+        Node start = element.getFirstChild();
+        return getNextElementWrapper(type, start);
     }
 
     /**
@@ -2098,6 +2124,95 @@ public class XmlWrapper {
             }
         }
         return fNamespaceContext;
+    }
+
+    /**
+     * Returns the next element sibling for this node.
+     * 
+     * @return the next element sibling for this node.
+     * @throws XmlException
+     */
+    public XmlWrapper getNextElement() throws XmlException {
+        return getNextElement(XmlWrapper.class);
+    }
+
+    /**
+     * Returns the next element sibling for this node.
+     * 
+     * @return the next element sibling for this node.
+     * @throws XmlException
+     */
+    public <T extends XmlWrapper> T getNextElement(Class<T> type)
+        throws XmlException {
+        Element element = getRootElement();
+        if (element == null) {
+            return null;
+        }
+        Node start = element.getNextSibling();
+        return getNextElementWrapper(type, start);
+    }
+
+    /**
+     * Searches then next element sibling of the specified node and returns a
+     * wrapper object of the specified type for the found element.
+     * 
+     * @param type the type of the wrapper to apply for the found element
+     * @param start the start XML node
+     * @return a wrapper of the specified for the next element sibling for the
+     *         specified node
+     * @throws XmlException
+     */
+    protected <T extends XmlWrapper> T getNextElementWrapper(
+        Class<T> type,
+        Node start) throws XmlException {
+        Element resultElement = null;
+        for (Node node = start; node != null; node = node.getNextSibling()) {
+            if (node instanceof Element) {
+                resultElement = (Element) node;
+                break;
+            }
+        }
+        T result = null;
+        if (resultElement != null) {
+            result = getXmlContext().wrap(resultElement, type);
+        }
+        return result;
+    }
+
+    /**
+     * This method returns a sub-node with the specified name. If there is no
+     * such a sub-node then this method creates a new one.
+     * 
+     * @param elementName a qualified name of the element
+     * @return a wrapper instance of the specified type managing founded or
+     *         appended node
+     * @throws XmlException
+     */
+    public XmlWrapper getOrCreateElement(String elementName)
+        throws XmlException {
+        return getOrCreateElement(elementName, XmlWrapper.class);
+    }
+
+    /**
+     * This method returns a sub-node with the specified name. If there is no
+     * such a sub-node then this method creates a new one.
+     * 
+     * @param <T> the type of the wrapper to apply to the resulting element
+     * @param elementName a qualified name of the element
+     * @param type the class defining the type of the wrapper to apply to the
+     *        result node
+     * @return a wrapper instance of the specified type managing founded or
+     *         appended node
+     * @throws XmlException
+     */
+    public <T extends XmlWrapper> T getOrCreateElement(
+        String elementName,
+        Class<T> type) throws XmlException {
+        T node = eval(elementName, type);
+        if (node == null) {
+            node = appendElement(elementName, type);
+        }
+        return node;
     }
 
     /**
@@ -2215,27 +2330,32 @@ public class XmlWrapper {
     }
 
     /**
-     * Serializes the wrapped XML node and returns its string representation.
-     * 
-     * @return a string-serialized representation of the wrapped XML node
-     * @throws XmlException
+     * Removes all children of this node.
      */
-    public String serializeXML() throws XmlException {
-        return serializeXML(true);
+    public void removeChildren() {
+        Node root = getRoot();
+        List<Node> list = new ArrayList<Node>();
+        Node child = root.getFirstChild();
+        while (child != null) {
+            list.add(child);
+            child = child.getNextSibling();
+        }
+        for (Node node : list) {
+            root.removeChild(node);
+        }
     }
 
     /**
-     * Serializes the wrapped XML node and returns its string representation.
+     * Returns <code>true</code> if the specified wrapper contains the same node
      * 
-     * @param includeNode if this flag is <code>true</code> then the tag
-     *        corresponding to this node will be included in the serialized
-     *        value
-     * @return a string-serialized representation of the wrapped XML node
-     * @throws XmlException
+     * @param wrapper the wrapper to check
+     * @return <code>true</code> if the specified wrapper has the same XML node
      */
-    public String serializeXML(boolean includeNode) throws XmlException {
-        Element root = getRootElement();
-        return serializeXML(root, includeNode);
+    public boolean sameNode(XmlWrapper wrapper) {
+        if (wrapper == null) {
+            return false;
+        }
+        return getRoot().equals(wrapper.getRoot());
     }
 
     /**
@@ -2270,10 +2390,25 @@ public class XmlWrapper {
      */
     public void serializeXML(Writer writer, boolean includeNode)
         throws XmlException {
+        serializeXML(writer, includeNode, false);
+    }
+
+    /**
+     * Serializes the wrapped XML node in the given output stream.
+     * 
+     * @param includeNode if this flag is <code>true</code> then the tag
+     *        corresponding to this node will be included in the serialized
+     *        value
+     * @param indent the indentation (
+     * @return a string-serialized representation of the wrapped XML node
+     * @throws XmlException
+     */
+    public void serializeXML(Writer writer, boolean includeNode, boolean indent)
+        throws XmlException {
         try {
             try {
                 Element root = getRootElement();
-                serializeXML(root, writer, includeNode);
+                serializeXML(root, writer, includeNode, indent);
             } finally {
                 writer.flush();
             }
@@ -2316,8 +2451,25 @@ public class XmlWrapper {
      */
     @Override
     public String toString() {
+        return toString(true);
+    }
+
+    /**
+     * Returns a string representation of this XML node; if the specified
+     * <code>indent</code> parameter is <code>true</code> then the resulting
+     * value will be "pretty-printed" (with indentations).
+     * 
+     * @param indent if this parameter is <code>true</code> then the resulting
+     *        serialized XML is printed with indentations
+     * @return string representation of this node
+     */
+    public String toString(boolean indent) {
         try {
-            return serializeXML();
+            Element root = getRootElement();
+            StringWriter writer = new StringWriter();
+            serializeXML(root, writer, true, indent);
+            String result = writer.toString();
+            return result;
         } catch (Throwable e) {
             handleError("Can not serialize to string", e);
             return null;

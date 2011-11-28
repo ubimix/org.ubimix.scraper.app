@@ -36,7 +36,7 @@ public abstract class AtomItem extends XmlWrapper {
     }
 
     public AtomItem(XmlWrapper wrapper) {
-        super(wrapper.getRootNode(), wrapper.getXmlContext());
+        super(wrapper);
     }
 
     public Date evalDate(String xpath) throws XmlException {
