@@ -109,7 +109,17 @@ public class AtomEntry extends AtomItem {
     }
 
     public String getLink() throws XmlException {
-        return evalStr("atom:link[not(@rel)]/@href");
+        return getLink(null);
+    }
+
+    public String getLink(String rel) throws XmlException {
+        String xpath;
+        if (rel != null) {
+            xpath = "atom:link[@rel='" + rel + "']/@href";
+        } else {
+            xpath = "atom:link[not(@rel)]/@href";
+        }
+        return evalStr(xpath);
     }
 
     protected List<AtomPerson> getPersonList(String path) throws XmlException {
@@ -118,7 +128,7 @@ public class AtomEntry extends AtomItem {
     }
 
     public String getSelfLink() throws XmlException {
-        return evalStr("atom:link[@rel='self']/@href");
+        return getLink("self");
     }
 
     public String getSummary() throws XmlException {
@@ -157,12 +167,33 @@ public class AtomEntry extends AtomItem {
         return appendTag("atom:content", tag, true);
     }
 
+    public void setLink(String link) throws XmlException {
+        setLink(link, null);
+    }
+
+    public void setLink(String link, String rel) throws XmlException {
+        XmlWrapper node;
+        if (rel != null) {
+            node = eval("atom:link[@rel='" + rel + "']");
+        } else {
+            node = eval("atom:link[not(@rel)]");
+        }
+        if (node == null) {
+            node = appendElement("atom:link");
+            if (rel != null) {
+                node.setAttribute("rel", rel);
+            }
+        }
+        node.setAttribute("href", link);
+    }
+
     public XmlWrapper setTitle(String title) throws XmlException {
         return appendContent("atom:title", title, true);
     }
 
     public XmlWrapper setTitle(XmlWrapper titleContent) throws XmlException {
-        return appendChildren("atom:title", titleContent, true);
+        String str = titleContent.toText();
+        return setTitle(str);
     }
 
 }

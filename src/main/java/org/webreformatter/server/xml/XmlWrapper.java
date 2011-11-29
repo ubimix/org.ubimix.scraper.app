@@ -96,7 +96,9 @@ public class XmlWrapper {
          * @param context the context to add in the internal list
          */
         public void addContext(NamespaceContext context) {
-            fContexts.add(context);
+            if (!fContexts.contains(context)) {
+                fContexts.add(context);
+            }
         }
 
         /**
@@ -2359,6 +2361,23 @@ public class XmlWrapper {
     }
 
     /**
+     * Serializes all text nodes contained in this wrapper (all tags are
+     * ignored).
+     * 
+     * @param writer the writer where this node should be serialized
+     * @throws XmlException
+     */
+    public void serializeText(final StringWriter writer) throws XmlException {
+        XmlAcceptor.accept(getRootNode(), new XmlAcceptor.XmlVisitor() {
+            @Override
+            public void visit(Text node) {
+                String str = node.getData();
+                writer.write(str);
+            }
+        });
+    }
+
+    /**
      * Serializes the wrapped XML node in the given output stream.
      * 
      * @param includeNode if this flag is <code>true</code> then the tag
@@ -2429,8 +2448,11 @@ public class XmlWrapper {
     public XmlWrapper setAttribute(String attrName, String value) {
         Element element = getRootElement();
         NamespaceContext namespaceContext = getNamespaceContext();
-        QName qName = getQualifiedName(namespaceContext, attrName);
-        String qualifiedName = serializeQualifiedName(qName);
+        String qualifiedName = attrName;
+        if (attrName.indexOf(':') > 0) {
+            QName qName = getQualifiedName(namespaceContext, attrName);
+            qualifiedName = serializeQualifiedName(qName);
+        }
         element.setAttribute(qualifiedName, value);
         return this;
     }
@@ -2444,6 +2466,19 @@ public class XmlWrapper {
      */
     public void setXmlContext(XmlContext context) {
         fContext = context;
+    }
+
+    /**
+     * Returns the underlying node wrapped in a XML adapter of the specified
+     * type
+     * 
+     * @param type the type of the adapter to apply for the underlying node
+     * @return the underlying node wrapped in a XML adapter of the specified
+     *         type
+     * @throws XmlException
+     */
+    public <T extends XmlWrapper> T to(Class<T> type) throws XmlException {
+        return getXmlContext().wrap(getRoot(), type);
     }
 
     /**
@@ -2474,6 +2509,18 @@ public class XmlWrapper {
             handleError("Can not serialize to string", e);
             return null;
         }
+    }
+
+    /**
+     * Serializes and returns only "visible" text nodes managed by this wrapper.
+     * 
+     * @return a string representation of this node
+     */
+    public String toText() throws XmlException {
+        StringWriter writer = new StringWriter();
+        serializeText(writer);
+        String result = writer.toString();
+        return result;
     }
 
 }

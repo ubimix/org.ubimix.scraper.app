@@ -35,7 +35,7 @@ public class AtomFeed extends AtomEntry {
         _PREFIX_XHTML,
         _NS_XHTML);
 
-    private static void checkAtomNamespace(XmlContext context) {
+    public static void checkAtomNamespaces(XmlContext context) {
         CompositeNamespaceContext namespaceContext = context
             .getNamespaceContext();
         namespaceContext.addContext(ATOM_NAMESPACE_CONTEXT);
@@ -43,7 +43,7 @@ public class AtomFeed extends AtomEntry {
 
     private static XmlWrapper wrap(Document doc) throws XmlException {
         XmlContext context = XmlContext.builder().build();
-        checkAtomNamespace(context);
+        checkAtomNamespaces(context);
         XmlWrapper result;
         if (doc != null) {
             result = new XmlWrapper(doc, context);
@@ -70,7 +70,7 @@ public class AtomFeed extends AtomEntry {
 
     public AtomFeed(Node node, XmlContext context) {
         super(node, context);
-        checkAtomNamespace(context);
+        checkAtomNamespaces(context);
     }
 
     public AtomFeed(String doc) throws XmlException, IOException {
@@ -79,22 +79,31 @@ public class AtomFeed extends AtomEntry {
 
     public AtomFeed(XmlContext xmlContext) throws XmlException {
         super(XmlWrapper.newDocument(), xmlContext);
-        checkAtomNamespace(xmlContext);
+        checkAtomNamespaces(xmlContext);
         appendElement("atom:feed");
     }
 
     public AtomFeed(XmlWrapper wrapper) {
         super(wrapper);
-        checkAtomNamespace(getXmlContext());
+        checkAtomNamespaces(getXmlContext());
     }
 
     public AtomEntry addEntry() throws XmlException {
-        AtomEntry entry = appendElement("atom:entry", AtomEntry.class);
+        return addEntry(AtomEntry.class);
+    }
+
+    public <T extends AtomEntry> T addEntry(Class<T> type) throws XmlException {
+        T entry = appendElement("atom:entry", type);
         return entry;
     }
 
     public List<AtomEntry> getEntries() throws XmlException {
-        List<AtomEntry> result = evalList("atom:entry", AtomEntry.class);
+        return getEntries(AtomEntry.class);
+    }
+
+    public <T extends XmlWrapper> List<T> getEntries(Class<T> type)
+        throws XmlException {
+        List<T> result = evalList("atom:entry", type);
         return result;
     }
 
