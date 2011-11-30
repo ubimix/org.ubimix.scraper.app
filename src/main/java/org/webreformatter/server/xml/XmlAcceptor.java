@@ -173,8 +173,9 @@ public class XmlAcceptor {
         public void visit(Element node) {
             Node child = node.getFirstChild();
             while (child != null) {
+                Node next = child.getNextSibling();
                 accept(child, this);
-                child = child.getNextSibling();
+                child = next;
             }
         }
 

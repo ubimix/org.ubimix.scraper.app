@@ -2304,6 +2304,18 @@ public class XmlWrapper {
     }
 
     /**
+     * Removes this node from the parent document.
+     */
+    public void remove() {
+        Element node = getRootElement();
+        Node parent = node.getParentNode();
+        if (parent == null) {
+            parent = node.getOwnerDocument();
+        }
+        parent.removeChild(node);
+    }
+
+    /**
      * Removes all XML nodes corresponding to the specified XPath expression.
      * 
      * @param xpath the XPath expression defining nodes to remove
