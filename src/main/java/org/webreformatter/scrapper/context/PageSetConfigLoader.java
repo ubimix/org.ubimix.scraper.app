@@ -126,8 +126,8 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
     private void configureUrlTransformers(
         AccessManager configAccessManager,
         PageSetConfig.Builder config) {
-        config.setDownloadUrlTransformer(IUrlTransformer.EMPTY);
-        config.setLocalizeUrlTransformer(IUrlTransformer.EMPTY);
+        // config.setDownloadUrlTransformer(IUrlTransformer.EMPTY);
+        // config.setLocalizeUrlTransformer(IUrlTransformer.EMPTY);
     }
 
     protected AccessManager getAccessManager(

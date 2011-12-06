@@ -86,6 +86,11 @@ public class UrlToPathMapper {
                     }
                     return str;
                 }
+
+                @Override
+                public String toString() {
+                    return "{" + fRegexp + " => " + fTo + "}";
+                }
             }
 
             /**
@@ -150,6 +155,17 @@ public class UrlToPathMapper {
              */
             public String getToPrefix() {
                 return fToPrefix;
+            }
+
+            @Override
+            public String toString() {
+                return "{"
+                    + fFromPrefix
+                    + "=>"
+                    + fToPrefix
+                    + ":"
+                    + fTransformationRules
+                    + "}";
             }
 
             /**
@@ -357,6 +373,15 @@ public class UrlToPathMapper {
             return str;
         }
 
+        @Override
+        public String toString() {
+            return "PathToUri:"
+                + fPathToUri
+                + "\n"
+                + "UriToPath: "
+                + fUriToPath;
+        }
+
         /**
          * Transforms the given URL to a local path.
          * 
@@ -437,6 +462,17 @@ public class UrlToPathMapper {
             result = toUri(str);
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return ""
+            + "PathToUrl:"
+            + fPathToUrlTranslators
+            + "\n"
+            + "UrlToPath:"
+            + fUrlToPathTranslators
+            + "";
     }
 
     /**
