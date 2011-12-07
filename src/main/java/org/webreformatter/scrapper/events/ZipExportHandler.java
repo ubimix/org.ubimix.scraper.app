@@ -89,7 +89,7 @@ public class ZipExportHandler extends ProcessResourceHandler<ZipExportAction> {
                 });
 
             IUrlTransformer uriTransformer = request
-                .getDownloadUrlTransformer();
+                .getLocalizeUrlTransformer();
             Uri docPath = uriTransformer != null ? uriTransformer
                 .transform(docUrl) : null;
             pathToUrlMap.put(docPath, docUrl);
@@ -120,6 +120,7 @@ public class ZipExportHandler extends ProcessResourceHandler<ZipExportAction> {
                     .setUrl(url)
                     .setParams(params)
                     .build();
+                final Uri u = url;
                 eventManager.fireEvent(
                     new ApplyAction(newRequest),
                     callBarrier.add(new CallListener<ProcessResource>() {
@@ -133,8 +134,8 @@ public class ZipExportHandler extends ProcessResourceHandler<ZipExportAction> {
                                 if (!status.isError()) {
                                     IWrfResource resource = actionResponse
                                         .getResultResource();
-                                    Uri url = event.getRequest().getUrl();
-                                    resourceMap.put(url, resource);
+                                    // Uri url = event.getRequest().getUrl();
+                                    resourceMap.put(u, resource);
                                 }
                             }
                         }

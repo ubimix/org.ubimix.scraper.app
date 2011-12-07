@@ -72,7 +72,12 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         config.setUrlToPathMapper(urlToPathMapper);
         IUrlTransformer downloadUrlTransformer = new IUrlTransformer() {
             public Uri transform(Uri uri) {
-                return uri;
+                Uri path = urlToPathMapper.uriToPath(uri);
+                if (path == null) {
+                    return null;
+                }
+                Uri result = urlToPathMapper.pathToUri(path);
+                return result;
             }
         };
         IUrlTransformer localizeUrlTransformer = new IUrlTransformer() {

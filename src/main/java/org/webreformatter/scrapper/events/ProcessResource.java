@@ -28,10 +28,6 @@ public abstract class ProcessResource
 
             protected IWrfResource fInitialResource;
 
-            public Builder() {
-                super();
-            }
-
             public Builder(ActionRequest request) {
                 super(request);
                 if (request != null) {
@@ -39,16 +35,13 @@ public abstract class ProcessResource
                 }
             }
 
-            @Override
-            public ActionRequest build() {
-                return new ActionRequest(this);
+            public Builder(ApplicationContext appContext) {
+                super(appContext);
             }
 
             @Override
-            public ActionRequest.Builder setApplicationContext(
-                ApplicationContext applicationContext) {
-                return (ActionRequest.Builder) super
-                    .setApplicationContext(applicationContext);
+            public ActionRequest build() {
+                return new ActionRequest(this);
             }
 
             @Override
@@ -102,25 +95,26 @@ public abstract class ProcessResource
 
         public final static String RESULT_STORE = "results";
 
-        public static ActionRequest.Builder builder() {
-            return new ActionRequest.Builder();
-        }
-
         public static ActionRequest.Builder builder(ActionRequest request) {
             return new ActionRequest.Builder(request);
         }
 
-        protected IWrfResource fInitialResource;
-
-        public ActionRequest() {
-            super();
+        public static ActionRequest.Builder builder(
+            ApplicationContext appContext) {
+            return new ActionRequest.Builder(appContext);
         }
+
+        protected IWrfResource fInitialResource;
 
         public ActionRequest(ActionRequest.Builder context) {
             super(context);
             if (context != null) {
                 fInitialResource = context.fInitialResource;
             }
+        }
+
+        public ActionRequest(ApplicationContext appContext) {
+            super(appContext);
         }
 
         public String getActionName() {

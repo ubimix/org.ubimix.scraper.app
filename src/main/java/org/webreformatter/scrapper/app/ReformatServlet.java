@@ -110,8 +110,7 @@ public class ReformatServlet extends HttpServlet {
                 prefix = "." + prefix;
             }
             ActionRequest actionRequest = ActionRequest
-                .builder()
-                .setApplicationContext(fApplicationContext)
+                .builder(fApplicationContext)
                 .setPageSetConfig(pageSetConfig)
                 .setUrl(url)
                 .setRelativePathUrlTransformer(prefix)

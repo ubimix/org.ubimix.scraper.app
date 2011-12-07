@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.webreformatter.commons.adapters.AdaptableObject;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
@@ -18,21 +19,20 @@ import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
-import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 
 /**
  * @author kotelnikov
  */
-public class RuntimeContext {
+public class RuntimeContext extends AdaptableObject {
 
     public static class Builder extends RuntimeContext {
 
-        public Builder() {
-            this(null);
+        public Builder(ApplicationContext appContext) {
+            super(appContext);
         }
 
-        public Builder(ActionRequest request) {
-            super(request);
+        public Builder(RuntimeContext context) {
+            super(context);
         }
 
         public RuntimeContext build() {
@@ -41,12 +41,6 @@ public class RuntimeContext {
 
         @Override
         protected void checkFields() {
-        }
-
-        public RuntimeContext.Builder setApplicationContext(
-            ApplicationContext applicationContext) {
-            fApplicationContext = applicationContext;
-            return this;
         }
 
         public RuntimeContext.Builder setDownloadUrlTransformer(
@@ -116,8 +110,12 @@ public class RuntimeContext {
         }
     }
 
-    public static Builder builder() {
-        return new RuntimeContext.Builder();
+    public static RuntimeContext.Builder builder(ApplicationContext appContext) {
+        return new RuntimeContext.Builder(appContext);
+    }
+
+    public static RuntimeContext.Builder builder(RuntimeContext parentContext) {
+        return new RuntimeContext.Builder(parentContext);
     }
 
     protected ApplicationContext fApplicationContext;
@@ -132,21 +130,21 @@ public class RuntimeContext {
 
     protected Uri fUrl;
 
-    public RuntimeContext() {
+    protected RuntimeContext(ApplicationContext appContext) {
+        super(appContext.getAdapterFactory());
+        fApplicationContext = appContext;
     }
 
     /**
      * 
      */
     protected RuntimeContext(RuntimeContext context) {
-        if (context != null) {
-            fApplicationContext = context.fApplicationContext;
-            fPageSetConfig = context.fPageSetConfig;
-            fParams.putAll(context.fParams);
-            fUrl = context.fUrl;
-            fLocalizeUrlTransformer = context.fLocalizeUrlTransformer;
-            fDownloadUrlTransformer = context.fDownloadUrlTransformer;
-        }
+        this(context.fApplicationContext);
+        fPageSetConfig = context.fPageSetConfig;
+        fParams.putAll(context.fParams);
+        fUrl = context.fUrl;
+        fLocalizeUrlTransformer = context.fLocalizeUrlTransformer;
+        fDownloadUrlTransformer = context.fDownloadUrlTransformer;
         checkFields();
     }
 
@@ -225,7 +223,7 @@ public class RuntimeContext {
         return fParams;
     }
 
-    protected IWrfResource getResource(String storeName, String suffix) {
+    public IWrfResource getResource(String storeName, String suffix) {
         ApplicationContext applicationContext = getApplicationContext();
         IWrfRepository repository = applicationContext.getRepository();
         IWrfResourceProvider store = repository.getResourceProvider(
