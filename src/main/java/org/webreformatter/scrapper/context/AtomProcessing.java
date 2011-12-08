@@ -15,6 +15,7 @@ import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.html.HTMLAdapter;
+import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.normalizer.IDocumentNormalizer;
 import org.webreformatter.server.xml.XmlException;
@@ -108,9 +109,10 @@ public class AtomProcessing extends ApplicationContextAdapter {
         Path path = UriToPath.getPath(url);
         IWrfResource htmlResource = fHtmlStore.getResource(path, true);
         XmlAdapter xmlAdapter = htmlResource.getAdapter(XmlAdapter.class);
+        boolean exists = false;
         if (context.isExpired(htmlResource)) {
             IWrfResource rawResource = fRawDataStore.getResource(path, true);
-            boolean exists = !context.isExpired(rawResource);
+            exists = !context.isExpired(rawResource);
             if (!exists) {
                 CoreAdapter adapter = fApplicationContext
                     .getAdapter(CoreAdapter.class);
@@ -124,18 +126,26 @@ public class AtomProcessing extends ApplicationContextAdapter {
                 onResourceReloaded(url);
             }
             if (exists) {
-                HTMLAdapter htmlAdapter = rawResource
-                    .getAdapter(HTMLAdapter.class);
-                XmlWrapper doc = htmlAdapter.getWrapper();
-                xmlAdapter.setDocument(doc);
-                CachedResourceAdapter adapter = htmlResource
-                    .getAdapter(CachedResourceAdapter.class);
-                adapter.updateMetadataFrom(rawResource);
+                MimeTypeAdapter mimeTypeAdapter = rawResource
+                    .getAdapter(MimeTypeAdapter.class);
+                String mimeType = mimeTypeAdapter.getMimeType();
+                if (mimeType.startsWith("text/html")) {
+                    HTMLAdapter htmlAdapter = rawResource
+                        .getAdapter(HTMLAdapter.class);
+                    XmlWrapper doc = htmlAdapter.getWrapper();
+                    exists = doc != null;
+                    if (exists) {
+                        xmlAdapter.setDocument(doc);
+                        CachedResourceAdapter adapter = htmlResource
+                            .getAdapter(CachedResourceAdapter.class);
+                        adapter.updateMetadataFrom(rawResource);
+                    }
+                }
             } else {
                 htmlResource.remove();
             }
         }
-        XmlWrapper result = xmlAdapter.getWrapperCopy();
+        XmlWrapper result = exists ? xmlAdapter.getWrapperCopy() : null;
         return result;
     }
 

@@ -224,12 +224,18 @@ public class RuntimeContext extends AdaptableObject {
     }
 
     public IWrfResource getResource(String storeName, String suffix) {
+        Uri url = getUrl();
+        return getResource(storeName, url, suffix);
+
+    }
+
+    public IWrfResource getResource(String storeName, Uri url, String suffix) {
         ApplicationContext applicationContext = getApplicationContext();
         IWrfRepository repository = applicationContext.getRepository();
         IWrfResourceProvider store = repository.getResourceProvider(
             storeName,
             true);
-        Path path = UriToPath.getPath(getUrl());
+        Path path = UriToPath.getPath(url);
         Path.Builder builder = path.getBuilder();
         if (suffix != null) {
             builder.appendPath("$").appendPath(suffix);
@@ -237,7 +243,6 @@ public class RuntimeContext extends AdaptableObject {
         Path targetResultPath = builder.build();
         IWrfResource targetResource = store.getResource(targetResultPath, true);
         return targetResource;
-
     }
 
     public IUrlMapper getUriMapper() {
