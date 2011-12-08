@@ -2511,10 +2511,26 @@ public class XmlWrapper {
      * @return string representation of this node
      */
     public String toString(boolean indent) {
+        return toString(true, indent);
+    }
+
+    /**
+     * Returns a string representation of this XML node; if the specified
+     * <code>indent</code> parameter is <code>true</code> then the resulting
+     * value will be "pretty-printed" (with indentations).
+     * 
+     * @param includeNode if this parameter is <code>true</code> then the tag
+     *        itself is included in the serialized output; otherwise only child
+     *        nodes are serialized
+     * @param indent if this parameter is <code>true</code> then the resulting
+     *        serialized XML is printed with indentations
+     * @return string representation of this node
+     */
+    public String toString(boolean includeNode, boolean indent) {
         try {
             Element root = getRootElement();
             StringWriter writer = new StringWriter();
-            serializeXML(root, writer, true, indent);
+            serializeXML(root, writer, includeNode, indent);
             String result = writer.toString();
             return result;
         } catch (Throwable e) {

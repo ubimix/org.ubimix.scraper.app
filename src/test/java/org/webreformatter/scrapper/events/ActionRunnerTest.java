@@ -17,14 +17,6 @@ import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.string.StringAdapter;
 import org.webreformatter.scrapper.app.AbstractExectionContextTest;
 import org.webreformatter.scrapper.context.ApplicationContext;
-import org.webreformatter.scrapper.events.ApplyAction;
-import org.webreformatter.scrapper.events.ApplyActionHandler;
-import org.webreformatter.scrapper.events.CopyResourceAction;
-import org.webreformatter.scrapper.events.CopyResourceHandler;
-import org.webreformatter.scrapper.events.FormatHtmlAction;
-import org.webreformatter.scrapper.events.FormatHtmlHandler;
-import org.webreformatter.scrapper.events.ProcessResource;
-import org.webreformatter.scrapper.events.ProcessResourceHandler;
 
 /**
  * @author kotelnikov
@@ -83,8 +75,12 @@ public class ActionRunnerTest extends AbstractExectionContextTest {
         IEventManager eventManager = context.getEventManager();
         eventManager.addListener(ApplyAction.class, new ApplyActionHandler(
             context));
-        eventManager.addListener(CopyResourceAction.class, new CopyResourceHandler());
-        eventManager.addListener(FormatHtmlAction.class, new FormatHtmlHandler());
+        eventManager.addListener(
+            CopyResourceAction.class,
+            new CopyResourceHandler());
+        eventManager.addListener(
+            FormatHtmlAction.class,
+            new FormatHtmlHandler());
         final boolean[] handled = { false };
         eventManager.addListener(
             TestAction.class,
@@ -111,11 +107,11 @@ public class ActionRunnerTest extends AbstractExectionContextTest {
                         // IWrfResource targetResource = setResponseResource(
                         // response,
                         // request);
-                        // StringAdapter inStringAdapter = initialResource
-                        // .getAdapter(StringAdapter.class);
+                        // ImageAdapter inStringAdapter = initialResource
+                        // .getAdapter(ImageAdapter.class);
                         // String str = inStringAdapter.getContentAsString();
-                        // StringAdapter outStringAdapter = targetResource
-                        // .getAdapter(StringAdapter.class);
+                        // ImageAdapter outStringAdapter = targetResource
+                        // .getAdapter(ImageAdapter.class);
                         // outStringAdapter.setContentAsString(str);
                         handled[0] = true;
                     } finally {
@@ -134,8 +130,7 @@ public class ActionRunnerTest extends AbstractExectionContextTest {
             .setAccessManager(new AccessManager())
             .build();
         ProcessResource.ActionRequest request = ProcessResource.ActionRequest
-            .builder()
-            .setApplicationContext(context)
+            .builder(context)
             .setPageSetConfig(pageSetConfig)
             .setUrl(url)
             .setParameter("action", "test")
