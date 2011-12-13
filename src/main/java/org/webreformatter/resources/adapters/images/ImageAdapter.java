@@ -3,6 +3,7 @@
  */
 package org.webreformatter.resources.adapters.images;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,6 +48,12 @@ public class ImageAdapter extends WrfResourceAdapter {
             }
             return fImage;
         }
+    }
+
+    public Point getImageSize() throws IOException {
+        BufferedImage image = getImage();
+        Point result = image != null ? ImageResizer.getImageSize(image) : null;
+        return result;
     }
 
     protected Object getMutex() {

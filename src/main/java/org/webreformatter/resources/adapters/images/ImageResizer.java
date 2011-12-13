@@ -23,6 +23,10 @@ import javax.imageio.stream.ImageInputStream;
  */
 public class ImageResizer {
 
+    public static Point getImageSize(BufferedImage img) {
+        return new Point(img.getWidth(null), img.getHeight(null));
+    }
+
     public static BufferedImage readImage(InputStream input) throws IOException {
         try {
             ImageInputStream imageInput = ImageIO.createImageInputStream(input);
@@ -47,7 +51,7 @@ public class ImageResizer {
     public BufferedImage resizeImage(
         BufferedImage img,
         ImageResizeStrategy resizeStrategy) {
-        Point imageSize = new Point(img.getWidth(null), img.getHeight(null));
+        Point imageSize = getImageSize(img);
         Point newImageSize = resizeStrategy.getImageSize(imageSize);
         BufferedImage newImage = resizeImage(
             img,

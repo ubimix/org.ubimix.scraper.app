@@ -90,7 +90,7 @@ public abstract class ImageResizeStrategy {
     private ImageResizeStrategy.Format fFormat;
 
     public ImageResizeStrategy() {
-        this(Format.PNG);
+        this(Format.JPG);
     }
 
     public ImageResizeStrategy(ImageResizeStrategy.Format format) {
