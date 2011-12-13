@@ -28,10 +28,10 @@ public class PropertyAdapter extends WrfResourceAdapter
 
     private Properties fProperties;
 
-    private IWrfResource fResource;
+    private WrfResource fResource;
 
     public PropertyAdapter(IWrfResource instance) {
-        fResource = instance;
+        fResource = (WrfResource) instance;
     }
 
     private synchronized void checkProperties() throws IOException {
@@ -64,11 +64,7 @@ public class PropertyAdapter extends WrfResourceAdapter
     }
 
     private File getPropertiesFile() {
-        WrfResourceProvider resourceProvider = (WrfResourceProvider) fResource
-            .getProvider();
-        File rootDir = resourceProvider.getRoot();
-        File dir = ContentAdapter.toFile(fResource, rootDir);
-        File file = new File(dir, "data.properties");
+        File file = fResource.getResourceFile("data.properties");
         return file;
     }
 

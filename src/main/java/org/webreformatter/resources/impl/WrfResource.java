@@ -27,11 +27,6 @@ public class WrfResource extends AdaptableObject implements IWrfResource {
 
     private WrfResourceProvider fProvider;
 
-    @Override
-    public <T> T getAdapter(Class<T> type) {
-        return super.getAdapter(type);
-    }
-
     public WrfResource(WrfResourceProvider provider, Path link) {
         super(provider.getAdapterFactory());
         fProvider = provider;
@@ -50,12 +45,16 @@ public class WrfResource extends AdaptableObject implements IWrfResource {
         return fProvider.equals(o.fProvider) && fPath.equals(o.fPath);
     }
 
+    @Override
+    public <T> T getAdapter(Class<T> type) {
+        return super.getAdapter(type);
+    }
+
     /**
      * @return
      */
     public Iterator<IWrfResource> getChildren() {
-        ContentAdapter adapter = (ContentAdapter) getAdapter(IContentAdapter.class);
-        File dir = adapter.getDirectory();
+        File dir = getResourceDirectory();
         List<IWrfResource> result = new ArrayList<IWrfResource>();
         if (dir.exists()) {
             Path resourcePath = getPath();
@@ -89,24 +88,19 @@ public class WrfResource extends AdaptableObject implements IWrfResource {
         return fProvider;
     }
 
+    protected File getResourceDirectory() {
+        return fProvider.getResourceDirectory(fPath);
+    }
+
+    public File getResourceFile(String fileName) {
+        File dir = getResourceDirectory();
+        File file = new File(dir, fileName);
+        return file;
+    }
+
     @Override
     public int hashCode() {
         return fPath.hashCode();
-    }
-
-    public synchronized void remove() {
-        ContentAdapter contentAdapter = (ContentAdapter) getAdapter(IContentAdapter.class);
-        File dir = contentAdapter.getDirectory();
-        contentAdapter.remove();
-        PropertyAdapter propertyAdapter = (PropertyAdapter) getAdapter(IPropertyAdapter.class);
-        propertyAdapter.remove();
-        IOUtil.delete(dir);
-        fProvider.removeFromCache(fPath);
-    }
-
-    @Override
-    public synchronized String toString() {
-        return fPath.toString();
     }
 
     public void notifyAdapters(Object event) {
@@ -118,5 +112,20 @@ public class WrfResource extends AdaptableObject implements IWrfResource {
                 resourceAdapter.handleEvent(event);
             }
         }
+    }
+
+    public synchronized void remove() {
+        ContentAdapter contentAdapter = (ContentAdapter) getAdapter(IContentAdapter.class);
+        File dir = getResourceDirectory();
+        contentAdapter.remove();
+        PropertyAdapter propertyAdapter = (PropertyAdapter) getAdapter(IPropertyAdapter.class);
+        propertyAdapter.remove();
+        IOUtil.delete(dir);
+        fProvider.removeFromCache(fPath);
+    }
+
+    @Override
+    public synchronized String toString() {
+        return fPath.toString();
     }
 }

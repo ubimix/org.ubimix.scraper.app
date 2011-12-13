@@ -11,8 +11,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.webreformatter.commons.io.IOUtil;
-import org.webreformatter.commons.uri.Path;
-import org.webreformatter.commons.uri.UriUtil;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.WrfResourceAdapter;
@@ -30,17 +28,10 @@ public class ContentAdapter extends WrfResourceAdapter
         void unlock();
     }
 
-    public static File toFile(IWrfResource resource, File rootDir) {
-        Path path = resource.getPath();
-        String escapedLink = UriUtil.toPath(path.toString());
-        File file = new File(rootDir, escapedLink);
-        return file;
-    }
-
-    private IWrfResource fResource;
+    private WrfResource fResource;
 
     public ContentAdapter(IWrfResource instance) {
-        fResource = instance;
+        fResource = (WrfResource) instance;
     }
 
     public void delete() throws IOException {
@@ -108,13 +99,6 @@ public class ContentAdapter extends WrfResourceAdapter
         }
     }
 
-    public File getDirectory() {
-        WrfResourceProvider resourceProvider = (WrfResourceProvider) fResource
-            .getProvider();
-        File rootDir = resourceProvider.getRoot();
-        return toFile(fResource, rootDir);
-    }
-
     /**
      * @see org.webreformatter.resources.IWrfResource#getLastModified()
      */
@@ -124,8 +108,7 @@ public class ContentAdapter extends WrfResourceAdapter
     }
 
     private File getResourceFile() {
-        File dir = getDirectory();
-        File file = new File(dir, "data.bin");
+        File file = fResource.getResourceFile("data.bin");
         return file;
     }
 

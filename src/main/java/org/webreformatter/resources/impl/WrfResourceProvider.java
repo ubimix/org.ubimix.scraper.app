@@ -12,6 +12,7 @@ import org.webreformatter.commons.adapters.AdaptableObject;
 import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.adapters.IAdapterRegistry;
 import org.webreformatter.commons.uri.Path;
+import org.webreformatter.commons.uri.UriUtil;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 
@@ -60,12 +61,25 @@ public class WrfResourceProvider extends AdaptableObject
                 fCache.remove(link);
             }
         }
-        if (result == null && create) {
-            result = new WrfResource(WrfResourceProvider.this, link);
-            ref = new WeakReference<IWrfResource>(result);
-            fCache.put(link, ref);
+        if (result == null) {
+            if (!create) {
+                File dir = getResourceDirectory(link);
+                create = dir.exists();
+            }
+            if (create) {
+                result = new WrfResource(WrfResourceProvider.this, link);
+                ref = new WeakReference<IWrfResource>(result);
+                fCache.put(link, ref);
+            }
         }
         return result;
+    }
+
+    public File getResourceDirectory(Path path) {
+        String escapedLink = UriUtil.toPath(path.toString());
+        File rootDir = getRoot();
+        File file = new File(rootDir, escapedLink);
+        return file;
     }
 
     public File getRoot() {
