@@ -83,6 +83,10 @@ public class ContentLoader {
         return resizedImage;
     }
 
+    public RuntimeContext getRuntimeContext() {
+        return fContext;
+    }
+
     public AtomFeed loadDocument(Uri docUri) throws XmlException, IOException {
         AtomFeed feed = fCache.get(docUri);
         if (feed == null && !fMissedDocuments.contains(docUri)) {
@@ -119,7 +123,7 @@ public class ContentLoader {
             RESOURCE_DOWNLOAD,
             resourceNameSuffix);
         boolean clearCache = runtimeContext.getParameter(KEY_CLEARCACHE, false);
-        boolean ok = !clearCache || !runtimeContext.isExpired(resource);
+        boolean ok = !clearCache && !runtimeContext.isExpired(resource);
         if (!ok) {
             ApplicationContext applicationContext = runtimeContext
                 .getApplicationContext();

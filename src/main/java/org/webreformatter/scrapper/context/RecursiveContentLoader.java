@@ -50,9 +50,7 @@ public class RecursiveContentLoader {
 
         public interface ITracePrinter {
 
-            void dec();
-
-            void inc();
+            void print(String message);
 
             void println(String message);
 
@@ -60,52 +58,68 @@ public class RecursiveContentLoader {
 
         private class ProgressListener implements IProgressListener<T> {
 
+            private ProgressListener fParent;
+
+            private int fShift;
+
             private Uri fUri;
 
+            public ProgressListener(ProgressListener parent) {
+                fParent = parent;
+            }
+
             public void beginDownload() {
-                fPrinter.println("beginDownload(" + fUri + ")");
+                printShift();
+                fPrinter.print("Download... ");
             }
 
             public void close() {
-                fPrinter.dec();
+                dec();
+                printShift();
                 fPrinter.println("Close '" + fUri + "'.");
+            }
+
+            public void dec() {
+                fShift--;
             }
 
             public void endDownload(T result) {
                 fResults.put(fUri, result);
-                fPrinter.println("endDownload(" + fUri + ")");
-            }
-
-            public void open(Uri url) {
-                fUri = url;
-                fPrinter.println("Open '" + fUri + "'.");
-                fPrinter.inc();
-            }
-        }
-
-        public static class TracePrinter implements ITracePrinter {
-
-            private int fShift;
-
-            public void dec() {
-                fShift--;
+                fPrinter.println(" OK");
             }
 
             public void inc() {
                 fShift++;
             }
 
-            protected void print(String msg) {
+            public void open(Uri url) {
+                fUri = url;
+                printShift();
+                fPrinter.println("Open '" + fUri + "'.");
+                inc();
+            }
+
+            public void printShift() {
+                if (fParent != null) {
+                    fParent.printShift();
+                }
+                for (int i = 0; i < fShift; i++) {
+                    fPrinter.print("  ");
+                }
+            }
+        }
+
+        public static class TracePrinter implements ITracePrinter {
+
+            public void print(String msg) {
                 System.out.print(msg);
             }
 
             public void println(String msg) {
-                for (int i = 0; i < fShift; i++) {
-                    print("  ");
-                }
                 print(msg);
                 print("\n");
             }
+
         }
 
         private ITracePrinter fPrinter;
@@ -141,13 +155,23 @@ public class RecursiveContentLoader {
             return fResults;
         }
 
+        @SuppressWarnings({ "unchecked", "rawtypes" })
         protected IProgressListener<T> newListener(
             IProgressListener<?> parentListener,
             Uri documentUri,
             Uri referenceUri) {
-            return new ProgressListener();
+            ProgressListener listener = (parentListener instanceof ProgressListenerProvider.ProgressListener)
+                ? (ProgressListenerProvider.ProgressListener) parentListener
+                : null;
+            return new ProgressListener(listener);
         }
+    }
 
+    public static Uri getNormalizedUri(Uri uri) {
+        if (uri.getFragment() != null) {
+            uri = uri.getBuilder().setFragment(null).build();
+        }
+        return uri;
     }
 
     private IProgressListenerProvider<AtomFeed> fDocumentListenerProvider;
@@ -157,12 +181,22 @@ public class RecursiveContentLoader {
     private IProgressListenerProvider<IWrfResource> fResourceListenerProvider;
 
     public RecursiveContentLoader(
+        ContentLoader contentLoader,
+        IProgressListenerProvider<AtomFeed> documentListenerProvider,
+        IProgressListenerProvider<IWrfResource> resourceListenerProvider) {
+        fLoader = contentLoader;
+        fDocumentListenerProvider = documentListenerProvider;
+        fResourceListenerProvider = resourceListenerProvider;
+    }
+
+    public RecursiveContentLoader(
         RuntimeContext parentContext,
         IProgressListenerProvider<AtomFeed> documentListenerProvider,
         IProgressListenerProvider<IWrfResource> resourceListenerProvider) {
-        fDocumentListenerProvider = documentListenerProvider;
-        fResourceListenerProvider = resourceListenerProvider;
-        fLoader = new ContentLoader(parentContext);
+        this(
+            new ContentLoader(parentContext),
+            documentListenerProvider,
+            resourceListenerProvider);
     }
 
     protected boolean addToMap(
@@ -176,13 +210,6 @@ public class RecursiveContentLoader {
         }
         uri = getNormalizedUri(uri);
         return set.add(uri);
-    }
-
-    public Uri getNormalizedUri(Uri uri) {
-        if (uri.getFragment() != null) {
-            uri = uri.getBuilder().setFragment(null).build();
-        }
-        return uri;
     }
 
     public void loadRecursively(List<Uri> urls)
