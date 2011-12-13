@@ -10,6 +10,7 @@ import org.webreformatter.resources.adapters.images.ImageAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.resources.adapters.string.StringAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
+import org.webreformatter.resources.adapters.zip.ZipAdapter;
 
 /**
  * @author kotelnikov
@@ -24,6 +25,7 @@ public class WrfRepositoryUtils {
         repository.registerResourceAdapter(MimeTypeAdapter.class);
         repository.registerResourceAdapter(StringAdapter.class);
         repository.registerResourceAdapter(ImageAdapter.class);
+        repository.registerResourceAdapter(ZipAdapter.class);
     }
 
     /**
