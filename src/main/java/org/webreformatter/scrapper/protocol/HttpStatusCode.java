@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.context;
+package org.webreformatter.scrapper.protocol;
 
 import java.util.HashMap;
 import java.util.Map;

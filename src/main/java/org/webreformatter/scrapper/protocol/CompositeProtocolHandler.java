@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 
 /**
  * @author kotelnikov

@@ -176,27 +176,17 @@ public class RecursiveContentLoader {
 
     private IProgressListenerProvider<AtomFeed> fDocumentListenerProvider;
 
-    private ContentLoader fLoader;
+    private RuntimeContext fParentContext;
 
     private IProgressListenerProvider<IWrfResource> fResourceListenerProvider;
-
-    public RecursiveContentLoader(
-        ContentLoader contentLoader,
-        IProgressListenerProvider<AtomFeed> documentListenerProvider,
-        IProgressListenerProvider<IWrfResource> resourceListenerProvider) {
-        fLoader = contentLoader;
-        fDocumentListenerProvider = documentListenerProvider;
-        fResourceListenerProvider = resourceListenerProvider;
-    }
 
     public RecursiveContentLoader(
         RuntimeContext parentContext,
         IProgressListenerProvider<AtomFeed> documentListenerProvider,
         IProgressListenerProvider<IWrfResource> resourceListenerProvider) {
-        this(
-            new ContentLoader(parentContext),
-            documentListenerProvider,
-            resourceListenerProvider);
+        fParentContext = parentContext;
+        fDocumentListenerProvider = documentListenerProvider;
+        fResourceListenerProvider = resourceListenerProvider;
     }
 
     protected boolean addToMap(
@@ -245,7 +235,11 @@ public class RecursiveContentLoader {
                 AtomFeed doc = null;
                 listener.beginDownload();
                 try {
-                    doc = fLoader.loadDocument(url);
+                    RuntimeContext context = fParentContext.newContext(url);
+                    AtomProcessing atomProcessing = context
+                        .getAdapter(AtomProcessing.class);
+                    doc = atomProcessing.getResourceAsAtomFeed();
+
                     if (doc == null) {
                         return;
                     }
@@ -289,7 +283,10 @@ public class RecursiveContentLoader {
                 IWrfResource resource = null;
                 listener.beginDownload();
                 try {
-                    resource = fLoader.loadResource(url);
+                    RuntimeContext context = fParentContext.newContext(url);
+                    DownloadAdapter downloadAdapter = context
+                        .getAdapter(DownloadAdapter.class);
+                    resource = downloadAdapter.loadResource();
                 } finally {
                     listener.endDownload(resource);
                 }

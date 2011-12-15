@@ -2218,6 +2218,36 @@ public class XmlWrapper {
     }
 
     /**
+     * Returns parent wrapper
+     * 
+     * @return parent wrapper element
+     * @throws XmlException
+     */
+    public XmlWrapper getParent() throws XmlException {
+        return getParent(XmlWrapper.class);
+    }
+
+    /**
+     * Returns the parent of this node.
+     * 
+     * @return the parent of this node.
+     * @throws XmlException
+     */
+    public <T extends XmlWrapper> T getParent(Class<T> type)
+        throws XmlException {
+        Element element = getRootElement();
+        if (element == null) {
+            return null;
+        }
+        Node parent = element.getParentNode();
+        if (parent == null) {
+            return null;
+        }
+        T result = getXmlContext().wrap(parent, type);
+        return result;
+    }
+
+    /**
      * Returns the wrapped XML node
      * 
      * @return the wrapped XML node
@@ -2550,5 +2580,4 @@ public class XmlWrapper {
         String result = writer.toString();
         return result;
     }
-
 }

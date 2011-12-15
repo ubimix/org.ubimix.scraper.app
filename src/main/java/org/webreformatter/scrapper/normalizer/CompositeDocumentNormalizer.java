@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.scrapper.context.RuntimeContext;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
@@ -27,12 +26,11 @@ public class CompositeDocumentNormalizer implements IDocumentNormalizer {
 
     public AtomFeed getNormalizedContent(
         RuntimeContext context,
-        Uri docUri,
         XmlWrapper doc) throws XmlException, IOException {
         List<IDocumentNormalizer> list = getNormalizerList();
         AtomFeed result = null;
         for (IDocumentNormalizer normalizer : list) {
-            result = normalizer.getNormalizedContent(context, docUri, doc);
+            result = normalizer.getNormalizedContent(context, doc);
             if (result != null) {
                 break;
             }

@@ -11,7 +11,6 @@ import org.webreformatter.commons.adapters.AdaptableObject;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
@@ -19,6 +18,7 @@ import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
+import org.webreformatter.scrapper.protocol.AccessManager;
 
 /**
  * @author kotelnikov
@@ -154,6 +154,10 @@ public class RuntimeContext extends AdaptableObject {
         }
     }
 
+    public RuntimeContext.Builder builder() {
+        return builder(this);
+    }
+
     protected void checkFields() {
         assertTrue(
             "Application context can not be null",
@@ -186,6 +190,15 @@ public class RuntimeContext extends AdaptableObject {
 
     public IUrlTransformer getLocalizeUrlTransformer() {
         return fLocalizeUrlTransformer;
+    }
+
+    public Uri getLocalPath(Uri pageUrl) {
+        Uri result = pageUrl;
+        IUrlTransformer transformer = getLocalizeUrlTransformer();
+        if (transformer != null) {
+            result = transformer.transform(pageUrl);
+        }
+        return result;
     }
 
     public PageSetConfig getPageSetConfig() {
@@ -221,6 +234,10 @@ public class RuntimeContext extends AdaptableObject {
 
     public Map<String, String> getParams() {
         return fParams;
+    }
+
+    public IWrfResource getResource(String storeName) {
+        return getResource(storeName, null);
     }
 
     public IWrfResource getResource(String storeName, String suffix) {
@@ -261,6 +278,11 @@ public class RuntimeContext extends AdaptableObject {
                 .getAdapter(CachedResourceAdapter.class);
             result = cacheAdapter.isExpired();
         }
+        return result;
+    }
+
+    public RuntimeContext newContext(Uri url) {
+        RuntimeContext result = builder(this).setUrl(url).build();
         return result;
     }
 

@@ -126,6 +126,6 @@ public class WrfResource extends AdaptableObject implements IWrfResource {
 
     @Override
     public synchronized String toString() {
-        return fPath.toString();
+        return "[" + fProvider + "]" + fPath.toString();
     }
 }

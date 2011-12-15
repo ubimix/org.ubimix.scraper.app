@@ -25,10 +25,10 @@ import org.webreformatter.pageset.PageSetConfigRegistry;
 import org.webreformatter.pageset.UrlToPathMapper;
 import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ApplyAction;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
 public class ReformatServlet extends HttpServlet {
 

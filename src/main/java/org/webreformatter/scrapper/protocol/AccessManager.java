@@ -1,4 +1,4 @@
-package org.webreformatter.pageset;
+package org.webreformatter.scrapper.protocol;
 
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;

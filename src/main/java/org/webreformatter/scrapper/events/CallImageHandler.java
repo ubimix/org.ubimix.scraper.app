@@ -6,9 +6,9 @@ import java.io.OutputStream;
 import org.webreformatter.commons.io.IOUtil;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
 /**
  * @author kotelnikov

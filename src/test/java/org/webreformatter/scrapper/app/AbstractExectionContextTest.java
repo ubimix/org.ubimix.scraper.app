@@ -6,26 +6,25 @@ package org.webreformatter.scrapper.app;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.webreformatter.commons.adapters.AdapterFactoryUtils;
 import org.webreformatter.commons.events.EventManager;
 import org.webreformatter.commons.events.IEventManager;
 import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.resources.AbstractResourceTest;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
-import org.webreformatter.scrapper.context.AtomProcessing;
-import org.webreformatter.scrapper.context.CoreAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
-import org.webreformatter.scrapper.context.HttpStatusCode;
+import org.webreformatter.scrapper.context.AtomProcessing;
+import org.webreformatter.scrapper.context.DownloadAdapter;
 import org.webreformatter.scrapper.normalizer.CompositeDocumentNormalizer;
 import org.webreformatter.scrapper.normalizer.XslBasedContentNormalizer;
+import org.webreformatter.scrapper.protocol.AccessManager;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.protocol.IProtocolHandler;
 
 /**
@@ -87,10 +86,6 @@ public abstract class AbstractExectionContextTest extends AbstractResourceTest {
             .setPropertyProvider(fPropertyProvider)
             .setEventManager(fEventManager)
             .setProtocolHandler(fProtocolHandler);
-        AdapterFactoryUtils.registerAdapter(
-            fAdapters,
-            ApplicationContext.class,
-            CoreAdapter.class);
         return builder.build();
     }
 
@@ -138,9 +133,8 @@ public abstract class AbstractExectionContextTest extends AbstractResourceTest {
 
         CompositeDocumentNormalizer documentNormalizer = new CompositeDocumentNormalizer();
         addDocumentNormalizers(documentNormalizer);
-        fAdapters.registerAdapterFactory(
-            AtomProcessing.getAdapterFactory(documentNormalizer),
-            AtomProcessing.class);
+        AtomProcessing.register(fAdapters, documentNormalizer);
+        DownloadAdapter.register(fAdapters);
 
         // XmlUrlMapperLoader loader = new XmlUrlMapperLoader();
         // XmlContext context = XmlContext.build();

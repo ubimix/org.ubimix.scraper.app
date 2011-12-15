@@ -11,17 +11,14 @@ import org.webreformatter.commons.events.IEventListener;
 import org.webreformatter.commons.events.IEventListenerInterceptor;
 import org.webreformatter.commons.events.IEventManager;
 import org.webreformatter.commons.events.calls.CallListener;
-import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.AccessManager;
-import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.scrapper.context.ApplicationContext;
-import org.webreformatter.scrapper.context.CoreAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
+import org.webreformatter.scrapper.context.DownloadAdapter;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
 /**
  * @author kotelnikov
@@ -158,27 +155,12 @@ public class ApplyActionHandler extends CallListener<ApplyAction> {
         HttpStatusCode resultStatus = HttpStatusCode.STATUS_404;
         try {
             IEventManager eventManager = fApplicationContext.getEventManager();
-            IWrfResource initialResource = actionRequest.getInitialResource();
-            if (actionRequest.isExpired(initialResource)) {
-                CoreAdapter adapter = fApplicationContext
-                    .getAdapter(CoreAdapter.class);
-                Uri url = actionRequest.getUrl();
-                IUrlTransformer uriTransformer = actionRequest
-                    .getDownloadUrlTransformer();
-                AccessManager accessManager = actionRequest.getAccessManager();
-                url = uriTransformer.transform(url);
-                HttpStatusCode code = adapter.download(
-                    accessManager,
-                    url,
-                    initialResource);
-                boolean exists = code.isOk()
-                    || HttpStatusCode.STATUS_304.equals(code) /* NOT_MODIFIED */;
-                if (exists) {
-                    actionRequest.touch(initialResource);
-                }
-            }
+
             try {
                 String mimeType = "";
+                DownloadAdapter downloadAdapter = actionRequest
+                    .getAdapter(DownloadAdapter.class);
+                IWrfResource initialResource = downloadAdapter.loadResource();
                 IContentAdapter initialContent = initialResource
                     .getAdapter(IContentAdapter.class);
                 boolean exists = initialContent.exists();

@@ -22,10 +22,10 @@ import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
 import org.webreformatter.scrapper.normalizer.XslUtils;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.server.xml.XmlWrapper;
 import org.webreformatter.server.xml.atom.AtomFeed;
 
@@ -79,7 +79,7 @@ public class ZipExportHandler extends ProcessResourceHandler<ZipExportAction> {
             AtomProcessing atomProcessingAdapter = applicationContext
                 .getAdapter(AtomProcessing.class);
             AtomFeed feed = atomProcessingAdapter
-                .getResourceAsAtomFeed(request);
+                .getResourceAsAtomFeed();
 
             Map<Uri, Uri> pathToUrlMap = new TreeMap<Uri, Uri>(
                 new Comparator<Uri>() {

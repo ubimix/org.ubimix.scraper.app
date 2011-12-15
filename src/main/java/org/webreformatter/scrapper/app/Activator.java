@@ -30,7 +30,7 @@ import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
-import org.webreformatter.scrapper.context.CoreAdapter;
+import org.webreformatter.scrapper.context.DownloadAdapter;
 import org.webreformatter.scrapper.context.PageSetConfigLoader;
 import org.webreformatter.scrapper.events.ApplyAction;
 import org.webreformatter.scrapper.events.ApplyActionHandler;
@@ -108,15 +108,11 @@ public class Activator extends ConfigurableMultiserviceActivator {
 
         IWrfRepository repository = getRepository();
 
-        // Register adapters for the ApplicationContext
-        fAdapterFactory.registerAdapterFactory(
-            AtomProcessing.getAdapterFactory(fDocumentNormalizers),
-            AtomProcessing.class);
+        // Register adapters for the ExecutionContext
+        AtomProcessing.register(fAdapterFactory, fDocumentNormalizers);
+        DownloadAdapter.register(fAdapterFactory);
 
-        AdapterFactoryUtils.registerAdapter(
-            fAdapterFactory,
-            ApplicationContext.class,
-            CoreAdapter.class);
+        // Register adapters for the ApplicationContext
         AdapterFactoryUtils.registerAdapter(
             fAdapterFactory,
             ApplicationContext.class,

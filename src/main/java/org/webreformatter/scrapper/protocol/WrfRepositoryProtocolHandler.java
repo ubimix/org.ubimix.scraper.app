@@ -11,7 +11,6 @@ import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 
 /**
  * This implementation of the {@link IProtocolHandler} loads the content from a

@@ -1,10 +1,10 @@
 package org.webreformatter.pageset.loaders;
 
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.pageset.UrlToPathMapper;
+import org.webreformatter.scrapper.protocol.AccessManager;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
 

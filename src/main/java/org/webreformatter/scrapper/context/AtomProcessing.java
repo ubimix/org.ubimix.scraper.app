@@ -5,18 +5,18 @@ package org.webreformatter.scrapper.context;
 
 import java.io.IOException;
 
+import org.webreformatter.commons.adapters.CompositeAdapterFactory;
 import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.pageset.AccessManager;
-import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.html.HTMLAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
+import org.webreformatter.scrapper.normalizer.CompositeDocumentNormalizer;
 import org.webreformatter.scrapper.normalizer.IDocumentNormalizer;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
@@ -25,7 +25,11 @@ import org.webreformatter.server.xml.atom.AtomFeed;
 /**
  * @author kotelnikov
  */
-public class AtomProcessing extends ApplicationContextAdapter {
+public class AtomProcessing extends RuntimeContextAdapter {
+
+    private static final String RESOURCE_HTML = "html";
+
+    private static final String RESOURCE_HTML_NORMALIZED = "html-normalized";
 
     public static IAdapterFactory getAdapterFactory(
         final IDocumentNormalizer documentNormalizer) {
@@ -33,23 +37,25 @@ public class AtomProcessing extends ApplicationContextAdapter {
             @SuppressWarnings("unchecked")
             public <T> T getAdapter(Object instance, Class<T> type) {
                 if (type != AtomProcessing.class
-                    || !(instance instanceof ApplicationContext)) {
+                    || !(instance instanceof RuntimeContext)) {
                     return null;
                 }
                 return (T) new AtomProcessing(
-                    (ApplicationContext) instance,
+                    (RuntimeContext) instance,
                     documentNormalizer);
             }
         };
     }
 
-    private IWrfResourceProvider fHtmlStore;
-
-    private IWrfResourceProvider fNormalizedStore;
+    public static void register(
+        CompositeAdapterFactory adapterFactory,
+        CompositeDocumentNormalizer documentNormalizers) {
+        adapterFactory.registerAdapterFactory(
+            AtomProcessing.getAdapterFactory(documentNormalizers),
+            AtomProcessing.class);
+    }
 
     private IDocumentNormalizer fNormalizer;
-
-    private IWrfResourceProvider fRawDataStore;
 
     /**
      * @param documentNormalizer
@@ -57,73 +63,64 @@ public class AtomProcessing extends ApplicationContextAdapter {
      * @throws Exception
      */
     public AtomProcessing(
-        ApplicationContext applicationContext,
+        RuntimeContext runtimeContext,
         IDocumentNormalizer documentNormalizer) {
-        super(applicationContext);
-        fRawDataStore = getStore("download");
-        fHtmlStore = getStore("html");
-        fNormalizedStore = getStore("html-normalized");
+        super(runtimeContext);
         fNormalizer = documentNormalizer;
     }
 
-    public AtomFeed getResourceAsAtomFeed(RuntimeContext context)
-        throws XmlException,
-        IOException {
-        Uri url = context.getUrl();
-        Path path = UriToPath.getPath(url);
-        IWrfResource cleanResource = fNormalizedStore.getResource(path, true);
+    public XmlAdapter getResourceAsAtom() throws IOException, XmlException {
+        IWrfResource cleanResource = fRuntimeContext
+            .getResource(RESOURCE_HTML_NORMALIZED);
         XmlAdapter xmlAdapter = cleanResource.getAdapter(XmlAdapter.class);
         boolean ok = false;
-        if (!context.isExpired(cleanResource)) {
+        if (!fRuntimeContext.isExpired(cleanResource)) {
             ok = true;
         } else {
-            XmlWrapper doc = getXHTMLResource(context);
+            XmlWrapper doc = getXHTMLResource();
             if (doc != null) {
                 AtomFeed newDoc = fNormalizer.getNormalizedContent(
-                    context,
-                    url,
+                    fRuntimeContext,
                     doc);
-                xmlAdapter.setDocument(newDoc);
-                touch(cleanResource);
+                if (newDoc != null) {
+                    xmlAdapter.setDocument(newDoc);
+                    touch(cleanResource);
+                }
                 ok = true;
             }
         }
+        XmlAdapter result = ok ? xmlAdapter : null;
+        return result;
+    }
+
+    public AtomFeed getResourceAsAtomFeed() throws XmlException, IOException {
+        XmlAdapter xmlAdapter = getResourceAsAtom();
         AtomFeed feed = null;
-        if (ok) {
+        if (xmlAdapter != null) {
             feed = xmlAdapter.getWrapperCopy(AtomFeed.class);
         }
         return feed;
     }
 
-    protected IWrfResourceProvider getStore(String name) {
-        IWrfRepository repository = fApplicationContext.getRepository();
-        return repository.getResourceProvider(name, true);
-    }
-
-    // FIXME: move to the AutoContentNoramlizer class
-
-    public XmlWrapper getXHTMLResource(RuntimeContext context)
-        throws IOException,
-        XmlException {
-        Uri url = context.getUrl();
-        Path path = UriToPath.getPath(url);
-        IWrfResource htmlResource = fHtmlStore.getResource(path, true);
+    public XmlWrapper getXHTMLResource() throws IOException, XmlException {
+        Uri url = fRuntimeContext.getUrl();
+        IWrfResource htmlResource = fRuntimeContext.getResource(RESOURCE_HTML);
         XmlAdapter xmlAdapter = htmlResource.getAdapter(XmlAdapter.class);
         boolean exists = false;
-        if (context.isExpired(htmlResource)) {
-            IWrfResource rawResource = fRawDataStore.getResource(path, true);
-            exists = !context.isExpired(rawResource);
+        if (!fRuntimeContext.isExpired(htmlResource)) {
+            exists = true;
+        } else {
+            IWrfResource rawResource = fRuntimeContext
+                .getResource(RESOURCE_DOWNLOAD);
+            exists = !fRuntimeContext.isExpired(rawResource);
             if (!exists) {
-                CoreAdapter adapter = fApplicationContext
-                    .getAdapter(CoreAdapter.class);
-                AccessManager accessManager = context.getAccessManager();
-                HttpStatusCode code = adapter.download(
-                    accessManager,
-                    url,
-                    rawResource);
-                exists = code.isOk() || HttpStatusCode.STATUS_304.equals(code) /* NOT_MODIFIED */;
-                touch(rawResource);
-                onResourceReloaded(url);
+                DownloadAdapter downloadAdapter = fRuntimeContext
+                    .getAdapter(DownloadAdapter.class);
+                rawResource = downloadAdapter.loadResource();
+                if (downloadAdapter.isOK()) {
+                    exists = true;
+                    onResourceReloaded(url);
+                }
             }
             if (exists) {
                 MimeTypeAdapter mimeTypeAdapter = rawResource
@@ -150,8 +147,6 @@ public class AtomProcessing extends ApplicationContextAdapter {
     }
 
     private void onResourceReloaded(Uri url) {
-        removeResource(fHtmlStore, url);
-        removeResource(fNormalizedStore, url);
     }
 
     private void removeResource(IWrfResourceProvider store, Uri uri) {

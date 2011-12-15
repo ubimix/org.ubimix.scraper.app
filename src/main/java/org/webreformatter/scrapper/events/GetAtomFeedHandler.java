@@ -1,14 +1,13 @@
 package org.webreformatter.scrapper.events;
 
-import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.html.HTMLAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
 import org.webreformatter.scrapper.normalizer.IDocumentNormalizer;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.server.xml.XmlWrapper;
 import org.webreformatter.server.xml.atom.AtomFeed;
 
@@ -47,10 +46,8 @@ public class GetAtomFeedHandler extends ProcessResourceHandler<GetAtomFeed> {
                     .getAdapter(HTMLAdapter.class);
                 XmlWrapper doc = htmlAdapter.getWrapper();
                 if (doc != null) {
-                    Uri url = request.getUrl();
                     AtomFeed feed = fNormalizer.getNormalizedContent(
                         request,
-                        url,
                         doc);
                     XmlAdapter xmlAdapter = xmlResource
                         .getAdapter(XmlAdapter.class);

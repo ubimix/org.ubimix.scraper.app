@@ -3,6 +3,8 @@
  */
 package org.webreformatter.pageset;
 
+import org.webreformatter.scrapper.protocol.AccessManager;
+
 /**
  * This configuration class contains the following information:
  * <ul>

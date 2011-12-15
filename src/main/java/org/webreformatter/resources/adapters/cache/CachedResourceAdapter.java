@@ -7,12 +7,14 @@ import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.WrfResourceAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
 /**
  * @author kotelnikov
  */
 public class CachedResourceAdapter extends WrfResourceAdapter {
+
+    private static final String PROPERTY_LAST_LOADED = "Last-Loaded";
 
     private static final String PROPERTY_LAST_MODIFIED = "Last-Modified";
 
@@ -42,6 +44,13 @@ public class CachedResourceAdapter extends WrfResourceAdapter {
         return DateUtil.DAY * 1;
     }
 
+    public long getLastLoaded() throws IOException {
+        IPropertyAdapter properties = fResource
+            .getAdapter(IPropertyAdapter.class);
+        long lastModified = getTime(properties, PROPERTY_LAST_LOADED);
+        return lastModified;
+    }
+
     public long getLastModified() throws IOException {
         IPropertyAdapter properties = fResource
             .getAdapter(IPropertyAdapter.class);
@@ -53,6 +62,10 @@ public class CachedResourceAdapter extends WrfResourceAdapter {
         return (long) DateUtil.DAY * 1;
         // return (long) DateUtil.DAY * 30;
         // return (long) DateUtil.HOUR; // DateUtil.MIN; // DateUtil.DAY * 30;
+    }
+
+    protected long getMaxRefreshRate() {
+        return (long) DateUtil.MIN * 5;
     }
 
     public HttpStatusCode getStatus() throws IOException {
@@ -83,11 +96,30 @@ public class CachedResourceAdapter extends WrfResourceAdapter {
         expired = true;
         long lastModified = getLastModified();
         if (lastModified > 0) {
-            long delta = System.currentTimeMillis() - lastModified;
+            long now = now();
+            long delta = now - lastModified;
             long maxDelta = getLastModifiedDelta();
             expired = (delta >= maxDelta);
+            if (expired) {
+                long lastLoaded = getLastLoaded();
+                delta = now - lastLoaded;
+                long refreshTimeout = getMaxRefreshRate();
+                expired = (delta > refreshTimeout);
+            }
         }
         return expired;
+    }
+
+    protected long now() {
+        return System.currentTimeMillis();
+    }
+
+    public void setLastLoaded(long now) throws IOException {
+        IPropertyAdapter propertyAdapter = fResource
+            .getAdapter(IPropertyAdapter.class);
+        propertyAdapter.setProperty(
+            PROPERTY_LAST_LOADED,
+            DateUtil.formatDate(now));
     }
 
     public void setLastModified(long now) throws IOException {
@@ -106,8 +138,9 @@ public class CachedResourceAdapter extends WrfResourceAdapter {
     }
 
     public void touch() throws IOException {
-        long now = System.currentTimeMillis();
+        long now = now();
         setLastModified(now);
+        setLastLoaded(now);
     }
 
     public void updateMetadataFrom(CachedResourceAdapter adapter)

@@ -53,7 +53,6 @@ import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 
 /**
  * @author kotelnikov

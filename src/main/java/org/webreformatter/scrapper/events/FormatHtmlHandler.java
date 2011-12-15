@@ -6,18 +6,17 @@ import java.util.Map;
 
 import org.webreformatter.commons.strings.StringUtil;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.string.StringAdapter;
-import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
-import org.webreformatter.scrapper.context.CoreAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
+import org.webreformatter.scrapper.context.DownloadAdapter;
+import org.webreformatter.scrapper.context.RuntimeContext;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
 import org.webreformatter.scrapper.normalizer.XslUtils;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.server.xml.atom.AtomEntry;
 import org.webreformatter.server.xml.atom.AtomFeed;
 
@@ -46,12 +45,9 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
 
             //
             Uri url = request.getUrl();
-            ApplicationContext applicationContext = request
-                .getApplicationContext();
-            AtomProcessing atomProcessingAdapter = applicationContext
+            AtomProcessing atomProcessingAdapter = request
                 .getAdapter(AtomProcessing.class);
-            AtomFeed feed = atomProcessingAdapter
-                .getResourceAsAtomFeed(request);
+            AtomFeed feed = atomProcessingAdapter.getResourceAsAtomFeed();
             String prefix = XslUtils
                 .getNamespacePrefix(
                     feed.getXmlContext().getNamespaceContext(),
@@ -81,27 +77,12 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
                 resultStringAdapter.setContentAsString(str);
                 status = HttpStatusCode.STATUS_200;
             } else {
-                CoreAdapter coreAdapter = applicationContext
-                    .getAdapter(CoreAdapter.class);
-                IWrfResource templateResource = coreAdapter.getResource(
-                    templateUrl,
-                    "download",
-                    true);
-                status = HttpStatusCode.STATUS_404;
-                if (!request.isExpired(templateResource)) {
-                    status = HttpStatusCode.STATUS_200;
-                } else {
-                    CoreAdapter adapter = applicationContext
-                        .getAdapter(CoreAdapter.class);
-                    AccessManager accessManager = request.getAccessManager();
-                    HttpStatusCode templateDownloadStatus = adapter.download(
-                        accessManager,
-                        templateUrl,
-                        templateResource);
-                    if (!templateDownloadStatus.isError()) {
-                        status = templateDownloadStatus;
-                    }
-                }
+                RuntimeContext templateContext = request
+                    .newContext(templateUrl);
+                DownloadAdapter downloadAdapter = templateContext
+                    .getAdapter(DownloadAdapter.class);
+                IWrfResource templateResource = downloadAdapter.loadResource();
+                status = downloadAdapter.getStatusCode();
                 if (!status.isError()) {
                     // Apply template
                     List<AtomEntry> entries = feed.getEntries();

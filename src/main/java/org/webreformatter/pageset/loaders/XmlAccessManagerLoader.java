@@ -3,8 +3,8 @@ package org.webreformatter.pageset.loaders;
 import java.util.List;
 
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.AccessManager;
-import org.webreformatter.pageset.AccessManager.CredentialInfo;
+import org.webreformatter.scrapper.protocol.AccessManager;
+import org.webreformatter.scrapper.protocol.AccessManager.CredentialInfo;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
 

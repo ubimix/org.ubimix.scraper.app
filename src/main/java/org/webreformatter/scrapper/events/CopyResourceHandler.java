@@ -2,9 +2,9 @@ package org.webreformatter.scrapper.events;
 
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
-import org.webreformatter.scrapper.context.HttpStatusCode;
 import org.webreformatter.scrapper.events.ProcessResource.ActionRequest;
 import org.webreformatter.scrapper.events.ProcessResource.ActionResponse;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
 /**
  * @author kotelnikov

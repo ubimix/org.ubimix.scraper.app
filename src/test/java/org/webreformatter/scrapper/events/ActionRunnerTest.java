@@ -10,13 +10,13 @@ import org.webreformatter.commons.events.IEventManager;
 import org.webreformatter.commons.events.calls.CallListener;
 import org.webreformatter.commons.events.server.CallBarrier;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.AccessManager;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.string.StringAdapter;
 import org.webreformatter.scrapper.app.AbstractExectionContextTest;
 import org.webreformatter.scrapper.context.ApplicationContext;
+import org.webreformatter.scrapper.protocol.AccessManager;
 
 /**
  * @author kotelnikov

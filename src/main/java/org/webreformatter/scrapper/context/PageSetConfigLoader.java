@@ -5,8 +5,9 @@ package org.webreformatter.scrapper.context;
 
 import java.io.IOException;
 
+import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.AccessManager;
+import org.webreformatter.commons.uri.UriToPath;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.pageset.UrlMapper;
@@ -14,8 +15,14 @@ import org.webreformatter.pageset.UrlToPathMapper;
 import org.webreformatter.pageset.loaders.XmlAccessManagerLoader;
 import org.webreformatter.pageset.loaders.XmlUrlMapperLoader;
 import org.webreformatter.pageset.loaders.XmlUrlToPathMapperLoader;
+import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
+import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
+import org.webreformatter.scrapper.protocol.AccessManager;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
+import org.webreformatter.scrapper.protocol.AccessManager.CredentialInfo;
+import org.webreformatter.scrapper.protocol.IProtocolHandler;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
 
@@ -150,13 +157,34 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
     protected XmlWrapper getConfigXml(
         AccessManager configAccessManager,
         Uri configUri) throws IOException, XmlException {
-        CoreAdapter core = fApplicationContext.getAdapter(CoreAdapter.class);
-        IWrfResource configResource = core.download(
-            configAccessManager,
+        String resourceKey = "config";
+
+        IWrfRepository repository = fApplicationContext.getRepository();
+        IWrfResourceProvider resourceProvider = repository.getResourceProvider(
+            resourceKey,
+            true);
+        Path resourcePath = UriToPath.getPath(configUri);
+        IWrfResource configResource = resourceProvider.getResource(
+            resourcePath,
+            true);
+        IProtocolHandler protocolHandler = fApplicationContext
+            .getProtocolHandler();
+        CredentialInfo credentials = configAccessManager != null
+            ? configAccessManager.getCredentials(configUri)
+            : null;
+        String login = null;
+        String password = null;
+        if (credentials != null) {
+            login = credentials.getLogin();
+            password = credentials.getPassword();
+        }
+        HttpStatusCode code = protocolHandler.handleRequest(
             configUri,
-            "config");
+            login,
+            password,
+            configResource);
         XmlWrapper xml = null;
-        if (configResource != null) {
+        if (!code.isError()) {
             XmlAdapter xmlAdapter = configResource.getAdapter(XmlAdapter.class);
             xml = xmlAdapter.getWrapper();
         }
