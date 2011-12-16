@@ -78,7 +78,10 @@ public class FormatHtmlHandler extends ProcessResourceHandler<FormatHtmlAction> 
                 status = HttpStatusCode.STATUS_200;
             } else {
                 RuntimeContext templateContext = request
-                    .newContext(templateUrl);
+                    .builder()
+                    .setUrl(templateUrl)
+                    .setDownloadUrlTransformer(IUrlTransformer.EMPTY)
+                    .build();
                 DownloadAdapter downloadAdapter = templateContext
                     .getAdapter(DownloadAdapter.class);
                 IWrfResource templateResource = downloadAdapter.loadResource();

@@ -1,7 +1,7 @@
 package org.webreformatter.scrapper.context;
 
-import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,17 +13,25 @@ import org.w3c.dom.Text;
 import org.webreformatter.server.xml.XmlAcceptor;
 import org.webreformatter.server.xml.XmlAcceptor.XmlVisitor;
 import org.webreformatter.server.xml.XmlException;
+import org.webreformatter.server.xml.XmlTagExtractor;
+import org.webreformatter.server.xml.XmlTagExtractor.HtmlBlockElementsAcceptor;
+import org.webreformatter.server.xml.XmlTagExtractor.HtmlNamedNodeAcceptor;
+import org.webreformatter.server.xml.XmlTagExtractor.IElementAcceptor;
+import org.webreformatter.server.xml.XmlTagExtractor.SimpleElementAcceptor;
 import org.webreformatter.server.xml.XmlWrapper;
+import org.webreformatter.server.xml.XmlWrapper.XmlContext;
 
 /**
  * @author kotelnikov
  */
 public class HtmlPropertiesExtractor {
 
-    public static final String _NS_XHTML = "http://www.w3.org/1999/xhtml";
-
     private final static Logger log = Logger
         .getLogger(HtmlPropertiesExtractor.class.getName());
+
+    protected static <T> T[] toArray(T... array) {
+        return array;
+    }
 
     protected void buildPropertiesFromList(
         XmlWrapper ul,
@@ -36,31 +44,12 @@ public class HtmlPropertiesExtractor {
             XmlWrapper next = child.getNextElement();
             String name = getHTMLName(child.getRootElement());
             if ("li".equals(name)) {
-                String key = visitPropertyItem(child);
-                Object value = getPropertyValue(child);
-                properties.put(key, value);
+                String[] key = { visitPropertyItem(child) };
+                Object value = getPropertyValue(key, child);
+                properties.put(key[0], value);
             }
             child = next;
         }
-    }
-
-    protected boolean checkStopTag(Element node) {
-        String name = getHTMLName(node);
-        return "h1".equals(name)
-            || "h2".equals(name)
-            || "h3".equals(name)
-            || "h4".equals(name)
-            || "h5".equals(name)
-            || "h6".equals(name)
-            || "hr".equals(name)
-            || "table".equals(name)
-            || "tr".equals(name)
-            || "th".equals(name)
-            || "td".equals(name)
-            || "ol".equals(name)
-            || "dd".equals(name)
-            || "dt".equals(name)
-            || "li".equals(name);
     }
 
     protected boolean extractNodeProperties(
@@ -75,66 +64,58 @@ public class HtmlPropertiesExtractor {
         return result;
     }
 
-    public Map<String, Object> extractProperties(final XmlWrapper xml) {
-        return extractProperties(xml, null);
+    public Map<String, Object> extractProperties(final XmlWrapper xml)
+        throws XmlException {
+        return extractProperties(xml, null, null);
     }
 
     public Map<String, Object> extractProperties(
         final XmlWrapper xml,
-        XmlWrapper start) {
+        XmlWrapper start) throws XmlException {
+        return extractProperties(xml, start, null);
+    }
+
+    public Map<String, Object> extractProperties(
+        final XmlWrapper xml,
+        XmlWrapper start,
+        XmlWrapper stop) throws XmlException {
+        XmlTagExtractor extractor = new XmlTagExtractor();
+
+        String[] propertyElementNames = getPropertyElementNames();
+        HtmlNamedNodeAcceptor propertyElementsAcceptor = new HtmlNamedNodeAcceptor(
+            propertyElementNames);
+
+        IElementAcceptor begin;
+        if (start != null) {
+            begin = new SimpleElementAcceptor(start.getRootElement());
+        } else {
+            begin = IElementAcceptor.YES_ACCEPTOR;
+        }
+
+        IElementAcceptor end;
+        if (stop != null) {
+            end = new SimpleElementAcceptor(stop.getRootElement());
+        } else {
+            HtmlBlockElementsAcceptor e = new HtmlBlockElementsAcceptor();
+            e.removeNames(propertyElementNames);
+            end = e;
+        }
+
+        List<Element> list = extractor.loadElements(
+            xml.getRootElement(),
+            propertyElementsAcceptor,
+            begin,
+            end);
+
         final Map<String, Object> properties = new HashMap<String, Object>();
-        final Element startTag = start != null ? start.getRootElement() : null;
-        XmlAcceptor.accept(xml.getRoot(), new XmlVisitor() {
-
-            private boolean fStarted;
-
-            private boolean fStopped;
-
-            protected boolean checkStartTag(Element tag) {
-                return startTag == null || startTag.equals(tag);
+        XmlContext context = xml.getXmlContext();
+        for (Element element : list) {
+            XmlWrapper wrapper = context.wrap(element);
+            boolean extracted = extractNodeProperties(wrapper, properties);
+            if (extracted) {
+                removeNode(wrapper);
             }
-
-            private boolean isStarted(Element node) {
-                if (!fStarted) {
-                    fStarted |= checkStartTag(startTag);
-                }
-                return fStarted;
-            }
-
-            private boolean isStopped(Element node) {
-                if (!fStopped) {
-                    fStopped |= checkStopTag(node);
-                }
-                return fStopped;
-            }
-
-            @Override
-            public void visit(Element node) {
-                try {
-                    if (isStarted(node)) {
-                        if (!isStopped(node)) {
-                            XmlWrapper wrapper = wrap(node);
-                            boolean extracted = extractNodeProperties(
-                                wrapper,
-                                properties);
-                            if (extracted) {
-                                removeNode(wrapper);
-                            } else {
-                                super.visit(node);
-                            }
-                        }
-                    } else {
-                        super.visit(node);
-                    }
-                } catch (Throwable t) {
-                    handleError("Can not read page properties.", t);
-                }
-            }
-
-            private XmlWrapper wrap(Element node) throws XmlException {
-                return xml.getXmlContext().wrap(node);
-            }
-        });
+        }
         return properties;
     }
 
@@ -143,12 +124,14 @@ public class HtmlPropertiesExtractor {
         return name;
     }
 
-    protected Object getPropertyValue(XmlWrapper child) throws XmlException {
-        StringWriter writer = new StringWriter();
-        child.serializeXML(writer, false);
-        String str = writer.toString();
-        str = str.trim();
-        return str;
+    protected String[] getPropertyElementNames() {
+        return toArray("ul");
+    }
+
+    protected Object getPropertyValue(String[] key, XmlWrapper value)
+        throws XmlException {
+        String str = value.toString(false, false);
+        return str.trim();
     }
 
     protected XmlException handleError(String msg, Throwable e) {
