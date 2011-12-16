@@ -69,13 +69,11 @@ public class XmlNodeHandlerTest extends AbstractResourceTest {
         assertEquals(""
             + "<atom:entry xmlns:atom=\"http://www.w3.org/2005/Atom\">"
             + "<atom:content>"
-            + "<div xmlns=\"http://www.w3.org/1999/xhtml\">"
-            + "<h1>Hello</h1>"
-            + "<p>world</p>"
-            + "</div>"
+            + "<h1 xmlns=\"http://www.w3.org/1999/xhtml\">Hello</h1>"
+            + "<p xmlns=\"http://www.w3.org/1999/xhtml\">world</p>"
             + "</atom:content>"
             + "</atom:entry>"
-            + "", entry.toString());
+            + "", entry.toString(true, false));
     }
 
     public void testFeed() throws Exception {
