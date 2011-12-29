@@ -24,16 +24,27 @@ public class AbstractRecursiveContentLoader {
 
     public static class AtomLinkExtractor implements ILinkExtractor {
 
+        public static String getHtmlNodeName(Element node) {
+            return node.getNodeName();
+        }
+
+        public static Uri getUrl(Element node, String attr) {
+            Uri ref = null;
+            String value = node.getAttribute(attr);
+            if (value != null) {
+                ref = new Uri(value);
+            }
+            return ref;
+        }
+
         public Set<Uri> extractLinks(RuntimeContext context)
-            throws IOException,
-            XmlException {
+                throws IOException, XmlException {
             Set<Uri> result = new HashSet<Uri>();
-            String mime = context
-                .getAdapter(DownloadAdapter.class)
-                .getMimeType();
+            String mime = context.getAdapter(DownloadAdapter.class)
+                    .getMimeType();
             if (mime.startsWith("text/html")) {
                 AtomProcessing atomProcessing = context
-                    .getAdapter(AtomProcessing.class);
+                        .getAdapter(AtomProcessing.class);
                 AtomFeed doc = atomProcessing.getResourceAsAtomFeed();
                 if (doc != null) {
                     Set<Uri> set = extractLinks(context, doc);
@@ -43,9 +54,8 @@ public class AbstractRecursiveContentLoader {
             return result;
         }
 
-        protected Set<Uri> extractLinks(
-            final RuntimeContext context,
-            XmlWrapper xml) throws XmlException {
+        protected Set<Uri> extractLinks(final RuntimeContext context,
+                XmlWrapper xml) throws XmlException {
             final Set<Uri> references = new HashSet<Uri>();
             if (xml == null) {
                 return references;
@@ -68,7 +78,7 @@ public class AbstractRecursiveContentLoader {
 
         protected Uri getUri(RuntimeContext context, Element node) {
             Uri ref = null;
-            String name = node.getNodeName();
+            String name = getHtmlNodeName(node);
             if ("a".equals(name)) {
                 ref = getUrl(node, "href");
             } else if ("img".equals(name)) {
@@ -77,17 +87,8 @@ public class AbstractRecursiveContentLoader {
             return ref;
         }
 
-        protected Uri getUrl(Element node, String attr) {
-            Uri ref = null;
-            String value = node.getAttribute(attr);
-            if (value != null) {
-                ref = new Uri(value);
-            }
-            return ref;
-        }
-
         protected void onXmlDocument(RuntimeContext context, XmlWrapper xml)
-            throws XmlException {
+                throws XmlException {
         }
 
     }
@@ -212,8 +213,7 @@ public class AbstractRecursiveContentLoader {
     }
 
     public static class ProgressListenerProvider extends ListenerGroup
-        implements
-        IProgressListenerProvider {
+            implements IProgressListenerProvider {
 
         public Set<RuntimeContext> fResults = new HashSet<RuntimeContext>();
 
@@ -260,10 +260,8 @@ public class AbstractRecursiveContentLoader {
                             onError(t);
                         }
                     }
-                    println("Download '"
-                        + context.getUrl()
-                        + "' ... "
-                        + (ok ? "OK" : "ERROR"));
+                    println("Download '" + context.getUrl() + "' ... "
+                            + (ok ? "OK" : "ERROR"));
                 }
 
                 @Override
@@ -306,26 +304,20 @@ public class AbstractRecursiveContentLoader {
 
     private Set<Uri> fUrlSet = Collections.synchronizedSet(new HashSet<Uri>());
 
-    public AbstractRecursiveContentLoader(
-        ExecutorService executor,
-        RuntimeContext context,
-        IProgressListenerProvider listenerProvider,
-        ILinkExtractor linkExtractor) {
+    public AbstractRecursiveContentLoader(ExecutorService executor,
+            RuntimeContext context, IProgressListenerProvider listenerProvider,
+            ILinkExtractor linkExtractor) {
         fParentContext = context;
         fExecutor = executor;
         fListenerProvider = listenerProvider;
         fLinkExtractor = linkExtractor;
     }
 
-    public AbstractRecursiveContentLoader(
-        RuntimeContext context,
-        IProgressListenerProvider listenerProvider,
-        ILinkExtractor linkExtractor) {
-        this(
-            Executors.newCachedThreadPool(),
-            context,
-            listenerProvider,
-            linkExtractor);
+    public AbstractRecursiveContentLoader(RuntimeContext context,
+            IProgressListenerProvider listenerProvider,
+            ILinkExtractor linkExtractor) {
+        this(Executors.newCachedThreadPool(), context, listenerProvider,
+                linkExtractor);
     }
 
     private void load(RuntimeContext context, final IProgressListener listener) {
@@ -339,7 +331,7 @@ public class AbstractRecursiveContentLoader {
             listener.beginDownload();
             try {
                 DownloadAdapter downloadAdapter = context
-                    .getAdapter(DownloadAdapter.class);
+                        .getAdapter(DownloadAdapter.class);
                 try {
                     downloadAdapter.loadResource();
                     ok = downloadAdapter.isOK();
@@ -362,12 +354,11 @@ public class AbstractRecursiveContentLoader {
                         for (Uri childUri : links) {
                             childUri = getNormalizedUri(childUri);
                             RuntimeContext childContext = context
-                                .newContext(childUri);
+                                    .newContext(childUri);
                             IProgressListener childListener = fListenerProvider
-                                .getListeners(childContext);
-                            submit(
-                                childContext,
-                                listenerGroup.add(childListener));
+                                    .getListeners(childContext);
+                            submit(childContext,
+                                    listenerGroup.add(childListener));
                         }
                     }
                 }
@@ -386,9 +377,8 @@ public class AbstractRecursiveContentLoader {
         submit(context, listener);
     }
 
-    private void submit(
-        final RuntimeContext context,
-        final IProgressListener listener) {
+    private void submit(final RuntimeContext context,
+            final IProgressListener listener) {
         fExecutor.submit(new Runnable() {
             public void run() {
                 load(context, listener);
