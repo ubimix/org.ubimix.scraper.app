@@ -12,7 +12,6 @@ import java.io.OutputStream;
 
 import org.webreformatter.commons.io.IOUtil;
 import org.webreformatter.resources.IContentAdapter;
-import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.WrfResourceAdapter;
 
 /**
@@ -28,10 +27,8 @@ public class ContentAdapter extends WrfResourceAdapter
         void unlock();
     }
 
-    private WrfResource fResource;
-
-    public ContentAdapter(IWrfResource instance) {
-        fResource = (WrfResource) instance;
+    public ContentAdapter(WrfResource instance) {
+        super(instance);
     }
 
     public void delete() throws IOException {
@@ -107,8 +104,13 @@ public class ContentAdapter extends WrfResourceAdapter
         return file.exists() ? file.lastModified() : -1;
     }
 
+    @Override
+    public WrfResource getResource() {
+        return (WrfResource) super.getResource();
+    }
+
     private File getResourceFile() {
-        File file = fResource.getResourceFile("data.bin");
+        File file = getResource().getResourceFile("data.bin");
         return file;
     }
 

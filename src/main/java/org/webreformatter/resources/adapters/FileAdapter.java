@@ -45,17 +45,12 @@ public class FileAdapter extends WrfResourceAdapter {
     }
 
     /**
-     * The internal resource. This adapter is used for this resource.
-     */
-    private IWrfResource fResource;
-
-    /**
      * The default constructor initializing the internal fields.
      * 
      * @param instance the resource instance to set
      */
     public FileAdapter(IWrfResource instance) {
-        fResource = instance;
+        super(instance);
     }
 
     public void copy(InputStream input, OutputStream out) throws IOException {

@@ -1,7 +1,5 @@
 package org.webreformatter.resources;
 
-import java.util.Iterator;
-
 import org.webreformatter.commons.adapters.IAdaptableObject;
 import org.webreformatter.commons.uri.Path;
 
@@ -11,14 +9,6 @@ import org.webreformatter.commons.uri.Path;
  * @author kotelnikov
  */
 public interface IWrfResource extends IAdaptableObject {
-
-    /**
-     * Returns an iterator over child resources. Each child resource has the
-     * path starting with the parent path.
-     * 
-     * @return an iterator over child resource
-     */
-    Iterator<IWrfResource> getChildren();
 
     /**
      * Returns the path of this resource
@@ -39,6 +29,7 @@ public interface IWrfResource extends IAdaptableObject {
      * resource.
      * 
      * @param event the event used to notify adapters.
+     * @see IWrfResourceAdapter#handleEvent(Object)
      */
     void notifyAdapters(Object event);
 

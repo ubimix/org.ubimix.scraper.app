@@ -26,8 +26,6 @@ public abstract class AbstractXmlAdapter extends WrfResourceAdapter {
 
     private ElementBasedNamespaceContext fNamespaceElementContext;
 
-    protected IWrfResource fResource;
-
     private XmlWrapper fWrapper;
 
     private XmlContext fXmlContext = XmlContext
@@ -35,7 +33,7 @@ public abstract class AbstractXmlAdapter extends WrfResourceAdapter {
         .build();
 
     public AbstractXmlAdapter(IWrfResource resource) {
-        fResource = resource;
+        super(resource);
     }
 
     public XmlWrapper applyXSLT(IWrfResource resource)

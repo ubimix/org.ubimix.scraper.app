@@ -4,9 +4,6 @@
 package org.webreformatter.resources.impl;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.webreformatter.commons.adapters.AdaptableObject;
@@ -48,30 +45,6 @@ public class WrfResource extends AdaptableObject implements IWrfResource {
     @Override
     public <T> T getAdapter(Class<T> type) {
         return super.getAdapter(type);
-    }
-
-    /**
-     * @return
-     */
-    public Iterator<IWrfResource> getChildren() {
-        File dir = getResourceDirectory();
-        List<IWrfResource> result = new ArrayList<IWrfResource>();
-        if (dir.exists()) {
-            Path resourcePath = getPath();
-            File[] list = dir.listFiles();
-            if (list != null) {
-                for (File child : list) {
-                    if (!child.isDirectory()) {
-                        continue;
-                    }
-                    String name = child.getName();
-                    Path p = resourcePath.getBuilder().appendPath(name).build();
-                    IWrfResource resource = fProvider.getResource(p, false);
-                    result.add(resource);
-                }
-            }
-        }
-        return result.iterator();
     }
 
     /**

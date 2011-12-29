@@ -20,11 +20,8 @@ public class CachedResourceAdapter extends WrfResourceAdapter {
 
     private static final String PROPERTY_STATUS_CODE = "StatusCode";
 
-    private IWrfResource fResource;
-
     public CachedResourceAdapter(IWrfResource resource) {
-        super();
-        fResource = resource;
+        super(resource);
     }
 
     public void copyPropertiesFrom(IPropertyAdapter from) throws IOException {

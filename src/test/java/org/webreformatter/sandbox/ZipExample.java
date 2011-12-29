@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.resources;
+package org.webreformatter.sandbox;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

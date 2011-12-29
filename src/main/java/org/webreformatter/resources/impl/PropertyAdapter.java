@@ -16,7 +16,6 @@ import java.util.Set;
 
 import org.webreformatter.commons.io.IOUtil;
 import org.webreformatter.resources.IPropertyAdapter;
-import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.WrfResourceAdapter;
 
 /**
@@ -28,10 +27,8 @@ public class PropertyAdapter extends WrfResourceAdapter
 
     private Properties fProperties;
 
-    private WrfResource fResource;
-
-    public PropertyAdapter(IWrfResource instance) {
-        fResource = (WrfResource) instance;
+    public PropertyAdapter(WrfResource instance) {
+        super(instance);
     }
 
     private synchronized void checkProperties() throws IOException {
@@ -64,7 +61,7 @@ public class PropertyAdapter extends WrfResourceAdapter
     }
 
     private File getPropertiesFile() {
-        File file = fResource.getResourceFile("data.properties");
+        File file = getResource().getResourceFile("data.properties");
         return file;
     }
 
@@ -86,6 +83,11 @@ public class PropertyAdapter extends WrfResourceAdapter
             }
         }
         return result;
+    }
+
+    @Override
+    public WrfResource getResource() {
+        return (WrfResource) super.getResource();
     }
 
     public synchronized void remove() {

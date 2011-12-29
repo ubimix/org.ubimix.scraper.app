@@ -48,11 +48,9 @@ public class EncodingAdapter extends WrfResourceAdapter {
 
     private String fEncoding;
 
-    private IWrfResource fResource;
-
     protected EncodingAdapter(IEncodingDetector detector, IWrfResource instance) {
+        super(instance);
         fDetector = detector;
-        fResource = instance;
     }
 
     public synchronized String getEncoding() throws IOException {

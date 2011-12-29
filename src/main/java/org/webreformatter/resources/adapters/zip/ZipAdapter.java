@@ -24,10 +24,8 @@ import org.webreformatter.resources.WrfResourceAdapter;
  */
 public class ZipAdapter extends WrfResourceAdapter {
 
-    private IWrfResource fResource;
-
     public ZipAdapter(IWrfResource instance) {
-        fResource = instance;
+        super(instance);
     }
 
     private ZipEntry writeZipEntry(

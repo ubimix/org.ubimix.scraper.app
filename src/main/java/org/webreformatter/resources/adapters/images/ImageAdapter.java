@@ -26,10 +26,8 @@ public class ImageAdapter extends WrfResourceAdapter {
 
     private BufferedImage fImage;
 
-    private IWrfResource fResource;
-
     public ImageAdapter(IWrfResource instance) {
-        fResource = instance;
+        super(instance);
     }
 
     public BufferedImage getImage() throws IOException {

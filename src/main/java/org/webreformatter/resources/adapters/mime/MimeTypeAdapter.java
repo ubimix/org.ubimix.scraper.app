@@ -43,11 +43,9 @@ public class MimeTypeAdapter extends WrfResourceAdapter {
 
     private String fMimeType;
 
-    private IWrfResource fResource;
-
     protected MimeTypeAdapter(IMimeTypeDetector detector, IWrfResource instance) {
+        super(instance);
         fDetector = detector;
-        fResource = instance;
     }
 
     public synchronized String getMimeType() throws IOException {

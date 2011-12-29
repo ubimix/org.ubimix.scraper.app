@@ -19,10 +19,8 @@ import org.webreformatter.resources.WrfResourceAdapter;
  */
 public class StringAdapter extends WrfResourceAdapter {
 
-    private IWrfResource fResource;
-
     public StringAdapter(IWrfResource instance) {
-        fResource = instance;
+        super(instance);
     }
 
     public String getContentAsString() throws IOException {

@@ -12,6 +12,7 @@ import org.webreformatter.commons.adapters.AdapterFactoryUtils;
 import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.adapters.IAdapterRegistry;
 import org.webreformatter.resources.IContentAdapter;
+import org.webreformatter.resources.IHierarchyAdapter;
 import org.webreformatter.resources.IPropertyAdapter;
 import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
@@ -69,6 +70,7 @@ public class WrfResourceRepository extends AdaptableObject
     }
 
     protected void initDefaultAdapters() {
+        registerResourceAdapter(IHierarchyAdapter.class, HierarchyAdapter.class);
         registerResourceAdapter(IContentAdapter.class, ContentAdapter.class);
         registerResourceAdapter(IPropertyAdapter.class, PropertyAdapter.class);
     }

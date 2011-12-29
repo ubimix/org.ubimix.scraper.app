@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.w3c.dom.Document;
-import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.server.xml.XmlException;
@@ -17,19 +16,6 @@ import org.webreformatter.server.xml.XmlWrapper;
  * @author kotelnikov
  */
 public class XmlAdapter extends AbstractXmlAdapter {
-
-    public static IAdapterFactory getAdapterFactory() {
-        return new IAdapterFactory() {
-            @SuppressWarnings("unchecked")
-            public <T> T getAdapter(Object instance, Class<T> type) {
-                if (type != XmlAdapter.class) {
-                    return null;
-                }
-                IWrfResource resource = (IWrfResource) instance;
-                return (T) new XmlAdapter(resource);
-            }
-        };
-    }
 
     public XmlAdapter(IWrfResource instance) {
         super(instance);
