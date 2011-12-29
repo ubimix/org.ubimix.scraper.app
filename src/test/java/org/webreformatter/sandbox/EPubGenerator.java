@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -17,41 +18,59 @@ import java.util.zip.ZipOutputStream;
  */
 public class EPubGenerator {
 
-    private static void addEntry(
+    protected static void addEntry(
         String name,
+        String content,
+        ZipOutputStream out) throws IOException {
+        byte[] array = content.getBytes("UTF-8");
+        InputStream input = new ByteArrayInputStream(array);
+        ZipEntry entry = newZipEntry(name);
+        out.setMethod(ZipEntry.DEFLATED);
+        entry.setMethod(ZipEntry.DEFLATED);
+        addEntry(entry, input, out);
+    }
+
+    private static void addEntry(
+        ZipEntry entry,
         InputStream in,
         ZipOutputStream out) throws IOException {
         try {
-            out.putNextEntry(new ZipEntry(name));
+            out.putNextEntry(entry);
             int len;
             byte[] buf = new byte[1000 * 10];
             while ((len = in.read(buf)) > 0) {
                 out.write(buf, 0, len);
             }
             out.closeEntry();
+        } catch (Throwable t) {
+            t.printStackTrace();
         } finally {
             in.close();
         }
     }
 
-    private static void addEntry(
+    protected static void addStoredEntry(
         String name,
         String content,
         ZipOutputStream out) throws IOException {
-        InputStream input = new ByteArrayInputStream(content.getBytes("UTF-8"));
-        addEntry(name, input, out);
+        byte[] array = content.getBytes("UTF-8");
+        InputStream input = new ByteArrayInputStream(array);
+        ZipEntry entry = newZipEntry(name);
+        out.setMethod(ZipEntry.STORED);
+        entry.setMethod(ZipEntry.STORED);
+        entry.setSize(array.length);
+        CRC32 crc = new CRC32();
+        crc.update(array);
+        entry.setCrc(crc.getValue());
+        addEntry(entry, input, out);
     }
 
     public static void main(String[] args) throws IOException {
-        File inFolder = new File("./src");
-        File outFolder = new File("./out.zip");
+        File outFolder = new File("./tmp/test.epub");
         ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(
             new FileOutputStream(outFolder)));
         try {
-            out.setMethod(ZipOutputStream.STORED);
-            addEntry("mimetype", "application/epub+zip", out);
-
-            out.setMethod(ZipOutputStream.DEFLATED);
+            addStoredEntry("mimetype", "application/epub+zip", out);
 
             addEntry(
                 "container.xml",
@@ -135,7 +154,7 @@ public class EPubGenerator {
                     + "   </head>\n"
                     + "\n"
                     + "   <docTitle>\n"
-                    + "      <text>Epub Format Construction Guide</text>\n"
+                    + "      <text>Hello File</text>\n"
                     + "   </docTitle>\n"
                     + "\n"
                     + "   <navMap>\n"
@@ -145,80 +164,46 @@ public class EPubGenerator {
                     + "         </navLabel>\n"
                     + "         <content src=\"hello.html\"/>\n"
                     + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-2\" playOrder=\"2\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>Table of Contents</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-contents.html\"/>\n"
-                    + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-3\" playOrder=\"3\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>Introduction</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-intro.html\"/>\n"
-                    + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-4\" playOrder=\"4\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>1: XHTML Documents</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-1.html\"/>\n"
-                    + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-5\" playOrder=\"5\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>2: Package And Container Files</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-2.html\"/>\n"
-                    + "         <navPoint id=\"navPoint-6\" playOrder=\"6\">\n"
-                    + "            <navLabel>\n"
-                    + "               <text>mimetype</text>\n"
-                    + "            </navLabel>\n"
-                    + "            <content src=\"EpubGuide-2.html#mimetype\"/>\n"
-                    + "         </navPoint>\n"
-                    + "         <navPoint id=\"navPoint-7\" playOrder=\"7\">\n"
-                    + "            <navLabel>\n"
-                    + "               <text>container.xml</text>\n"
-                    + "            </navLabel>\n"
-                    + "            <content src=\"EpubGuide-2.html#containerxml\"/>\n"
-                    + "         </navPoint>\n"
-                    + "         <navPoint id=\"navPoint-8\" playOrder=\"8\">\n"
-                    + "            <navLabel>\n"
-                    + "               <text>content.opf</text>\n"
-                    + "            </navLabel>\n"
-                    + "            <content src=\"EpubGuide-2.html#contentopf\"/>\n"
-                    + "         </navPoint>\n"
-                    + "         <navPoint id=\"navPoint-9\" playOrder=\"9\">\n"
-                    + "            <navLabel>\n"
-                    + "               <text>toc.ncx</text>\n"
-                    + "            </navLabel>\n"
-                    + "            <content src=\"EpubGuide-2.html#tocncx\"/>\n"
-                    + "         </navPoint>\n"
-                    + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-10\" playOrder=\"10\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>3: ADE stylesheet</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-3.html\"/>\n"
-                    + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-11\" playOrder=\"11\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>4: Container Structure</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-4.html\"/>\n"
-                    + "      </navPoint>\n"
-                    + "      <navPoint id=\"navPoint-12\" playOrder=\"12\">\n"
-                    + "         <navLabel>\n"
-                    + "            <text>Specifications List</text>\n"
-                    + "         </navLabel>\n"
-                    + "         <content src=\"EpubGuide-specs.html\"/>\n"
-                    + "      </navPoint>\n"
                     + "   </navMap>\n"
                     + "\n"
                     + "</ncx>",
                 out);
 
+            addEntry("main.css", ""
+                + "/* This is a simple CSS file */"
+                + "body {\n"
+                + "   background-color:       white;\n"
+                + "   text-align:             center;\n"
+                + "   margin:                 0em;\n"
+                + "   padding:                0em;\n"
+                + "}\n"
+                + "", out);
+            addEntry(
+                "hello.html",
+                ""
+                    + "<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en'>\n"
+                    + " <head>\n"
+                    + "     <link rel='stylesheet' type='text/css' href='../style.css' />\n"
+                    + " </head>\n"
+                    + " <body>\n"
+                    + "     <h1>Hello world!</h1>\n"
+                    + "     <p>This is a simple paragraph</p>\n"
+                    + " </body>\n"
+                    + "</html>",
+                out);
+
         } finally {
             out.close();
         }
+    }
+
+    protected static ZipEntry newZipEntry(String name) {
+        name = name.replace('\\', '/');
+        if (name.startsWith("/")) {
+            name = name.substring(1);
+        }
+        ZipEntry entry = new ZipEntry(name);
+        return entry;
     }
 
     /**
