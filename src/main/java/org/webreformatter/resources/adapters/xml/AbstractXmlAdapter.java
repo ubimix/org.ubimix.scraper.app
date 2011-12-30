@@ -78,6 +78,13 @@ public abstract class AbstractXmlAdapter extends WrfResourceAdapter {
         return fWrapper;
     }
 
+    public <T extends XmlWrapper> T getWrapper(Class<T> type)
+        throws IOException,
+        XmlException {
+        XmlWrapper wrapper = getWrapper();
+        return wrapper.to(type);
+    }
+
     public XmlContext getXmlContext() {
         return fXmlContext;
     }

@@ -9,7 +9,9 @@ import java.net.UnknownHostException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
@@ -140,13 +142,16 @@ public class HttpProtocolHandler implements IProtocolHandler {
                     httpRequest);
                 StatusLine statusLine = httpResponse.getStatusLine();
                 int code = statusLine.getStatusCode();
+                Map<String, String> map = new HashMap<String, String>();
                 for (Header header : httpResponse.getAllHeaders()) {
                     String key = header.getName();
                     String value = header.getValue();
-                    properties.setProperty(key, value);
+                    map.put(key, value);
                 }
                 // FIXME: externalize the "StatusCode" key
-                properties.setProperty("StatusCode", code + "");
+                map.put("StatusCode", code + "");
+                properties.setProperties(map);
+
                 boolean ok = false;
                 if (code != 200) {
                     if (etag != null && code == 304 /* Not modified */) {

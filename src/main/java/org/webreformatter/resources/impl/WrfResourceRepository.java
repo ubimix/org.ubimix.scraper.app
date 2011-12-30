@@ -53,11 +53,7 @@ public class WrfResourceRepository extends AdaptableObject
             if (provider == null) {
                 File dir = getResourceProviderDir(key);
                 if (dir.exists() || create) {
-                    IAdapterFactory adapterFactory = getAdapterFactory();
-                    provider = new WrfResourceProvider(
-                        dir,
-                        fAdapterRegistry,
-                        adapterFactory);
+                    provider = new WrfResourceProvider(this, dir);
                     fCache.put(key, provider);
                 }
             }

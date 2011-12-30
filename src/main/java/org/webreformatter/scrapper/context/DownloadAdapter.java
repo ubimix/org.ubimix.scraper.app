@@ -51,14 +51,27 @@ public class DownloadAdapter extends RuntimeContextAdapter {
     }
 
     public String getMimeType() throws IOException {
+        return getMimeType(false);
+    }
+
+    public String getMimeType(boolean load) throws IOException {
         String result = null;
-        IWrfResource resource = loadResource();
+        IWrfResource resource = load ? loadResource() : getResource();
         if (resource != null) {
             MimeTypeAdapter adapter = resource
                 .getAdapter(MimeTypeAdapter.class);
             result = adapter.getMimeType();
         }
         return result;
+    }
+
+    public IWrfResource getResource() {
+        String resourceNameSuffix = fRuntimeContext
+            .getParameter(KEY_RESOURCE_SUFFIX);
+        IWrfResource resource = fRuntimeContext.getResource(
+            RESOURCE_DOWNLOAD,
+            resourceNameSuffix);
+        return resource;
     }
 
     public HttpStatusCode getStatusCode() {
@@ -75,11 +88,7 @@ public class DownloadAdapter extends RuntimeContextAdapter {
 
     public IWrfResource loadResource() throws IOException {
         Uri url = fRuntimeContext.getUrl();
-        String resourceNameSuffix = fRuntimeContext
-            .getParameter(KEY_RESOURCE_SUFFIX);
-        IWrfResource resource = fRuntimeContext.getResource(
-            RESOURCE_DOWNLOAD,
-            resourceNameSuffix);
+        IWrfResource resource = getResource();
         boolean clearCache = fRuntimeContext
             .getParameter(KEY_CLEARCACHE, false);
         boolean ok = !clearCache && !fRuntimeContext.isExpired(resource);

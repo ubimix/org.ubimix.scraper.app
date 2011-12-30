@@ -9,10 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.webreformatter.commons.adapters.AdaptableObject;
-import org.webreformatter.commons.adapters.IAdapterFactory;
-import org.webreformatter.commons.adapters.IAdapterRegistry;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.UriUtil;
+import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 
@@ -25,17 +24,17 @@ public class WrfResourceProvider extends AdaptableObject
 
     private Map<Path, WeakReference<IWrfResource>> fCache = new HashMap<Path, WeakReference<IWrfResource>>();
 
+    private WrfResourceRepository fRepository;
+
     private File fRoot;
 
     /**
      * @param root
      * @param conf
      */
-    public WrfResourceProvider(
-        File root,
-        IAdapterRegistry adapterRegistry,
-        IAdapterFactory adapterFactory) {
-        super(adapterFactory);
+    public WrfResourceProvider(WrfResourceRepository repository, File root) {
+        super(repository.getAdapterFactory());
+        fRepository = repository;
         fRoot = root;
         fRoot.mkdirs();
     }
@@ -50,6 +49,10 @@ public class WrfResourceProvider extends AdaptableObject
         }
         WrfResourceProvider o = (WrfResourceProvider) obj;
         return fRoot.equals(o.fRoot);
+    }
+
+    public IWrfRepository getRepository() {
+        return fRepository;
     }
 
     public synchronized IWrfResource getResource(Path link, boolean create) {

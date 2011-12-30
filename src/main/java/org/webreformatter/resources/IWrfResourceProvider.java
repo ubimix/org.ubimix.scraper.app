@@ -8,6 +8,8 @@ import org.webreformatter.commons.uri.Path;
  */
 public interface IWrfResourceProvider extends IAdaptableObject {
 
+    IWrfRepository getRepository();
+
     IWrfResource getResource(Path path, boolean create);
 
 }
