@@ -1,0 +1,119 @@
+{{include document="Menu"/}}
+
+
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='twelvecol' %)
+(((
+WRF provides products easing the automated processing of Web content. AutoExtractor detects automatically the structure of Web pages. WRF allows to assemble normalized fragments of Web pages for producing applications which harness existing Web content.
+)))
+)))
+)))
+
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='twelvecol' %)
+(((
+{{toc start="2" end="2"/}}
+)))
+)))
+)))
+
+
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='sixcol' %)
+(((
+== AutoExtractor ==
+
+AutoExtractor automatically segments Web pages into functional areas and extracts their relevant parts. An extensible set of data types is used for characterizing each zone, comprising the following ones by default: content (page's main information area), title, media (such as images, videos), metadata (such as tags, date, location data etc.), navigation (menus), sidebox information (contextual data), advertisement, actions (such as the Facebook, Twitter, Digg actions), links.
+
+AutoExtractor attributes weights to the identified areas along each data type. In that sense, AutoExtractor performs a "spectral analyzis" of Web pages and exposes their main "colors".
+
+In the BBC page on the right, the following key areas have been identified by AutoExtractor: the main content part, the media parts, the conversations below the article, the contextual sidebox giving insight about the author, the two ads, the navigation menus and the link boxes.
+
+AutoExtractor aims at simplifying and enhancing the following processes:
+
+* Creation of vertical search engines: for instance, identifying the areas containing discussions makes it possible to index efficiently Web conversations and to perform sentiment analyzis or other text mining analyzis in order to detect trends.
+* Creation of social magazines: for creating well formatted personalized social magazines from the links posted on social networks, the need arises to auto-detect the key parts of the referenced content.
+* More generally, AutoExtractor can be used for creating applications harnessing existing content efficiently.
+)))
+(% class='sixcol last' %)
+(((
+(% style="vertical-align:top" %)
+(((
+[[image:ws.Images@autoextractor.png]]
+)))
+)))
+)))
+)))
+
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='twelvecol' %)
+(((
+== WebReformatter ==
+
+WebReformatter provides a rich API for building Web sites or applications harnessing existing content as-is.
+
+)))
+)))
+)))
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='twelvecol' %)
+(((
+(% style="text-align:center" %)
+(((
+[[image:ws.Images@wrfstudio.png]]
+)))
+)))
+)))
+)))
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='twelvecol' %)
+(((
+WebReformatter hinges on a content normalizer and on AutoExtractor.
+
+The content normalizer cleans and normalizes any Web page and turns it into an [[Atom feed>>http://en.wikipedia.org/wiki/Atom_(standard)]] for easing the consumption of the content by external tools. The normalization process typically includes the following operations: alignment of the headings hierarchy, transformation of links into absolute URLs, removal of unnecessary div tags, replacement of line breaks by paragraph tags, etc.
+)))
+)))
+)))
+
+
+
+(% class='container' %)
+(((
+(% class='row' %)
+(((
+(% class='twelvecol' %)
+(((
+(% style="text-align:center" %)
+(((
+[[image:ws.Images@normalizer.png]]
+)))
+)))
+)))
+)))
+
+
+
