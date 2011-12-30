@@ -142,7 +142,7 @@ public class AtomProcessing extends RuntimeContextAdapter {
                 htmlResource.remove();
             }
         }
-        XmlWrapper result = exists ? xmlAdapter.getWrapperCopy() : null;
+        XmlWrapper result = exists ? xmlAdapter.getWrapper() : null;
         return result;
     }
 

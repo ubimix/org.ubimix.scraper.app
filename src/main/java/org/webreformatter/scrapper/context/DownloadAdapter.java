@@ -10,6 +10,7 @@ import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.resources.IWrfResource;
+import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.scrapper.protocol.AccessManager;
 import org.webreformatter.scrapper.protocol.AccessManager.CredentialInfo;
@@ -22,6 +23,8 @@ import org.webreformatter.scrapper.protocol.IProtocolHandler;
 public class DownloadAdapter extends RuntimeContextAdapter {
 
     protected final static String KEY_CLEARCACHE = "clearcache";
+
+    protected final static String KEY_NODOWNLOAD = "nodownload";
 
     protected final static String KEY_RESOURCE_SUFFIX = "resourceSuffix";
 
@@ -91,8 +94,14 @@ public class DownloadAdapter extends RuntimeContextAdapter {
         IWrfResource resource = getResource();
         boolean clearCache = fRuntimeContext
             .getParameter(KEY_CLEARCACHE, false);
+        boolean noDownload = fRuntimeContext
+            .getParameter(KEY_NODOWNLOAD, false);
         boolean ok = !clearCache && !fRuntimeContext.isExpired(resource);
-        if (ok) {
+        if (noDownload) {
+            CachedResourceAdapter cacheAdapter = resource
+                .getAdapter(CachedResourceAdapter.class);
+            fStatusCode = cacheAdapter.getStatus();
+        } else if (ok) {
             fStatusCode = HttpStatusCode.STATUS_304; /* NOT_MODIFIED */
         } else {
             AccessManager accessManager = fRuntimeContext.getAccessManager();
