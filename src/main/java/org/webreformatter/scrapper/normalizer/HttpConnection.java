@@ -1,17 +1,14 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.protocol;
+package org.webreformatter.scrapper.normalizer;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.UnknownHostException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
@@ -28,7 +25,6 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
-import org.apache.http.StatusLine;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.auth.params.AuthPNames;
@@ -51,15 +47,12 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.RequestUserAgent;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.resources.IContentAdapter;
-import org.webreformatter.resources.IPropertyAdapter;
-import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
+import org.webreformatter.scrapper.protocol.HttpProtocolHandler;
 
 /**
  * @author kotelnikov
  */
-public class HttpProtocolHandler implements IProtocolHandler {
+public class HttpConnection {
 
     private final static Logger log = Logger
         .getLogger(HttpProtocolHandler.class.getName());
@@ -69,8 +62,46 @@ public class HttpProtocolHandler implements IProtocolHandler {
     /**
      * @throws IOException
      */
-    public HttpProtocolHandler() throws IOException {
+    public HttpConnection() throws IOException {
         initSSL();
+    }
+
+    public HttpResponse get(Uri url, String login, String password)
+        throws IOException {
+        Uri.Builder pathBuilder = new Uri.Builder();
+        pathBuilder.setFullPath(url.getPath());
+        pathBuilder.setQuery(url.getQuery());
+        String path = pathBuilder.getUri(true, true);
+        HttpRequest httpRequest = new BasicHttpRequest(
+            "GET",
+            path,
+            HttpVersion.HTTP_1_1);
+        String hostName = url.getBuilder().setUserInfo(null).getHost();
+        int port = url.getPort();
+        if (port <= 0) {
+            port = -1;
+        }
+        String scheme = url.getScheme();
+        HttpHost host = new HttpHost(hostName, port, scheme);
+
+        httpRequest.setHeader(
+            "Accept-Charset",
+            "UTF-8,ISO-8859-1;q=0.7,*;q=0.3");
+
+        DefaultHttpClient httpClient = getClient();
+        try {
+            if (login != null) {
+                httpClient.getCredentialsProvider().setCredentials(
+                    new AuthScope(host.getHostName(), host.getPort()),
+                    new UsernamePasswordCredentials(login, password));
+            }
+
+            HttpResponse httpResponse = httpClient.execute(host, httpRequest);
+            return httpResponse;
+        } finally {
+            releaseClient(httpClient);
+        }
+
     }
 
     private synchronized DefaultHttpClient getClient() throws IOException {
@@ -88,111 +119,6 @@ public class HttpProtocolHandler implements IProtocolHandler {
         }
         log.log(Level.FINE, msg, e);
         return new IOException(msg, e);
-    }
-
-    public HttpStatusCode handleRequest(
-        Uri url,
-        String login,
-        String password,
-        IWrfResource resource) {
-        try {
-            Uri.Builder pathBuilder = new Uri.Builder();
-            pathBuilder.setFullPath(url.getPath());
-            pathBuilder.setQuery(url.getQuery());
-            String path = pathBuilder.getUri(true, true);
-            HttpRequest httpRequest = new BasicHttpRequest(
-                "GET",
-                path,
-                HttpVersion.HTTP_1_1);
-            String hostName = url.getBuilder().setUserInfo(null).getHost();
-            int port = url.getPort();
-            if (port <= 0) {
-                port = -1;
-            }
-            String scheme = url.getScheme();
-            HttpHost host = new HttpHost(hostName, port, scheme);
-
-            httpRequest.setHeader(
-                "Accept-Charset",
-                "UTF-8,ISO-8859-1;q=0.7,*;q=0.3");
-
-            DefaultHttpClient httpClient = getClient();
-            try {
-                if (login != null) {
-                    httpClient.getCredentialsProvider().setCredentials(
-                        new AuthScope(host.getHostName(), host.getPort()),
-                        new UsernamePasswordCredentials(login, password));
-                }
-
-                IPropertyAdapter properties = resource
-                    .getAdapter(IPropertyAdapter.class);
-                String etag = properties.getProperty("ETag");
-                if (etag != null) {
-                    httpRequest.setHeader("If-None-Match", etag);
-                    String lastModified = properties
-                        .getProperty("Last-Modified");
-                    if (lastModified != null) {
-                        httpRequest
-                            .setHeader("If-Modified-Since", lastModified);
-                    }
-                }
-
-                HttpResponse httpResponse = httpClient.execute(
-                    host,
-                    httpRequest);
-                StatusLine statusLine = httpResponse.getStatusLine();
-                int code = statusLine.getStatusCode();
-                Map<String, String> map = new HashMap<String, String>();
-                for (Header header : httpResponse.getAllHeaders()) {
-                    String key = header.getName();
-                    String value = header.getValue();
-                    map.put(key, value);
-                }
-                // FIXME: externalize the "StatusCode" key
-                map.put("StatusCode", code + "");
-                properties.setProperties(map);
-
-                boolean ok = false;
-                if (code != 200) {
-                    if (etag != null && code == 304 /* Not modified */) {
-                        log.fine("304: Not modified. URL: " + url);
-                        ok = true;
-                    } else {
-                        log.fine(code + ": URL: " + url);
-                    }
-                } else {
-                    HttpEntity entity = httpResponse.getEntity();
-                    InputStream input = entity.getContent();
-                    try {
-                        Header encoding = entity.getContentEncoding();
-                        if (encoding != null
-                            && "gzip".equalsIgnoreCase(encoding.getValue())) {
-                            input = new GZIPInputStream(input);
-                        }
-                        IContentAdapter contentAdapter = resource
-                            .getAdapter(IContentAdapter.class);
-                        contentAdapter.writeContent(input);
-                    } finally {
-                        input.close();
-                    }
-                    ok = true;
-                }
-                if (ok) {
-                    CachedResourceAdapter cacheAdapter = resource
-                        .getAdapter(CachedResourceAdapter.class);
-                    cacheAdapter.touch();
-                }
-                return HttpStatusCode.getStatusCode(code);
-            } finally {
-                releaseClient(httpClient);
-            }
-        } catch (UnknownHostException e) {
-            handleError("Resource host '" + url + "' is unknown. ", e);
-            return HttpStatusCode.STATUS_404;
-        } catch (IOException e) {
-            handleError("Can not download resource '" + url + "'. ", e);
-            return HttpStatusCode.STATUS_500;
-        }
     }
 
     private void initSSL() throws IOException {
@@ -263,7 +189,16 @@ public class HttpProtocolHandler implements IProtocolHandler {
         return httpclient;
     }
 
-    private synchronized void releaseClient(DefaultHttpClient httpClient) {
+    public InputStream openStream(HttpResponse response) throws IOException {
+        HttpEntity entity = response.getEntity();
+        InputStream input = entity.getContent();
+        Header encoding = entity.getContentEncoding();
+        if (encoding != null && "gzip".equalsIgnoreCase(encoding.getValue())) {
+            input = new GZIPInputStream(input);
+        }
+        return input;
     }
 
+    private synchronized void releaseClient(DefaultHttpClient httpClient) {
+    }
 }

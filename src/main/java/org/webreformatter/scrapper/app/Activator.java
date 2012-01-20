@@ -47,11 +47,8 @@ import org.webreformatter.scrapper.events.ZipExportHandler;
 import org.webreformatter.scrapper.normalizer.CompositeDocumentNormalizer;
 import org.webreformatter.scrapper.normalizer.IDocumentNormalizer;
 import org.webreformatter.scrapper.normalizer.XslBasedContentNormalizer;
-import org.webreformatter.scrapper.protocol.ClasspathProtocolHandler;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
-import org.webreformatter.scrapper.protocol.HttpProtocolHandler;
-import org.webreformatter.scrapper.protocol.IProtocolHandler;
-import org.webreformatter.scrapper.protocol.UrlBasedProtocolHandler;
+import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
 import org.webreformatter.server.mime.IMimeTypeDetector;
 import org.webreformatter.server.mime.MimeTypeDetector;
 
@@ -216,15 +213,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
     protected CompositeProtocolHandler getProtocolHandler() throws IOException {
         if (fProtocolHandler == null) {
             fProtocolHandler = new CompositeProtocolHandler();
-            HttpProtocolHandler httpProtocolHandler = new HttpProtocolHandler();
-            fProtocolHandler.setProtocolHandler("http", httpProtocolHandler);
-            fProtocolHandler.setProtocolHandler("https", httpProtocolHandler);
-            IProtocolHandler urlBasedHandler = new UrlBasedProtocolHandler();
-            fProtocolHandler.setProtocolHandler("file", urlBasedHandler);
-            fProtocolHandler.setDefaultProtocolHandler(urlBasedHandler);
-            fProtocolHandler.setProtocolHandler(
-                "classpath",
-                new ClasspathProtocolHandler());
+            ProtocolHandlerUtils.registerDefaultProtocols(fProtocolHandler);
         }
         return fProtocolHandler;
     }
