@@ -20,8 +20,8 @@ import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.protocol.AccessManager;
-import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.protocol.AccessManager.CredentialInfo;
+import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.protocol.IProtocolHandler;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
@@ -35,47 +35,39 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         super(context);
     }
 
-    public void configureAccessManager(
-        AccessManager configAccessManager,
-        Uri accessConfigUri,
-        PageSetConfig.Builder config) throws IOException, XmlException {
+    public void configureAccessManager(AccessManager configAccessManager,
+            Uri accessConfigUri, PageSetConfig.Builder config)
+            throws IOException, XmlException {
         // Configure access manager
         AccessManager accessManager = new AccessManager();
         config.setAccessManager(accessManager);
         XmlAccessManagerLoader accessManagerLoader = new XmlAccessManagerLoader();
-        XmlWrapper accessConfigXml = getConfigXml(
-            configAccessManager,
-            accessConfigUri);
+        XmlWrapper accessConfigXml = getConfigXml(configAccessManager,
+                accessConfigUri);
         if (accessConfigXml != null) {
-            accessManagerLoader.configure(
-                accessConfigUri,
-                accessManager,
-                accessConfigXml);
+            accessManagerLoader.configure(accessConfigUri, accessManager,
+                    accessConfigXml);
             config.setAccessManager(accessManager);
         }
     }
 
-    public void configurePageSets(
-        AccessManager configAccessManager,
-        Uri siteConfigUri,
-        PageSetConfig.Builder config) throws IOException, XmlException {
-        XmlWrapper siteConfigXml = getConfigXml(
-            configAccessManager,
-            siteConfigUri);
+    public void configurePageSets(AccessManager configAccessManager,
+            Uri siteConfigUri, PageSetConfig.Builder config)
+            throws IOException, XmlException {
+        XmlWrapper siteConfigXml = getConfigXml(configAccessManager,
+                siteConfigUri);
         if (siteConfigXml != null) {
             configurePageSets(siteConfigUri, config, siteConfigXml);
             configureUriMappings(siteConfigUri, config, siteConfigXml);
         }
     }
 
-    protected void configurePageSets(
-        Uri siteConfigUri,
-        PageSetConfig.Builder config,
-        XmlWrapper siteConfigXml) throws XmlException {
+    protected void configurePageSets(Uri siteConfigUri,
+            PageSetConfig.Builder config, XmlWrapper siteConfigXml)
+            throws XmlException {
         XmlUrlToPathMapperLoader loader = new XmlUrlToPathMapperLoader();
-        final UrlToPathMapper urlToPathMapper = loader.configure(
-            siteConfigUri,
-            siteConfigXml);
+        final UrlToPathMapper urlToPathMapper = loader.configure(siteConfigUri,
+                siteConfigXml);
         config.setUrlToPathMapper(urlToPathMapper);
         IUrlTransformer downloadUrlTransformer = new IUrlTransformer() {
             public Uri transform(Uri uri) {
@@ -99,52 +91,48 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
                     result = uri;
                 } else {
                     if (fragment != null) {
-                        result = result
-                            .getBuilder()
-                            .setFragment(fragment)
-                            .build();
+                        result = result.getBuilder().setFragment(fragment)
+                                .build();
                     }
                 }
                 return result;
             }
         };
-        config
-            .setDownloadUrlTransformer(downloadUrlTransformer)
-            .setLocalizeUrlTransformer(localizeUrlTransformer);
+        config.setDownloadUrlTransformer(downloadUrlTransformer)
+                .setLocalizeUrlTransformer(localizeUrlTransformer);
     }
 
-    public void configureUriMappings(
-        AccessManager configAccessManager,
-        Uri siteConfigUri,
-        PageSetConfig.Builder config) throws XmlException, IOException {
-        XmlWrapper siteConfigXml = getConfigXml(
-            configAccessManager,
-            siteConfigUri);
+    public void configureUriMappings(AccessManager configAccessManager,
+            Uri siteConfigUri, PageSetConfig.Builder config)
+            throws XmlException, IOException {
+        XmlWrapper siteConfigXml = getConfigXml(configAccessManager,
+                siteConfigUri);
         if (siteConfigXml != null) {
             configureUriMappings(siteConfigUri, config, siteConfigXml);
         }
     }
 
-    protected void configureUriMappings(
-        Uri siteConfigUri,
-        PageSetConfig.Builder config,
-        XmlWrapper siteConfigXml) throws XmlException {
+    protected void configureUriMappings(Uri siteConfigUri,
+            PageSetConfig.Builder config, XmlWrapper siteConfigXml)
+            throws XmlException {
         XmlUrlMapperLoader loader = new XmlUrlMapperLoader();
         UrlMapper mapper = new UrlMapper();
         config.setUriMapper(mapper);
         loader.configure(siteConfigUri, siteConfigXml, mapper);
     }
 
-    private void configureUrlTransformers(
-        AccessManager configAccessManager,
-        PageSetConfig.Builder config) {
-        // config.setDownloadUrlTransformer(IUrlTransformer.EMPTY);
-        // config.setLocalizeUrlTransformer(IUrlTransformer.EMPTY);
+    private void configureUrlTransformers(AccessManager configAccessManager,
+            PageSetConfig.Builder config) {
+        if (config.getDownloadUrlTransformer() == null) {
+            config.setDownloadUrlTransformer(IUrlTransformer.EMPTY);
+        }
+        if (config.getLocalizeUrlTransformer() == null) {
+            config.setLocalizeUrlTransformer(IUrlTransformer.EMPTY);
+        }
     }
 
-    protected AccessManager getAccessManager(
-        AccessManager configAccessManager,
-        Uri configUri) throws Exception {
+    protected AccessManager getAccessManager(AccessManager configAccessManager,
+            Uri configUri) throws Exception {
         AccessManager accessManager = new AccessManager();
         XmlWrapper xml = getConfigXml(null, configUri);
         if (xml != null) {
@@ -154,35 +142,28 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         return accessManager;
     }
 
-    protected XmlWrapper getConfigXml(
-        AccessManager configAccessManager,
-        Uri configUri) throws IOException, XmlException {
+    protected XmlWrapper getConfigXml(AccessManager configAccessManager,
+            Uri configUri) throws IOException, XmlException {
         String resourceKey = "config";
 
         IWrfRepository repository = fApplicationContext.getRepository();
         IWrfResourceProvider resourceProvider = repository.getResourceProvider(
-            resourceKey,
-            true);
+                resourceKey, true);
         Path resourcePath = UriToPath.getPath(configUri);
         IWrfResource configResource = resourceProvider.getResource(
-            resourcePath,
-            true);
+                resourcePath, true);
         IProtocolHandler protocolHandler = fApplicationContext
-            .getProtocolHandler();
-        CredentialInfo credentials = configAccessManager != null
-            ? configAccessManager.getCredentials(configUri)
-            : null;
+                .getProtocolHandler();
+        CredentialInfo credentials = configAccessManager != null ? configAccessManager
+                .getCredentials(configUri) : null;
         String login = null;
         String password = null;
         if (credentials != null) {
             login = credentials.getLogin();
             password = credentials.getPassword();
         }
-        HttpStatusCode code = protocolHandler.handleRequest(
-            configUri,
-            login,
-            password,
-            configResource);
+        HttpStatusCode code = protocolHandler.handleRequest(configUri, login,
+                password, configResource);
         XmlWrapper xml = null;
         if (!code.isError()) {
             XmlAdapter xmlAdapter = configResource.getAdapter(XmlAdapter.class);
@@ -191,10 +172,9 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         return xml;
     }
 
-    public PageSetConfig loadPageSetConfig(
-        AccessManager configAccessManager,
-        Uri siteConfigUri,
-        Uri accessConfigUri) throws XmlException, IOException {
+    public PageSetConfig loadPageSetConfig(AccessManager configAccessManager,
+            Uri siteConfigUri, Uri accessConfigUri) throws XmlException,
+            IOException {
         PageSetConfig.Builder config = PageSetConfig.builder();
         configureAccessManager(configAccessManager, accessConfigUri, config);
         configurePageSets(configAccessManager, siteConfigUri, config);
@@ -204,9 +184,8 @@ public class PageSetConfigLoader extends ApplicationContextAdapter {
         return result;
     }
 
-    public PageSetConfig loadPageSetConfig(
-        Uri siteConfigUri,
-        Uri accessConfigUri) throws XmlException, IOException {
+    public PageSetConfig loadPageSetConfig(Uri siteConfigUri,
+            Uri accessConfigUri) throws XmlException, IOException {
         return loadPageSetConfig(null, siteConfigUri, accessConfigUri);
     }
 

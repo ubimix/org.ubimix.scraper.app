@@ -44,19 +44,19 @@ public class PageSetConfig {
         }
 
         public PageSetConfig.Builder setAccessManager(
-            AccessManager accessManager) {
+                AccessManager accessManager) {
             fAccessManager = accessManager;
             return this;
         }
 
         public PageSetConfig.Builder setDownloadUrlTransformer(
-            IUrlTransformer downloadUrlTransformer) {
+                IUrlTransformer downloadUrlTransformer) {
             fDownloadUrlTransformer = downloadUrlTransformer;
             return this;
         }
 
         public PageSetConfig.Builder setLocalizeUrlTransformer(
-            IUrlTransformer localizeUrlTransformer) {
+                IUrlTransformer localizeUrlTransformer) {
             fLocalizeUrlTransformer = localizeUrlTransformer;
             return this;
         }
@@ -67,7 +67,7 @@ public class PageSetConfig {
         }
 
         public PageSetConfig.Builder setUrlToPathMapper(
-            UrlToPathMapper urlToPathMapper) {
+                UrlToPathMapper urlToPathMapper) {
             fUrlToPathMapper = urlToPathMapper;
             return this;
         }
@@ -104,18 +104,16 @@ public class PageSetConfig {
 
     protected void assertTrue(String msg, boolean condition) {
         if (!condition) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(msg);
         }
     }
 
     protected void checkFields() {
         assertTrue("Access manager can not be null", fAccessManager != null);
-        assertTrue(
-            "Download URL transformer can not be null",
-            fDownloadUrlTransformer != null);
-        assertTrue(
-            "Localize URL transformer can not be null",
-            fLocalizeUrlTransformer != null);
+        assertTrue("Download URL transformer can not be null",
+                fDownloadUrlTransformer != null);
+        assertTrue("Localize URL transformer can not be null",
+                fLocalizeUrlTransformer != null);
         // assertTrue("URI mapper can not be null", fUriMapper != null);
         // assertTrue("UrlToPath mapper can not be null", fUrlToPathMapper !=
         // null);
