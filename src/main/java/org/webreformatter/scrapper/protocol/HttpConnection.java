@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.normalizer;
+package org.webreformatter.scrapper.protocol;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +47,6 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.RequestUserAgent;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.scrapper.protocol.HttpProtocolHandler;
 
 /**
  * @author kotelnikov

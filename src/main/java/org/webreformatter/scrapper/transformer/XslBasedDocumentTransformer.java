@@ -3,7 +3,6 @@ package org.webreformatter.scrapper.transformer;
 import java.io.IOException;
 
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.scrapper.normalizer.XslUtils;
 import org.webreformatter.server.xml.XmlException;
 import org.webreformatter.server.xml.XmlWrapper;
 import org.webreformatter.server.xml.atom.AtomFeed;

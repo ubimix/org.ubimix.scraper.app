@@ -30,6 +30,12 @@ public class CompositeTransformer implements IDocumentTransformer {
         fUrlMapping.add(str, normalizer);
     }
 
+    public void removeNormalizer(Uri baseUrl) {
+        Path path = UriToPath.getPath(baseUrl);
+        String str = path.toString();
+        fUrlMapping.remove(str);
+    }
+
     public AtomFeed transformDocument(Uri url, XmlWrapper doc)
             throws XmlException, IOException {
         Path path = UriToPath.getPath(url);

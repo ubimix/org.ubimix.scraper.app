@@ -11,9 +11,7 @@ import org.webreformatter.commons.adapters.AdaptableObject;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.pageset.IUrlMapper;
 import org.webreformatter.pageset.IUrlTransformer;
-import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
@@ -43,21 +41,21 @@ public class RuntimeContext extends AdaptableObject {
         protected void checkFields() {
         }
 
+        public RuntimeContext.Builder setAccessManager(
+                AccessManager accessManager) {
+            fAccessManager = accessManager;
+            return this;
+        }
+
         public RuntimeContext.Builder setDownloadUrlTransformer(
-            IUrlTransformer downloadUrlTransformer) {
+                IUrlTransformer downloadUrlTransformer) {
             fDownloadUrlTransformer = downloadUrlTransformer;
             return this;
         }
 
         public RuntimeContext.Builder setLocalizeUrlTransformer(
-            IUrlTransformer localizeUrlTransformer) {
+                IUrlTransformer localizeUrlTransformer) {
             fLocalizeUrlTransformer = localizeUrlTransformer;
-            return this;
-        }
-
-        public RuntimeContext.Builder setPageSetConfig(
-            PageSetConfig pageSetConfig) {
-            fPageSetConfig = pageSetConfig;
             return this;
         }
 
@@ -71,36 +69,6 @@ public class RuntimeContext extends AdaptableObject {
             if (params != null) {
                 fParams.putAll(params);
             }
-            return this;
-        }
-
-        public RuntimeContext.Builder setRelativePathUrlTransformer(
-            final String prefix) {
-            fLocalizeUrlTransformer = new IUrlTransformer() {
-                private Uri docLocalUri;
-
-                private Uri doTransform(Uri uri) {
-                    IUrlTransformer transformer = getPageSetConfig()
-                        .getLocalizeUrlTransformer();
-                    Uri result = transformer.transform(uri);
-                    if (result != null && !result.isAbsoluteUri()) {
-                        Uri.Builder builder = new Uri.Builder(result);
-                        builder.getPathBuilder().appendPath(prefix, true);
-                        result = builder.build();
-                    }
-                    return result;
-                }
-
-                public Uri transform(Uri uri) {
-                    if (docLocalUri == null) {
-                        Uri docUri = getUrl();
-                        docLocalUri = doTransform(docUri);
-                    }
-                    Uri localUri = doTransform(uri);
-                    Uri result = docLocalUri.getRelative(localUri);
-                    return result;
-                }
-            };
             return this;
         }
 
@@ -118,13 +86,13 @@ public class RuntimeContext extends AdaptableObject {
         return new RuntimeContext.Builder(parentContext);
     }
 
+    protected AccessManager fAccessManager;
+
     protected ApplicationContext fApplicationContext;
 
     protected IUrlTransformer fDownloadUrlTransformer;
 
     protected IUrlTransformer fLocalizeUrlTransformer;
-
-    protected PageSetConfig fPageSetConfig;
 
     protected Map<String, String> fParams = new HashMap<String, String>();
 
@@ -140,9 +108,9 @@ public class RuntimeContext extends AdaptableObject {
      */
     protected RuntimeContext(RuntimeContext context) {
         this(context.fApplicationContext);
-        fPageSetConfig = context.fPageSetConfig;
         fParams.putAll(context.fParams);
         fUrl = context.fUrl;
+        fAccessManager = context.fAccessManager;
         fLocalizeUrlTransformer = context.fLocalizeUrlTransformer;
         fDownloadUrlTransformer = context.fDownloadUrlTransformer;
         checkFields();
@@ -159,25 +127,22 @@ public class RuntimeContext extends AdaptableObject {
     }
 
     protected void checkFields() {
-        assertTrue(
-            "Application context can not be null",
-            fApplicationContext != null);
-        assertTrue(
-            "PageSet configuration can not be empty",
-            fPageSetConfig != null);
+        assertTrue("Application context can not be null",
+                fApplicationContext != null);
         assertTrue("URL can not be empty", fUrl != null);
         if (fDownloadUrlTransformer == null) {
-            fDownloadUrlTransformer = fPageSetConfig
-                .getDownloadUrlTransformer();
+            fDownloadUrlTransformer = IUrlTransformer.EMPTY;
         }
         if (fLocalizeUrlTransformer == null) {
-            fLocalizeUrlTransformer = fPageSetConfig
-                .getLocalizeUrlTransformer();
+            fLocalizeUrlTransformer = IUrlTransformer.EMPTY;
+        }
+        if (fAccessManager == null) {
+            fAccessManager = new AccessManager();
         }
     }
 
     public AccessManager getAccessManager() {
-        return fPageSetConfig.getAccessManager();
+        return fAccessManager;
     }
 
     public ApplicationContext getApplicationContext() {
@@ -199,10 +164,6 @@ public class RuntimeContext extends AdaptableObject {
             result = transformer.transform(pageUrl);
         }
         return result;
-    }
-
-    public PageSetConfig getPageSetConfig() {
-        return fPageSetConfig;
     }
 
     public String getParameter(String key) {
@@ -249,9 +210,8 @@ public class RuntimeContext extends AdaptableObject {
     public IWrfResource getResource(String storeName, Uri url, String suffix) {
         ApplicationContext applicationContext = getApplicationContext();
         IWrfRepository repository = applicationContext.getRepository();
-        IWrfResourceProvider store = repository.getResourceProvider(
-            storeName,
-            true);
+        IWrfResourceProvider store = repository.getResourceProvider(storeName,
+                true);
         Path path = UriToPath.getPath(url);
         Path.Builder builder = path.getBuilder();
         if (suffix != null) {
@@ -260,10 +220,6 @@ public class RuntimeContext extends AdaptableObject {
         Path targetResultPath = builder.build();
         IWrfResource targetResource = store.getResource(targetResultPath, true);
         return targetResource;
-    }
-
-    public IUrlMapper getUriMapper() {
-        return fPageSetConfig.getUriMapper();
     }
 
     public Uri getUrl() {
@@ -275,7 +231,7 @@ public class RuntimeContext extends AdaptableObject {
         boolean cache = getParameter("cache", true);
         if (cache) {
             CachedResourceAdapter cacheAdapter = resource
-                .getAdapter(CachedResourceAdapter.class);
+                    .getAdapter(CachedResourceAdapter.class);
             result = cacheAdapter.isExpired();
         }
         return result;
@@ -288,7 +244,7 @@ public class RuntimeContext extends AdaptableObject {
 
     public void touch(IWrfResource resource) throws IOException {
         CachedResourceAdapter cacheAdapter = resource
-            .getAdapter(CachedResourceAdapter.class);
+                .getAdapter(CachedResourceAdapter.class);
         cacheAdapter.touch();
     }
 

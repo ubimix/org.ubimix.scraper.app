@@ -1,4 +1,4 @@
-package org.webreformatter.scrapper.normalizer;
+package org.webreformatter.scrapper.transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

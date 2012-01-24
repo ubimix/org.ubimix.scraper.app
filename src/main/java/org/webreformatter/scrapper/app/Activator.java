@@ -12,8 +12,6 @@ import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 import org.webreformatter.commons.adapters.AdapterFactoryUtils;
 import org.webreformatter.commons.adapters.CompositeAdapterFactory;
-import org.webreformatter.commons.events.IEventManager;
-import org.webreformatter.commons.events.server.AsyncEventManager;
 import org.webreformatter.commons.osgi.ConfigurableMultiserviceActivator;
 import org.webreformatter.commons.osgi.OSGIObjectActivator;
 import org.webreformatter.commons.osgi.OSGIObjectDeactivator;
@@ -32,23 +30,10 @@ import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
 import org.webreformatter.scrapper.context.DownloadAdapter;
 import org.webreformatter.scrapper.context.PageSetConfigLoader;
-import org.webreformatter.scrapper.events.ApplyAction;
-import org.webreformatter.scrapper.events.ApplyActionHandler;
-import org.webreformatter.scrapper.events.CallImage;
-import org.webreformatter.scrapper.events.CallImageHandler;
-import org.webreformatter.scrapper.events.CopyResourceAction;
-import org.webreformatter.scrapper.events.CopyResourceHandler;
-import org.webreformatter.scrapper.events.FormatHtmlAction;
-import org.webreformatter.scrapper.events.FormatHtmlHandler;
-import org.webreformatter.scrapper.events.GetAtomFeed;
-import org.webreformatter.scrapper.events.GetAtomFeedHandler;
-import org.webreformatter.scrapper.events.ZipExportAction;
-import org.webreformatter.scrapper.events.ZipExportHandler;
-import org.webreformatter.scrapper.normalizer.CompositeDocumentNormalizer;
-import org.webreformatter.scrapper.normalizer.IDocumentNormalizer;
-import org.webreformatter.scrapper.normalizer.XslBasedContentNormalizer;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
+import org.webreformatter.scrapper.transformer.CompositeTransformer;
+import org.webreformatter.scrapper.transformer.IDocumentTransformer;
 import org.webreformatter.server.mime.IMimeTypeDetector;
 import org.webreformatter.server.mime.MimeTypeDetector;
 
@@ -61,11 +46,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
 
     private ApplicationContext fApplicationContext;
 
-    private CompositeDocumentNormalizer fDocumentNormalizers = new CompositeDocumentNormalizer();
-
-    private boolean fEventHandlerActivated;
-
-    private IEventManager fEventManager;
+    private CompositeTransformer fDocumentNormalizers = new CompositeTransformer();
 
     private HttpService fHttpService;
 
@@ -101,8 +82,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
     public void activate() throws Exception {
         fMimeDetector = new MimeTypeDetector();
 
-        IEventManager eventManager = getEventManager();
-
         IWrfRepository repository = getRepository();
 
         // Register adapters for the ExecutionContext
@@ -110,47 +89,39 @@ public class Activator extends ConfigurableMultiserviceActivator {
         DownloadAdapter.register(fAdapterFactory);
 
         // Register adapters for the ApplicationContext
-        AdapterFactoryUtils.registerAdapter(
-            fAdapterFactory,
-            ApplicationContext.class,
-            PageSetConfigLoader.class);
+        AdapterFactoryUtils.registerAdapter(fAdapterFactory,
+                ApplicationContext.class, PageSetConfigLoader.class);
 
         CompositeProtocolHandler protocolHandler = getProtocolHandler();
 
-        fApplicationContext = ApplicationContext
-            .builder(fAdapterFactory)
-            .setRepository(repository)
-            .setPropertyProvider(fPropertyProvider)
-            .setEventManager(eventManager)
-            .setProtocolHandler(protocolHandler)
-            .build();
+        fApplicationContext = ApplicationContext.builder(fAdapterFactory)
+                .setRepository(repository)
+                .setPropertyProvider(fPropertyProvider)
+                .setProtocolHandler(protocolHandler).build();
 
         HttpContext httpContext = fHttpService.createDefaultHttpContext();
 
         fResourcePath = getProperty("web.resources.path", "/resources/*");
         String dirName = getProperty("web.resources.dir", "./");
         File dir = new File(dirName);
-        ResourceServlet resourceServlet = new ResourceServlet(
-            dir,
-            fMimeDetector);
-        fHttpService.registerServlet(
-            fResourcePath,
-            resourceServlet,
-            fProperties,
-            httpContext);
+        ResourceServlet resourceServlet = new ResourceServlet(dir,
+                fMimeDetector);
+        fHttpService.registerServlet(fResourcePath, resourceServlet,
+                fProperties, httpContext);
 
-        ReformatServlet servlet = new ReformatServlet(
-            fPageSetConfigRegistry,
-            fApplicationContext);
+        ReformatServlet servlet = new ReformatServlet(fPageSetConfigRegistry,
+                fApplicationContext);
         fPath = getProperty("web.path", "/*");
         fHttpService.registerServlet(fPath, servlet, fProperties, httpContext);
-
-        registerEventHandlers(fApplicationContext);
     }
 
     @OSGIServiceActivator(min = 0)
-    public void addContentNormalizer(IDocumentNormalizer normalizer) {
-        fDocumentNormalizers.addNormalizer(normalizer);
+    public void addContentNormalizer(IDocumentTransformer transformer,
+            Map<String, String> params) {
+        String url = params.get("baseUrl");
+        if (url != null) {
+            fDocumentNormalizers.addTransformer(new Uri(url), transformer);
+        }
     }
 
     @OSGIServiceActivator(min = 0)
@@ -181,7 +152,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
 
     private boolean equals(Object first, Object second) {
         return first == null || second == null ? first == second : first
-            .equals(second);
+                .equals(second);
     }
 
     protected Uri getConfigUri(String configKey, String defaultUri) {
@@ -193,13 +164,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
     @OSGIService
     public ApplicationContext getContext() {
         return fApplicationContext;
-    }
-
-    private IEventManager getEventManager() {
-        if (fEventManager == null) {
-            fEventManager = new AsyncEventManager();
-        }
-        return fEventManager;
     }
 
     private String getProperty(String key, String defaultValue) {
@@ -223,8 +187,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
             String dir = getProperty("store.dir", "${user.home}/.scrapper/data");
             File rootDir = new File(dir);
             WrfResourceRepository repository = new WrfResourceRepository(
-                fAdapterFactory,
-                rootDir);
+                    fAdapterFactory, rootDir);
             WrfRepositoryUtils.registerAdapters(repository);
             fRepository = repository;
 
@@ -237,35 +200,14 @@ public class Activator extends ConfigurableMultiserviceActivator {
         return "org.webreformatter.scrapper";
     }
 
-    @OSGIService
-    public IDocumentNormalizer getXslDocumentNormalizer() {
-        return new XslBasedContentNormalizer();
-    }
-
-    protected void registerEventHandlers(ApplicationContext applicationContext) {
-        if (!fEventHandlerActivated) {
-            IEventManager eventManager = applicationContext.getEventManager();
-            eventManager.addListener(ApplyAction.class, new ApplyActionHandler(
-                applicationContext));
-            eventManager.addListener(
-                CopyResourceAction.class,
-                new CopyResourceHandler());
-            eventManager.addListener(
-                FormatHtmlAction.class,
-                new FormatHtmlHandler());
-            eventManager.addListener(GetAtomFeed.class, new GetAtomFeedHandler(
-                fDocumentNormalizers));
-            eventManager.addListener(
-                ZipExportAction.class,
-                new ZipExportHandler());
-            eventManager.addListener(CallImage.class, new CallImageHandler());
-            fEventHandlerActivated = true;
-        }
-    }
-
     @OSGIServiceDeactivator
-    public void removeContentNormalizer(IDocumentNormalizer normalizer) {
-        fDocumentNormalizers.removeNormalizer(normalizer);
+    public void removeContentNormalizer(IDocumentTransformer normalizer,
+            Map<String, String> params) {
+        String url = params.get("baseUrl");
+        if (url != null) {
+            Uri u = new Uri(url);
+            fDocumentNormalizers.removeNormalizer(u);
+        }
     }
 
     @OSGIServiceDeactivator
