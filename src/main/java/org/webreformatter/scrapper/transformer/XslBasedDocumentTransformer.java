@@ -27,15 +27,15 @@ public class XslBasedDocumentTransformer implements IDocumentTransformer {
     public AtomFeed transformDocument(Uri url, XmlWrapper doc)
             throws XmlException, IOException {
         AtomFeed result = doc.applyXSL(fXsl, AtomFeed.class);
-        String prefix = XslUtils
+        String prefix = TransformerUtils
                 .getNamespacePrefix(result.getXmlContext()
                         .getNamespaceContext(), "http://www.w3.org/1999/xhtml",
                         "xhtml");
         if (prefix != null && !"".equals(prefix)) {
             prefix += ":";
         }
-        XslUtils.resolveLinks(result, url, prefix + "a", "href");
-        XslUtils.resolveLinks(result, url, prefix + "img", "src");
+        TransformerUtils.resolveLinks(result, url, prefix + "a", "href");
+        TransformerUtils.resolveLinks(result, url, prefix + "img", "src");
         return result;
     }
 

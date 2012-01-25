@@ -71,8 +71,14 @@ public class AtomProcessing extends RuntimeContextAdapter {
         XmlAdapter xmlAdapter = cleanResource.getAdapter(XmlAdapter.class);
         boolean ok = false;
         if (!fRuntimeContext.isExpired(cleanResource)) {
-            ok = true;
-        } else {
+            XmlWrapper xml = xmlAdapter.getWrapper();
+            if (xml != null) {
+                ok = true;
+            } else {
+                ok = false;
+            }
+        }
+        if (!ok) {
             XmlWrapper doc = getXHTMLResource();
             if (doc != null) {
                 Uri url = fRuntimeContext.getUrl();

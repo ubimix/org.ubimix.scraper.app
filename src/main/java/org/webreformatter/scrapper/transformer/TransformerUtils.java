@@ -16,7 +16,7 @@ import org.webreformatter.server.xml.XmlWrapper.CompositeNamespaceContext;
 import org.webreformatter.server.xml.XmlWrapper.SimpleNamespaceContext;
 import org.webreformatter.server.xml.XmlWrapper.XmlContext;
 
-public class XslUtils {
+public class TransformerUtils {
 
     public static List<XmlWrapper> getElementList(XmlWrapper xml, String tagName) {
         String prefix = "";

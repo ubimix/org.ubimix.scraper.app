@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.webreformatter.commons.adapters.AdaptableObject;
+import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
@@ -167,7 +168,15 @@ public class RuntimeContext extends AdaptableObject {
     }
 
     public String getParameter(String key) {
-        return fParams.get(key);
+        String value = fParams.get(key);
+        if (value == null) {
+            IVariableProvider propertiesProvider = fApplicationContext
+                    .getPropertyProvider();
+            if (propertiesProvider != null) {
+                value = propertiesProvider.getValue(key);
+            }
+        }
+        return value;
     }
 
     public boolean getParameter(String key, boolean defaultValue) {

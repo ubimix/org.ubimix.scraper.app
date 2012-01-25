@@ -28,24 +28,21 @@ public abstract class AbstractXmlAdapter extends WrfResourceAdapter {
 
     private XmlWrapper fWrapper;
 
-    private XmlContext fXmlContext = XmlContext
-        .builder(fNamespaceContext)
-        .build();
+    private XmlContext fXmlContext = XmlContext.builder(fNamespaceContext)
+            .build();
 
     public AbstractXmlAdapter(IWrfResource resource) {
         super(resource);
     }
 
-    public XmlWrapper applyXSLT(IWrfResource resource)
-        throws IOException,
-        XmlException {
+    public XmlWrapper applyXSLT(IWrfResource resource) throws IOException,
+            XmlException {
         XmlWrapper result = applyXSLT(resource, XmlWrapper.class);
         return result;
     }
 
-    public <T extends XmlWrapper> T applyXSLT(
-        IWrfResource xslResource,
-        Class<T> type) throws IOException, XmlException {
+    public <T extends XmlWrapper> T applyXSLT(IWrfResource xslResource,
+            Class<T> type) throws IOException, XmlException {
         XmlWrapper wrapper = getWrapper();
         XmlAdapter adapter = xslResource.getAdapter(XmlAdapter.class);
         XmlWrapper xsl = adapter.getWrapper();
@@ -54,9 +51,9 @@ public abstract class AbstractXmlAdapter extends WrfResourceAdapter {
     }
 
     public void applyXSLT(IWrfResource xslResource, IWrfResource targetResource)
-        throws Exception {
+            throws Exception {
         IContentAdapter content = targetResource
-            .getAdapter(IContentAdapter.class);
+                .getAdapter(IContentAdapter.class);
         OutputStream out = content.getContentOutput();
         try {
             XmlWrapper wrapper = getWrapper();
@@ -71,16 +68,17 @@ public abstract class AbstractXmlAdapter extends WrfResourceAdapter {
     public XmlWrapper getWrapper() throws IOException, XmlException {
         if (fWrapper == null) {
             Document doc = readDocument();
-            updateDocumentNamespaceContext(doc);
-            XmlContext context = getXmlContext();
-            fWrapper = new XmlWrapper(doc, context);
+            if (doc != null) {
+                updateDocumentNamespaceContext(doc);
+                XmlContext context = getXmlContext();
+                fWrapper = new XmlWrapper(doc, context);
+            }
         }
         return fWrapper;
     }
 
     public <T extends XmlWrapper> T getWrapper(Class<T> type)
-        throws IOException,
-        XmlException {
+            throws IOException, XmlException {
         XmlWrapper wrapper = getWrapper();
         return wrapper.to(type);
     }

@@ -26,8 +26,7 @@ public class XmlAdapter extends AbstractXmlAdapter {
     }
 
     public <T extends XmlWrapper> T getWrapperCopy(Class<T> type)
-        throws IOException,
-        XmlException {
+            throws IOException, XmlException {
         XmlWrapper wrapper = getWrapper();
         return wrapper.newCopy(type);
     }
@@ -35,6 +34,9 @@ public class XmlAdapter extends AbstractXmlAdapter {
     @Override
     protected Document readDocument() throws IOException, XmlException {
         IContentAdapter content = fResource.getAdapter(IContentAdapter.class);
+        if (!content.exists()) {
+            return null;
+        }
         InputStream input = content.getContentInput();
         try {
             return XmlWrapper.readXML(input);
