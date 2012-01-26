@@ -5,13 +5,13 @@ import java.io.IOException;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.protocol.IProtocolHandler;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
 
 public class XslBasedDocumentTransformerFactory {
 

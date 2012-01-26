@@ -7,14 +7,14 @@ import java.util.Map;
 
 import org.w3c.dom.Element;
 import org.webreformatter.commons.uri.Uri;
+import org.webreformatter.commons.xml.XmlAcceptor;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.XmlAcceptor.XmlVisitor;
+import org.webreformatter.commons.xml.XmlWrapper.CompositeNamespaceContext;
+import org.webreformatter.commons.xml.XmlWrapper.SimpleNamespaceContext;
+import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
 import org.webreformatter.pageset.IUrlTransformer;
-import org.webreformatter.server.xml.XmlAcceptor;
-import org.webreformatter.server.xml.XmlAcceptor.XmlVisitor;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.XmlWrapper.CompositeNamespaceContext;
-import org.webreformatter.server.xml.XmlWrapper.SimpleNamespaceContext;
-import org.webreformatter.server.xml.XmlWrapper.XmlContext;
 
 public class TransformerUtils {
 

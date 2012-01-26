@@ -4,8 +4,8 @@
 package org.webreformatter.pageset.loaders;
 
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
 
 /**
  * @author kotelnikov

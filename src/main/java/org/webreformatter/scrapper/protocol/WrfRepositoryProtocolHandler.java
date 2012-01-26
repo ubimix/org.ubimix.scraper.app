@@ -53,7 +53,7 @@ public class WrfRepositoryProtocolHandler implements IProtocolHandler {
             CachedResourceAdapter targetPropertyAdapter = target
                 .getAdapter(CachedResourceAdapter.class);
             targetPropertyAdapter.copyPropertiesFrom(source);
-            targetPropertyAdapter.setStatus(status);
+            targetPropertyAdapter.setStatusCode(status.getStatusCode());
             targetPropertyAdapter.touch();
 
             return status;

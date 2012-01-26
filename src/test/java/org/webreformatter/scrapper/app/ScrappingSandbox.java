@@ -25,6 +25,9 @@ import org.webreformatter.commons.io.IOUtil;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomEntry;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.html.HTMLAdapter;
@@ -40,9 +43,6 @@ import org.webreformatter.scrapper.protocol.UrlBasedProtocolHandler;
 import org.webreformatter.scrapper.transformer.IDocumentTransformer;
 import org.webreformatter.scrapper.transformer.RegexCompositeTransformer;
 import org.webreformatter.scrapper.transformer.XslBasedDocumentTransformerFactory;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomEntry;
-import org.webreformatter.server.xml.atom.AtomFeed;
 
 /**
  * @author kotelnikov

@@ -7,9 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomFeed;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 
 /**
  * Dispatcher to external transformers. It uses regular expressions to delegate

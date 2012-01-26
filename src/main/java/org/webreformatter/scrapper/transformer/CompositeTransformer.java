@@ -6,9 +6,9 @@ import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
 import org.webreformatter.commons.uri.path.PathManager;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomFeed;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 
 /**
  * Dispatcher to external transformers. The transformations are based on a map

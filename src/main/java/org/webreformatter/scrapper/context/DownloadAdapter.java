@@ -34,7 +34,7 @@ public class DownloadAdapter extends RuntimeContextAdapter {
             @SuppressWarnings("unchecked")
             public <T> T getAdapter(Object instance, Class<T> type) {
                 if (type != DownloadAdapter.class
-                        || !(instance instanceof RuntimeContext)) {
+                    || !(instance instanceof RuntimeContext)) {
                     return null;
                 }
                 return (T) new DownloadAdapter((RuntimeContext) instance);
@@ -43,8 +43,9 @@ public class DownloadAdapter extends RuntimeContextAdapter {
     }
 
     public static void register(CompositeAdapterFactory adapters) {
-        adapters.registerAdapterFactory(DownloadAdapter.getAdapterFactory(),
-                DownloadAdapter.class);
+        adapters.registerAdapterFactory(
+            DownloadAdapter.getAdapterFactory(),
+            DownloadAdapter.class);
     }
 
     private HttpStatusCode fStatusCode;
@@ -62,7 +63,7 @@ public class DownloadAdapter extends RuntimeContextAdapter {
         IWrfResource resource = load ? loadResource() : getResource();
         if (resource != null) {
             MimeTypeAdapter adapter = resource
-                    .getAdapter(MimeTypeAdapter.class);
+                .getAdapter(MimeTypeAdapter.class);
             result = adapter.getMimeType();
         }
         return result;
@@ -70,9 +71,10 @@ public class DownloadAdapter extends RuntimeContextAdapter {
 
     public IWrfResource getResource() {
         String resourceNameSuffix = fRuntimeContext
-                .getParameter(KEY_RESOURCE_SUFFIX);
-        IWrfResource resource = fRuntimeContext.getResource(RESOURCE_DOWNLOAD,
-                resourceNameSuffix);
+            .getParameter(KEY_RESOURCE_SUFFIX);
+        IWrfResource resource = fRuntimeContext.getResource(
+            RESOURCE_DOWNLOAD,
+            resourceNameSuffix);
         return resource;
     }
 
@@ -85,32 +87,33 @@ public class DownloadAdapter extends RuntimeContextAdapter {
             return false;
         }
         return fStatusCode.isOk()
-                || HttpStatusCode.STATUS_304.equals(fStatusCode); /* NOT_MODIFIED */
+            || HttpStatusCode.STATUS_304.equals(fStatusCode); /* NOT_MODIFIED */
     }
 
     public IWrfResource loadResource() throws IOException {
         Uri url = fRuntimeContext.getUrl();
         IWrfResource resource = getResource();
         boolean clearCache = fRuntimeContext
-                .getParameter(KEY_CLEARCACHE, false);
+            .getParameter(KEY_CLEARCACHE, false);
         boolean noDownload = fRuntimeContext
-                .getParameter(KEY_NODOWNLOAD, false);
+            .getParameter(KEY_NODOWNLOAD, false);
         noDownload &= resource.getAdapter(IContentAdapter.class).exists();
         boolean ok = !clearCache && !fRuntimeContext.isExpired(resource);
         if (noDownload) {
             CachedResourceAdapter cacheAdapter = resource
-                    .getAdapter(CachedResourceAdapter.class);
-            fStatusCode = cacheAdapter.getStatus();
+                .getAdapter(CachedResourceAdapter.class);
+            int code = cacheAdapter.getStatusCode();
+            fStatusCode = HttpStatusCode.getStatusCode(code);
         } else if (ok) {
             fStatusCode = HttpStatusCode.STATUS_304; /* NOT_MODIFIED */
         } else {
             AccessManager accessManager = fRuntimeContext.getAccessManager();
             ApplicationContext applicationContext = fRuntimeContext
-                    .getApplicationContext();
+                .getApplicationContext();
             IProtocolHandler protocolHandler = applicationContext
-                    .getProtocolHandler();
+                .getProtocolHandler();
             CredentialInfo credentials = accessManager != null ? accessManager
-                    .getCredentials(url) : null;
+                .getCredentials(url) : null;
             String login = null;
             String password = null;
             if (credentials != null) {
@@ -119,12 +122,15 @@ public class DownloadAdapter extends RuntimeContextAdapter {
             }
 
             IUrlTransformer urlTransformer = fRuntimeContext
-                    .getDownloadUrlTransformer();
+                .getDownloadUrlTransformer();
             Uri downloadUrl = urlTransformer != null ? urlTransformer
-                    .transform(url) : url;
+                .transform(url) : url;
             if (downloadUrl != null) {
-                fStatusCode = protocolHandler.handleRequest(downloadUrl, login,
-                        password, resource);
+                fStatusCode = protocolHandler.handleRequest(
+                    downloadUrl,
+                    login,
+                    password,
+                    resource);
                 ok = isOK();
             } else {
                 fStatusCode = HttpStatusCode.STATUS_404;

@@ -3,10 +3,10 @@ package org.webreformatter.pageset.loaders;
 import java.util.List;
 
 import org.webreformatter.commons.uri.Uri;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.pageset.UrlToPathMapper;
 import org.webreformatter.pageset.UrlToPathMapper.SiteUrlMapper;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
 
 /**
  * This class is used to configure {@link CompositeSiteConfig} instances using

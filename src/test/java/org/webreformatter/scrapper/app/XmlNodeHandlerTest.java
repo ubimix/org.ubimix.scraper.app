@@ -3,12 +3,12 @@ package org.webreformatter.scrapper.app;
 import java.io.IOException;
 import java.util.List;
 
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
+import org.webreformatter.commons.xml.atom.AtomEntry;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 import org.webreformatter.resources.AbstractResourceTest;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.XmlWrapper.XmlContext;
-import org.webreformatter.server.xml.atom.AtomEntry;
-import org.webreformatter.server.xml.atom.AtomFeed;
 
 public class XmlNodeHandlerTest extends AbstractResourceTest {
 

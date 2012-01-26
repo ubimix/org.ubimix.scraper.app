@@ -8,10 +8,10 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
 import org.webreformatter.scrapper.context.HtmlPropertiesExtractor;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.XmlWrapper.XmlContext;
 
 /**
  * @author kotelnikov

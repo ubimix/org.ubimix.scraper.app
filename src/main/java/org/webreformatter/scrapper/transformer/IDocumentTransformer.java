@@ -3,9 +3,9 @@ package org.webreformatter.scrapper.transformer;
 import java.io.IOException;
 
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomFeed;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 
 /**
  * @author arkub

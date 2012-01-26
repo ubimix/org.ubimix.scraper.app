@@ -10,6 +10,9 @@ import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
@@ -17,9 +20,6 @@ import org.webreformatter.resources.adapters.html.HTMLAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.transformer.IDocumentTransformer;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomFeed;
 
 /**
  * @author kotelnikov

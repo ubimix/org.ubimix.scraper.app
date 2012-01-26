@@ -10,16 +10,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
-import org.webreformatter.server.xml.XmlAcceptor;
-import org.webreformatter.server.xml.XmlAcceptor.XmlVisitor;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlTagExtractor;
-import org.webreformatter.server.xml.XmlTagExtractor.HtmlBlockElementsAcceptor;
-import org.webreformatter.server.xml.XmlTagExtractor.HtmlNamedNodeAcceptor;
-import org.webreformatter.server.xml.XmlTagExtractor.IElementAcceptor;
-import org.webreformatter.server.xml.XmlTagExtractor.SimpleElementAcceptor;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.XmlWrapper.XmlContext;
+import org.webreformatter.commons.xml.XmlAcceptor;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlTagExtractor;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.XmlAcceptor.XmlVisitor;
+import org.webreformatter.commons.xml.XmlTagExtractor.HtmlBlockElementsAcceptor;
+import org.webreformatter.commons.xml.XmlTagExtractor.HtmlNamedNodeAcceptor;
+import org.webreformatter.commons.xml.XmlTagExtractor.IElementAcceptor;
+import org.webreformatter.commons.xml.XmlTagExtractor.SimpleElementAcceptor;
+import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
 
 /**
  * @author kotelnikov

@@ -12,11 +12,11 @@ import java.util.Set;
 
 import org.w3c.dom.Element;
 import org.webreformatter.commons.uri.Uri;
+import org.webreformatter.commons.xml.XmlAcceptor;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 import org.webreformatter.resources.IWrfResource;
-import org.webreformatter.server.xml.XmlAcceptor;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomFeed;
 
 /**
  * @author kotelnikov
