@@ -47,7 +47,7 @@ import org.webreformatter.server.xml.atom.AtomFeed;
 /**
  * @author kotelnikov
  */
-public class ScrappingTest extends TestCase {
+public class ScrappingSandbox extends TestCase {
 
     // ApplicationContext
     // SessionContext
@@ -179,7 +179,7 @@ public class ScrappingTest extends TestCase {
         }
     }
 
-    private final static Logger log = Logger.getLogger(ScrappingTest.class
+    private final static Logger log = Logger.getLogger(ScrappingSandbox.class
             .getName());
 
     protected CompositeAdapterFactory fAdapters = new CompositeAdapterFactory();
@@ -193,7 +193,7 @@ public class ScrappingTest extends TestCase {
     /**
      * @param name
      */
-    public ScrappingTest(String name) {
+    public ScrappingSandbox(String name) {
         super(name);
     }
 

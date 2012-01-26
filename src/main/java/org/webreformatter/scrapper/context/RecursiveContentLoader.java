@@ -37,8 +37,8 @@ public class RecursiveContentLoader {
             return ref;
         }
 
-        public Set<Uri> extractLinks(RuntimeContext context)
-                throws IOException, XmlException {
+        public Set<Uri> extractLinks(RuntimeContext context,
+                IProgressListener listener) throws IOException, XmlException {
             Set<Uri> result = new HashSet<Uri>();
             String mime = context.getAdapter(DownloadAdapter.class)
                     .getMimeType();
@@ -95,7 +95,8 @@ public class RecursiveContentLoader {
 
     public interface ILinkExtractor {
 
-        Set<Uri> extractLinks(RuntimeContext context) throws Exception;
+        Set<Uri> extractLinks(RuntimeContext context, IProgressListener listener)
+                throws Exception;
 
     }
 
@@ -115,7 +116,7 @@ public class RecursiveContentLoader {
 
     public interface IProgressListenerProvider {
 
-        IProgressListener getListeners(RuntimeContext context);
+        IProgressListener getListener(RuntimeContext context);
 
     }
 
@@ -240,7 +241,7 @@ public class RecursiveContentLoader {
             }
         }
 
-        public IProgressListener getListeners(final RuntimeContext context) {
+        public IProgressListener getListener(final RuntimeContext context) {
             return add(new ProgressListener() {
 
                 private Set<Throwable> fErrors = new HashSet<Throwable>();
@@ -349,14 +350,15 @@ public class RecursiveContentLoader {
             };
             try {
                 if (ok) {
-                    Set<Uri> links = fLinkExtractor.extractLinks(context);
+                    Set<Uri> links = fLinkExtractor.extractLinks(context,
+                            listener);
                     if (links != null && !links.isEmpty()) {
                         for (Uri childUri : links) {
                             childUri = getNormalizedUri(childUri);
                             RuntimeContext childContext = context
                                     .newContext(childUri);
                             IProgressListener childListener = fListenerProvider
-                                    .getListeners(childContext);
+                                    .getListener(childContext);
                             submit(childContext,
                                     listenerGroup.add(childListener));
                         }
@@ -373,7 +375,7 @@ public class RecursiveContentLoader {
     public void load(Uri url) {
         url = getNormalizedUri(url);
         RuntimeContext context = fParentContext.newContext(url);
-        IProgressListener listener = fListenerProvider.getListeners(context);
+        IProgressListener listener = fListenerProvider.getListener(context);
         submit(context, listener);
     }
 

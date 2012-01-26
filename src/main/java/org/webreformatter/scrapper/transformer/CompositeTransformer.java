@@ -22,12 +22,26 @@ import org.webreformatter.server.xml.atom.AtomFeed;
  */
 public class CompositeTransformer implements IDocumentTransformer {
 
+    private IDocumentTransformer fDefaultTransformer;
+
     private PathManager<IDocumentTransformer> fUrlMapping = new PathManager<IDocumentTransformer>();
+
+    public CompositeTransformer() {
+        this(null);
+    }
+
+    public CompositeTransformer(IDocumentTransformer defaultTransformer) {
+        setDefaultTransformer(defaultTransformer);
+    }
 
     public void addTransformer(Uri baseUrl, IDocumentTransformer normalizer) {
         Path path = UriToPath.getPath(baseUrl);
         String str = path.toString();
         fUrlMapping.add(str, normalizer);
+    }
+
+    public IDocumentTransformer getDefaultTransformer() {
+        return fDefaultTransformer;
     }
 
     public void removeNormalizer(Uri baseUrl) {
@@ -36,12 +50,19 @@ public class CompositeTransformer implements IDocumentTransformer {
         fUrlMapping.remove(str);
     }
 
+    public void setDefaultTransformer(IDocumentTransformer defaultTransformer) {
+        fDefaultTransformer = defaultTransformer;
+    }
+
     public AtomFeed transformDocument(Uri url, XmlWrapper doc)
             throws XmlException, IOException {
         Path path = UriToPath.getPath(url);
         String str = path.toString();
         AtomFeed result = null;
         IDocumentTransformer normalizer = fUrlMapping.getNearestValue(str);
+        if (normalizer == null) {
+            normalizer = fDefaultTransformer;
+        }
         if (normalizer != null) {
             result = normalizer.transformDocument(url, doc);
         }

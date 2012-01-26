@@ -65,7 +65,7 @@ public class AtomProcessing extends RuntimeContextAdapter {
         fTransformer = documentTransformer;
     }
 
-    public XmlAdapter getResourceAsAtom() throws IOException, XmlException {
+    public XmlAdapter getResourceAsAtomAdapter() throws IOException, XmlException {
         IWrfResource cleanResource = fRuntimeContext
                 .getResource(RESOURCE_HTML_NORMALIZED);
         XmlAdapter xmlAdapter = cleanResource.getAdapter(XmlAdapter.class);
@@ -95,7 +95,7 @@ public class AtomProcessing extends RuntimeContextAdapter {
     }
 
     public AtomFeed getResourceAsAtomFeed() throws XmlException, IOException {
-        XmlAdapter xmlAdapter = getResourceAsAtom();
+        XmlAdapter xmlAdapter = getResourceAsAtomAdapter();
         AtomFeed feed = null;
         if (xmlAdapter != null) {
             feed = xmlAdapter.getWrapperCopy(AtomFeed.class);
