@@ -6,8 +6,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-ManifestVersion: 2
 Bundle-Description: Scrapper API
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
-Import-Package: eu.medsea.mimeutil,
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0Import-Package: eu.medsea.mimeutil,
  eu.medsea.mimeutil.detector,
  eu.medsea.mimeutil.handler,
  eu.medsea.util,
@@ -85,7 +84,6 @@ Import-Package: eu.medsea.mimeutil,
  org.webreformatter.commons.xml;version="1.1.5",
  org.webreformatter.commons.xml.atom;version="1.1.5",
  org.webreformatter.resources;version="0.9.0",
- org.webreformatter.server.mime;version="0.9.0",
  org.webreformatter.resources.adapters;version="0.9.0",
  org.webreformatter.resources.adapters.cache;version="0.9.0",
  org.webreformatter.resources.adapters.encoding;version="0.9.0",
@@ -96,11 +94,13 @@ Import-Package: eu.medsea.mimeutil,
  org.webreformatter.resources.adapters.xml;version="0.9.0",
  org.webreformatter.resources.adapters.zip;version="0.9.0",
  org.webreformatter.resources.impl;version="0.9.0",
+ org.webreformatter.server.mime;version="0.9.0",
  org.xml.sax
-Bundle-Activator: org.webreformatter.scrapper.app.Activator
 Export-Package: org.webreformatter.pageset,
  org.webreformatter.pageset.loaders,
  org.webreformatter.scrapper.app,
  org.webreformatter.scrapper.context,
  org.webreformatter.scrapper.protocol,
  org.webreformatter.scrapper.transformer
+Bundle-Activator: org.webreformatter.scrapper.app.Activator
+
