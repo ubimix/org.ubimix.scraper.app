@@ -8,7 +8,6 @@ import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
 import org.webreformatter.commons.xml.atom.AtomEntry;
 import org.webreformatter.commons.xml.atom.AtomFeed;
-import org.webreformatter.resources.AbstractResourceTest;
 
 public class XmlNodeHandlerTest extends AbstractResourceTest {
 
