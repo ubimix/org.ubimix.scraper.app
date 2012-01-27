@@ -30,31 +30,10 @@ import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
 import org.webreformatter.scrapper.context.DownloadAdapter;
 import org.webreformatter.scrapper.context.PageSetConfigLoader;
-<<<<<<< local
-import org.webreformatter.scrapper.events.ApplyAction;
-import org.webreformatter.scrapper.events.ApplyActionHandler;
-import org.webreformatter.scrapper.events.CallImage;
-import org.webreformatter.scrapper.events.CallImageHandler;
-import org.webreformatter.scrapper.events.CopyResourceAction;
-import org.webreformatter.scrapper.events.CopyResourceHandler;
-import org.webreformatter.scrapper.events.FormatHtmlAction;
-import org.webreformatter.scrapper.events.FormatHtmlHandler;
-import org.webreformatter.scrapper.events.GetAtomFeed;
-import org.webreformatter.scrapper.events.GetAtomFeedHandler;
-import org.webreformatter.scrapper.events.ZipExportAction;
-import org.webreformatter.scrapper.events.ZipExportHandler;
-import org.webreformatter.scrapper.normalizer.CompositeDocumentNormalizer;
-import org.webreformatter.scrapper.normalizer.IDocumentNormalizer;
-import org.webreformatter.scrapper.normalizer.XslBasedContentNormalizer;
-=======
->>>>>>> other
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
-<<<<<<< local
-=======
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
 import org.webreformatter.scrapper.transformer.IDocumentTransformer;
->>>>>>> other
 import org.webreformatter.server.mime.IMimeTypeDetector;
 import org.webreformatter.server.mime.MimeTypeDetector;
 
@@ -110,35 +89,45 @@ public class Activator extends ConfigurableMultiserviceActivator {
         DownloadAdapter.register(fAdapterFactory);
 
         // Register adapters for the ApplicationContext
-        AdapterFactoryUtils.registerAdapter(fAdapterFactory,
-                ApplicationContext.class, PageSetConfigLoader.class);
+        AdapterFactoryUtils.registerAdapter(
+            fAdapterFactory,
+            ApplicationContext.class,
+            PageSetConfigLoader.class);
 
         CompositeProtocolHandler protocolHandler = getProtocolHandler();
 
-        fApplicationContext = ApplicationContext.builder(fAdapterFactory)
-                .setRepository(repository)
-                .setPropertyProvider(fPropertyProvider)
-                .setProtocolHandler(protocolHandler).build();
+        fApplicationContext = ApplicationContext
+            .builder(fAdapterFactory)
+            .setRepository(repository)
+            .setPropertyProvider(fPropertyProvider)
+            .setProtocolHandler(protocolHandler)
+            .build();
 
         HttpContext httpContext = fHttpService.createDefaultHttpContext();
 
         fResourcePath = getProperty("web.resources.path", "/resources/*");
         String dirName = getProperty("web.resources.dir", "./");
         File dir = new File(dirName);
-        ResourceServlet resourceServlet = new ResourceServlet(dir,
-                fMimeDetector);
-        fHttpService.registerServlet(fResourcePath, resourceServlet,
-                fProperties, httpContext);
+        ResourceServlet resourceServlet = new ResourceServlet(
+            dir,
+            fMimeDetector);
+        fHttpService.registerServlet(
+            fResourcePath,
+            resourceServlet,
+            fProperties,
+            httpContext);
 
-        ReformatServlet servlet = new ReformatServlet(fPageSetConfigRegistry,
-                fApplicationContext);
+        ReformatServlet servlet = new ReformatServlet(
+            fPageSetConfigRegistry,
+            fApplicationContext);
         fPath = getProperty("web.path", "/*");
         fHttpService.registerServlet(fPath, servlet, fProperties, httpContext);
     }
 
     @OSGIServiceActivator(min = 0)
-    public void addContentNormalizer(IDocumentTransformer transformer,
-            Map<String, String> params) {
+    public void addContentNormalizer(
+        IDocumentTransformer transformer,
+        Map<String, String> params) {
         String url = params.get("baseUrl");
         if (url != null) {
             fDocumentNormalizers.addTransformer(new Uri(url), transformer);
@@ -173,7 +162,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
 
     private boolean equals(Object first, Object second) {
         return first == null || second == null ? first == second : first
-                .equals(second);
+            .equals(second);
     }
 
     protected Uri getConfigUri(String configKey, String defaultUri) {
@@ -208,7 +197,8 @@ public class Activator extends ConfigurableMultiserviceActivator {
             String dir = getProperty("store.dir", "${user.home}/.scrapper/data");
             File rootDir = new File(dir);
             WrfResourceRepository repository = new WrfResourceRepository(
-                    fAdapterFactory, rootDir);
+                fAdapterFactory,
+                rootDir);
             WrfRepositoryUtils.registerAdapters(repository);
             fRepository = repository;
 
@@ -222,8 +212,9 @@ public class Activator extends ConfigurableMultiserviceActivator {
     }
 
     @OSGIServiceDeactivator
-    public void removeContentNormalizer(IDocumentTransformer normalizer,
-            Map<String, String> params) {
+    public void removeContentNormalizer(
+        IDocumentTransformer normalizer,
+        Map<String, String> params) {
         String url = params.get("baseUrl");
         if (url != null) {
             Uri u = new Uri(url);
