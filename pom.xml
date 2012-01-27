@@ -7,6 +7,9 @@
         <artifactId>org.webreformatter.commons.poms</artifactId>
         <version>1.1.5</version>
     </parent>
+    <properties>
+        <commons.version>1.1.5</commons.version>
+    </properties>
     <groupId>org.webreformatter.scrapper</groupId>
     <artifactId>org.webreformatter.scrapper.app</artifactId>
     <version>1.0.0.SNAPSHOT</version>
@@ -14,67 +17,73 @@
     <name>${artifactId}</name>
     <dependencies>
         <dependency>
-            <groupId>org.webreformatter.libs</groupId>
-            <artifactId>org.htmlcleaner</artifactId>
-            <version>2.2.0</version>
+            <groupId>org.webreformatter.scrapper</groupId>
+            <artifactId>org.webreformatter.scrapper.protocol</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webreformatter.scrapper</groupId>
+            <artifactId>org.webreformatter.scrapper.transformer</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webreformatter.scrapper</groupId>
+            <artifactId>org.webreformatter.scrapper.resources</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webreformatter.commons</groupId>
+            <artifactId>org.webreformatter.commons.xml</artifactId>
+            <version>${commons.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.adapters</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.events</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.json</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.uri</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.iterator</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.utils</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.strings</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.osgi</artifactId>
-            <version>1.1.5</version>
+            <version>${commons.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.webreformatter.libs</groupId>
-            <artifactId>org.apache.commons.httpclient</artifactId>
-            <version>4.1.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>eu.medsea.mimeutil</groupId>
-            <artifactId>mime-util</artifactId>
-            <version>2.1.3</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>

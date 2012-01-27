@@ -24,11 +24,8 @@ public class FileProtocolHandler implements IProtocolHandler {
     public FileProtocolHandler() {
     }
 
-    private HttpStatusCode copyFileResource(Path path, IWrfResource resource) {
-        try {
-            IContentAdapter contentAdapter = resource
-                .getAdapter(IContentAdapter.class);
-            FileInputStream input = new FileInputStream(path.toString());
+    private HttpStatusCode copyFileResource(File file, IWrfResource resource) {
+            FileInputStream input = new FileInputStream(file);
             try {
                 contentAdapter.writeContent(input);
             } finally {
@@ -53,15 +50,14 @@ public class FileProtocolHandler implements IProtocolHandler {
         String login,
         String password,
         IWrfResource resource) {
-        File file = new File(uri.toString());
+        Path path = uri.getPath();
+        File file = new File(path.toString());
         HttpStatusCode result = HttpStatusCode.STATUS_404;
         if (file.exists()) {
             if (!file.isFile()) {
                 result = HttpStatusCode.STATUS_404;
             } else {
-                Path path = uri.getPath();
-                copyFileResource(path, resource);
-                result = HttpStatusCode.STATUS_200;
+                result = copyFileResource(file, resource);
             }
         }
         return result;

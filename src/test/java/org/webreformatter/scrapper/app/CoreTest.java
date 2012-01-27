@@ -13,7 +13,6 @@ import org.webreformatter.commons.events.calls.CallEvent;
 import org.webreformatter.commons.events.calls.CallListener;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.resources.AbstractResourceTest;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;

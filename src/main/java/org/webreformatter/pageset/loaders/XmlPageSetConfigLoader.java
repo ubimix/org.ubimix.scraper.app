@@ -1,12 +1,12 @@
 package org.webreformatter.pageset.loaders;
 
 import org.webreformatter.commons.uri.Uri;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.pageset.PageSetConfig;
 import org.webreformatter.pageset.UrlToPathMapper;
 import org.webreformatter.scrapper.protocol.AccessManager;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
 
 /**
  * This class is used to configure {@link CompositeSiteConfig} instances using

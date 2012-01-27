@@ -9,6 +9,7 @@ import org.webreformatter.commons.adapters.CompositeAdapterFactory;
 import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.pageset.IUrlTransformer;
+import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
@@ -96,11 +97,13 @@ public class DownloadAdapter extends RuntimeContextAdapter {
             .getParameter(KEY_CLEARCACHE, false);
         boolean noDownload = fRuntimeContext
             .getParameter(KEY_NODOWNLOAD, false);
+        noDownload &= resource.getAdapter(IContentAdapter.class).exists();
         boolean ok = !clearCache && !fRuntimeContext.isExpired(resource);
         if (noDownload) {
             CachedResourceAdapter cacheAdapter = resource
                 .getAdapter(CachedResourceAdapter.class);
-            fStatusCode = cacheAdapter.getStatus();
+            int code = cacheAdapter.getStatusCode();
+            fStatusCode = HttpStatusCode.getStatusCode(code);
         } else if (ok) {
             fStatusCode = HttpStatusCode.STATUS_304; /* NOT_MODIFIED */
         } else {

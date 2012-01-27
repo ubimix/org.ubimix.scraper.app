@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.resources;
+package org.webreformatter.scrapper.app;
 
 import java.io.File;
 
@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 
 import org.webreformatter.commons.adapters.CompositeAdapterFactory;
 import org.webreformatter.commons.io.IOUtil;
+import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
 

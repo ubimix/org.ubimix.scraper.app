@@ -6,14 +6,11 @@ package org.webreformatter.scrapper.app;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import junit.framework.TestCase;
 
@@ -28,30 +25,29 @@ import org.webreformatter.commons.io.IOUtil;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
-import org.webreformatter.commons.uri.path.PathManager;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.atom.AtomEntry;
+import org.webreformatter.commons.xml.atom.AtomFeed;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.html.HTMLAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
-import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
-import org.webreformatter.scrapper.normalizer.XslUtils;
 import org.webreformatter.scrapper.protocol.ClasspathProtocolHandler;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.HttpProtocolHandler;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.protocol.IProtocolHandler;
 import org.webreformatter.scrapper.protocol.UrlBasedProtocolHandler;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.atom.AtomEntry;
-import org.webreformatter.server.xml.atom.AtomFeed;
+import org.webreformatter.scrapper.transformer.IDocumentTransformer;
+import org.webreformatter.scrapper.transformer.RegexCompositeTransformer;
+import org.webreformatter.scrapper.utils.XslBasedDocumentTransformerFactory;
 
 /**
  * @author kotelnikov
  */
-public class ScrappingTest extends TestCase {
+public class ScrappingSandbox extends TestCase {
 
     // ApplicationContext
     // SessionContext
@@ -64,31 +60,6 @@ public class ScrappingTest extends TestCase {
     // * URL => XSL URL (for XSL-based document normalization)
     //
     //
-
-    public static class CompositeNormalizer implements IDocumentNormalizer {
-
-        private PathManager<IDocumentNormalizer> fXslMapping = new PathManager<IDocumentNormalizer>();
-
-        public void addNormalizer(Uri baseUrl, IDocumentNormalizer normalizer) {
-            Path path = UriToPath.getPath(baseUrl);
-            String str = path.toString();
-            fXslMapping.add(str, normalizer);
-        }
-
-        public AtomFeed getNormalizedDocument(Uri url, XmlWrapper doc)
-            throws XmlException,
-            IOException {
-            Path path = UriToPath.getPath(url);
-            String str = path.toString();
-            AtomFeed result = null;
-            IDocumentNormalizer normalizer = fXslMapping.getNearestValue(str);
-            if (normalizer != null) {
-                result = normalizer.getNormalizedDocument(url, doc);
-            }
-            return result;
-        }
-
-    }
 
     public static class Container {
         protected Map<String, Object> fMap = new HashMap<String, Object>();
@@ -106,12 +77,6 @@ public class ScrappingTest extends TestCase {
         public void setValue(String key, Object value) {
             fMap.put(key, value);
         }
-    }
-
-    public interface IDocumentNormalizer {
-        AtomFeed getNormalizedDocument(Uri url, XmlWrapper doc)
-            throws XmlException,
-            IOException;
     }
 
     public static class LoadPage extends SimpleCall {
@@ -194,51 +159,6 @@ public class ScrappingTest extends TestCase {
 
     }
 
-    public static class RegextDocumentNormalizer implements IDocumentNormalizer {
-
-        public Map<Pattern, IDocumentNormalizer> fMap = new LinkedHashMap<Pattern, IDocumentNormalizer>();
-
-        public void addNormalizer(
-            String urlRegexp,
-            IDocumentNormalizer normalizer) {
-            Pattern regexp = Pattern.compile(urlRegexp);
-            fMap.put(regexp, normalizer);
-        }
-
-        public AtomFeed getNormalizedDocument(Uri url, XmlWrapper doc)
-            throws XmlException,
-            IOException {
-            AtomFeed result = null;
-            String str = url.toString();
-            for (Map.Entry<Pattern, IDocumentNormalizer> entry : fMap
-                .entrySet()) {
-                Pattern pattern = entry.getKey();
-                Matcher matcher = pattern.matcher(str);
-                if (matcher.lookingAt()) {
-                    IDocumentNormalizer normalizer = entry.getValue();
-                    result = normalizer.getNormalizedDocument(url, doc);
-                    if (result != null) {
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
-
-        public void removeNormalizer(String urlRegexp) {
-            Pattern pattern = null;
-            for (Pattern key : fMap.keySet()) {
-                if (key.pattern().equals(urlRegexp)) {
-                    pattern = key;
-                }
-            }
-            if (pattern != null) {
-                fMap.remove(pattern);
-            }
-        }
-
-    }
-
     public static class SimpleCall extends CallEvent<Container, Container> {
 
         public SimpleCall() {
@@ -261,74 +181,12 @@ public class ScrappingTest extends TestCase {
         }
     }
 
-    public static class XslBasedDocumentNormalizer
-        implements
-        IDocumentNormalizer {
-
-        public static XslBasedDocumentNormalizer getNormalizer(
-            IWrfResourceProvider resourceProvider,
-            IProtocolHandler protocolHandler,
-            Uri xslUri) throws IOException, XmlException {
-            XmlWrapper xsl = getXslDocument(
-                resourceProvider,
-                protocolHandler,
-                xslUri);
-            return new XslBasedDocumentNormalizer(xsl);
-        }
-
-        public static XmlWrapper getXslDocument(
-            IWrfResourceProvider resourceProvider,
-            IProtocolHandler protocolHandler,
-            Uri xslUrl) throws IOException, XmlException {
-            XmlWrapper xsl = null;
-            Path path = UriToPath.getPath(xslUrl);
-            IWrfResource resource = resourceProvider.getResource(path, true);
-            // FIXME:
-            String login = null;
-            String password = null;
-            HttpStatusCode status = protocolHandler.handleRequest(
-                xslUrl,
-                login,
-                password,
-                resource);
-            if (!status.isError() || HttpStatusCode.STATUS_304.equals(status)) {
-                XmlAdapter xmlAdapter = resource.getAdapter(XmlAdapter.class);
-                xsl = xmlAdapter.getWrapper();
-            }
-            return xsl;
-        }
-
-        private XmlWrapper fXsl;
-
-        public XslBasedDocumentNormalizer(XmlWrapper xsl) {
-            fXsl = xsl;
-        }
-
-        public AtomFeed getNormalizedDocument(Uri url, XmlWrapper doc)
-            throws XmlException,
-            IOException {
-            AtomFeed result = doc.applyXSL(fXsl, AtomFeed.class);
-            String prefix = XslUtils
-                .getNamespacePrefix(
-                    result.getXmlContext().getNamespaceContext(),
-                    "http://www.w3.org/1999/xhtml",
-                    "xhtml");
-            if (prefix != null && !"".equals(prefix)) {
-                prefix += ":";
-            }
-            XslUtils.resolveLinks(result, url, prefix + "a", "href");
-            XslUtils.resolveLinks(result, url, prefix + "img", "src");
-            return result;
-        }
-
-    }
-
-    private final static Logger log = Logger.getLogger(ScrappingTest.class
+    private final static Logger log = Logger.getLogger(ScrappingSandbox.class
         .getName());
 
     protected CompositeAdapterFactory fAdapters = new CompositeAdapterFactory();
 
-    private IDocumentNormalizer fNormalizer;
+    private IDocumentTransformer fNormalizer;
 
     private CompositeProtocolHandler fProtocolHandler = new CompositeProtocolHandler();
 
@@ -337,7 +195,7 @@ public class ScrappingTest extends TestCase {
     /**
      * @param name
      */
-    public ScrappingTest(String name) {
+    public ScrappingSandbox(String name) {
         super(name);
     }
 
@@ -372,17 +230,16 @@ public class ScrappingTest extends TestCase {
 
         IWrfResourceProvider xslResourceProvider = resourceRepository
             .getResourceProvider("xsl", true);
-        RegextDocumentNormalizer normalizer = new RegextDocumentNormalizer();
+        RegexCompositeTransformer normalizer = new RegexCompositeTransformer();
 
-        normalizer.addNormalizer(
-            "http://\\w+.wikipedia.org",
-            XslBasedDocumentNormalizer.getNormalizer(
-                xslResourceProvider,
-                fProtocolHandler,
-                new Uri("classpath:/xsl/transform-wikipedia.xsl")));
-        normalizer.addNormalizer("^.*$", XslBasedDocumentNormalizer
-            .getNormalizer(xslResourceProvider, fProtocolHandler, new Uri(
-                "classpath:/xsl/main.xsl")));
+        XslBasedDocumentTransformerFactory factory = new XslBasedDocumentTransformerFactory(
+            xslResourceProvider,
+            fProtocolHandler);
+        normalizer.addTransformer("http://\\w+.wikipedia.org", factory
+            .getTransformer(new Uri("classpath:/xsl/transform-wikipedia.xsl")));
+        normalizer.addTransformer(
+            "^.*$",
+            factory.getTransformer(new Uri("classpath:/xsl/main.xsl")));
 
         fNormalizer = normalizer;
     }
@@ -444,7 +301,7 @@ public class ScrappingTest extends TestCase {
                                         .getAdapter(HTMLAdapter.class);
                                     XmlWrapper doc = htmlAdapter.getWrapper();
                                     Uri url = event.getUri();
-                                    result = fNormalizer.getNormalizedDocument(
+                                    result = fNormalizer.transformDocument(
                                         url,
                                         doc);
                                 } else {

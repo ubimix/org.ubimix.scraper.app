@@ -5,10 +5,10 @@ import java.io.IOException;
 import junit.framework.TestCase;
 
 import org.webreformatter.commons.uri.Uri;
+import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlWrapper;
+import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
 import org.webreformatter.pageset.loaders.XmlUrlToPathMapperLoader;
-import org.webreformatter.server.xml.XmlException;
-import org.webreformatter.server.xml.XmlWrapper;
-import org.webreformatter.server.xml.XmlWrapper.XmlContext;
 
 public class XmlUrlToPathMapperLoaderTest extends TestCase {
 
