@@ -1,4 +1,4 @@
-package org.webreformatter.scrapper.transformer;
+package org.webreformatter.scrapper.utils;
 
 import java.io.IOException;
 
@@ -12,6 +12,7 @@ import org.webreformatter.resources.IWrfResourceProvider;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.protocol.IProtocolHandler;
+import org.webreformatter.scrapper.transformer.XslBasedDocumentTransformer;
 
 public class XslBasedDocumentTransformerFactory {
 

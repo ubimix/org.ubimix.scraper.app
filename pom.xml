@@ -18,7 +18,17 @@
     <dependencies>
         <dependency>
             <groupId>org.webreformatter.scrapper</groupId>
-            <artifactId>org.webreformatter.resources</artifactId>
+            <artifactId>org.webreformatter.scrapper.protocol</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webreformatter.scrapper</groupId>
+            <artifactId>org.webreformatter.scrapper.transformer</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webreformatter.scrapper</groupId>
+            <artifactId>org.webreformatter.scrapper.resources</artifactId>
             <version>0.9.0</version>
         </dependency>
 
@@ -73,12 +83,6 @@
             <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.osgi</artifactId>
             <version>${commons.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.webreformatter.libs</groupId>
-            <artifactId>org.apache.commons.httpclient</artifactId>
-            <version>4.1.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
