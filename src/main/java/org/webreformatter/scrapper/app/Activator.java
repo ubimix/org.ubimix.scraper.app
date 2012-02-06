@@ -120,7 +120,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
         ReformatServlet servlet = new ReformatServlet(
             fPageSetConfigRegistry,
             fApplicationContext);
-        fPath = getProperty("web.path", "/*");
+        fPath = getProperty("web.reformat.path", "/wrf/*");
         fHttpService.registerServlet(fPath, servlet, fProperties, httpContext);
     }
 
