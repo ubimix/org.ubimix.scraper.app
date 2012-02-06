@@ -12,7 +12,7 @@
     </properties>
     <groupId>org.webreformatter.scrapper</groupId>
     <artifactId>org.webreformatter.scrapper.app</artifactId>
-    <version>1.0.0.SNAPSHOT</version>
+    <version>0.9.0</version>
     <packaging>bundle</packaging>
     <name>${artifactId}</name>
     <dependencies>

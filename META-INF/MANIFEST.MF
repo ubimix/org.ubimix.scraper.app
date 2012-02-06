@@ -3,28 +3,20 @@ Bundle-ClassPath: .
 Bundle-SymbolicName: org.webreformatter.scrapper.app
 Bundle-Name: org.webreformatter.scrapper.app
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Version: 1.0.0.SNAPSHOT
+Bundle-Version: 0.9.0
 Bundle-ManifestVersion: 2
 Bundle-Description: Scrapper API
-Bundle-License: http://www.apache.org/licenses/LICENSE-2.0Import-Package: eu.medsea.mimeutil,
- eu.medsea.mimeutil.detector,
- eu.medsea.mimeutil.handler,
- eu.medsea.util,
- javax.crypto;resolution:=optional,
- javax.crypto.spec;resolution:=optional,
- javax.imageio;resolution:=optional,
- javax.imageio.stream;resolution:=optional,
- javax.security.auth.x500;resolution:=optional,
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Export-Package: 
+ org.webreformatter.pageset,
+ org.webreformatter.pageset.loaders,
+ org.webreformatter.scrapper.app,
+ org.webreformatter.scrapper.context,
+ org.webreformatter.scrapper.utils
+Bundle-Activator: org.webreformatter.scrapper.app.Activator
+Import-Package: 
  javax.servlet;version="2.5.0",
  javax.servlet.http;version="2.5.0",
- javax.xml.namespace,
- javax.xml.parsers,
- javax.xml.transform,
- javax.xml.transform.dom,
- javax.xml.transform.stream,
- javax.xml.xpath,
- org.apache.commons.logging;version="1.0.4",
- org.htmlcleaner;version="2.2.0",
  org.osgi.framework;version="1.3.0",
  org.osgi.service.cm;version="1.3.0",
  org.osgi.service.http;version="1.2.1",
@@ -56,12 +48,6 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0Import-Package: eu.me
  org.webreformatter.resources.adapters.zip;version="0.9.0",
  org.webreformatter.resources.impl;version="0.9.0",
  org.webreformatter.scrapper.protocol;version="0.9.0",
+ org.webreformatter.scrapper.transformer;version="0.9.0",
  org.webreformatter.server.mime;version="0.9.0",
  org.xml.sax
-Export-Package: org.webreformatter.pageset,
- org.webreformatter.pageset.loaders,
- org.webreformatter.scrapper.app,
- org.webreformatter.scrapper.context,
- org.webreformatter.scrapper.utils
-Bundle-Activator: org.webreformatter.scrapper.app.Activator
-
