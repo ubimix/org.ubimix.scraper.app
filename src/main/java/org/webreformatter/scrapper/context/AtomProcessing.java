@@ -31,25 +31,27 @@ public class AtomProcessing extends RuntimeContextAdapter {
     private static final String RESOURCE_HTML_NORMALIZED = "html-normalized";
 
     public static IAdapterFactory getAdapterFactory(
-            final IDocumentTransformer documentTransformer) {
+        final IDocumentTransformer documentTransformer) {
         return new IAdapterFactory() {
             @SuppressWarnings("unchecked")
             public <T> T getAdapter(Object instance, Class<T> type) {
                 if (type != AtomProcessing.class
-                        || !(instance instanceof RuntimeContext)) {
+                    || !(instance instanceof RuntimeContext)) {
                     return null;
                 }
-                return (T) new AtomProcessing((RuntimeContext) instance,
-                        documentTransformer);
+                return (T) new AtomProcessing(
+                    (RuntimeContext) instance,
+                    documentTransformer);
             }
         };
     }
 
-    public static void register(CompositeAdapterFactory adapterFactory,
-            IDocumentTransformer documentTransformer) {
+    public static void register(
+        CompositeAdapterFactory adapterFactory,
+        IDocumentTransformer documentTransformer) {
         adapterFactory.registerAdapterFactory(
-                AtomProcessing.getAdapterFactory(documentTransformer),
-                AtomProcessing.class);
+            AtomProcessing.getAdapterFactory(documentTransformer),
+            AtomProcessing.class);
     }
 
     private IDocumentTransformer fTransformer;
@@ -59,18 +61,22 @@ public class AtomProcessing extends RuntimeContextAdapter {
      * @param args
      * @throws Exception
      */
-    public AtomProcessing(RuntimeContext runtimeContext,
-            IDocumentTransformer documentTransformer) {
+    public AtomProcessing(
+        RuntimeContext runtimeContext,
+        IDocumentTransformer documentTransformer) {
         super(runtimeContext);
         fTransformer = documentTransformer;
     }
 
-    public XmlAdapter getResourceAsAtomAdapter() throws IOException, XmlException {
-        IWrfResource cleanResource = fRuntimeContext
-                .getResource(RESOURCE_HTML_NORMALIZED);
+    public XmlAdapter getResourceAsAtomAdapter()
+        throws IOException,
+        XmlException {
+        RuntimeContext runtimeContext = getContext();
+        IWrfResource cleanResource = runtimeContext
+            .getResource(RESOURCE_HTML_NORMALIZED);
         XmlAdapter xmlAdapter = cleanResource.getAdapter(XmlAdapter.class);
         boolean ok = false;
-        if (!fRuntimeContext.isExpired(cleanResource)) {
+        if (!runtimeContext.isExpired(cleanResource)) {
             XmlWrapper xml = xmlAdapter.getWrapper();
             if (xml != null) {
                 ok = true;
@@ -81,11 +87,10 @@ public class AtomProcessing extends RuntimeContextAdapter {
         if (!ok) {
             XmlWrapper doc = getXHTMLResource();
             if (doc != null) {
-                Uri url = fRuntimeContext.getUrl();
+                Uri url = runtimeContext.getUrl();
                 AtomFeed newDoc = fTransformer.transformDocument(url, doc);
                 if (newDoc != null) {
                     xmlAdapter.setDocument(newDoc);
-                    touch(cleanResource);
                 }
                 ok = true;
             }
@@ -104,19 +109,20 @@ public class AtomProcessing extends RuntimeContextAdapter {
     }
 
     public XmlWrapper getXHTMLResource() throws IOException, XmlException {
-        Uri url = fRuntimeContext.getUrl();
-        IWrfResource htmlResource = fRuntimeContext.getResource(RESOURCE_HTML);
+        RuntimeContext runtimeContext = getContext();
+        Uri url = runtimeContext.getUrl();
+        IWrfResource htmlResource = runtimeContext.getResource(RESOURCE_HTML);
         XmlAdapter xmlAdapter = htmlResource.getAdapter(XmlAdapter.class);
         boolean exists = false;
-        if (!fRuntimeContext.isExpired(htmlResource)) {
+        if (!runtimeContext.isExpired(htmlResource)) {
             exists = true;
         } else {
-            IWrfResource rawResource = fRuntimeContext
-                    .getResource(RESOURCE_DOWNLOAD);
-            exists = !fRuntimeContext.isExpired(rawResource);
+            IWrfResource rawResource = runtimeContext
+                .getResource(RESOURCE_DOWNLOAD);
+            exists = !runtimeContext.isExpired(rawResource);
             if (!exists) {
-                DownloadAdapter downloadAdapter = fRuntimeContext
-                        .getAdapter(DownloadAdapter.class);
+                DownloadAdapter downloadAdapter = runtimeContext
+                    .getAdapter(DownloadAdapter.class);
                 rawResource = downloadAdapter.loadResource();
                 if (downloadAdapter.isOK()) {
                     exists = true;
@@ -125,17 +131,17 @@ public class AtomProcessing extends RuntimeContextAdapter {
             }
             if (exists) {
                 MimeTypeAdapter mimeTypeAdapter = rawResource
-                        .getAdapter(MimeTypeAdapter.class);
+                    .getAdapter(MimeTypeAdapter.class);
                 String mimeType = mimeTypeAdapter.getMimeType();
                 if (mimeType.startsWith("text/html")) {
                     HTMLAdapter htmlAdapter = rawResource
-                            .getAdapter(HTMLAdapter.class);
+                        .getAdapter(HTMLAdapter.class);
                     XmlWrapper doc = htmlAdapter.getWrapper();
                     exists = doc != null;
                     if (exists) {
                         xmlAdapter.setDocument(doc);
                         CachedResourceAdapter adapter = htmlResource
-                                .getAdapter(CachedResourceAdapter.class);
+                            .getAdapter(CachedResourceAdapter.class);
                         adapter.updateMetadataFrom(rawResource);
                     }
                 }
@@ -156,12 +162,6 @@ public class AtomProcessing extends RuntimeContextAdapter {
         if (resource != null) {
             resource.remove();
         }
-    }
-
-    protected void touch(IWrfResource resource) throws IOException {
-        CachedResourceAdapter adapter = resource
-                .getAdapter(CachedResourceAdapter.class);
-        adapter.touch();
     }
 
 }

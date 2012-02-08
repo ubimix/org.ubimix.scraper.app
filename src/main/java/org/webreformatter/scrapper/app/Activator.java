@@ -10,7 +10,6 @@ import java.util.Map;
 
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
-import org.webreformatter.commons.adapters.AdapterFactoryUtils;
 import org.webreformatter.commons.adapters.CompositeAdapterFactory;
 import org.webreformatter.commons.osgi.ConfigurableMultiserviceActivator;
 import org.webreformatter.commons.osgi.OSGIObjectActivator;
@@ -21,15 +20,12 @@ import org.webreformatter.commons.osgi.OSGIServiceDeactivator;
 import org.webreformatter.commons.strings.StringUtil;
 import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.PageSetConfig;
-import org.webreformatter.pageset.PageSetConfigRegistry;
 import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.context.AtomProcessing;
 import org.webreformatter.scrapper.context.DownloadAdapter;
-import org.webreformatter.scrapper.context.PageSetConfigLoader;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
@@ -51,8 +47,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
     private HttpService fHttpService;
 
     private IMimeTypeDetector fMimeDetector;
-
-    private PageSetConfigRegistry fPageSetConfigRegistry = new PageSetConfigRegistry();
 
     private String fPath;
 
@@ -88,12 +82,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
         AtomProcessing.register(fAdapterFactory, fDocumentNormalizers);
         DownloadAdapter.register(fAdapterFactory);
 
-        // Register adapters for the ApplicationContext
-        AdapterFactoryUtils.registerAdapter(
-            fAdapterFactory,
-            ApplicationContext.class,
-            PageSetConfigLoader.class);
-
         CompositeProtocolHandler protocolHandler = getProtocolHandler();
 
         fApplicationContext = ApplicationContext
@@ -117,9 +105,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
             fProperties,
             httpContext);
 
-        ReformatServlet servlet = new ReformatServlet(
-            fPageSetConfigRegistry,
-            fApplicationContext);
+        ReformatServlet servlet = new ReformatServlet(fApplicationContext);
         fPath = getProperty("web.reformat.path", "/wrf/*");
         fHttpService.registerServlet(fPath, servlet, fProperties, httpContext);
     }
@@ -132,15 +118,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
         if (url != null) {
             fDocumentNormalizers.addTransformer(new Uri(url), transformer);
         }
-    }
-
-    @OSGIServiceActivator(min = 0)
-    public void addPageSetConfig(PageSetConfig config, Map<String, String> map) {
-        String key = map.get("key");
-        if (key == null) {
-            key = "";
-        }
-        fPageSetConfigRegistry.registerPageSetConfig(key, config);
     }
 
     @Override
@@ -199,7 +176,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
             WrfResourceRepository repository = new WrfResourceRepository(
                 fAdapterFactory,
                 rootDir);
-            WrfRepositoryUtils.registerAdapters(repository);
+            WrfRepositoryUtils.registerDefaultResourceAdapters(fAdapterFactory);
             fRepository = repository;
 
         }

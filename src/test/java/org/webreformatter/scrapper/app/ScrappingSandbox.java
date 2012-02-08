@@ -214,7 +214,7 @@ public class ScrappingSandbox extends TestCase {
         WrfResourceRepository resourceRepository = new WrfResourceRepository(
             fAdapters,
             root);
-        WrfRepositoryUtils.registerAdapters(resourceRepository);
+        WrfRepositoryUtils.registerDefaultResourceAdapters(fAdapters);
         fResourceProvider = resourceRepository.getResourceProvider(
             "download",
             true);

@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.webreformatter.commons.uri.Path.Builder;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.PageSetConfig;
-import org.webreformatter.pageset.PageSetConfigRegistry;
-import org.webreformatter.pageset.UrlToPathMapper;
 import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
@@ -28,7 +25,7 @@ public class ReformatServlet extends HttpServlet {
     private static final String ENCODING = "UTF-8";
 
     private static Logger log = Logger.getLogger(ReformatServlet.class
-            .getName());
+        .getName());
 
     private static final String MIME_TYPE = "text/html";
 
@@ -36,17 +33,14 @@ public class ReformatServlet extends HttpServlet {
 
     private ApplicationContext fApplicationContext;
 
-    private PageSetConfigRegistry fPageSetConfigRegistry;
-
-    public ReformatServlet(PageSetConfigRegistry pageSetConfigRegistry,
-            ApplicationContext applicationContext) {
-        fPageSetConfigRegistry = pageSetConfigRegistry;
+    public ReformatServlet(ApplicationContext applicationContext) {
         init(applicationContext);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, final HttpServletResponse resp)
-            throws ServletException, IOException {
+        throws ServletException,
+        IOException {
         try {
             req.setCharacterEncoding(ENCODING);
             resp.setCharacterEncoding(ENCODING);
@@ -68,26 +62,9 @@ public class ReformatServlet extends HttpServlet {
             if (pageSetKey == null) {
                 pageSetKey = req.getParameter("pageset");
             }
-            PageSetConfig pageSetConfig = fPageSetConfigRegistry
-                    .getPageSetConfig(pageSetKey);
-            if (pageSetConfig == null) {
-                pageSetKey = DEFAULT_PAGE_SET_KEY;
-                pageSetConfig = fPageSetConfigRegistry
-                        .getPageSetConfig(pageSetKey);
-            }
-            if (pageSetConfig == null) {
-                resp.sendError(HttpServletResponse.SC_NOT_FOUND);
-                return;
-            }
             Uri path = builder.build();
-            UrlToPathMapper mapper = pageSetConfig.getUrlToPathMapper();
-            Uri url = mapper.pathToUri(path);
-            if (url == null) {
-                String q = req.getParameter("url");
-                if (q != null) {
-                    url = new Uri(q);
-                }
-            }
+            String q = req.getParameter("url");
+            Uri url = (q != null) ? new Uri(q) : null;
             if (url == null) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                 return;
@@ -103,7 +80,8 @@ public class ReformatServlet extends HttpServlet {
             // FIXME:
         } catch (Exception t) {
             throw reportError(
-                    "Can not download a resource with the specified URL", t);
+                "Can not download a resource with the specified URL",
+                t);
         }
     }
 
@@ -124,7 +102,7 @@ public class ReformatServlet extends HttpServlet {
         }
         for (@SuppressWarnings("unchecked")
         Enumeration<String> paramNames = req.getParameterNames(); paramNames
-                .hasMoreElements();) {
+            .hasMoreElements();) {
             String key = paramNames.nextElement();
             String value = req.getParameter(key);
             params.put(key, value);
@@ -148,8 +126,9 @@ public class ReformatServlet extends HttpServlet {
         fApplicationContext = applicationContext;
     }
 
-    protected void setResponseProperties(HttpServletResponse resp,
-            Map<String, String> properties) {
+    protected void setResponseProperties(
+        HttpServletResponse resp,
+        Map<String, String> properties) {
         boolean skip = false;
         if (skip) {
             return;
@@ -157,8 +136,10 @@ public class ReformatServlet extends HttpServlet {
         for (Map.Entry<String, String> entry : properties.entrySet()) {
             String key = entry.getKey();
             String k = key.toLowerCase();
-            if ("content-length".equals(k) || "statuscode".equals(k)
-                    || "connection".equals(k) || "content-encoding".equals(k)) {
+            if ("content-length".equals(k)
+                || "statuscode".equals(k)
+                || "connection".equals(k)
+                || "content-encoding".equals(k)) {
                 continue;
             }
             resp.setHeader(key, entry.getValue());

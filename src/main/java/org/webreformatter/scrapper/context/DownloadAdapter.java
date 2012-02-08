@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.webreformatter.commons.adapters.CompositeAdapterFactory;
 import org.webreformatter.commons.adapters.IAdapterFactory;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.pageset.IUrlTransformer;
 import org.webreformatter.resources.IContentAdapter;
 import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
@@ -70,9 +69,10 @@ public class DownloadAdapter extends RuntimeContextAdapter {
     }
 
     public IWrfResource getResource() {
-        String resourceNameSuffix = fRuntimeContext
+        RuntimeContext runtimeContext = getContext();
+        String resourceNameSuffix = runtimeContext
             .getParameter(KEY_RESOURCE_SUFFIX);
-        IWrfResource resource = fRuntimeContext.getResource(
+        IWrfResource resource = runtimeContext.getResource(
             RESOURCE_DOWNLOAD,
             resourceNameSuffix);
         return resource;
@@ -91,14 +91,13 @@ public class DownloadAdapter extends RuntimeContextAdapter {
     }
 
     public IWrfResource loadResource() throws IOException {
-        Uri url = fRuntimeContext.getUrl();
+        RuntimeContext runtimeContext = getContext();
+        Uri url = runtimeContext.getUrl();
         IWrfResource resource = getResource();
-        boolean clearCache = fRuntimeContext
-            .getParameter(KEY_CLEARCACHE, false);
-        boolean noDownload = fRuntimeContext
-            .getParameter(KEY_NODOWNLOAD, false);
+        boolean clearCache = runtimeContext.getParameter(KEY_CLEARCACHE, false);
+        boolean noDownload = runtimeContext.getParameter(KEY_NODOWNLOAD, false);
         noDownload &= resource.getAdapter(IContentAdapter.class).exists();
-        boolean ok = !clearCache && !fRuntimeContext.isExpired(resource);
+        boolean ok = !clearCache && !runtimeContext.isExpired(resource);
         if (noDownload) {
             CachedResourceAdapter cacheAdapter = resource
                 .getAdapter(CachedResourceAdapter.class);
@@ -107,8 +106,9 @@ public class DownloadAdapter extends RuntimeContextAdapter {
         } else if (ok) {
             fStatusCode = HttpStatusCode.STATUS_304; /* NOT_MODIFIED */
         } else {
-            AccessManager accessManager = fRuntimeContext.getAccessManager();
-            ApplicationContext applicationContext = fRuntimeContext
+            SessionContext sessionContext = runtimeContext.getSessionContext();
+            AccessManager accessManager = sessionContext.getAccessManager();
+            ApplicationContext applicationContext = runtimeContext
                 .getApplicationContext();
             IProtocolHandler protocolHandler = applicationContext
                 .getProtocolHandler();
@@ -121,7 +121,7 @@ public class DownloadAdapter extends RuntimeContextAdapter {
                 password = credentials.getPassword();
             }
 
-            IUrlTransformer urlTransformer = fRuntimeContext
+            IUrlTransformer urlTransformer = sessionContext
                 .getDownloadUrlTransformer();
             Uri downloadUrl = urlTransformer != null ? urlTransformer
                 .transform(url) : url;
@@ -134,9 +134,6 @@ public class DownloadAdapter extends RuntimeContextAdapter {
                 ok = isOK();
             } else {
                 fStatusCode = HttpStatusCode.STATUS_404;
-            }
-            if (ok) {
-                fRuntimeContext.touch(resource);
             }
         }
         return resource;

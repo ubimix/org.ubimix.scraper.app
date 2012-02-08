@@ -1,7 +1,4 @@
-/**
- * 
- */
-package org.webreformatter.pageset;
+package org.webreformatter.scrapper.context;
 
 import org.webreformatter.commons.uri.Uri;
 

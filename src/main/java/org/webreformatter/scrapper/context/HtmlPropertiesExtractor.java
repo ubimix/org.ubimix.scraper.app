@@ -10,15 +10,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
+import org.webreformatter.commons.xml.XHTMLUtils;
 import org.webreformatter.commons.xml.XmlAcceptor;
+import org.webreformatter.commons.xml.XmlAcceptor.XmlVisitor;
 import org.webreformatter.commons.xml.XmlException;
 import org.webreformatter.commons.xml.XmlTagExtractor;
-import org.webreformatter.commons.xml.XmlWrapper;
-import org.webreformatter.commons.xml.XmlAcceptor.XmlVisitor;
 import org.webreformatter.commons.xml.XmlTagExtractor.HtmlBlockElementsAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.HtmlNamedNodeAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.IElementAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.SimpleElementAcceptor;
+import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
 
 /**
@@ -42,7 +43,7 @@ public class HtmlPropertiesExtractor {
         XmlWrapper child = ul.getFirstElement();
         while (child != null) {
             XmlWrapper next = child.getNextElement();
-            String name = getHTMLName(child.getRootElement());
+            String name = XHTMLUtils.getHTMLName(child.getRootElement());
             if ("li".equals(name)) {
                 String[] key = { visitPropertyItem(child) };
                 Object value = getPropertyValue(key, child);
@@ -56,7 +57,7 @@ public class HtmlPropertiesExtractor {
         XmlWrapper xml,
         Map<String, Object> properties) throws XmlException {
         boolean result = false;
-        String name = getHTMLName(xml.getRootElement());
+        String name = XHTMLUtils.getHTMLName(xml.getRootElement());
         if ("ul".equals(name)) {
             buildPropertiesFromList(xml, properties);
             result = true;
@@ -117,11 +118,6 @@ public class HtmlPropertiesExtractor {
             }
         }
         return properties;
-    }
-
-    protected String getHTMLName(Element tag) {
-        String name = tag.getLocalName();
-        return name;
     }
 
     protected String[] getPropertyElementNames() {

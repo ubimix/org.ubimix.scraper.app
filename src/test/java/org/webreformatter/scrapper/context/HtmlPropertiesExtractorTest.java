@@ -11,7 +11,6 @@ import junit.framework.TestCase;
 import org.webreformatter.commons.xml.XmlException;
 import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
-import org.webreformatter.scrapper.context.HtmlPropertiesExtractor;
 
 /**
  * @author kotelnikov

@@ -34,7 +34,7 @@ public abstract class AbstractResourceTest extends TestCase {
         File root = new File("./tmp");
         IOUtil.delete(root);
         fResourceRepository = new WrfResourceRepository(fAdapters, root);
-        WrfRepositoryUtils.registerAdapters(fResourceRepository);
+        WrfRepositoryUtils.registerDefaultResourceAdapters(fAdapters);
         fResourceProvider = fResourceRepository.getResourceProvider(
             "test",
             true);
