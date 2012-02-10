@@ -5,7 +5,13 @@ package org.webreformatter.scrapper.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import org.webreformatter.commons.geo.TileInfo;
+import org.webreformatter.commons.geo.TilesLoader;
 import org.webreformatter.commons.uri.Path;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.commons.uri.UriToPath;
@@ -48,6 +54,73 @@ public class ResourceLoader {
         };
 
         Uri transform(Uri uri);
+    }
+
+    /**
+     * @author kotelnikov
+     */
+    public static class MapTilesLoaderListener extends TilesLoader.LoadListener {
+
+        private final static Logger log = Logger
+            .getLogger(MapTilesLoaderListener.class.getName());
+
+        private ResourceLoader fLoader;
+
+        private Uri fMapServerUrl;
+
+        private String fPathPrefix;
+
+        private Map<Path, IWrfResource> fResults;
+
+        public MapTilesLoaderListener(
+            String pathPrefix,
+            ResourceLoader loader,
+            Uri mapServerUrl) {
+            this(
+                pathPrefix,
+                loader,
+                mapServerUrl,
+                new HashMap<Path, IWrfResource>());
+        }
+
+        public MapTilesLoaderListener(
+            String pathPrefix,
+            ResourceLoader loader,
+            Uri mapServerUrl,
+            Map<Path, IWrfResource> results) {
+            fPathPrefix = pathPrefix;
+            fResults = results;
+            fLoader = loader;
+            fMapServerUrl = mapServerUrl;
+        }
+
+        public Map<Path, IWrfResource> getMapTiles() {
+            return fResults;
+        }
+
+        protected void handleError(String msg, Throwable t) {
+            log.log(Level.SEVERE, msg, t);
+        }
+
+        @Override
+        public void onTile(TileInfo tile) {
+            String str = tile.getTilePath();
+            Uri tileUri = fMapServerUrl
+                .getBuilder()
+                .appendFullPath(str)
+                .build();
+            IWrfResource resource = fLoader.getResource("maps", tileUri, null);
+            try {
+                fLoader.loadResource(tileUri, resource);
+                Path path = new Path.Builder(fPathPrefix)
+                    .appendPath(str)
+                    .build();
+                fResults.put(path, resource);
+            } catch (IOException e) {
+                handleError("Can not load a tile " + tile + ".", e);
+            }
+        }
+
     }
 
     private AccessManager fAccessManager = new AccessManager();
