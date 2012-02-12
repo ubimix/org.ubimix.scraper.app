@@ -7,7 +7,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.webreformatter.commons.geo.GeoPoint;
 import org.webreformatter.commons.geo.ImagePoint;
@@ -38,7 +40,7 @@ public class ExampleTileGenerator {
         System.exit(0);
     }
 
-    private ResourceLoader fResourceLoader = new ResourceLoader();
+    private ResourceLoader fResourceLoader = new ResourceLoader("./data", true);
 
     /**
      * 
@@ -54,9 +56,9 @@ public class ExampleTileGenerator {
 
         JsonObject params = JsonObject.newValue("{"
             + "mapZoomMin: 'city',"
-            + "mapZoomMax: 'street',"
-            + "mapTop: [2.3081588745117188, 48.8872947821604],"
-            + "mapBottom: [2.3727035522460938, 48.83670138083755]"
+            + "mapZoomMax: 'building',"
+            + "mapTop: [48.85915, 2.33983],"
+            + "mapBottom: [48.86576, 2.33490]"
             + "}");
 
         GeoPoint mapTop = getGeoPoint(params, "mapTop");
@@ -67,6 +69,7 @@ public class ExampleTileGenerator {
         ZoomLevel b = ZoomLevel.toZoomLevel(str, maxZoomLevel);
         ZoomLevel minZoom = ZoomLevel.min(a, b);
         ZoomLevel maxZoom = ZoomLevel.max(a, b);
+        final Set<TileInfo> set = new HashSet<TileInfo>();
         TilesLoader loader = new TilesLoader();
         MapTilesLoaderListener tilesListener = new MapTilesLoaderListener(
             "maps",
@@ -92,6 +95,11 @@ public class ExampleTileGenerator {
 
             @Override
             public void onTile(TileInfo tile) {
+                if (set.contains(tile)) {
+                    throw new IllegalArgumentException(
+                        "Tile already exists in the specified set!");
+                }
+                set.add(tile);
                 System.out.println("  * " + tile.getTilePath());
                 super.onTile(tile);
             }
