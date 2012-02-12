@@ -30,7 +30,6 @@ import org.webreformatter.scrapper.protocol.AccessManager;
 import org.webreformatter.scrapper.protocol.AccessManager.CredentialInfo;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
-import org.webreformatter.scrapper.protocol.IProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
 import org.webreformatter.scrapper.transformer.XslBasedDocumentTransformer;
@@ -189,28 +188,6 @@ public class ResourceLoader {
         return targetResource;
     }
 
-    private XmlWrapper getXslDocument(
-        IWrfResourceProvider resourceProvider,
-        IProtocolHandler protocolHandler,
-        Uri xslUrl) throws IOException, XmlException {
-        XmlWrapper xsl = null;
-        Path path = UriToPath.getPath(xslUrl);
-        IWrfResource resource = resourceProvider.getResource(path, true);
-        // FIXME:
-        String login = null;
-        String password = null;
-        HttpStatusCode status = protocolHandler.handleRequest(
-            xslUrl,
-            login,
-            password,
-            resource);
-        if (status.isOkOrNotModified()) {
-            XmlAdapter xmlAdapter = resource.getAdapter(XmlAdapter.class);
-            xsl = xmlAdapter.getWrapper();
-        }
-        return xsl;
-    }
-
     public HttpStatusCode loadResource(Uri url, IWrfResource resource)
         throws IOException {
         boolean noDownload = noDownload();
@@ -291,22 +268,48 @@ public class ResourceLoader {
                     + "') dos not exist.");
         }
         Uri xslUri = new Uri(xslFile.toURI() + "");
-        IWrfResourceProvider resourceProvider = fResourceRepository
-            .getResourceProvider("tmp", true);
-        XmlWrapper xsl = getXslDocument(
-            resourceProvider,
-            fProtocolHandler,
-            xslUri);
-        if (xsl == null) {
+        setXslTransformation(urlBase, xslUri);
+    }
+
+    public void setXslTransformation(String urlBase, Uri xslUri)
+        throws IOException,
+        XmlException {
+        IWrfResource xslResource = getResource("tmp", xslUri, null);
+        HttpStatusCode status = loadResource(xslUri, xslResource);
+        if (!status.isOkOrNotModified()) {
             throw new IllegalArgumentException(
                 "An XSL transformation for the '"
                     + urlBase
-                    + "' resources could not be loaded. "
-                    + "(The resulting document is null.)");
+                    + "' resources could not be loaded. Status: "
+                    + status);
         }
+        XmlAdapter xslAdapter = xslResource.getAdapter(XmlAdapter.class);
+        XmlWrapper xsl = xslAdapter.getWrapper();
         XslBasedDocumentTransformer transformer = new XslBasedDocumentTransformer(
             xsl);
         setDocumentTransformer(urlBase, transformer);
+    }
+
+    public void toXml(
+        Uri resourceUri,
+        IWrfResource rawResource,
+        IWrfResource xmlResource) throws IOException, XmlException {
+        CachedResourceAdapter rawCache = rawResource
+            .getAdapter(CachedResourceAdapter.class);
+        CachedResourceAdapter xmlCache = xmlResource
+            .getAdapter(CachedResourceAdapter.class);
+        long rawResourceModificationTime = rawCache.getLastModified();
+        long atomModificationTime = xmlCache.getLastModified();
+        boolean needUpdates = rawResourceModificationTime < 0
+            || atomModificationTime < 0
+            || atomModificationTime < rawResourceModificationTime;
+        if (needUpdates) {
+            XmlAdapter xmlAdapter = xmlResource.getAdapter(XmlAdapter.class);
+            HTMLAdapter htmlAdapter = rawResource.getAdapter(HTMLAdapter.class);
+            XmlWrapper doc = htmlAdapter.getWrapper();
+            xmlAdapter.setDocument(doc);
+            xmlCache.copyPropertiesFrom(rawCache);
+        }
     }
 
     public void transformToAtom(
