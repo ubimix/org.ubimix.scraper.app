@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.context;
+package org.webreformatter.scrapper.core;
 
 import java.io.IOException;
 import java.util.Map;
@@ -11,6 +11,9 @@ import junit.framework.TestCase;
 import org.webreformatter.commons.xml.XmlException;
 import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
+import org.webreformatter.scrapper.utils.HtmlListPropertiesExtractor;
+import org.webreformatter.scrapper.utils.HtmlPropertiesExtractor;
+import org.webreformatter.scrapper.utils.HtmlTablePropertiesExtractor;
 
 /**
  * @author kotelnikov
@@ -41,36 +44,7 @@ public class HtmlPropertiesExtractorTest extends TestCase {
         return control;
     }
 
-    public void test() throws Exception {
-        testPropertiesExtraction(
-            "<div xmlns='http://www.w3.org/1999/xhtml'>\n"
-                + "<ul>\n"
-                + "     <li>a: A</li>\n"
-                + "     <li>b: B</li>\n"
-                + "</ul>\n"
-                + "</div>",
-            "<div xmlns='http://www.w3.org/1999/xhtml'>\n\n</div>",
-            "a",
-            "A",
-            "b",
-            "B");
-        testPropertiesExtraction(
-            "<div xmlns='http://www.w3.org/1999/xhtml'>"
-                + "before"
-                + "<ul>\n"
-                + "     <li>a: A</li>\n"
-                + "     <li>b: B</li>\n"
-                + "</ul>"
-                + "after"
-                + "</div>",
-            "<div xmlns='http://www.w3.org/1999/xhtml'>beforeafter</div>",
-            "a",
-            "A",
-            "b",
-            "B");
-    }
-
-    public void testBig() throws XmlException, IOException {
+    public void testBigList() throws XmlException, IOException {
         String xml = "<?xml version='1.0' encoding='utf-8'?>\n"
             + " <entry xmlns='http://www.w3.org/2005/Atom'>\n"
             + "   <title>My Guide</title>\n"
@@ -135,7 +109,9 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             + "     </div>\n"
             + "   </content>\n"
             + " </entry>";
+        HtmlListPropertiesExtractor extractor = new HtmlListPropertiesExtractor();
         testPropertiesExtraction(
+            extractor,
             xml,
             control,
             "author",
@@ -144,6 +120,38 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             "<a href=\"http://en.wikipedia.org/wiki/Semantic_Web\" xmlns=\"http://www.w3.org/1999/xhtml\">Semantic Web</a>",
             "subtitle",
             "A short description of this guide.");
+    }
+
+    public void testListProperties() throws Exception {
+        HtmlListPropertiesExtractor extractor = new HtmlListPropertiesExtractor();
+        testPropertiesExtraction(
+            extractor,
+            "<div xmlns='http://www.w3.org/1999/xhtml'>\n"
+                + "<ul>\n"
+                + "     <li>a: A</li>\n"
+                + "     <li>b: B</li>\n"
+                + "</ul>\n"
+                + "</div>",
+            "<div xmlns='http://www.w3.org/1999/xhtml'>\n\n</div>",
+            "a",
+            "A",
+            "b",
+            "B");
+        testPropertiesExtraction(
+            extractor,
+            "<div xmlns='http://www.w3.org/1999/xhtml'>"
+                + "before"
+                + "<ul>\n"
+                + "     <li>a: A</li>\n"
+                + "     <li>b: B</li>\n"
+                + "</ul>"
+                + "after"
+                + "</div>",
+            "<div xmlns='http://www.w3.org/1999/xhtml'>beforeafter</div>",
+            "a",
+            "A",
+            "b",
+            "B");
     }
 
     private void testProperties(
@@ -162,6 +170,7 @@ public class HtmlPropertiesExtractorTest extends TestCase {
     }
 
     public void testPropertiesExtraction(
+        HtmlPropertiesExtractor extractor,
         String str,
         String control,
         Object... keyValuePairs) throws XmlException, IOException {
@@ -170,10 +179,66 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             "http://www.w3.org/1999/xhtml").build();
         XmlWrapper xml = context.readXML(str);
         XmlWrapper controlXml = context.readXML(control);
-        HtmlPropertiesExtractor extractor = new HtmlPropertiesExtractor();
         Map<String, Object> properties = extractor.extractProperties(xml);
         testProperties(properties, keyValuePairs);
         assertEquals(controlXml.toString(), xml.toString());
     }
 
+    public void testTableProperties() throws XmlException, IOException {
+        HtmlPropertiesExtractor extractor = new HtmlTablePropertiesExtractor();
+        testPropertiesExtraction(
+            extractor,
+            "<div xmlns='http://www.w3.org/1999/xhtml'>"
+                + "<p>before</p>"
+                + "<table>"
+                + "<tr><th>Property</th><th>Value</th></tr>"
+                + "<tr><td>firstName</td><td>John</td></tr>"
+                + "<tr><td>lastName</td><td>Smith</td></tr>"
+                + "<tr><td>age</td><td>38</td></tr>"
+                + "</table>"
+                + "<p>after</p>"
+                + "</div>",
+            "<div xmlns='http://www.w3.org/1999/xhtml'><p>before</p><p>after</p></div>",
+            "firstName",
+            "John",
+            "lastName",
+            "Smith",
+            "age",
+            "38");
+
+        extractor = new HtmlTablePropertiesExtractor();
+        extractor.addPropertyReplacement("photo", "photoUrl");
+        extractor.addPropertyReplacement("homepage", "homepageUrl");
+        extractor.addImageProperty("photoUrl");
+        extractor.addReferenceProperty("homepageUrl");
+        testPropertiesExtraction(
+            extractor,
+            "<div xmlns='http://www.w3.org/1999/xhtml'>"
+                + "<p>before</p>"
+                + "<table>"
+                + "<tr><th>Property</th><th>Value</th></tr>"
+                + "<tr><td>firstName</td><td>John</td></tr>"
+                + "<tr><td>lastName</td><td>Smith</td></tr>"
+                + "<tr><td>age</td><td>38</td></tr>"
+                + "<tr><td>photo</td>"
+                + "<td><img src='http://www.foo.bar/images/myphoto.png' /></td>"
+                + "</tr>"
+                + "<tr><td>homepage</td>"
+                + "<td><a href='http://www.foo.bar/index.html'>My Page</a></td>"
+                + "</tr>"
+                + "</table>"
+                + "<p>after</p>"
+                + "</div>",
+            "<div xmlns='http://www.w3.org/1999/xhtml'><p>before</p><p>after</p></div>",
+            "firstName",
+            "John",
+            "lastName",
+            "Smith",
+            "age",
+            "38",
+            "photoUrl",
+            "http://www.foo.bar/images/myphoto.png",
+            "homepageUrl",
+            "http://www.foo.bar/index.html");
+    }
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.utils;
+package org.webreformatter.scrapper.core;
 
 import java.io.File;
 import java.io.IOException;

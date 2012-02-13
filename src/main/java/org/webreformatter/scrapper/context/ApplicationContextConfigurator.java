@@ -19,7 +19,6 @@ import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
 import org.webreformatter.scrapper.transformer.XslBasedDocumentTransformer;
-import org.webreformatter.scrapper.utils.XslBasedDocumentTransformerFactory;
 
 /**
  * This class is the parent for all application-specific configurators.

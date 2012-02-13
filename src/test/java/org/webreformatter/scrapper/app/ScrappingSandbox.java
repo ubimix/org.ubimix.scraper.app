@@ -34,6 +34,7 @@ import org.webreformatter.resources.adapters.html.HTMLAdapter;
 import org.webreformatter.resources.adapters.mime.MimeTypeAdapter;
 import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
+import org.webreformatter.scrapper.context.XslBasedDocumentTransformerFactory;
 import org.webreformatter.scrapper.protocol.ClasspathProtocolHandler;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.HttpProtocolHandler;
@@ -42,7 +43,6 @@ import org.webreformatter.scrapper.protocol.IProtocolHandler;
 import org.webreformatter.scrapper.protocol.UrlBasedProtocolHandler;
 import org.webreformatter.scrapper.transformer.IDocumentTransformer;
 import org.webreformatter.scrapper.transformer.RegexCompositeTransformer;
-import org.webreformatter.scrapper.utils.XslBasedDocumentTransformerFactory;
 
 /**
  * @author kotelnikov

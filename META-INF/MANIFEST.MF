@@ -8,8 +8,7 @@ Bundle-ManifestVersion: 2
 Bundle-Description: Scrapper API
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
 Export-Package: 
- org.webreformatter.scrapper.app,
- org.webreformatter.scrapper.context,
+ org.webreformatter.scrapper.core,
  org.webreformatter.scrapper.utils
 Bundle-Activator: org.webreformatter.scrapper.app.Activator
 Import-Package: 

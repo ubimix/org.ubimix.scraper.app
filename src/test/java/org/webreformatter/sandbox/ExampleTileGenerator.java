@@ -25,8 +25,8 @@ import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.cache.DateUtil;
 import org.webreformatter.resources.adapters.zip.ZipAdapter;
-import org.webreformatter.scrapper.utils.ResourceLoader;
-import org.webreformatter.scrapper.utils.ResourceLoader.MapTilesLoaderListener;
+import org.webreformatter.scrapper.core.ResourceLoader;
+import org.webreformatter.scrapper.core.ResourceLoader.MapTilesLoaderListener;
 
 /**
  * @author kotelnikov
