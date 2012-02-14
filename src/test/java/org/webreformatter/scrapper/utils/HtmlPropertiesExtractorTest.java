@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.webreformatter.scrapper.core;
+package org.webreformatter.scrapper.utils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -11,9 +11,7 @@ import junit.framework.TestCase;
 import org.webreformatter.commons.xml.XmlException;
 import org.webreformatter.commons.xml.XmlWrapper;
 import org.webreformatter.commons.xml.XmlWrapper.XmlContext;
-import org.webreformatter.scrapper.utils.HtmlListPropertiesExtractor;
-import org.webreformatter.scrapper.utils.HtmlPropertiesExtractor;
-import org.webreformatter.scrapper.utils.HtmlTablePropertiesExtractor;
+import org.webreformatter.scrapper.utils.HtmlPropertiesExtractor.PropertyListener;
 
 /**
  * @author kotelnikov
@@ -171,6 +169,7 @@ public class HtmlPropertiesExtractorTest extends TestCase {
 
     public void testPropertiesExtraction(
         HtmlPropertiesExtractor extractor,
+        HtmlPropertiesExtractor.PropertyListener listener,
         String str,
         String control,
         Object... keyValuePairs) throws XmlException, IOException {
@@ -179,9 +178,24 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             "http://www.w3.org/1999/xhtml").build();
         XmlWrapper xml = context.readXML(str);
         XmlWrapper controlXml = context.readXML(control);
-        Map<String, Object> properties = extractor.extractProperties(xml);
+        extractor.extractProperties(xml, listener);
+        Map<String, Object> properties = listener.getProperties();
         testProperties(properties, keyValuePairs);
         assertEquals(controlXml.toString(), xml.toString());
+    }
+
+    public void testPropertiesExtraction(
+        HtmlPropertiesExtractor extractor,
+        String str,
+        String control,
+        Object... keyValuePairs) throws XmlException, IOException {
+        PropertyListener listener = new PropertyListener();
+        testPropertiesExtraction(
+            extractor,
+            listener,
+            str,
+            control,
+            keyValuePairs);
     }
 
     public void testTableProperties() throws XmlException, IOException {
@@ -206,17 +220,18 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             "age",
             "38");
 
-        extractor = new HtmlTablePropertiesExtractor();
-        extractor.addPropertyReplacement("photo", "photoUrl");
-        extractor.addPropertyReplacement("homepage", "homepageUrl");
-        extractor.addImageProperty("photoUrl");
-        extractor.addReferenceProperty("homepageUrl");
+        PropertyListener listener = new PropertyListener();
+        listener.addPropertyReplacement("photo", "photoUrl");
+        listener.addPropertyReplacement("homepage", "homepageUrl");
+        listener.addImageProperty("photoUrl");
+        listener.addReferenceProperty("homepageUrl");
         testPropertiesExtraction(
             extractor,
+            listener,
             "<div xmlns='http://www.w3.org/1999/xhtml'>"
                 + "<p>before</p>"
                 + "<table>"
-                + "<tr><th>Property</th><th>Value</th></tr>"
+                + "<tr><th>&#160;Property&#160;</th><th>Value</th></tr>"
                 + "<tr><td>firstName</td><td>John</td></tr>"
                 + "<tr><td>lastName</td><td>Smith</td></tr>"
                 + "<tr><td>age</td><td>38</td></tr>"

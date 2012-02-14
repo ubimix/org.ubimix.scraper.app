@@ -1,6 +1,5 @@
 package org.webreformatter.scrapper.utils;
 
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,9 +27,12 @@ public class HtmlListPropertiesExtractor extends HtmlPropertiesExtractor {
         return array;
     }
 
+    public HtmlListPropertiesExtractor() {
+    }
+
     protected void buildPropertiesFromList(
         XmlWrapper ul,
-        Map<String, Object> properties) throws XmlException {
+        IPropertyListener listener) throws XmlException {
         if (ul == null) {
             return;
         }
@@ -39,7 +41,7 @@ public class HtmlListPropertiesExtractor extends HtmlPropertiesExtractor {
             XmlWrapper next = child.getNextElement();
             String name = XHTMLUtils.getHTMLName(child.getRootElement());
             if ("li".equals(name)) {
-                addPropertyValue(visitPropertyItem(child), child, properties);
+                listener.onPropertyNode(visitPropertyItem(child), child);
             }
             child = next;
         }
@@ -48,11 +50,11 @@ public class HtmlListPropertiesExtractor extends HtmlPropertiesExtractor {
     @Override
     protected boolean extractNodeProperties(
         XmlWrapper xml,
-        Map<String, Object> properties) throws XmlException {
+        IPropertyListener listener) throws XmlException {
         boolean result = false;
         String name = XHTMLUtils.getHTMLName(xml.getRootElement());
         if ("ul".equals(name)) {
-            buildPropertiesFromList(xml, properties);
+            buildPropertiesFromList(xml, listener);
             result = true;
         }
         return result;
@@ -114,7 +116,7 @@ public class HtmlListPropertiesExtractor extends HtmlPropertiesExtractor {
                     String str = n.getData();
                     int idx = str.indexOf(':');
                     if (idx > 0) {
-                        result[0] = str.substring(0, idx).trim();
+                        result[0] = trim(str.substring(0, idx));
                         str = str.substring(idx + 1);
                         n.setData(str);
                     }

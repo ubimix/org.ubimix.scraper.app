@@ -7,12 +7,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.webreformatter.commons.xml.XmlException;
+import org.webreformatter.commons.xml.XmlTagExtractor.HtmlBlockElementsAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.HtmlNamedNodeAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.IElementAcceptor;
+import org.webreformatter.commons.xml.XmlTagExtractor.SimpleElementAcceptor;
 import org.webreformatter.commons.xml.XmlWrapper;
 
 /**
@@ -31,9 +32,6 @@ public class HtmlTablePropertiesExtractor extends HtmlPropertiesExtractor {
      */
     protected Set<String> fPropertyValueHeaders = new HashSet<String>();
 
-    /**
-     * 
-     */
     public HtmlTablePropertiesExtractor() {
         setPropertyNameHeaders("property", "properties");
         setPropertyValueHeaders("value", "values");
@@ -50,7 +48,7 @@ public class HtmlTablePropertiesExtractor extends HtmlPropertiesExtractor {
     @Override
     protected boolean extractNodeProperties(
         XmlWrapper xml,
-        Map<String, Object> properties) throws XmlException {
+        IPropertyListener listener) throws XmlException {
         List<XmlWrapper> rows = xml.evalList("./html:tr");
         if (rows.isEmpty()) {
             return false;
@@ -62,7 +60,7 @@ public class HtmlTablePropertiesExtractor extends HtmlPropertiesExtractor {
             XmlWrapper row = rows.get(i);
             String propertyName = getCellContent(row, "./html:td[1]");
             XmlWrapper propertyNode = row.eval("./html:td[2]");
-            addPropertyValue(propertyName, propertyNode, properties);
+            listener.onPropertyNode(propertyName, propertyNode);
         }
         return true;
     }
@@ -72,7 +70,7 @@ public class HtmlTablePropertiesExtractor extends HtmlPropertiesExtractor {
             return "";
         }
         String text = cell.toString(false, false);
-        text = text.trim();
+        text = trim(text);
         return text;
     }
 
@@ -80,6 +78,22 @@ public class HtmlTablePropertiesExtractor extends HtmlPropertiesExtractor {
         throws XmlException {
         XmlWrapper cell = xml.eval(xpath);
         return getCellContent(cell);
+    }
+
+    @Override
+    protected IElementAcceptor newEndElementAcceptor(
+        XmlWrapper xml,
+        XmlWrapper start,
+        XmlWrapper stop) {
+        IElementAcceptor result;
+        if (stop != null) {
+            result = new SimpleElementAcceptor(stop.getRootElement());
+        } else {
+            HtmlBlockElementsAcceptor e = new HtmlBlockElementsAcceptor();
+            e.removeNames("table");
+            result = e;
+        }
+        return result;
     }
 
     @Override
