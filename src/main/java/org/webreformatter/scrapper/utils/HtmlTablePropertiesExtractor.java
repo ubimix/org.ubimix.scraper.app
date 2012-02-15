@@ -49,7 +49,7 @@ public class HtmlTablePropertiesExtractor extends HtmlPropertiesExtractor {
     protected boolean extractNodeProperties(
         XmlWrapper xml,
         IPropertyListener listener) throws XmlException {
-        List<XmlWrapper> rows = xml.evalList("./html:tr");
+        List<XmlWrapper> rows = xml.evalList(".//html:tr");
         if (rows.isEmpty()) {
             return false;
         }

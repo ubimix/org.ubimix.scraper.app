@@ -228,7 +228,7 @@ public class ResourceLoader {
         return statusCode;
     }
 
-    protected boolean noDownload() {
+    public boolean noDownload() {
         return fNoDownload;
     }
 
@@ -249,7 +249,7 @@ public class ResourceLoader {
         fUrlTransformer = urlTransformer;
     }
 
-    protected void setNoDownload(boolean noDownload) {
+    public void setNoDownload(boolean noDownload) {
         fNoDownload = noDownload;
     }
 

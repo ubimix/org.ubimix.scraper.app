@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.webreformatter.commons.uri.Path.Builder;
 import org.webreformatter.commons.uri.Uri;
-import org.webreformatter.scrapper.context.ApplicationContext;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
 
 public class ReformatServlet extends HttpServlet {
@@ -31,10 +30,7 @@ public class ReformatServlet extends HttpServlet {
 
     private static final long serialVersionUID = -6602353013259628191L;
 
-    private ApplicationContext fApplicationContext;
-
-    public ReformatServlet(ApplicationContext applicationContext) {
-        init(applicationContext);
+    public ReformatServlet() {
     }
 
     @Override
@@ -85,10 +81,6 @@ public class ReformatServlet extends HttpServlet {
         }
     }
 
-    public ApplicationContext getExecutionContext() {
-        return fApplicationContext;
-    }
-
     protected Map<String, String> getRequestParams(HttpServletRequest req) {
         Map<String, String> params = new HashMap<String, String>();
         String query = req.getQueryString();
@@ -110,20 +102,12 @@ public class ReformatServlet extends HttpServlet {
         return params;
     }
 
-    public void init(ApplicationContext applicationContext) {
-        setExecutionContext(applicationContext);
-    }
-
     public IOException reportError(String msg, Throwable t) {
         log.log(Level.WARNING, msg, t);
         if (t instanceof IOException) {
             return (IOException) t;
         }
         return new IOException(msg, t);
-    }
-
-    public void setExecutionContext(ApplicationContext applicationContext) {
-        fApplicationContext = applicationContext;
     }
 
     protected void setResponseProperties(

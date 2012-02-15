@@ -14,7 +14,6 @@ import org.webreformatter.commons.adapters.CompositeAdapterFactory;
 import org.webreformatter.commons.osgi.ConfigurableMultiserviceActivator;
 import org.webreformatter.commons.osgi.OSGIObjectActivator;
 import org.webreformatter.commons.osgi.OSGIObjectDeactivator;
-import org.webreformatter.commons.osgi.OSGIService;
 import org.webreformatter.commons.osgi.OSGIServiceActivator;
 import org.webreformatter.commons.osgi.OSGIServiceDeactivator;
 import org.webreformatter.commons.strings.StringUtil;
@@ -23,9 +22,6 @@ import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
-import org.webreformatter.scrapper.context.ApplicationContext;
-import org.webreformatter.scrapper.context.AtomProcessing;
-import org.webreformatter.scrapper.context.DownloadAdapter;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
@@ -39,8 +35,6 @@ import org.webreformatter.server.mime.MimeTypeDetector;
 public class Activator extends ConfigurableMultiserviceActivator {
 
     private CompositeAdapterFactory fAdapterFactory = new CompositeAdapterFactory();
-
-    private ApplicationContext fApplicationContext;
 
     private CompositeTransformer fDocumentNormalizers = new CompositeTransformer();
 
@@ -78,18 +72,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
 
         IWrfRepository repository = getRepository();
 
-        // Register adapters for the ExecutionContext
-        AtomProcessing.register(fAdapterFactory, fDocumentNormalizers);
-        DownloadAdapter.register(fAdapterFactory);
-
         CompositeProtocolHandler protocolHandler = getProtocolHandler();
-
-        fApplicationContext = ApplicationContext
-            .builder(fAdapterFactory)
-            .setRepository(repository)
-            .setPropertyProvider(fPropertyProvider)
-            .setProtocolHandler(protocolHandler)
-            .build();
 
         HttpContext httpContext = fHttpService.createDefaultHttpContext();
 
@@ -105,7 +88,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
             fProperties,
             httpContext);
 
-        ReformatServlet servlet = new ReformatServlet(fApplicationContext);
+        ReformatServlet servlet = new ReformatServlet();
         fPath = getProperty("web.reformat.path", "/wrf/*");
         fHttpService.registerServlet(fPath, servlet, fProperties, httpContext);
     }
@@ -146,11 +129,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
         String str = getProperty(configKey, defaultUri);
         Uri uri = new Uri(str);
         return uri;
-    }
-
-    @OSGIService
-    public ApplicationContext getContext() {
-        return fApplicationContext;
     }
 
     private String getProperty(String key, String defaultValue) {
