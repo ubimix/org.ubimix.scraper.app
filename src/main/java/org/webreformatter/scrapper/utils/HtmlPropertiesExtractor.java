@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 import org.webreformatter.commons.xml.XmlException;
 import org.webreformatter.commons.xml.XmlTagExtractor;
+import org.webreformatter.commons.xml.XmlTagExtractor.HtmlBlockElementsAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.IElementAcceptor;
 import org.webreformatter.commons.xml.XmlTagExtractor.SimpleElementAcceptor;
 import org.webreformatter.commons.xml.XmlWrapper;
@@ -274,7 +275,15 @@ public abstract class HtmlPropertiesExtractor {
 
     public static class PropertyListener extends AbstractPropertyListener {
 
-        private Map<String, Object> fProperties = new HashMap<String, Object>();
+        private Map<String, Object> fProperties;
+
+        public PropertyListener() {
+            this(new HashMap<String, Object>());
+        }
+
+        public PropertyListener(Map<String, Object> properties) {
+            fProperties = properties;
+        }
 
         public void clear() {
             fProperties.clear();
@@ -466,7 +475,7 @@ public abstract class HtmlPropertiesExtractor {
         if (stop != null) {
             result = new SimpleElementAcceptor(stop.getRootElement());
         } else {
-            result = IElementAcceptor.NO_ACCEPTOR;
+            result = new HtmlBlockElementsAcceptor();
         }
         return result;
     }
