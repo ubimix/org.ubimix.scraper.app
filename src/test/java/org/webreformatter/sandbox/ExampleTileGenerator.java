@@ -25,8 +25,8 @@ import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.cache.DateUtil;
 import org.webreformatter.resources.adapters.zip.ZipAdapter;
-import org.webreformatter.scrapper.core.ResourceLoader;
-import org.webreformatter.scrapper.core.ResourceLoader.MapTilesLoaderListener;
+import org.webreformatter.scrapper.core.MapAdapter.MapTilesLoaderListener;
+import org.webreformatter.scrapper.core.AppContext;
 
 /**
  * @author kotelnikov
@@ -40,7 +40,7 @@ public class ExampleTileGenerator {
         System.exit(0);
     }
 
-    private ResourceLoader fResourceLoader = new ResourceLoader("./data", true);
+    private AppContext fAppContext = new AppContext("./data", true);
 
     /**
      * 
@@ -73,7 +73,7 @@ public class ExampleTileGenerator {
         TilesLoader loader = new TilesLoader();
         MapTilesLoaderListener tilesListener = new MapTilesLoaderListener(
             "maps",
-            fResourceLoader,
+            fAppContext,
             mapServerUrl) {
 
             @Override

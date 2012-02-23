@@ -38,7 +38,7 @@ public class HtmlListPropertiesExtractor extends HtmlPropertiesExtractor {
         }
         XmlWrapper child = ul.getFirstElement();
         while (child != null) {
-            XmlWrapper next = child.getNextElement();
+            XmlWrapper next = child.getNext();
             String name = XHTMLUtils.getHTMLName(child.getRootElement());
             if ("li".equals(name)) {
                 listener.onPropertyNode(visitPropertyItem(child), child);
