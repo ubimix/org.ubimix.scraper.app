@@ -26,6 +26,7 @@ Import-Package:
  org.webreformatter.commons.events.calls;version="1.1.5",
  org.webreformatter.commons.events.server;version="1.1.5",
  org.webreformatter.commons.events.utils;version="1.1.5",
+ org.webreformatter.commons.geo;version="0.1.0",
  org.webreformatter.commons.io;version="1.1.5",
  org.webreformatter.commons.osgi;version="1.1.5",
  org.webreformatter.commons.strings;version="1.1.5",
