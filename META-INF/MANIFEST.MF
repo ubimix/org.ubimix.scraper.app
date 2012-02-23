@@ -22,6 +22,7 @@ Import-Package:
  org.w3c.dom.bootstrap,
  org.w3c.dom.ls,
  org.webreformatter.commons.adapters;version="1.1.5",
+ org.webreformatter.commons.digests;version="1.1.5",
  org.webreformatter.commons.events;version="1.1.5",
  org.webreformatter.commons.events.calls;version="1.1.5",
  org.webreformatter.commons.events.server;version="1.1.5",
