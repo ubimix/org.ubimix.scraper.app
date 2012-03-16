@@ -3,7 +3,6 @@
  */
 package org.webreformatter.scrapper.core;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.webreformatter.commons.uri.Uri;
@@ -23,17 +22,14 @@ import org.webreformatter.scrapper.transformer.XslBasedDocumentTransformer;
  */
 public class DocAdapter extends AppContextAdapter {
 
+    public interface IXmlTransformation {
+        XmlWrapper transform(XmlWrapper xhtml) throws XmlException, IOException;
+    }
+
     private CompositeTransformer fDocumentTransformer = new CompositeTransformer();
 
     public DocAdapter(AppContext appContext) {
         super(appContext);
-    }
-
-    public void setDocumentTransformer(
-        String urlBase,
-        XslBasedDocumentTransformer transformer) {
-        Uri url = new Uri(urlBase);
-        setDocumentTransformer(url, transformer);
     }
 
     public void setDocumentTransformer(
@@ -42,25 +38,7 @@ public class DocAdapter extends AppContextAdapter {
         fDocumentTransformer.addTransformer(url, transformer);
     }
 
-    public void setXslTransformation(String urlBase, String xslPath)
-        throws IOException,
-        XmlException {
-        File xslFile = new File(xslPath).getAbsoluteFile();
-        if (!xslFile.exists()) {
-            throw new IllegalArgumentException(
-                "An XSL transformation for the '"
-                    + urlBase
-                    + "' resources was not found. File '"
-                    + xslFile
-                    + "' ('"
-                    + xslPath
-                    + "') dos not exist.");
-        }
-        Uri xslUri = new Uri(xslFile.toURI() + "");
-        setXslTransformation(urlBase, xslUri);
-    }
-
-    public void setXslTransformation(String urlBase, Uri xslUri)
+    public void setXslTransformation(Uri urlBase, Uri xslUri)
         throws IOException,
         XmlException {
         IWrfResource xslResource = fContext.getResource("tmp", xslUri, null);
@@ -85,6 +63,14 @@ public class DocAdapter extends AppContextAdapter {
         Uri resourceUri,
         IWrfResource rawResource,
         IWrfResource xmlResource) throws IOException, XmlException {
+        toXml(resourceUri, rawResource, xmlResource, null);
+    }
+
+    protected void toXml(
+        Uri resourceUri,
+        IWrfResource rawResource,
+        IWrfResource xmlResource,
+        IXmlTransformation transformation) throws IOException, XmlException {
         CachedResourceAdapter rawCache = rawResource
             .getAdapter(CachedResourceAdapter.class);
         CachedResourceAdapter xmlCache = xmlResource
@@ -95,37 +81,31 @@ public class DocAdapter extends AppContextAdapter {
             || atomModificationTime < 0
             || atomModificationTime < rawResourceModificationTime;
         if (needUpdates) {
-            XmlAdapter xmlAdapter = xmlResource.getAdapter(XmlAdapter.class);
             HTMLAdapter htmlAdapter = rawResource.getAdapter(HTMLAdapter.class);
             XmlWrapper doc = htmlAdapter.getWrapper();
+            if (transformation != null) {
+                doc = transformation.transform(doc);
+            }
+            XmlAdapter xmlAdapter = xmlResource.getAdapter(XmlAdapter.class);
             xmlAdapter.setDocument(doc);
             xmlCache.copyPropertiesFrom(rawCache);
         }
     }
 
     public void transformToAtom(
-        Uri resourceUri,
+        final Uri resourceUri,
         IWrfResource rawResource,
         IWrfResource atomResource) throws IOException, XmlException {
-        CachedResourceAdapter rawCache = rawResource
-            .getAdapter(CachedResourceAdapter.class);
-        CachedResourceAdapter atomCache = atomResource
-            .getAdapter(CachedResourceAdapter.class);
-        long rawResourceModificationTime = rawCache.getLastModified();
-        long atomModificationTime = atomCache.getLastModified();
-        boolean needUpdates = rawResourceModificationTime < 0
-            || atomModificationTime < 0
-            || atomModificationTime < rawResourceModificationTime;
-        if (needUpdates) {
-            HTMLAdapter htmlAdapter = rawResource.getAdapter(HTMLAdapter.class);
-            XmlWrapper doc = htmlAdapter.getWrapper();
-            AtomFeed atomDoc = fDocumentTransformer.transformDocument(
-                resourceUri,
-                doc);
-            XmlAdapter atomAdapter = atomResource.getAdapter(XmlAdapter.class);
-            atomAdapter.setDocument(atomDoc);
-            atomCache.copyPropertiesFrom(rawCache);
-        }
+        toXml(resourceUri, rawResource, atomResource, new IXmlTransformation() {
+            public XmlWrapper transform(XmlWrapper xhtml)
+                throws XmlException,
+                IOException {
+                AtomFeed atomDoc = fDocumentTransformer.transformDocument(
+                    resourceUri,
+                    xhtml);
+                return atomDoc;
+            }
+        });
     }
 
 }

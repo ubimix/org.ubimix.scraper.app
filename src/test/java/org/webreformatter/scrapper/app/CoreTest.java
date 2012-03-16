@@ -147,7 +147,7 @@ public class CoreTest extends AbstractResourceTest {
                             .getBytes("UTF-8"));
                         contentAdapter.writeContent(out);
                         LoadContent.Response response = new LoadContent.Response();
-                        event.setResponse(response);
+                        event.reply(response);
                     } catch (Throwable t) {
                         handleError("Can not write the test content", t);
                     }
