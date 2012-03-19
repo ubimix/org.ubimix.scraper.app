@@ -63,6 +63,12 @@
         </dependency>
         <dependency>
             <groupId>org.webreformatter.commons</groupId>
+            <artifactId>org.webreformatter.commons.rpc</artifactId>
+            <version>${commons.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.webreformatter.commons</groupId>
             <artifactId>org.webreformatter.commons.uri</artifactId>
             <version>${commons.version}</version>
         </dependency>

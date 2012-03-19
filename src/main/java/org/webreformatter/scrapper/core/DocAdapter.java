@@ -66,7 +66,7 @@ public class DocAdapter extends AppContextAdapter {
         toXml(resourceUri, rawResource, xmlResource, null);
     }
 
-    protected void toXml(
+    public void toXml(
         Uri resourceUri,
         IWrfResource rawResource,
         IWrfResource xmlResource,
@@ -86,9 +86,12 @@ public class DocAdapter extends AppContextAdapter {
             if (transformation != null) {
                 doc = transformation.transform(doc);
             }
-            XmlAdapter xmlAdapter = xmlResource.getAdapter(XmlAdapter.class);
-            xmlAdapter.setDocument(doc);
-            xmlCache.copyPropertiesFrom(rawCache);
+            if (doc != null) {
+                XmlAdapter xmlAdapter = xmlResource
+                    .getAdapter(XmlAdapter.class);
+                xmlAdapter.setDocument(doc);
+                xmlCache.copyPropertiesFrom(rawCache);
+            }
         }
     }
 
@@ -100,12 +103,19 @@ public class DocAdapter extends AppContextAdapter {
             public XmlWrapper transform(XmlWrapper xhtml)
                 throws XmlException,
                 IOException {
-                AtomFeed atomDoc = fDocumentTransformer.transformDocument(
-                    resourceUri,
-                    xhtml);
+                AtomFeed atomDoc = transformToAtom(resourceUri, xhtml);
                 return atomDoc;
             }
         });
+    }
+
+    public AtomFeed transformToAtom(Uri resourceUri, XmlWrapper xml)
+        throws XmlException,
+        IOException {
+        AtomFeed atomDoc = fDocumentTransformer.transformDocument(
+            resourceUri,
+            xml);
+        return atomDoc;
     }
 
 }

@@ -57,7 +57,19 @@ public class DownloadAdapter extends AppContextAdapter {
      */
     public void addCredentials(String baseUrl, String login, String pwd) {
         Uri url = new Uri(baseUrl);
-        fAccessManager.setCredentials(url, new CredentialInfo(login, pwd));
+        addCredentials(url, login, pwd);
+    }
+
+    /**
+     * This method is used to associate credentials with all resources starting
+     * with the specified base URL.
+     * 
+     * @param baseUrl the basic URL associated with the specified credentials
+     * @param login the login used to access resources
+     * @param pwd the password associated with the specified login
+     */
+    public void addCredentials(Uri baseUrl, String login, String pwd) {
+        fAccessManager.setCredentials(baseUrl, new CredentialInfo(login, pwd));
     }
 
     /**
