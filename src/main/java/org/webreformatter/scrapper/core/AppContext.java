@@ -54,6 +54,14 @@ public class AppContext extends AdaptableObject {
         return (CompositeAdapterFactory) super.getAdapterFactory();
     }
 
+    public IWrfResource getResource(String storeName, Path path) {
+        IWrfResourceProvider store = fResourceRepository.getResourceProvider(
+            storeName,
+            true);
+        IWrfResource resource = store.getResource(path, true);
+        return resource;
+    }
+
     public IWrfResource getResource(String storeName, Uri url) {
         return getResource(storeName, url, null);
     }
@@ -71,6 +79,10 @@ public class AppContext extends AdaptableObject {
         }
         IWrfResource targetResource = store.getResource(targetResultPath, true);
         return targetResource;
+    }
+
+    public IWrfRepository getResourceRepository() {
+        return fResourceRepository;
     }
 
     protected void initAdapters() {
