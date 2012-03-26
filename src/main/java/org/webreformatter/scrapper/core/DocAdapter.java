@@ -32,6 +32,22 @@ public class DocAdapter extends AppContextAdapter {
         super(appContext);
     }
 
+    public XmlWrapper loadXsl(Uri xslUri) throws IOException, XmlException {
+        IWrfResource xslResource = fContext.getResource("tmp", xslUri, null);
+        HttpStatusCode status = fContext
+            .getAdapter(DownloadAdapter.class)
+            .loadResource(xslUri, xslResource);
+        if (!status.isOkOrNotModified()) {
+            throw new IllegalArgumentException("An XSL transformation '"
+                + xslUri
+                + "' could not be loaded. Status: "
+                + status);
+        }
+        XmlAdapter xslAdapter = xslResource.getAdapter(XmlAdapter.class);
+        XmlWrapper xsl = xslAdapter.getWrapper();
+        return xsl;
+    }
+
     public void setDocumentTransformer(
         Uri url,
         XslBasedDocumentTransformer transformer) {
@@ -41,19 +57,7 @@ public class DocAdapter extends AppContextAdapter {
     public void setXslTransformation(Uri urlBase, Uri xslUri)
         throws IOException,
         XmlException {
-        IWrfResource xslResource = fContext.getResource("tmp", xslUri, null);
-        HttpStatusCode status = fContext
-            .getAdapter(DownloadAdapter.class)
-            .loadResource(xslUri, xslResource);
-        if (!status.isOkOrNotModified()) {
-            throw new IllegalArgumentException(
-                "An XSL transformation for the '"
-                    + urlBase
-                    + "' resources could not be loaded. Status: "
-                    + status);
-        }
-        XmlAdapter xslAdapter = xslResource.getAdapter(XmlAdapter.class);
-        XmlWrapper xsl = xslAdapter.getWrapper();
+        XmlWrapper xsl = loadXsl(xslUri);
         XslBasedDocumentTransformer transformer = new XslBasedDocumentTransformer(
             xsl);
         setDocumentTransformer(urlBase, transformer);
@@ -100,6 +104,7 @@ public class DocAdapter extends AppContextAdapter {
         IWrfResource rawResource,
         IWrfResource atomResource) throws IOException, XmlException {
         toXml(resourceUri, rawResource, atomResource, new IXmlTransformation() {
+            @Override
             public XmlWrapper transform(XmlWrapper xhtml)
                 throws XmlException,
                 IOException {
