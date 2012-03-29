@@ -22,7 +22,6 @@ import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.resources.IWrfRepository;
 import org.webreformatter.resources.impl.WrfRepositoryUtils;
 import org.webreformatter.resources.impl.WrfResourceRepository;
-import org.webreformatter.scrapper.app.test.JsonRpcServlet;
 import org.webreformatter.scrapper.protocol.CompositeProtocolHandler;
 import org.webreformatter.scrapper.protocol.ProtocolHandlerUtils;
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
@@ -46,6 +45,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
     private String fPath;
 
     IVariableProvider fPropertyProvider = new StringUtil.IVariableProvider() {
+        @Override
         public String getValue(String name) {
             String value = (String) fProperties.get(name);
             if (value == null) {
@@ -92,14 +92,6 @@ public class Activator extends ConfigurableMultiserviceActivator {
         ReformatServlet servlet = new ReformatServlet();
         fPath = getProperty("web.reformat.path", "/wrf/*");
         fHttpService.registerServlet(fPath, servlet, fProperties, httpContext);
-
-        // FIXME: remove it
-        JsonRpcServlet jsonRpcServlet = new JsonRpcServlet();
-        fHttpService.registerServlet(
-            "/json-rpc/*",
-            jsonRpcServlet,
-            fProperties,
-            httpContext);
     }
 
     @OSGIServiceActivator(min = 0)
