@@ -62,24 +62,30 @@ public class MapAdapter extends AppContextAdapter {
             return fResults;
         }
 
+        public Uri getTileUrl(TileInfo tile) {
+            String str = tile.getTilePath();
+            Uri tileUri = fMapServerUrl
+                .getBuilder()
+                .appendFullPath(str)
+                .build();
+            return tileUri;
+        }
+
         protected void handleError(String msg, Throwable t) {
             log.log(Level.SEVERE, msg, t);
         }
 
         @Override
         public void onTile(TileInfo tile) {
-            String str = tile.getTilePath();
-            Uri tileUri = fMapServerUrl
-                .getBuilder()
-                .appendFullPath(str)
-                .build();
+            Uri tileUri = getTileUrl(tile);
             IWrfResource resource = fContext.getResource("maps", tileUri, null);
             try {
                 fContext.getAdapter(DownloadAdapter.class).loadResource(
                     tileUri,
                     resource);
+                String tilePath = tile.getTilePath();
                 Path path = new Path.Builder(fPathPrefix)
-                    .appendPath(str)
+                    .appendPath(tilePath)
                     .build();
                 fResults.put(path, resource);
             } catch (IOException e) {

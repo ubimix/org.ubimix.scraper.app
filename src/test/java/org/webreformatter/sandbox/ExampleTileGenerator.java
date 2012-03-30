@@ -25,8 +25,8 @@ import org.webreformatter.resources.IWrfResource;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
 import org.webreformatter.resources.adapters.cache.DateUtil;
 import org.webreformatter.resources.adapters.zip.ZipAdapter;
-import org.webreformatter.scrapper.core.MapAdapter.MapTilesLoaderListener;
 import org.webreformatter.scrapper.core.AppContext;
+import org.webreformatter.scrapper.core.MapAdapter.MapTilesLoaderListener;
 
 /**
  * @author kotelnikov
@@ -70,27 +70,36 @@ public class ExampleTileGenerator {
         ZoomLevel minZoom = ZoomLevel.min(a, b);
         ZoomLevel maxZoom = ZoomLevel.max(a, b);
         final Set<TileInfo> set = new HashSet<TileInfo>();
-        TilesLoader loader = new TilesLoader();
         MapTilesLoaderListener tilesListener = new MapTilesLoaderListener(
             "maps",
             fAppContext,
             mapServerUrl) {
 
             @Override
-            public void begin(GeoPoint min, GeoPoint max, int zoom) {
-                ImagePoint tileNumbers = TileInfo.getTileNumber(min, max, zoom);
+            public void begin(
+                TileInfo minTile,
+                TileInfo maxTile,
+                GeoPoint min,
+                GeoPoint max) {
+                ImagePoint tileNumbers = TileInfo.getTileNumber(
+                    minTile,
+                    maxTile);
                 String msg = String.format(
                     "Download %d (%d x %d) tiles for zoom level %d ...",
                     tileNumbers.getX() * tileNumbers.getY(),
                     tileNumbers.getX(),
                     tileNumbers.getY(),
-                    zoom);
+                    minTile.getZoom());
                 System.out.println(msg);
             }
 
             @Override
-            public void end(GeoPoint min, GeoPoint max, int zoom) {
-                System.out.println("Level " + zoom + " is done.");
+            public void end(
+                TileInfo minTile,
+                TileInfo maxTile,
+                GeoPoint min,
+                GeoPoint max) {
+                System.out.println("Level " + minTile.getZoom() + " is done.");
             }
 
             @Override
@@ -104,7 +113,8 @@ public class ExampleTileGenerator {
                 super.onTile(tile);
             }
         };
-        loader.load(mapTop, mapBottom, minZoom, maxZoom, tilesListener);
+        TilesLoader loader = new TilesLoader(mapTop, mapBottom);
+        loader.load(minZoom, maxZoom, tilesListener);
         Map<Path, IWrfResource> tiles = tilesListener.getMapTiles();
 
         zipFile.getParentFile().mkdirs();
