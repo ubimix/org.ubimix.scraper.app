@@ -48,3 +48,5 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0Import-Package: javax
  org.xml.sax
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Activator: org.webreformatter.scrapper.app.Activator
+Export-Package: org.webreformatter.scrapper.core,
+ org.webreformatter.scrapper.utils
