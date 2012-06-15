@@ -243,6 +243,7 @@ public abstract class HtmlPropertiesExtractor {
          * @see org.webreformatter.scrapper.utils.HtmlPropertiesExtractor.IPropertyListener#onPropertyNode(java.lang.String,
          *      org.webreformatter.commons.xml.XmlWrapper)
          */
+        @Override
         public void onPropertyNode(String propertyName, XmlWrapper valueNode)
             throws XmlException {
             String[] key = { propertyName };
@@ -305,6 +306,20 @@ public abstract class HtmlPropertiesExtractor {
     }
 
     /**
+     * Returns <code>true</code> if the given character is a space character
+     * 
+     * @param ch the character to check
+     * @return <code>true</code> if the given character is a space character
+     */
+    private static boolean isSpaceChar(char ch) {
+        return ch == 160 /* &nbsp; */
+            || ch == '\t'
+            || ch == '\r'
+            || ch == '\n'
+            || Character.isSpaceChar(ch);
+    }
+
+    /**
      * Cuts of all non-character symbols at the beginning and at the end of the
      * specified string.
      * 
@@ -319,14 +334,14 @@ public abstract class HtmlPropertiesExtractor {
         int len = str.length();
         while (startPos < len) {
             char ch = str.charAt(startPos);
-            if (!Character.isSpaceChar(ch)) {
+            if (!isSpaceChar(ch)) {
                 break;
             }
             startPos++;
         }
         while (startPos < len) {
             char ch = str.charAt(len - 1);
-            if (!Character.isSpaceChar(ch)) {
+            if (!isSpaceChar(ch)) {
                 break;
             }
             len--;
