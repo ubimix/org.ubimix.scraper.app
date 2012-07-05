@@ -1,7 +1,6 @@
 package org.webreformatter.scrapper.core;
 
-import org.webreformatter.commons.json.JsonObject;
-import org.webreformatter.commons.json.JsonValue.IJsonValueFactory;
+import org.webreformatter.commons.strings.StringUtil;
 import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
 import org.webreformatter.resources.adapters.cache.DateUtil;
 
@@ -10,74 +9,8 @@ import org.webreformatter.resources.adapters.cache.DateUtil;
  */
 public class AppConfig {
 
-    public static class CompositePropertyProvider implements IVariableProvider {
-
-        private IVariableProvider[] fProviders;
-
-        public CompositePropertyProvider(IVariableProvider... providers) {
-            fProviders = providers;
-        }
-
-        @Override
-        public String getValue(String name) {
-            String value = null;
-            for (IVariableProvider provider : fProviders) {
-                value = provider.getValue(name);
-                if (value != null) {
-                    break;
-                }
-            }
-            return value;
-        }
-
-    }
-
-    public static class JsonPropertyProvider implements IVariableProvider {
-
-        private JsonObject fObject;
-
-        public JsonPropertyProvider(JsonObject obj) {
-            fObject = obj;
-        }
-
-        @Override
-        public String getValue(String name) {
-            return fObject.getString(name);
-        }
-
-    }
-
-    public static final IJsonValueFactory<AppConfig> FACTORY = new IJsonValueFactory<AppConfig>() {
-        @Override
-        public AppConfig newValue(Object object) {
-            final JsonObject json = JsonObject.FACTORY.newValue(object);
-            return getConfig(json);
-        }
-    };
-
-    public static AppConfig getConfig(final JsonObject json) {
-        IVariableProvider provider = new CompositePropertyProvider(
-            new IVariableProvider() {
-                @Override
-                public String getValue(String name) {
-                    return json.getString(name);
-                }
-            },
-            new IVariableProvider() {
-                @Override
-                public String getValue(String name) {
-                    return System.getProperty(name);
-                }
-            });
-        AppConfig config = new AppConfig(provider);
-        return config;
-    }
-
     private IVariableProvider fPropertyProvider;
 
-    /**
-     * 
-     */
     public AppConfig(IVariableProvider propertyProvider) {
         fPropertyProvider = propertyProvider;
     }
@@ -120,7 +53,7 @@ public class AppConfig {
     }
 
     protected String getString(String name) {
-        return fPropertyProvider.getValue(name);
+        return StringUtil.resolvePropertyByKey(name, fPropertyProvider);
     }
 
     public boolean noDownload() {

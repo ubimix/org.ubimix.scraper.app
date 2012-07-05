@@ -29,17 +29,13 @@ public class AppContextConfigurator {
         });
     }
 
-    public static AppContext createAppContext(IVariableProvider properyProvider)
+    public static AppContext createAppContext(IVariableProvider propertyProvider)
         throws IOException {
-        AppConfig appConfig = readConfig(
-            properyProvider,
-            "app.config.file",
-            "./configurations/ebook/app.json",
-            AppConfig.FACTORY);
+        AppConfig appConfig = new AppConfig(propertyProvider);
         IAccessConfig accessConfig = readConfig(
-            properyProvider,
-            "app.access.file",
-            "./configurations/ebook/access.json",
+            propertyProvider,
+            "accessConfig",
+            "./config/access.json",
             AccessConfig.FACTORY);
         AppContextConfigurator configurator = new AppContextConfigurator(
             appConfig);
