@@ -20,6 +20,15 @@ import org.webreformatter.scrapper.core.IAccessConfig.ICredentials;
  */
 public class AppContextConfigurator {
 
+    public static AppContext createAppContext() throws IOException {
+        return createAppContext(new IVariableProvider() {
+            @Override
+            public String getValue(String name) {
+                return System.getProperty(name);
+            }
+        });
+    }
+
     public static AppContext createAppContext(IVariableProvider properyProvider)
         throws IOException {
         AppConfig appConfig = readConfig(
