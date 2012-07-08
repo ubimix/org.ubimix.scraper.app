@@ -15,13 +15,19 @@ public class AppConfig {
         fPropertyProvider = propertyProvider;
     }
 
+    public boolean downloadExistingResources() {
+        boolean result = getBoolean("downloadExisting", true);
+        return result;
+    }
+
     protected boolean getBoolean(String name, boolean defaultValue) {
         String value = getString(name);
         boolean result = defaultValue;
         if (value != null) {
             try {
                 value = value.toLowerCase();
-                result = "yes".equals(value)
+                result = "true".equals(value)
+                    || "yes".equals(value)
                     || "ok".equals(value)
                     || "1".equals(value);
             } catch (Throwable t) {
@@ -54,17 +60,6 @@ public class AppConfig {
 
     protected String getString(String name) {
         return StringUtil.resolvePropertyByKey(name, fPropertyProvider);
-    }
-
-    public boolean noDownload() {
-        boolean result = false;
-        String str = getString("download");
-        if (str != null) {
-            str = str.trim();
-            str = str.toLowerCase();
-            result = "no".equals(str) || "false".equals(str) || "0".equals(str);
-        }
-        return result;
     }
 
     public boolean resetRepository() {

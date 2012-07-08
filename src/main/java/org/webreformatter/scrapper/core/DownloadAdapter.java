@@ -26,6 +26,7 @@ public class DownloadAdapter extends AppContextAdapter {
     public interface IUrlTransformer {
 
         IUrlTransformer EMPTY = new IUrlTransformer() {
+            @Override
             public Uri transform(Uri uri) {
                 return uri;
             }
@@ -36,7 +37,7 @@ public class DownloadAdapter extends AppContextAdapter {
 
     private AccessManager fAccessManager = new AccessManager();
 
-    private boolean fNoDownload;
+    private boolean fDownloadExistingResources;
 
     private CompositeProtocolHandler fProtocolHandler = new CompositeProtocolHandler();
 
@@ -72,6 +73,14 @@ public class DownloadAdapter extends AppContextAdapter {
         fAccessManager.setCredentials(baseUrl, new CredentialInfo(login, pwd));
     }
 
+    public boolean downloadExistingResources() {
+        return fDownloadExistingResources;
+    }
+
+    public void downloadExistingResources(boolean download) {
+        fDownloadExistingResources = download;
+    }
+
     /**
      * Returns the URL transformer used to map "logical" resource URLs to real
      * URLs used to download resources. For example the resulting URLs could
@@ -86,12 +95,12 @@ public class DownloadAdapter extends AppContextAdapter {
 
     public HttpStatusCode loadResource(Uri url, IWrfResource resource)
         throws IOException {
-        boolean noDownload = noDownload();
-        noDownload &= resource.getAdapter(IContentAdapter.class).exists();
+        boolean download = downloadExistingResources()
+            || !resource.getAdapter(IContentAdapter.class).exists();
         CachedResourceAdapter cacheAdapter = resource
             .getAdapter(CachedResourceAdapter.class);
         HttpStatusCode statusCode;
-        if (noDownload) {
+        if (!download) {
             int code = cacheAdapter.getStatusCode();
             statusCode = HttpStatusCode.getStatusCode(code);
         } else if (!cacheAdapter.isExpired()) {
@@ -124,16 +133,8 @@ public class DownloadAdapter extends AppContextAdapter {
         return statusCode;
     }
 
-    public boolean noDownload() {
-        return fNoDownload;
-    }
-
     public void setDownloadUrlTransformer(IUrlTransformer urlTransformer) {
         fUrlTransformer = urlTransformer;
-    }
-
-    public void setNoDownload(boolean noDownload) {
-        fNoDownload = noDownload;
     }
 
 }

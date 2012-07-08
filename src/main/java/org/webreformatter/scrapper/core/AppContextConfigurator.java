@@ -82,7 +82,7 @@ public class AppContextConfigurator {
             .getDownloadRefreshTimeout());
         DownloadAdapter downloadAdapter = appContext
             .getAdapter(DownloadAdapter.class);
-        downloadAdapter.setNoDownload(fConfig.noDownload());
+        downloadAdapter.downloadExistingResources(fConfig.downloadExistingResources());
         initDownloadAdapter(downloadAdapter, accessConfig);
         return appContext;
     }
