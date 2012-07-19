@@ -12,7 +12,6 @@ import org.webreformatter.commons.strings.StringUtil;
 import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
 import org.webreformatter.commons.uri.Uri;
 import org.webreformatter.resources.adapters.cache.CachedResourceAdapter;
-import org.webreformatter.scrapper.core.DownloadAdapter.IUrlTransformer;
 import org.webreformatter.scrapper.core.IAccessConfig.ICredentials;
 
 /**
@@ -82,7 +81,8 @@ public class AppContextConfigurator {
             .getDownloadRefreshTimeout());
         DownloadAdapter downloadAdapter = appContext
             .getAdapter(DownloadAdapter.class);
-        downloadAdapter.downloadExistingResources(fConfig.downloadExistingResources());
+        downloadAdapter.downloadExistingResources(fConfig
+            .downloadExistingResources());
         initDownloadAdapter(downloadAdapter, accessConfig);
         return appContext;
     }
@@ -100,38 +100,6 @@ public class AppContextConfigurator {
                 credential.getLogin(),
                 credential.getPassword());
         }
-        downloadAdapter.setDownloadUrlTransformer(new IUrlTransformer() {
-
-            protected Uri convertInternalUrl(Uri uri) {
-                Uri.Builder builder = uri.getBuilder();
-                // Add basicauth parameter to use simple authentication
-                builder.addParam("basicauth", "1");
-                uri = builder.build();
-                return uri;
-            }
-
-            protected boolean isInternalUrl(Uri uri) {
-                boolean result = false;
-                String str = uri.toString();
-                for (Uri baseUrl : internalUrls) {
-                    String base = baseUrl.toString();
-                    result = str.startsWith(base);
-                    if (result) {
-                        break;
-                    }
-                }
-                return result;
-            }
-
-            @Override
-            public Uri transform(Uri uri) {
-                if (isInternalUrl(uri)) {
-                    uri = convertInternalUrl(uri);
-                }
-                return uri;
-            }
-        });
-
     }
 
 }

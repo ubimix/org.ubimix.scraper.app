@@ -41,8 +41,6 @@ public class DownloadAdapter extends AppContextAdapter {
 
     private CompositeProtocolHandler fProtocolHandler = new CompositeProtocolHandler();
 
-    private IUrlTransformer fUrlTransformer = IUrlTransformer.EMPTY;
-
     public DownloadAdapter(AppContext appContext) {
         super(appContext);
         ProtocolHandlerUtils.registerDefaultProtocols(fProtocolHandler);
@@ -81,60 +79,38 @@ public class DownloadAdapter extends AppContextAdapter {
         fDownloadExistingResources = download;
     }
 
-    /**
-     * Returns the URL transformer used to map "logical" resource URLs to real
-     * URLs used to download resources. For example the resulting URLs could
-     * have additional parameters, not defined in the original documents.
-     * 
-     * @return the URL transformer used to map "logical" resource URLs to real
-     *         URLs used to download resources.
-     */
-    public IUrlTransformer getDownloadUrlTransformer() {
-        return fUrlTransformer;
-    }
-
     public HttpStatusCode loadResource(Uri url, IWrfResource resource)
         throws IOException {
-        boolean download = downloadExistingResources()
-            || !resource.getAdapter(IContentAdapter.class).exists();
-        CachedResourceAdapter cacheAdapter = resource
-            .getAdapter(CachedResourceAdapter.class);
-        HttpStatusCode statusCode;
-        if (!download) {
-            int code = cacheAdapter.getStatusCode();
-            statusCode = HttpStatusCode.getStatusCode(code);
-        } else if (!cacheAdapter.isExpired()) {
-            statusCode = HttpStatusCode.STATUS_304; /* NOT_MODIFIED */
-        } else {
-            CredentialInfo credentials = fAccessManager != null
-                ? fAccessManager.getCredentials(url)
-                : null;
-            String login = null;
-            String password = null;
-            if (credentials != null) {
-                login = credentials.getLogin();
-                password = credentials.getPassword();
-            }
-
-            IUrlTransformer urlTransformer = getDownloadUrlTransformer();
-            Uri downloadUrl = urlTransformer != null ? urlTransformer
-                .transform(url) : url;
-            if (downloadUrl != null) {
+        HttpStatusCode statusCode = HttpStatusCode.STATUS_404;
+        if (url != null) {
+            boolean download = downloadExistingResources()
+                || !resource.getAdapter(IContentAdapter.class).exists();
+            CachedResourceAdapter cacheAdapter = resource
+                .getAdapter(CachedResourceAdapter.class);
+            if (!download) {
+                int code = cacheAdapter.getStatusCode();
+                statusCode = HttpStatusCode.getStatusCode(code);
+            } else if (!cacheAdapter.isExpired()) {
+                statusCode = HttpStatusCode.STATUS_304; /* NOT_MODIFIED */
+            } else {
+                CredentialInfo credentials = fAccessManager != null
+                    ? fAccessManager.getCredentials(url)
+                    : null;
+                String login = null;
+                String password = null;
+                if (credentials != null) {
+                    login = credentials.getLogin();
+                    password = credentials.getPassword();
+                }
                 statusCode = fProtocolHandler.handleRequest(
-                    downloadUrl,
+                    url,
                     login,
                     password,
                     resource);
-            } else {
-                statusCode = HttpStatusCode.STATUS_404;
+                cacheAdapter.setStatusCode(statusCode.getStatusCode());
             }
-            cacheAdapter.setStatusCode(statusCode.getStatusCode());
         }
         return statusCode;
-    }
-
-    public void setDownloadUrlTransformer(IUrlTransformer urlTransformer) {
-        fUrlTransformer = urlTransformer;
     }
 
 }

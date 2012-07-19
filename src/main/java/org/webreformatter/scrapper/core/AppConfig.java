@@ -1,18 +1,16 @@
 package org.webreformatter.scrapper.core;
 
-import org.webreformatter.commons.strings.StringUtil;
 import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
 import org.webreformatter.resources.adapters.cache.DateUtil;
+import org.webreformatter.scrapper.app.AbstractConfig;
 
 /**
  * @author kotelnikov
  */
-public class AppConfig {
-
-    private IVariableProvider fPropertyProvider;
+public class AppConfig extends AbstractConfig {
 
     public AppConfig(IVariableProvider propertyProvider) {
-        fPropertyProvider = propertyProvider;
+        super(propertyProvider);
     }
 
     public boolean downloadExistingResources() {
@@ -20,46 +18,16 @@ public class AppConfig {
         return result;
     }
 
-    protected boolean getBoolean(String name, boolean defaultValue) {
-        String value = getString(name);
-        boolean result = defaultValue;
-        if (value != null) {
-            try {
-                value = value.toLowerCase();
-                result = "true".equals(value)
-                    || "yes".equals(value)
-                    || "ok".equals(value)
-                    || "1".equals(value);
-            } catch (Throwable t) {
-            }
-        }
-        return result;
-    }
-
     public long getDownloadExpirationTimeout() {
-        return getLong("downloadExpirationTimeout", DateUtil.MIN * 2);
+        return getConfigLong("downloadExpirationTimeout", DateUtil.MIN * 2);
     }
 
     public long getDownloadRefreshTimeout() {
-        return getLong("downloadExpirationTimeout", DateUtil.MIN * 2);
-    }
-
-    protected long getLong(String name, long defaultValue) {
-        String value = getString(name);
-        long result = defaultValue;
-        try {
-            result = Long.parseLong(value);
-        } catch (Throwable t) {
-        }
-        return result;
+        return getConfigLong("downloadExpirationTimeout", DateUtil.MIN * 2);
     }
 
     public String getRepositoryPath() {
-        return getString("repositoryPath");
-    }
-
-    protected String getString(String name) {
-        return StringUtil.resolvePropertyByKey(name, fPropertyProvider);
+        return getConfigString("repositoryPath");
     }
 
     public boolean resetRepository() {
