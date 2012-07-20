@@ -3,6 +3,11 @@
  */
 package org.webreformatter.scrapper.app;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 import org.webreformatter.commons.json.JsonObject;
 import org.webreformatter.commons.strings.StringUtil;
 import org.webreformatter.commons.strings.StringUtil.IVariableProvider;
@@ -15,23 +20,40 @@ public class AbstractConfig {
         implements
         StringUtil.IVariableProvider {
 
-        private IVariableProvider[] fProviders;
+        private List<IVariableProvider> fProviders = new ArrayList<IVariableProvider>();
+
+        public CompositeVariableProvider(
+            Collection<StringUtil.IVariableProvider> providers) {
+            fProviders.addAll(providers);
+        }
 
         public CompositeVariableProvider(
             StringUtil.IVariableProvider... providers) {
-            fProviders = providers;
+            this(Arrays.asList(providers));
+        }
+
+        public void addProvider(IVariableProvider provider) {
+            if (!fProviders.contains(provider)) {
+                fProviders.add(provider);
+            }
         }
 
         @Override
         public String getValue(String name) {
             String result = null;
             for (IVariableProvider provider : fProviders) {
-                result = provider.getValue(name);
-                if (result != null) {
-                    break;
+                if (provider != null) {
+                    result = provider.getValue(name);
+                    if (result != null) {
+                        break;
+                    }
                 }
             }
             return result;
+        }
+
+        public void removeProvider(IVariableProvider provider) {
+            fProviders.remove(provider);
         }
 
     }

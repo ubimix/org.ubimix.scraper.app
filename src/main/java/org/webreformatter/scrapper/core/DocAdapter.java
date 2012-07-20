@@ -15,6 +15,7 @@ import org.webreformatter.resources.adapters.html.HTMLAdapter;
 import org.webreformatter.resources.adapters.xml.XmlAdapter;
 import org.webreformatter.scrapper.protocol.HttpStatusCode;
 import org.webreformatter.scrapper.transformer.CompositeTransformer;
+import org.webreformatter.scrapper.transformer.IDocumentTransformer;
 import org.webreformatter.scrapper.transformer.XslBasedDocumentTransformer;
 
 /**
@@ -48,6 +49,11 @@ public class DocAdapter extends AppContextAdapter {
         return xsl;
     }
 
+    public void setDefaultDocumentTransformer(
+        IDocumentTransformer defaultTransformer) {
+        fDocumentTransformer.setDefaultTransformer(defaultTransformer);
+    }
+
     public void setDocumentTransformer(
         Uri url,
         XslBasedDocumentTransformer transformer) {
@@ -70,7 +76,7 @@ public class DocAdapter extends AppContextAdapter {
         toXml(resourceUri, rawResource, xmlResource, null);
     }
 
-    public void toXml(
+    private void toXml(
         Uri resourceUri,
         IWrfResource rawResource,
         IWrfResource xmlResource,
