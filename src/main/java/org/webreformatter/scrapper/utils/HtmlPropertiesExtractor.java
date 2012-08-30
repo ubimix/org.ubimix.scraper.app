@@ -319,6 +319,101 @@ public abstract class HtmlPropertiesExtractor {
             || Character.isSpaceChar(ch);
     }
 
+    protected static int skipSpaces(char[] array, int pos) {
+        for (; pos < array.length; pos++) {
+            if (!isSpaceChar(array[pos])) {
+                break;
+            }
+        }
+        return pos;
+    }
+
+    private static int skipValue(char[] array, int pos, StringBuilder buf) {
+        buf.delete(0, buf.length());
+        boolean escaped = false;
+        char quot = pos < array.length
+            && (array[pos] == '\'' || array[pos] == '\"') ? array[pos] : 0;
+        if (quot != 0) {
+            pos++;
+        }
+        for (; pos < array.length; pos++) {
+            char ch = array[pos];
+            if (escaped) {
+                buf.append(ch);
+                escaped = false;
+            } else {
+                if (ch == '\\') {
+                    escaped = true;
+                } else if (quot != 0) {
+                    if (ch != quot) {
+                        buf.append(ch);
+                    } else {
+                        pos++;
+                        break;
+                    }
+                } else if (ch == '=') {
+                    break;
+                } else if (isSpaceChar(ch)) {
+                    pos++;
+                    break;
+                } else {
+                    buf.append(ch);
+                }
+            }
+        }
+        if (quot == 0) {
+            String s = buf.toString();
+            buf.delete(0, buf.length());
+            buf.append(trim(s));
+        }
+        return pos;
+    }
+
+    public static Map<String, String> splitParams(String str) {
+        Map<String, String> result = new LinkedHashMap<String, String>();
+        char[] chars = str.toCharArray();
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < chars.length;) {
+            i = skipSpaces(chars, i);
+            i = skipValue(chars, i, buf);
+            String key = buf.toString();
+            String value = null;
+            i = skipSpaces(chars, i);
+            if (i < chars.length && chars[i] == '=') {
+                i++;
+                i = skipSpaces(chars, i);
+                i = skipValue(chars, i, buf);
+                value = buf.toString();
+            }
+            result.put(key, value);
+        }
+        return result;
+    }
+
+    private static String trim(char[] array) {
+        if (array == null || array.length == 0) {
+            return "";
+        }
+        int startPos = 0;
+        int len = array.length;
+        while (startPos < len) {
+            char ch = array[startPos];
+            if (!isSpaceChar(ch)) {
+                break;
+            }
+            startPos++;
+        }
+        while (startPos < len) {
+            char ch = array[len - 1];
+            if (!isSpaceChar(ch)) {
+                break;
+            }
+            len--;
+        }
+        String str = new String(array, startPos, len - startPos);
+        return str;
+    }
+
     /**
      * Cuts of all non-character symbols at the beginning and at the end of the
      * specified string.
@@ -327,26 +422,8 @@ public abstract class HtmlPropertiesExtractor {
      * @return a trimmed string
      */
     public static String trim(String str) {
-        if (str == null || str.length() == 0) {
-            return "";
-        }
-        int startPos = 0;
-        int len = str.length();
-        while (startPos < len) {
-            char ch = str.charAt(startPos);
-            if (!isSpaceChar(ch)) {
-                break;
-            }
-            startPos++;
-        }
-        while (startPos < len) {
-            char ch = str.charAt(len - 1);
-            if (!isSpaceChar(ch)) {
-                break;
-            }
-            len--;
-        }
-        str = str.substring(startPos, len);
+        char[] array = str != null ? str.toCharArray() : null;
+        str = trim(array);
         return str;
     }
 

@@ -4,6 +4,7 @@
 package org.webreformatter.scrapper.utils;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import junit.framework.TestCase;
@@ -198,6 +199,28 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             keyValuePairs);
     }
 
+    public void testSplitParams() {
+        testSplitParams("a=b", "a", "b");
+        testSplitParams(" a = b ", "a", "b");
+        testSplitParams(" a = '  b   '", "a", "  b   ");
+        testSplitParams("' a '= '  b   '", " a ", "  b   ");
+        testSplitParams("a=b c=d", "a", "b", "c", "d");
+        testSplitParams(
+            "a=b c = d 'e' = 'Hello, world!'",
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "Hello, world!");
+    }
+
+    private void testSplitParams(String string, String... controlPairs) {
+        Map<String, String> pairs = HtmlPropertiesExtractor.splitParams(string);
+        Map<String, String> control = toMap(controlPairs);
+        assertEquals(control, pairs);
+    }
+
     public void testTableProperties() throws XmlException, IOException {
         HtmlPropertiesExtractor extractor = new HtmlTablePropertiesExtractor();
         testPropertiesExtraction(
@@ -255,5 +278,15 @@ public class HtmlPropertiesExtractorTest extends TestCase {
             "http://www.foo.bar/images/myphoto.png",
             "homepageUrl",
             "http://www.foo.bar/index.html");
+    }
+
+    private Map<String, String> toMap(String... pairs) {
+        Map<String, String> map = new HashMap<String, String>();
+        for (int i = 0; i < pairs.length;) {
+            String key = pairs[i++];
+            String value = i < pairs.length ? pairs[i++] : "";
+            map.put(key, value);
+        }
+        return map;
     }
 }

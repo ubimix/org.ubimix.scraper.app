@@ -113,8 +113,12 @@ public class ExampleTileGenerator {
                 super.onTile(tile);
             }
         };
-        TilesLoader loader = new TilesLoader(mapTop, mapBottom);
-        loader.load(minZoom, maxZoom, tilesListener);
+        TilesLoader loader = new TilesLoader(
+            mapTop,
+            mapBottom,
+            minZoom.getLevel(),
+            maxZoom.getLevel());
+        loader.load(tilesListener);
         Map<Path, IWrfResource> tiles = tilesListener.getMapTiles();
 
         zipFile.getParentFile().mkdirs();
