@@ -12,7 +12,7 @@
     </properties>
     <groupId>org.webreformatter.scrapper</groupId>
     <artifactId>org.webreformatter.scrapper.app</artifactId>
-    <version>0.9.0</version>
+    <version>1.2.0</version>
     <packaging>bundle</packaging>
     <name>${artifactId}</name>
     <dependencies>
@@ -24,17 +24,17 @@
         <dependency>
             <groupId>org.webreformatter.scrapper</groupId>
             <artifactId>org.webreformatter.scrapper.protocol</artifactId>
-            <version>0.9.0</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.scrapper</groupId>
             <artifactId>org.webreformatter.scrapper.transformer</artifactId>
-            <version>0.9.0</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.webreformatter.scrapper</groupId>
             <artifactId>org.webreformatter.scrapper.resources</artifactId>
-            <version>0.9.0</version>
+            <version>1.2.0</version>
         </dependency>
 
         <dependency>
