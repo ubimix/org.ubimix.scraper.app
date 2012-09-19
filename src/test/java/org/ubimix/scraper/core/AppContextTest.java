@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.core;
+package org.ubimix.scraper.core;
 
 import junit.framework.TestCase;
 

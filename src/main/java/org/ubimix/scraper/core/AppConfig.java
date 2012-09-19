@@ -1,8 +1,8 @@
-package org.ubimix.scrapper.core;
+package org.ubimix.scraper.core;
 
 import org.ubimix.commons.strings.StringUtil.IVariableProvider;
 import org.ubimix.resources.adapters.cache.DateUtil;
-import org.ubimix.scrapper.app.AbstractConfig;
+import org.ubimix.scraper.app.AbstractConfig;
 
 /**
  * @author kotelnikov

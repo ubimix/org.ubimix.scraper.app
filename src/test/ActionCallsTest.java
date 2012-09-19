@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.events;
+package org.ubimix.scraper.events;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,10 +14,10 @@ import org.ubimix.resources.AbstractResourceTest;
 import org.ubimix.resources.IWrfRepository;
 import org.ubimix.resources.IWrfResource;
 import org.ubimix.resources.IWrfResourceProvider;
-import org.ubimix.scrapper.context.ApplicationContext;
-import org.ubimix.scrapper.events.LoadResource;
-import org.ubimix.scrapper.events.LoadResource.Request;
-import org.ubimix.scrapper.events.ServiceCall;
+import org.ubimix.scraper.context.ApplicationContext;
+import org.ubimix.scraper.events.LoadResource;
+import org.ubimix.scraper.events.LoadResource.Request;
+import org.ubimix.scraper.events.ServiceCall;
 
 public class ActionCallsTest extends AbstractResourceTest {
 

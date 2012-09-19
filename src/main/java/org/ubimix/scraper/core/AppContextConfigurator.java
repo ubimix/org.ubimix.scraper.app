@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.core;
+package org.ubimix.scraper.core;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import org.ubimix.commons.strings.StringUtil;
 import org.ubimix.commons.strings.StringUtil.IVariableProvider;
 import org.ubimix.commons.uri.Uri;
 import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
-import org.ubimix.scrapper.core.IAccessConfig.ICredentials;
+import org.ubimix.scraper.core.IAccessConfig.ICredentials;
 
 /**
  * @author kotelnikov

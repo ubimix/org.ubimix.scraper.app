@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.app;
+package org.ubimix.scraper.app;
 
 import java.util.ArrayList;
 import java.util.Arrays;

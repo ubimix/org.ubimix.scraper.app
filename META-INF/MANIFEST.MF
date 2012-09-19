@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bundle-SymbolicName: org.ubimix.scrapper.app
-Bundle-Name: org.ubimix.scrapper.app
+Bundle-SymbolicName: org.ubimix.scraper.app
+Bundle-Name: org.ubimix.scraper.app
 Bundle-Version: 1.2.1
 Bundle-ManifestVersion: 2
 Bundle-Description: Scrapper API
@@ -42,13 +42,13 @@ Bundle-License: http://www.apache.org/licenses/LICENSE-2.0Import-Package: javax
  org.ubimix.resources.adapters.xml;version="1.2.1",
  org.ubimix.resources.adapters.zip;version="1.2.1",
  org.ubimix.resources.impl;version="1.2.1",
- org.ubimix.scrapper.protocol;version="1.2.1",
- org.ubimix.scrapper.transformer;version="1.2.1",
+ org.ubimix.scraper.protocol;version="1.2.1",
+ org.ubimix.scraper.transformer;version="1.2.1",
  org.ubimix.server.mime;version="1.2.1",
  org.xml.sax
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Activator: org.ubimix.scrapper.app.Activator
+Bundle-Activator: org.ubimix.scraper.app.Activator
 Export-Package: org.ubimix.sandbox;version="1.2.1",
- org.ubimix.scrapper.app;version="1.2.1",
- org.ubimix.scrapper.core;version="1.2.1",
- org.ubimix.scrapper.utils;version="1.2.1"
+ org.ubimix.scraper.app;version="1.2.1",
+ org.ubimix.scraper.core;version="1.2.1",
+ org.ubimix.scraper.utils;version="1.2.1"

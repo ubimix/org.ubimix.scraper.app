@@ -7,8 +7,8 @@
         <artifactId>org.ubimix.poms.bundle</artifactId>
         <version>1.2.1</version>
     </parent>
-    <groupId>org.ubimix.scrapper</groupId>
-    <artifactId>org.ubimix.scrapper.app</artifactId>
+    <groupId>org.ubimix.scraper</groupId>
+    <artifactId>org.ubimix.scraper.app</artifactId>
     <version>1.2.1</version>
     <packaging>bundle</packaging>
     <name>${project.artifactId}</name>
@@ -19,18 +19,18 @@
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.ubimix.scrapper</groupId>
-            <artifactId>org.ubimix.scrapper.protocol</artifactId>
+            <groupId>org.ubimix.scraper</groupId>
+            <artifactId>org.ubimix.scraper.protocol</artifactId>
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.ubimix.scrapper</groupId>
-            <artifactId>org.ubimix.scrapper.transformer</artifactId>
+            <groupId>org.ubimix.scraper</groupId>
+            <artifactId>org.ubimix.scraper.transformer</artifactId>
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>org.ubimix.scrapper</groupId>
-            <artifactId>org.ubimix.scrapper.resources</artifactId>
+            <groupId>org.ubimix.scraper</groupId>
+            <artifactId>org.ubimix.scraper.resources</artifactId>
             <version>1.2.1</version>
         </dependency>
 

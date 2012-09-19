@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.app;
+package org.ubimix.scraper.app;
 
 import java.io.File;
 import java.util.Collections;
@@ -155,7 +155,7 @@ public class Activator extends ConfigurableMultiserviceActivator {
 
     @Override
     protected String getServiceID() {
-        return "org.ubimix.scrapper";
+        return "org.ubimix.scraper";
     }
 
     protected void registerFile(File file, Map<String, Object> params) {

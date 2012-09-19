@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.core;
+package org.ubimix.scraper.core;
 
 import java.io.IOException;
 
@@ -13,10 +13,10 @@ import org.ubimix.resources.IWrfResource;
 import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
 import org.ubimix.resources.adapters.html.HTMLAdapter;
 import org.ubimix.resources.adapters.xml.XmlAdapter;
-import org.ubimix.scrapper.protocol.HttpStatusCode;
-import org.ubimix.scrapper.transformer.CompositeTransformer;
-import org.ubimix.scrapper.transformer.IDocumentTransformer;
-import org.ubimix.scrapper.transformer.XslBasedDocumentTransformer;
+import org.ubimix.scraper.protocol.HttpStatusCode;
+import org.ubimix.scraper.transformer.CompositeTransformer;
+import org.ubimix.scraper.transformer.IDocumentTransformer;
+import org.ubimix.scraper.transformer.XslBasedDocumentTransformer;
 
 /**
  * @author kotelnikov

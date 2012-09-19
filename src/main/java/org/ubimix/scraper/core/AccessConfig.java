@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.core;
+package org.ubimix.scraper.core;
 
 import java.util.ArrayList;
 import java.util.List;

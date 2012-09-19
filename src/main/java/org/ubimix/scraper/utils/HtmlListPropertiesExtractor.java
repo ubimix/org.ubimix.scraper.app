@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.utils;
+package org.ubimix.scraper.utils;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

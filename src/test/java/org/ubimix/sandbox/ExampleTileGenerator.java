@@ -25,8 +25,8 @@ import org.ubimix.resources.IWrfResource;
 import org.ubimix.resources.adapters.cache.CachedResourceAdapter;
 import org.ubimix.resources.adapters.cache.DateUtil;
 import org.ubimix.resources.adapters.zip.ZipAdapter;
-import org.ubimix.scrapper.core.AppContext;
-import org.ubimix.scrapper.core.MapAdapter.MapTilesLoaderListener;
+import org.ubimix.scraper.core.AppContext;
+import org.ubimix.scraper.core.MapAdapter.MapTilesLoaderListener;
 
 /**
  * @author kotelnikov

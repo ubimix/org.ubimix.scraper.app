@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.utils;
+package org.ubimix.scraper.utils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 import org.ubimix.commons.xml.XmlException;
 import org.ubimix.commons.xml.XmlWrapper;
 import org.ubimix.commons.xml.XmlWrapper.XmlContext;
-import org.ubimix.scrapper.utils.HtmlPropertiesExtractor.PropertyListener;
+import org.ubimix.scraper.utils.HtmlPropertiesExtractor.PropertyListener;
 
 /**
  * @author kotelnikov

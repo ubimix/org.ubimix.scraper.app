@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.ubimix.scrapper.utils;
+package org.ubimix.scraper.utils;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -240,7 +240,7 @@ public abstract class HtmlPropertiesExtractor {
             Object propertyValue);
 
         /**
-         * @see org.ubimix.scrapper.utils.HtmlPropertiesExtractor.IPropertyListener#onPropertyNode(java.lang.String,
+         * @see org.ubimix.scraper.utils.HtmlPropertiesExtractor.IPropertyListener#onPropertyNode(java.lang.String,
          *      org.ubimix.commons.xml.XmlWrapper)
          */
         @Override

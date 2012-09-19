@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.app;
+package org.ubimix.scraper.app;
 
 import java.io.IOException;
 import java.util.List;

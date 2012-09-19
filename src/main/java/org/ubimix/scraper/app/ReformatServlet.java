@@ -1,4 +1,4 @@
-package org.ubimix.scrapper.app;
+package org.ubimix.scraper.app;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.ubimix.commons.uri.Path.Builder;
 import org.ubimix.commons.uri.Uri;
-import org.ubimix.scrapper.protocol.HttpStatusCode;
+import org.ubimix.scraper.protocol.HttpStatusCode;
 
 public class ReformatServlet extends HttpServlet {
 
